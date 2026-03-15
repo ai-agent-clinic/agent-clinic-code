@@ -1,0 +1,784 @@
+{
+  "eval_set_result_id": "case_study_researcher_improved_agent/evalsets/research_evals.json_1773609843.891744",
+  "eval_set_result_name": "case_study_researcher_improved_agent_evalsets_research_evals.json_1773609843.891744",
+  "eval_set_id": "improved_agent/evalsets/research_evals.json",
+  "eval_case_results": [
+    {
+      "eval_set_file": "improved_agent/evalsets/research_evals.json",
+      "eval_set_id": "improved_agent/evalsets/research_evals.json",
+      "eval_id": "find_agentic_ai_case_study",
+      "final_eval_status": 2,
+      "eval_metric_results": null,
+      "overall_eval_metric_results": [
+        {
+          "metric_name": "tool_trajectory_avg_score",
+          "threshold": 1.0,
+          "criterion": {
+            "threshold": 1.0
+          },
+          "custom_function_path": null,
+          "score": 0.0,
+          "eval_status": 2,
+          "details": {
+            "rubric_scores": null
+          }
+        },
+        {
+          "metric_name": "response_match_score",
+          "threshold": 0.8,
+          "criterion": {
+            "threshold": 0.8
+          },
+          "custom_function_path": null,
+          "score": 0.6285714285714286,
+          "eval_status": 2,
+          "details": {
+            "rubric_scores": null
+          }
+        }
+      ],
+      "eval_metric_result_per_invocation": [
+        {
+          "actual_invocation": {
+            "invocation_id": "e-56020d17-5164-45c2-9c65-9f13f0d44594",
+            "user_content": {
+              "parts": [
+                {
+                  "media_resolution": null,
+                  "code_execution_result": null,
+                  "executable_code": null,
+                  "file_data": null,
+                  "function_call": null,
+                  "function_response": null,
+                  "inline_data": null,
+                  "text": "Can you find a customer success story related to Agentic AI?",
+                  "thought": null,
+                  "thought_signature": null,
+                  "video_metadata": null
+                }
+              ],
+              "role": "user"
+            },
+            "final_response": {
+              "parts": [
+                {
+                  "media_resolution": null,
+                  "code_execution_result": null,
+                  "executable_code": null,
+                  "file_data": null,
+                  "function_call": null,
+                  "function_response": null,
+                  "inline_data": null,
+                  "text": "I found a customer success story for \"Virtuals Protocol\" related to \"Agentic AI\". The case study has been saved to your knowledge base.",
+                  "thought": null,
+                  "thought_signature": "CscCAb4-9vsm9epvj7ihRmWModYvZfySAhkFH1vrUTrxWkG_i2pLr65KDY-7nHGuwxGUWcyf_b87GbUGN4ckJ8GraSKpUxirdiFsszZ4ugiqfKN39Mdkq3ogND-fb_E83qVMf2prUnvc2sD33sWleFxhcfSxaTAu_x7QUj8DQsuzIsEwMZ3INIi1CotGSSHzCMb3D19bUbPhB8RoDeqCaePXtEV_ajjm7LLbgn5rHEBdfLbsgS6gDVcYdWCnNb9taUtLwi4iZ5vgdmRv_sfEKOAxUr5e0CJQZp9agCv2hFL8Pk5BhcywOJwYffTPPDhhmDkLpsfDfsT-NLIX3wobHO0cp9SfKB9XtHYUk-39nwM5CU5jw7WvZY2Ay6EY4F3kpTRHV5uxJzo7BNpB0-orExRtyhN0DoY6yBoN90Hev_7xk713yjOT--Dl",
+                  "video_metadata": null
+                }
+              ],
+              "role": "model"
+            },
+            "intermediate_data": {
+              "invocation_events": [
+                {
+                  "author": "case_study_researcher",
+                  "content": {
+                    "parts": [
+                      {
+                        "media_resolution": null,
+                        "code_execution_result": null,
+                        "executable_code": null,
+                        "file_data": null,
+                        "function_call": {
+                          "id": "adk-cf81dbb2-bbac-4583-8039-6695fdc5312b",
+                          "args": {
+                            "command": "playwright-cli open"
+                          },
+                          "name": "run_browser_command",
+                          "partial_args": null,
+                          "will_continue": null
+                        },
+                        "function_response": null,
+                        "inline_data": null,
+                        "text": null,
+                        "thought": null,
+                        "thought_signature": "CqQJAb4-9vv1iTAhsMbQ8pmd1wujMo7c5UHqH5CAW_yE5k3XAnVwC47q0eI8ht0CnC6OQBd2GrWZwLHyKEUbOG2uK-mXG0H9PuVCx5dLDFwPf-_ULZi0q4DAC_e6fxiQhN7vns3tqjeDfIQOC0ygJ3_hRT393Nud3G6adCJWnENsN_DNkJ10EQoy0bthQGBuhO9qSP8mtZ5433giotOe7Cl35JMXkv6GHgRXuXpMdqir2SJS6v9zt_mwS2CIUre7EoAxSafMSkYCx-y32GDPbagvgF5HHGLcdR7jgUb34j7xiQknOxRAKnuRAvGiMhom24NH2efKbMS-eW37yxdP8-lpcrDTCtbFf3heBZ75dA2WMsxonerJXoqnmugKLxbOPt0XFzDXSTUnwBVRz7IsrnU8Q1RJ0gOboLfV75_TzIxYv7Z_BFcW5c-ergE2MWFenE6qKsSkvrkBr9-hnjQRNyNmQJmt98Tm8iQUhA4Tg1rbwkrOyb9YA_85sCXAX5ITv5I04-4qNpXodz0Kem7HWocZ13hPNl6bBnEmrhDpwQyff9TvbNxPCHPYMPySVdhlhRsfGn5r_LYHRpcDviudMv_bQhW6Wv2qvYQfgZbMhvUkqXQKA0spNEJb-YD1VKZmbIzfWJGcKEvy-NGxznbAyOgSQfajxhnoNfCvXftc6zytHprxudAXERyUhGpwkqlnhZeHNEaTo6Ods2YaDMghCeZDbmF3rkCKTWtZbAchjie8WHaRc7Bmztby8Zd-K0fkNGDOfAtUtjOLiDUSPYB-eneUhp8x__FnvAzIB_0JEfYHPb5AhekjgRc3pX1jUw7llQ0R9BbeKM8EODGsp1mRaYdCr7uz09WY4Ys-C99pEytvoWc8nSS84e25BUXlCAv8UtxpxsynXUZbTedLRieF_GqOhdihPLduDnB2Ao18QsTm4FCCN4A5ApR8UEmwqskr0IkOayD5V6-imUk3u14-y23oTwvCplUAcyms5yJNRF9mZ0TeYtdl9rIFVEGIfsKLDloncDDnEsoAPb-18o7yENji3pDd8XVlUS06myLI9cd5ony4_s-_-jR_4LqI5K-iCIGM4Q50TU7hKw5WK_qoa55z26KzzZ1nJ3b7sk5KRzK5O5kBz997GkkDBGAp9xpigLGq8lZX3tgtOkQK2Ogj9raz0zKFiQ4AumDFEwe6Op9yVDnTSC6h3XTulisGafMWWnQgd5ira11ym3CMhZHMMIbDexf1k7uYygMqtT-XXkXibSDm2sNL828taCL9FYe3od3gVvuNLHauE7R9SIbnWUAAuD1KXUOaldpnSv62DCtYNkWsIW0uetAUTeS_so9enw60UQ_ccB5X27hqmv7tThYHkrNf9Sc6gSsLsXEqUaWOkht6kx8nnNm7VyH4B7-RgbEsRDWMVb67A84yB9f6T5rK-xQwFRfawVx4slCihdyNEfOqTAJWOHXafhcjbv6_FH-24G09dsIGczJ29-y8AfQ0f2mlPlyg0TyAxIc5lWWHOhjRUQhAgXtEeQYgvqCXLaJUhJjML0vm1X2QFb-Vkd3WrP-ibZP-Hv5PvHjUnplDPuxh8lQY",
+                        "video_metadata": null
+                      }
+                    ],
+                    "role": "model"
+                  }
+                },
+                {
+                  "author": "case_study_researcher",
+                  "content": {
+                    "parts": [
+                      {
+                        "media_resolution": null,
+                        "code_execution_result": null,
+                        "executable_code": null,
+                        "file_data": null,
+                        "function_call": null,
+                        "function_response": {
+                          "will_continue": null,
+                          "scheduling": null,
+                          "parts": null,
+                          "id": "adk-cf81dbb2-bbac-4583-8039-6695fdc5312b",
+                          "name": "run_browser_command",
+                          "response": {
+                            "status": "success",
+                            "output": "### Browser `default` opened with pid 96875.\n- default:\n  - browser-type: chrome\n  - user-data-dir: <in-memory>\n  - headed: false\n---\n### Page\n- Page URL: about:blank\n### Snapshot\n- [Snapshot](.playwright-cli/page-2026-03-15T21-23-15-915Z.yml)\n\n\n### Snapshot Content (.playwright-cli/page-2026-03-15T21-23-15-915Z.yml)\n\n"
+                          }
+                        },
+                        "inline_data": null,
+                        "text": null,
+                        "thought": null,
+                        "thought_signature": null,
+                        "video_metadata": null
+                      }
+                    ],
+                    "role": "user"
+                  }
+                },
+                {
+                  "author": "case_study_researcher",
+                  "content": {
+                    "parts": [
+                      {
+                        "media_resolution": null,
+                        "code_execution_result": null,
+                        "executable_code": null,
+                        "file_data": null,
+                        "function_call": {
+                          "id": "adk-4d7f3339-962b-42b4-b283-9f88aeb3fa72",
+                          "args": {
+                            "command": "playwright-cli goto https://cloud.google.com/customers"
+                          },
+                          "name": "run_browser_command",
+                          "partial_args": null,
+                          "will_continue": null
+                        },
+                        "function_response": null,
+                        "inline_data": null,
+                        "text": null,
+                        "thought": null,
+                        "thought_signature": "CnUBvj72-37G3dkM9QDrNGhqT9wRDbORPHB-ZGFcXG857y50rdvZMKfWKGUbNpx8NWzulghcbLDpi67J63rM2tyJlbar0fBAn4JmiZnMSezYKa73c3MpPpmWU7YDqcTugOF5sBGI1tvV0G5a6qgdUEyu-0kWfx0=",
+                        "video_metadata": null
+                      }
+                    ],
+                    "role": "model"
+                  }
+                },
+                {
+                  "author": "case_study_researcher",
+                  "content": {
+                    "parts": [
+                      {
+                        "media_resolution": null,
+                        "code_execution_result": null,
+                        "executable_code": null,
+                        "file_data": null,
+                        "function_call": null,
+                        "function_response": {
+                          "will_continue": null,
+                          "scheduling": null,
+                          "parts": null,
+                          "id": "adk-4d7f3339-962b-42b4-b283-9f88aeb3fa72",
+                          "name": "run_browser_command",
+                          "response": {
+                            "status": "success",
+                            "output": "### Ran Playwright code\n```js\nawait page.goto('https://cloud.google.com/customers');\n```\n### Page\n- Page URL: https://cloud.google.com/customers\n- Page Title: Customers | Google Cloud\n- Console: 1 errors, 0 warnings\n### Snapshot\n- [Snapshot](.playwright-cli/page-2026-03-15T21-23-19-434Z.yml)\n### Events\n- New console entries: .playwright-cli/console-2026-03-15T21-23-16-884Z.log#L1\n\n\n### Snapshot Content (.playwright-cli/page-2026-03-15T21-23-19-434Z.yml)\n- generic [active] [ref=e1]:\n  - generic [ref=e10]:\n    - generic [ref=e14]:\n      - generic [ref=e15]:\n        - generic [ref=e16]:\n          - heading \"Google Cloud customer stories\" [level=1] [ref=e17]:\n            - paragraph [ref=e18]: Google Cloud customer stories\n          - paragraph [ref=e21]:\n            - text: Organizations worldwide are turning to Google Cloud for their digital transformations. Today, nine of the top 10 AI Labs, and nearly all the AI unicorns, are Google Cloud customers. Read about\n            - link \"more than 1001 gen AI use cases\" [ref=e22] [cursor=pointer]:\n              - /url: https://cloud.google.com/transform/101-real-world-generative-ai-use-cases-from-industry-leaders\n            - text: or watch\n            - link \"customer success stories\" [ref=e23] [cursor=pointer]:\n              - /url: https://www.youtube.com/playlist?list=PLBgogxgQVM9txN9onpAbB457h6ZMCiDMi\n            - text: .\n        - generic [ref=e24]:\n          - generic [ref=e27] [cursor=pointer]:\n            - generic [ref=e28]: Contact sales\n            - link \"Contact sales\" [ref=e29]:\n              - /url: https://cloud.google.com/contact\n          - generic [ref=e32] [cursor=pointer]:\n            - generic [ref=e33]: Try Google Cloud for free\n            - link \"Try Google Cloud for free\" [ref=e34]:\n              - /url: https://console.cloud.google.com/freetrial\n      - link \"Play video\" [ref=e39] [cursor=pointer]:\n        - /url: https://youtu.be/vsPtOl1TeOg?si=j7OjvLdyc1PjSMX0\n        - 'img \"The year in AI : 2025 customer highlights\" [ref=e43]'\n        - img [ref=e45]\n    - generic [ref=e50]:\n      - heading \"Real-world benefits for customers\" [level=4] [ref=e52]\n      - generic [ref=e53]:\n        - generic [ref=e54]:\n          - generic [ref=e55]:\n            - paragraph [ref=e56]: Driving growth and efficiency\n            - paragraph [ref=e57]:\n              - paragraph [ref=e58]: Millennium BCP uses BigQuery to boost conversion rates 2.6x in digital sales efforts.\n          - generic [ref=e61] [cursor=pointer]:\n            - generic [ref=e62]: Read the case study\n            - link \"Read the case study\" [ref=e63]:\n              - /url: https://cloud.google.com/customers/millennium-bcp\n        - generic [ref=e64]:\n          - generic [ref=e65]:\n            - paragraph [ref=e66]: Battling security threats\n            - paragraph [ref=e67]:\n              - paragraph [ref=e68]: Apex Fintech Solutions reduced its threat detection turnaround time by up to 75%.\n          - generic [ref=e71] [cursor=pointer]:\n            - generic [ref=e72]: Watch the video\n            - link \"Watch the video\" [ref=e73]:\n              - /url: https://www.youtube.com/watch?v=s3OCiI7NB3s\n        - generic [ref=e74]:\n          - generic [ref=e75]:\n            - paragraph [ref=e76]: Better inventory forecasting\n            - paragraph [ref=e77]:\n              - paragraph [ref=e78]: The Super-Pharm pharmacy chain uses Vertex AI to improve inventory accuracy by up to 90%.\n          - generic [ref=e81] [cursor=pointer]:\n            - generic [ref=e82]: Read the case study\n            - link \"Read the case study\" [ref=e83]:\n              - /url: https://cloud.google.com/customers/super-pharm\n    - list [ref=e88]:\n      - listitem [ref=e89]:\n        - link \"Morrisons Logo\" [ref=e90] [cursor=pointer]:\n          - /url: https://cloud.google.com/customers/morrisons?hl=en\n          - img \"Morrisons Logo\" [ref=e92]\n      - listitem [ref=e93]:\n        - link \"Revolut logo\" [ref=e94] [cursor=pointer]:\n          - /url: https://cloud.google.com/customers/revolut-data?hl=en\n          - img \"Revolut logo\" [ref=e96]\n      - listitem [ref=e97]:\n        - link \"Puma logo\" [ref=e98] [cursor=pointer]:\n          - /url: https://www.youtube.com/watch?v=KlyAJNvt6tg&list=PLBgogxgQVM9txN9onpAbB457h6ZMCiDMi&index=3\n          - img \"Puma logo\" [ref=e100]\n      - listitem [ref=e101]:\n        - link \"Orienta Logo\" [ref=e102] [cursor=pointer]:\n          - /url: https://cloud.google.com/customers/orienta\n          - img \"Orienta Logo\" [ref=e104]\n      - listitem [ref=e105]:\n        - link \"Etsy Logo\" [ref=e106] [cursor=pointer]:\n          - /url: https://cloud.google.com/customers/etsy-ai?hl=en\n          - img \"Etsy Logo\" [ref=e108]\n      - listitem [ref=e109]:\n        - link \"Mattel Logo\" [ref=e110] [cursor=pointer]:\n          - /url: https://www.youtube.com/watch?v=3kcR39hjEvQ\n          - img \"Mattel Logo\" [ref=e112]\n      - listitem [ref=e113]:\n        - link \"Uniformed Services University logo\" [ref=e114] [cursor=pointer]:\n          - /url: https://cloud.google.com/customers/uniformed-services-university?hl=en\n          - img \"Uniformed Services University logo\" [ref=e116]\n      - listitem [ref=e117]:\n        - img \"Panasonic Logo\" [ref=e119]\n      - listitem [ref=e120]:\n        - link \"Somapay Logo\" [ref=e121] [cursor=pointer]:\n          - /url: https://cloud.google.com/customers/somapay\n          - img \"Somapay Logo\" [ref=e123]\n      - listitem [ref=e124]:\n        - img \"Fujtsu Logo\" [ref=e126]\n    - generic [ref=e129]:\n      - heading \"Featured stories\" [level=3] [ref=e133]:\n        - generic [ref=e134]: Featured stories\n      - generic [ref=e135]:\n        - list [ref=e137]:\n          - listitem [ref=e138]:\n            - link \"dia card Dia Dia boosts its omnichannel ecommerce with the scalability of Google Cloud Learn more\" [ref=e139] [cursor=pointer]:\n              - /url: https://cloud.google.com/customers/intl/es-419/dia-espana?hl=es-419\n              - generic [ref=e140]:\n                - img \"dia card\" [ref=e144]\n                - generic [ref=e145]:\n                  - generic [ref=e146]: Dia\n                  - generic [ref=e147]: Dia boosts its omnichannel ecommerce with the scalability of Google Cloud\n                - generic:\n                  - generic: Learn more\n          - listitem [ref=e148]:\n            - link \"eversana card Eversana EVERSANA creates the first \\\"AI Agency Platform\\\" to revolutionize pharma marketing Learn more\" [ref=e149] [cursor=pointer]:\n              - /url: https://cloud.google.com/customers/eversana?hl=en\n              - generic [ref=e150]:\n                - img \"eversana card\" [ref=e154]\n                - generic [ref=e155]:\n                  - generic [ref=e156]: Eversana\n                  - generic [ref=e157]: EVERSANA creates the first \"AI Agency Platform\" to revolutionize pharma marketing\n                - generic:\n                  - generic: Learn more\n          - listitem [ref=e158]:\n            - link \"lowe's card Lowe's Lowe’s constructs a sophisticated search engine with Vertex AI Watch video\" [ref=e160] [cursor=pointer]:\n              - /url: https://www.youtube.com/watch?v=YFi8mgQeNaU\n              - generic [ref=e161]:\n                - generic [ref=e162]:\n                  - img \"lowe's card\" [ref=e165]\n                  - img [ref=e166]\n                - generic [ref=e169]:\n                  - generic [ref=e170]: Lowe's\n                  - generic [ref=e171]: Lowe’s constructs a sophisticated search engine with Vertex AI\n                - generic:\n                  - generic: Watch video\n        - list [ref=e173]:\n          - listitem [ref=e174]:\n            - link \"Wipro Featured Story Wipro Wipro is transforming cost optimization with Google Cloud AI solutions Learn more\" [ref=e175] [cursor=pointer]:\n              - /url: https://cloud.google.com/customers/wipro\n              - generic [ref=e176]:\n                - img \"Wipro Featured Story\" [ref=e180]\n                - generic [ref=e181]:\n                  - generic [ref=e182]: Wipro\n                  - generic [ref=e183]: Wipro is transforming cost optimization with Google Cloud AI solutions\n                - generic:\n                  - generic: Learn more\n          - listitem [ref=e184]:\n            - link \"natura card Natura Cosmetics Natura revolutionizes testing for new substances Learn more\" [ref=e185] [cursor=pointer]:\n              - /url: https://cloud.google.com/customers/natura?hl=en\n              - generic [ref=e186]:\n                - img \"natura card\" [ref=e190]\n                - generic [ref=e191]:\n                  - generic [ref=e192]: Natura Cosmetics\n                  - generic [ref=e193]: Natura revolutionizes testing for new substances\n                - generic:\n                  - generic: Learn more\n          - listitem [ref=e194]:\n            - link \"swarovski card Swarovski Swarovski partners with Google Cloud to personalize luxury Learn more\" [ref=e195] [cursor=pointer]:\n              - /url: https://cloud.google.com/customers/swarovski?hl=en\n              - generic [ref=e196]:\n                - img \"swarovski card\" [ref=e200]\n                - generic [ref=e201]:\n                  - generic [ref=e202]: Swarovski\n                  - generic [ref=e203]: Swarovski partners with Google Cloud to personalize luxury\n                - generic:\n                  - generic: Learn more\n    - separator [ref=e205]\n    - generic [ref=e211]:\n      - generic [ref=e214]:\n        - generic [ref=e215]: Filter by\n        - generic [ref=e216]:\n          - generic [ref=e218]:\n            - button \"Product Category keyboard_arrow_up\" [expanded] [ref=e219] [cursor=pointer]:\n              - heading \"Product Category\" [level=2] [ref=e221]\n              - text: keyboard_arrow_up\n            - listbox \"Product Category list\" [ref=e224]:\n              - option \"AI and Machine Learning\" [selected] [ref=e225] [cursor=pointer]:\n                - generic:\n                  - generic:\n                    - checkbox [checked]\n                    - generic:\n                      - img\n                - generic: AI and Machine Learning\n              - option \"API Management\" [ref=e226] [cursor=pointer]:\n                - generic:\n                  - generic:\n                    - checkbox\n                    - generic:\n                      - img\n                - generic: API Management\n              - option \"Compute\" [ref=e227] [cursor=pointer]:\n                - generic:\n                  - generic:\n                    - checkbox\n                    - generic:\n                      - img\n                - generic: Compute\n              - option \"Containers\" [ref=e228] [cursor=pointer]:\n                - generic:\n                  - generic:\n                    - checkbox\n                    - generic:\n                      - img\n                - generic: Containers\n              - option \"Data Analytics\" [ref=e229] [cursor=pointer]:\n                - generic:\n                  - generic:\n                    - checkbox\n                    - generic:\n                      - img\n                - generic: Data Analytics\n              - option \"Databases\" [ref=e230] [cursor=pointer]:\n                - generic:\n                  - generic:\n                    - checkbox\n                    - generic:\n                      - img\n                - generic: Databases\n              - option \"Developer Tools\" [ref=e231] [cursor=pointer]:\n                - generic:\n                  - generic:\n                    - checkbox\n                    - generic:\n                      - img\n                - generic: Developer Tools\n              - option \"Google Workspace\" [ref=e232] [cursor=pointer]:\n                - generic:\n                  - generic:\n                    - checkbox\n                    - generic:\n                      - img\n                - generic: Google Workspace\n              - option \"Networking\" [ref=e233] [cursor=pointer]:\n                - generic:\n                  - generic:\n                    - checkbox\n                    - generic:\n                      - img\n                - generic: Networking\n              - option \"Operations\" [ref=e234] [cursor=pointer]:\n                - generic:\n                  - generic:\n                    - checkbox\n                    - generic:\n                      - img\n                - generic: Operations\n              - option \"Security and Identity\" [ref=e235] [cursor=pointer]:\n                - generic:\n                  - generic:\n                    - checkbox\n                    - generic:\n                      - img\n                - generic: Security and Identity\n              - option \"Serverless Computing\" [ref=e236] [cursor=pointer]:\n                - generic:\n                  - generic:\n                    - checkbox\n                    - generic:\n                      - img\n                - generic: Serverless Computing\n              - option \"Storage\" [ref=e237] [cursor=pointer]:\n                - generic:\n                  - generic:\n                    - checkbox\n                    - generic:\n                      - img\n                - generic: Storage\n              - option \"Other\" [ref=e238] [cursor=pointer]:\n                - generic:\n                  - generic:\n                    - checkbox\n                    - generic:\n                      - img\n                - generic: Other\n          - button \"Industry keyboard_arrow_down\" [ref=e241] [cursor=pointer]:\n            - heading \"Industry\" [level=2] [ref=e243]\n            - text: keyboard_arrow_down\n          - generic [ref=e245]:\n            - button \"Region keyboard_arrow_up\" [expanded] [ref=e246] [cursor=pointer]:\n              - heading \"Region\" [level=2] [ref=e248]\n              - text: keyboard_arrow_up\n            - listbox \"Region list\" [ref=e251]:\n              - option \"Asia Pacific & Japan\" [ref=e252] [cursor=pointer]:\n                - generic:\n                  - generic:\n                    - checkbox\n                    - generic:\n                      - img\n                - generic: Asia Pacific & Japan\n              - option \"Europe, Middle East & Africa\" [ref=e253] [cursor=pointer]:\n                - generic:\n                  - generic:\n                    - checkbox\n                    - generic:\n                      - img\n                - generic: Europe, Middle East & Africa\n              - option \"Latin America\" [ref=e254] [cursor=pointer]:\n                - generic:\n                  - generic:\n                    - checkbox\n                    - generic:\n                      - img\n                - generic: Latin America\n              - option \"U.S. & Canada\" [selected] [ref=e255] [cursor=pointer]:\n                - generic:\n                  - generic:\n                    - checkbox [checked]\n                    - generic:\n                      - img\n                - generic: U.S. & Canada\n      - generic [ref=e256]:\n        - generic [ref=e261]:\n          - generic: search\n          - combobox \"Search\" [ref=e263]\n          - button \"Search customers by industry, name and more\" [ref=e265] [cursor=pointer]: send\n        - generic [ref=e266]:\n          - button \"AI and Machine Learning\" [ref=e268] [cursor=pointer]:\n            - generic [ref=e269]: AI and Machine Learning\n            - generic [ref=e270]: close\n          - button \"U.S. & Canada\" [ref=e272] [cursor=pointer]:\n            - generic [ref=e273]: U.S. & Canada\n            - generic [ref=e274]: close\n          - button \"Clear all\" [ref=e277] [cursor=pointer]:\n            - generic [ref=e279]: Clear all\n        - list [ref=e281]:\n          - listitem [ref=e282]:\n            - link \"ComplyAdvantage cut development time 37% with Gemini Code Assist, enabling predictable, timely delivery of a major new offering.\" [ref=e283] [cursor=pointer]:\n              - /url: https://cloud.google.com/customers/complyadvantage\n              - generic [ref=e284]:\n                - generic [ref=e287]: ComplyAdvantage cut development time 37% with Gemini Code Assist, enabling predictable, timely delivery of a major new offering.\n                - generic:\n                  - generic:\n                    - generic:\n                      - img\n          - listitem [ref=e288]:\n            - link \"Using Google Earth Engine and AI-driven geospatial modeling to accurately predict wildfire risk enables Delos to offer affordable insurance to California homeowners deemed uninsurable by other carriers.\" [ref=e289] [cursor=pointer]:\n              - /url: https://cloud.google.com/customers/delos\n              - generic [ref=e290]:\n                - generic [ref=e293]: Using Google Earth Engine and AI-driven geospatial modeling to accurately predict wildfire risk enables Delos to offer affordable insurance to California homeowners deemed uninsurable by other carriers.\n                - generic:\n                  - generic:\n                    - generic:\n                      - img\n          - listitem [ref=e294]:\n            - link \"By providing the exploration and analysis platform for a 500-petabyte dataset–the largest astronomical dataset in history–Google Cloud helps Rubin Observatory chart the cosmos and democratize science for 30,000 researchers worldwide.\" [ref=e295] [cursor=pointer]:\n              - /url: https://cloud.google.com/customers/rubin-observatory\n              - generic [ref=e296]:\n                - generic [ref=e299]: By providing the exploration and analysis platform for a 500-petabyte dataset–the largest astronomical dataset in history–Google Cloud helps Rubin Observatory chart the cosmos and democratize science for 30,000 researchers worldwide.\n                - generic:\n                  - generic:\n                    - generic:\n                      - img\n          - listitem [ref=e300]:\n            - link \"MacroFactor uses Firebase, Flutter, and Gemini to scale its top-rated nutrition app to 400k+ users and deliver trusted, AI-powered food logging.\" [ref=e301] [cursor=pointer]:\n              - /url: https://cloud.google.com/customers/macrofactor\n              - generic [ref=e302]:\n                - generic [ref=e305]: MacroFactor uses Firebase, Flutter, and Gemini to scale its top-rated nutrition app to 400k+ users and deliver trusted, AI-powered food logging.\n                - generic:\n                  - generic:\n                    - generic:\n                      - img\n          - listitem [ref=e306]:\n            - link \"With Google Cloud and Google AI, Virtuals Protocol enables humans and AI agents to collaborate seamlessly to drive economic value.\" [ref=e307] [cursor=pointer]:\n              - /url: https://cloud.google.com/customers/virtualsprotocol\n              - generic [ref=e308]:\n                - generic [ref=e311]: With Google Cloud and Google AI, Virtuals Protocol enables humans and AI agents to collaborate seamlessly to drive economic value.\n                - generic:\n                  - generic:\n                    - generic:\n                      - img\n          - listitem [ref=e312]:\n            - link \"The Hugging Face platform gives everyone access to open-source AI tools and 13 million AI builders can now easily deploy over two AI models and build their own AI applications on Google Cloud in a matter of clicks.\" [ref=e313] [cursor=pointer]:\n              - /url: https://cloud.google.com/customers/hugging-face\n              - generic [ref=e314]:\n                - generic [ref=e317]: The Hugging Face platform gives everyone access to open-source AI tools and 13 million AI builders can now easily deploy over two AI models and build their own AI applications on Google Cloud in a matter of clicks.\n                - generic:\n                  - generic:\n                    - generic:\n                      - img\n          - listitem [ref=e318]:\n            - link \"Eon transforms static backup archives into instantly queryable data lakes and, on Google Cloud, integrates with Gemini, Vertex AI, and BigQuery for natural-language search and analytics.\" [ref=e319] [cursor=pointer]:\n              - /url: https://cloud.google.com/customers/eon\n              - generic [ref=e320]:\n                - generic [ref=e323]: Eon transforms static backup archives into instantly queryable data lakes and, on Google Cloud, integrates with Gemini, Vertex AI, and BigQuery for natural-language search and analytics.\n                - generic:\n                  - generic:\n                    - generic:\n                      - img\n          - listitem [ref=e324]:\n            - link \"Refik Anadol Studio used Google Cloud, including Vertex AI and Gemini 2.5 Flash, to build the \\\"Large Nature Model,\\\" boosting speed 23x and accuracy 40% to power DATALAND exhibition's intelligent nature art.\" [ref=e325] [cursor=pointer]:\n              - /url: https://cloud.google.com/customers/refikanadolstudio\n              - generic [ref=e326]:\n                - generic [ref=e329]: Refik Anadol Studio used Google Cloud, including Vertex AI and Gemini 2.5 Flash, to build the \"Large Nature Model,\" boosting speed 23x and accuracy 40% to power DATALAND exhibition's intelligent nature art.\n                - generic:\n                  - generic:\n                    - generic:\n                      - img\n          - listitem [ref=e330]:\n            - link \"Workers at Gordon Food Service foster an innovation-forward mindset by using AI-powered applications and tools from Google Cloud to boost productivity and elevate customer service.\" [ref=e331] [cursor=pointer]:\n              - /url: https://cloud.google.com/customers/gordonfoodservice\n              - generic [ref=e332]:\n                - generic [ref=e335]: Workers at Gordon Food Service foster an innovation-forward mindset by using AI-powered applications and tools from Google Cloud to boost productivity and elevate customer service.\n                - generic:\n                  - generic:\n                    - generic:\n                      - img\n          - listitem [ref=e336]:\n            - link \"BMC Helix uses autonomous AI agents on Vertex AI to help enterprise IT move beyond delivering simple reliability and toward unlocking new possibilities through Service Operations.\" [ref=e337] [cursor=pointer]:\n              - /url: https://cloud.google.com/customers/bmc-helix\n              - generic [ref=e338]:\n                - generic [ref=e341]: BMC Helix uses autonomous AI agents on Vertex AI to help enterprise IT move beyond delivering simple reliability and toward unlocking new possibilities through Service Operations.\n                - generic:\n                  - generic:\n                    - generic:\n                      - img\n          - listitem [ref=e342]:\n            - link \"Shopify uses Claude on Vertex AI to scale Sidekick, an AI-enabled commerce assistant, to make it easier for millions of merchants to get more done faster.\" [ref=e343] [cursor=pointer]:\n              - /url: https://cloud.google.com/customers/shopify\n              - generic [ref=e344]:\n                - generic [ref=e347]: Shopify uses Claude on Vertex AI to scale Sidekick, an AI-enabled commerce assistant, to make it easier for millions of merchants to get more done faster.\n                - generic:\n                  - generic:\n                    - generic:\n                      - img\n          - listitem [ref=e348]:\n            - link \"Sabre uses Gemini models, Vertex AI Agent Builder, and semantic search technologies on Vertex AI to launch airline and travel retailing innovations.\" [ref=e349] [cursor=pointer]:\n              - /url: https://cloud.google.com/customers/sabre\n              - generic [ref=e350]:\n                - generic [ref=e353]: Sabre uses Gemini models, Vertex AI Agent Builder, and semantic search technologies on Vertex AI to launch airline and travel retailing innovations.\n                - generic:\n                  - generic:\n                    - generic:\n                      - img\n        - button \"Show more\" [ref=e357] [cursor=pointer]:\n          - text: Show more\n          - img [ref=e358]\n    - generic [ref=e362]:\n      - generic [ref=e364]:\n        - heading \"We're ready to help you along your digital transformation journey.\" [level=2] [ref=e365]:\n          - paragraph [ref=e367]: We're ready to help you along your digital transformation journey.\n        - generic [ref=e369]:\n          - generic [ref=e372] [cursor=pointer]:\n            - generic [ref=e373]: Contact sales\n            - link \"Contact sales\" [ref=e374]:\n              - /url: https://cloud.google.com/contact\n          - generic [ref=e377] [cursor=pointer]:\n            - generic [ref=e378]: Try Google Cloud for free\n            - link \"Try Google Cloud for free\" [ref=e379]:\n              - /url: https://console.cloud.google.com/freetrial\n      - separator [ref=e380]\n      - generic [ref=e381]:\n        - generic [ref=e382]:\n          - paragraph [ref=e383]: Read more of our in depth customer stories\n          - link \"Visit our blog\" [ref=e384] [cursor=pointer]:\n            - /url: https://cloud.google.com/blog\n        - generic [ref=e385]:\n          - paragraph [ref=e386]: Learn what industry analysts are saying about Google Cloud\n          - link \"Explore analyst reports\" [ref=e387] [cursor=pointer]:\n            - /url: https://cloud.google.com/analyst-reports\n        - generic [ref=e388]:\n          - paragraph [ref=e389]: Network with other professionals\n          - link \"Join the Google Cloud community\" [ref=e390] [cursor=pointer]:\n            - /url: https://www.googlecloudcommunity.com/\n  - banner [ref=e391]:\n    - generic [ref=e394]:\n      - link \"Google Cloud\" [ref=e396] [cursor=pointer]:\n        - /url: https://cloud.google.com/\n        - img \"Google Cloud\" [ref=e397]\n      - generic [ref=e398]:\n        - navigation [ref=e401]:\n          - text: chevron_left\n          - link \"Overview\" [ref=e403] [cursor=pointer]:\n            - /url: https://cloud.google.com/why-google-cloud\n          - link \"Solutions\" [ref=e405] [cursor=pointer]:\n            - /url: https://cloud.google.com/solutions\n          - link \"Products\" [ref=e407] [cursor=pointer]:\n            - /url: https://cloud.google.com/products\n          - link \"Pricing\" [ref=e409] [cursor=pointer]:\n            - /url: https://cloud.google.com/pricing\n          - link \"Resources\" [ref=e411] [cursor=pointer]:\n            - /url: https://cloud.google.com/docs/get-started\n          - text: chevron_right\n        - generic [ref=e415]:\n          - generic:\n            - generic: \n          - generic [ref=e416]:\n            - generic: search\n            - generic:\n              - combobox \"Search\"\n            - button \"Search\" [ref=e418] [cursor=pointer]: send\n      - generic [ref=e419]:\n        - link \"Docs\" [ref=e421] [cursor=pointer]:\n          - /url: https://cloud.google.com/docs\n        - link \"Support\" [ref=e423] [cursor=pointer]:\n          - /url: https://cloud.google.com/support-hub\n      - link \"Sign in\" [ref=e426] [cursor=pointer]:\n        - /url: https://accounts.google.com/AccountChooser?continue=https://cloud.google.com/customers&hl=en-US&prompt=select_account&service=cloudconsole\n  - contentinfo [ref=e427]:\n    - generic [ref=e428]:\n      - navigation \"Footer Links\" [ref=e430]:\n        - list [ref=e431]:\n          - listitem [ref=e432]:\n            - heading \"Why Google\" [level=3] [ref=e433]\n            - list [ref=e434]:\n              - listitem [ref=e435]:\n                - link \"Choosing Google Cloud\" [ref=e436] [cursor=pointer]:\n                  - /url: https://cloud.google.com/why-google-cloud\n              - listitem [ref=e437]:\n                - link \"Trust and security\" [ref=e438] [cursor=pointer]:\n                  - /url: https://cloud.google.com/trust-center\n              - listitem [ref=e439]:\n                - link \"Modern Infrastructure Cloud\" [ref=e440] [cursor=pointer]:\n                  - /url: https://cloud.google.com/solutions/modern-infrastructure\n              - listitem [ref=e441]:\n                - link \"Multicloud\" [ref=e442] [cursor=pointer]:\n                  - /url: https://cloud.google.com/multicloud\n              - listitem [ref=e443]:\n                - link \"Global infrastructure\" [ref=e444] [cursor=pointer]:\n                  - /url: https://cloud.google.com/infrastructure\n              - listitem [ref=e445]:\n                - link \"Locations\" [ref=e446] [cursor=pointer]:\n                  - /url: https://cloud.google.com/about/locations\n              - listitem [ref=e447]:\n                - link \"Customers and case studies\" [ref=e448] [cursor=pointer]:\n                  - /url: https://cloud.google.com/customers\n              - listitem [ref=e449]:\n                - link \"Analyst reports\" [ref=e450] [cursor=pointer]:\n                  - /url: https://cloud.google.com/analyst-reports\n              - listitem [ref=e451]:\n                - link \"Whitepapers\" [ref=e452] [cursor=pointer]:\n                  - /url: https://cloud.google.com/whitepapers\n              - listitem [ref=e453]:\n                - link \"Blog\" [ref=e454] [cursor=pointer]:\n                  - /url: https://cloud.google.com/blog\n          - listitem [ref=e455]:\n            - heading \"Products and pricing\" [level=3] [ref=e456]\n            - list [ref=e457]:\n              - listitem [ref=e458]:\n                - link \"Google Cloud pricing\" [ref=e459] [cursor=pointer]:\n                  - /url: https://cloud.google.com/pricing\n              - listitem [ref=e460]:\n                - link \"Google Workspace pricing\" [ref=e461] [cursor=pointer]:\n                  - /url: https://workspace.google.com/pricing.html\n              - listitem [ref=e462]:\n                - link \"See all products\" [ref=e463] [cursor=pointer]:\n                  - /url: https://cloud.google.com/products\n          - listitem [ref=e464]:\n            - heading \"Solutions\" [level=3] [ref=e465]\n            - list [ref=e466]:\n              - listitem [ref=e467]:\n                - link \"Infrastructure modernization\" [ref=e468] [cursor=pointer]:\n                  - /url: https://cloud.google.com/solutions/infrastructure-modernization/\n              - listitem [ref=e469]:\n                - link \"Databases\" [ref=e470] [cursor=pointer]:\n                  - /url: https://cloud.google.com/solutions/databases\n              - listitem [ref=e471]:\n                - link \"Application modernization\" [ref=e472] [cursor=pointer]:\n                  - /url: https://cloud.google.com/solutions/application-modernization\n              - listitem [ref=e473]:\n                - link \"Smart analytics\" [ref=e474] [cursor=pointer]:\n                  - /url: https://cloud.google.com/solutions/data-analytics-and-ai\n              - listitem [ref=e475]:\n                - link \"Artificial Intelligence\" [ref=e476] [cursor=pointer]:\n                  - /url: https://cloud.google.com/solutions/ai\n              - listitem [ref=e477]:\n                - link \"Security\" [ref=e478] [cursor=pointer]:\n                  - /url: https://cloud.google.com/solutions/security\n              - listitem [ref=e479]:\n                - link \"Productivity & work transformation\" [ref=e480] [cursor=pointer]:\n                  - /url: https://workspace.google.com/enterprise\n              - listitem [ref=e481]:\n                - link \"Industry solutions\" [ref=e482] [cursor=pointer]:\n                  - /url: https://cloud.google.com/solutions/#industry-solutions\n              - listitem [ref=e483]:\n                - link \"DevOps solutions\" [ref=e484] [cursor=pointer]:\n                  - /url: https://cloud.google.com/devops\n              - listitem [ref=e485]:\n                - link \"Small business solutions\" [ref=e486] [cursor=pointer]:\n                  - /url: https://cloud.google.com/solutions#section-14\n              - listitem [ref=e487]:\n                - link \"See all solutions\" [ref=e488] [cursor=pointer]:\n                  - /url: https://cloud.google.com/solutions\n          - listitem [ref=e489]:\n            - heading \"Resources\" [level=3] [ref=e490]\n            - list [ref=e491]:\n              - listitem [ref=e492]:\n                - link \"Google Cloud Affiliate Program\" [ref=e493] [cursor=pointer]:\n                  - /url: https://cloud.google.com/affiliate-program\n              - listitem [ref=e494]:\n                - link \"Google Cloud documentation\" [ref=e495] [cursor=pointer]:\n                  - /url: https://docs.cloud.google.com/\n              - listitem [ref=e496]:\n                - link \"Google Cloud quickstarts\" [ref=e497] [cursor=pointer]:\n                  - /url: https://docs.cloud.google.com/docs/get-started/\n              - listitem [ref=e498]:\n                - link \"Google Cloud Marketplace\" [ref=e499] [cursor=pointer]:\n                  - /url: https://cloud.google.com/marketplace\n              - listitem [ref=e500]:\n                - link \"Learn about cloud computing\" [ref=e501] [cursor=pointer]:\n                  - /url: https://cloud.google.com/discover\n              - listitem [ref=e502]:\n                - link \"Support\" [ref=e503] [cursor=pointer]:\n                  - /url: https://cloud.google.com/support-hub\n              - listitem [ref=e504]:\n                - link \"Code samples\" [ref=e505] [cursor=pointer]:\n                  - /url: https://docs.cloud.google.com/docs/samples\n              - listitem [ref=e506]:\n                - link \"Cloud Architecture Center\" [ref=e507] [cursor=pointer]:\n                  - /url: https://docs.cloud.google.com/architecture/\n              - listitem [ref=e508]:\n                - link \"Training\" [ref=e509] [cursor=pointer]:\n                  - /url: https://cloud.google.com/learn/training\n              - listitem [ref=e510]:\n                - link \"Certifications\" [ref=e511] [cursor=pointer]:\n                  - /url: https://cloud.google.com/learn/certification\n              - listitem [ref=e512]:\n                - link \"Google for Developers\" [ref=e513] [cursor=pointer]:\n                  - /url: https://developers.google.com\n              - listitem [ref=e514]:\n                - link \"Google Cloud for Startups\" [ref=e515] [cursor=pointer]:\n                  - /url: https://cloud.google.com/startup\n              - listitem [ref=e516]:\n                - link \"System status\" [ref=e517] [cursor=pointer]:\n                  - /url: https://status.cloud.google.com\n              - listitem [ref=e518]:\n                - link \"Release Notes\" [ref=e519] [cursor=pointer]:\n                  - /url: https://docs.cloud.google.com/release-notes\n          - listitem [ref=e520]:\n            - heading \"Engage\" [level=3] [ref=e521]\n            - list [ref=e522]:\n              - listitem [ref=e523]:\n                - link \"Contact sales\" [ref=e524] [cursor=pointer]:\n                  - /url: https://cloud.google.com/contact\n              - listitem [ref=e525]:\n                - link \"Find a Partner\" [ref=e526] [cursor=pointer]:\n                  - /url: https://cloud.google.com/find-a-partner\n              - listitem [ref=e527]:\n                - link \"Become a Partner\" [ref=e528] [cursor=pointer]:\n                  - /url: https://cloud.google.com/partners/become-a-partner\n              - listitem [ref=e529]:\n                - link \"Events\" [ref=e530] [cursor=pointer]:\n                  - /url: https://cloud.google.com/events\n              - listitem [ref=e531]:\n                - link \"Podcasts\" [ref=e532] [cursor=pointer]:\n                  - /url: https://cloud.google.com/podcasts\n              - listitem [ref=e533]:\n                - link \"Developer Center\" [ref=e534] [cursor=pointer]:\n                  - /url: https://cloud.google.com/developers\n              - listitem [ref=e535]:\n                - link \"Press Corner\" [ref=e536] [cursor=pointer]:\n                  - /url: https://www.googlecloudpresscorner.com\n              - listitem [ref=e537]:\n                - link \"Google Cloud on YouTube\" [ref=e538] [cursor=pointer]:\n                  - /url: https://www.youtube.com/googlecloud\n              - listitem [ref=e539]:\n                - link \"Google Cloud Tech on YouTube\" [ref=e540] [cursor=pointer]:\n                  - /url: https://www.youtube.com/googlecloudplatform\n              - listitem [ref=e541]:\n                - link \"Follow on X\" [ref=e542] [cursor=pointer]:\n                  - /url: https://x.com/googlecloud\n              - listitem [ref=e543]:\n                - link \"Join User Research\" [ref=e544] [cursor=pointer]:\n                  - /url: https://userresearch.google.com/?reserved=1&utm_source=website&Q_Language=en&utm_medium=own_srch&utm_campaign=CloudWebFooter&utm_term=0&utm_content=0&productTag=clou&campaignDate=jul19&pType=devel&referral_code=jk212693\n              - listitem [ref=e545]:\n                - link \"We're hiring. Join Google Cloud!\" [ref=e546] [cursor=pointer]:\n                  - /url: https://careers.google.com/cloud\n              - listitem [ref=e547]:\n                - link \"Community forums\" [ref=e548] [cursor=pointer]:\n                  - /url: https://discuss.google.dev/c/google-cloud/14\n      - navigation \"Utility links\" [ref=e550]:\n        - list [ref=e551]:\n          - listitem [ref=e552]:\n            - link \"About Google\" [ref=e553] [cursor=pointer]:\n              - /url: https://about.google\n          - listitem [ref=e554]:\n            - text: \"|\"\n            - link \"Privacy\" [ref=e555] [cursor=pointer]:\n              - /url: https://policies.google.com/privacy\n          - listitem [ref=e556]:\n            - text: \"|\"\n            - link \"Site terms\" [ref=e557] [cursor=pointer]:\n              - /url: https://policies.google.com/terms\n          - listitem [ref=e558]:\n            - text: \"|\"\n            - link \"Google Cloud terms\" [ref=e559] [cursor=pointer]:\n              - /url: https://cloud.google.com/product-terms\n          - text: \"|\"\n          - listitem [ref=e560]:\n            - text: \"|\"\n            - 'link \"Our third decade of climate action: join us\" [ref=e561] [cursor=pointer]':\n              - /url: https://cloud.google.com/sustainability\n          - listitem [ref=e562]:\n            - generic [ref=e563]: Sign up for the Google Cloud newsletter\n            - generic [ref=e567] [cursor=pointer]:\n              - text: Subscribe\n              - link \"Subscribe\" [ref=e568]:\n                - /url: https://cloud.google.com/newsletter\n        - combobox \"‪English‬\" [ref=e572] [cursor=pointer]:\n          - generic: language\n          - generic:\n            - generic: ‪English‬\n          - generic:\n            - img\n"
+                          }
+                        },
+                        "inline_data": null,
+                        "text": null,
+                        "thought": null,
+                        "thought_signature": null,
+                        "video_metadata": null
+                      }
+                    ],
+                    "role": "user"
+                  }
+                },
+                {
+                  "author": "case_study_researcher",
+                  "content": {
+                    "parts": [
+                      {
+                        "media_resolution": null,
+                        "code_execution_result": null,
+                        "executable_code": null,
+                        "file_data": null,
+                        "function_call": {
+                          "id": "adk-83ccf29b-3b96-4c6d-8f76-3755a8c6c3b7",
+                          "args": {
+                            "command": "playwright-cli click e307"
+                          },
+                          "name": "run_browser_command",
+                          "partial_args": null,
+                          "will_continue": null
+                        },
+                        "function_response": null,
+                        "inline_data": null,
+                        "text": null,
+                        "thought": null,
+                        "thought_signature": "CqYHAb4-9vvjDpgWqKbng5XkJKpZKp2rfQ99U3quRSzjXbZs3IEDA7o7XZM7xv2sMd0rw9jFnsTT0Yp59JrClg6MfZfQSYwGYGwds0nwMFUrF-s3gJMKpbGaokSNlSkAXD5zFjT6xks5B2Yqsh-ZdAqJMmj0jhQilKPlET13dsCxDTvGRZWY-g9gEkwiEQ-oRqQE5PSBr8cN-H2psycGtxOmwfjdbzFWhrkadHb6_DPrGZdgKTYdf47NOCW1wZgm4Mrr_IRj_NH3jTzhS1QVu8REyv-KG8ix9YxMoEJOEzq6TbMaVbU6ny1vXgA7eRKIJGE6QsL8Oey4WYRoelTtBzxW3s3mUtQ_JYyuL3LdQSnO-ZACnp5SwwnkH_IiPEB5aTy3PalIFFEt9AZnjLMPVOBQCpPwMtzXEK8GheVfHq5WvWaYT8ZzNerFC8KZyjOHoLsmBF3P7y9k17Llhn9DoKgccgdURqEFXFVGEcdl15Z42ojFV3UmRjcR-Wb_PKVfidxkNGogiDUnhEpv_K06qGTS5xjTCmUNJdJ_i4GmpAgH0q5-jK58nRKy_x8IdTWaYQOHKuSoxgkIzrNbHkcPUO75lliN5v3ze6_Vo4ywhhAEWv8iectk_x-1U0Jz5jBwqQnPmb7YSddBPrddkrsA6zWLWEhi4ctUKHAWjOtWkDEma0V0Tey0uq41sJEz6ARuEfS_rhvMq8uQdDB9sB09ARuMDk68S-vohbSZ812A7BeptBFHddb69Bw_1LYjIsrx6Yi1ac2XSNC7AxQ-LhVBDUhqv2ZTsXwvAjvGaxeAlCtvdlSX6IxbSmkwRr_TE7DLLMaOJ0rqdVYI-xtinflQxyZ9LVVTlU58RlimvGHaTJ2Hcn4rpxfMPheM-Nb87rs2VqCEpPH42P8afpWAIa3pweNdGZeGyrjBwkrRmjSJzGSwtP6idvNyXWYreWHHf2J9BmSN5zbDwSmFF92jc0gMKY1EROA8VEzTM1G0j8P30AAUCIqMzfWT5rMfmVoDLxtS3HADXtrR18JCQrgmz7jeIB9Wx0YoUEUk9fDtehCFCkQC4gACzZb3zhJCtn7POpFkM7yyZGaDhsWNOuFtLHsd120vQVS3X19Gfu_Exe4IoAjhOGyQkxsdpdmHYk7tZ1jrR4LSnOP85qbXfVk-by1jQyfFeH84CDc0nVKjWw8sH7l61nr8UVyWpOmh1cHNYcYuj2p1dFAnXnm5DtbK4KKbcKR91oSNfwouuw==",
+                        "video_metadata": null
+                      }
+                    ],
+                    "role": "model"
+                  }
+                },
+                {
+                  "author": "case_study_researcher",
+                  "content": {
+                    "parts": [
+                      {
+                        "media_resolution": null,
+                        "code_execution_result": null,
+                        "executable_code": null,
+                        "file_data": null,
+                        "function_call": null,
+                        "function_response": {
+                          "will_continue": null,
+                          "scheduling": null,
+                          "parts": null,
+                          "id": "adk-83ccf29b-3b96-4c6d-8f76-3755a8c6c3b7",
+                          "name": "run_browser_command",
+                          "response": {
+                            "status": "success",
+                            "output": "### Ran Playwright code\n```js\nawait page.getByRole('link', { name: 'With Google Cloud and Google' }).click();\n```\n### Page\n- Page URL: https://cloud.google.com/customers/virtualsprotocol\n- Page Title: Virtuals Protocol case study | Google Cloud\n- Console: 1 errors, 0 warnings\n### Snapshot\n- [Snapshot](.playwright-cli/page-2026-03-15T21-23-22-570Z.yml)\n\n\n### Snapshot Content (.playwright-cli/page-2026-03-15T21-23-22-570Z.yml)\n- generic [active] [ref=e1]:\n  - generic [ref=e7]:\n    - navigation \"Page Contents\" [ref=e8]:\n      - list [ref=e11]:\n        - listitem [ref=e12]:\n          - link \"Virtuals Protocol case study\" [ref=e13] [cursor=pointer]:\n            - /url: /customers/virtualsprotocol#virtuals-protocol-drives-the-economic-contribution-of-autonomous-ai-agents-with-google-ai\n        - listitem [ref=e14]:\n          - link \"The new way to drive value from autonomous AI agents\" [ref=e15] [cursor=pointer]:\n            - /url: /customers/virtualsprotocol#chapter-0\n        - listitem [ref=e16]:\n          - link \"Why Google Cloud\" [ref=e17] [cursor=pointer]:\n            - /url: /customers/virtualsprotocol#chapter-1\n    - generic [ref=e20]:\n      - generic [ref=e23]:\n        - img \"Virtuals Protocol\" [ref=e27]\n        - generic [ref=e29]:\n          - heading \"Virtuals Protocol drives the economic contribution of autonomous AI agents with Google AI\" [level=1] [ref=e31]\n          - generic [ref=e35] [cursor=pointer]:\n            - generic [ref=e36]: Get started for free\n            - link \"Get started for free\" [ref=e37]:\n              - /url: https://console.cloud.google.com/freetrial\n      - generic [ref=e42]:\n        - generic [ref=e43]: Google Cloud results\n        - list [ref=e44]:\n          - listitem [ref=e45]:\n            - img [ref=e47]\n            - paragraph [ref=e51]:\n              - text: Enables the development of a comprehensive search algorithm in two weeks with\n              - link \"Vertex AI Search\" [ref=e52] [cursor=pointer]:\n                - /url: https://docs.cloud.google.com/generative-ai-app-builder/docs\n          - listitem [ref=e53]:\n            - img [ref=e55]\n            - paragraph [ref=e59]:\n              - text: Provides reasoning and planning across multi-agent workflows to turbocharge commerce with\n              - link \"Gemini 3 Flash\" [ref=e60] [cursor=pointer]:\n                - /url: https://docs.cloud.google.com/vertex-ai/generative-ai/docs/models/gemini/3-flash\n          - listitem [ref=e61]:\n            - img [ref=e63]\n            - paragraph [ref=e67]: Supports users worldwide with multi-language support through Gemini 3 Flash\n          - listitem [ref=e68]:\n            - img [ref=e70]\n            - paragraph [ref=e74]: Boosts trust in transaction authentication, improving the user experience with Gemini 3 Flash\n      - heading \"With Google Cloud and Google AI, Virtuals Protocol enables humans and AI agents to collaborate seamlessly to drive economic value.\" [level=5] [ref=e81]:\n        - paragraph [ref=e83]: With Google Cloud and Google AI, Virtuals Protocol enables humans and AI agents to collaborate seamlessly to drive economic value.\n      - generic [ref=e86]:\n        - generic [ref=e87]:\n          - generic [ref=e88]:\n            - img [ref=e90]\n            - heading \"The new way to drive value from autonomous AI agents\" [level=1] [ref=e92]\n          - generic [ref=e94]:\n            - paragraph [ref=e95]:\n              - text: Enabling autonomous AI agents to drive real economic activity at a global scale is the mission of\n              - link \"Virtuals Protocol\" [ref=e96] [cursor=pointer]:\n                - /url: https://virtuals.io/\n              - text: .\n            - paragraph [ref=e97]: Virtuals Protocol is building the foundational infrastructure for an open economy of AI agents, a system where autonomous software and physical agents can coordinate, transact, and generate value across digital and real-world environments.\n            - paragraph [ref=e98]: \"The platform operates across three tightly integrated layers:\"\n          - img \"Student looking at the laptop\" [ref=e105]\n          - generic [ref=e107]:\n            - paragraph [ref=e108]: Agent Tokenization and Launch Infrastructure\n            - paragraph [ref=e109]: A permissionless platform that enables teams to deploy, tokenize, and scale autonomous AI agents with native on-chain ownership and incentive alignment.\n            - paragraph [ref=e110]: Agent Commerce Protocol (ACP)\n            - paragraph [ref=e111]: A standardized protocol that enables secure, autonomous agent-to-agent commerce through smart contracts, allowing agents to discover services, negotiate, execute tasks, and settle payments without human intermediaries.\n            - paragraph [ref=e112]: Physical AI and Robotics Infrastructure\n            - paragraph [ref=e113]: An emerging research and deployment layer designed to extend autonomous agents into the physical world, enabling AI systems to operate alongside humans in real environments through robotics and embodied intelligence.\n          - generic [ref=e115]:\n            - paragraph [ref=e116]: Together, these layers form the foundation of a programmable, agent-native economy, where AI agents are not applications, but economic actors.\n            - paragraph [ref=e117]: ACP has two primary aspects. An agent-to-agent feature enables agents to coordinate to complete transactions, while a Butler or concierge-style agent enables consumers to interact with agents selected from more than 1,300 available on the Virtuals Protocol platform to complete transactions.\n            - paragraph [ref=e118]:\n              - text: The Butler agent, which can be accessed on X or the Virtuals Protocol website, relies on multi-language support in\n              - link \"Gemini 3 Flash\" [ref=e119] [cursor=pointer]:\n                - /url: https://docs.cloud.google.com/vertex-ai/generative-ai/docs/models/gemini/3-flash\n              - text: to accommodate users around the world, including China, Korea, and Russia.\n          - figure [ref=e121]:\n            - generic [ref=e122]:\n              - blockquote [ref=e123]: With Google Cloud and Google AI, we have gained considerable velocity in building a super ambitious product and staying ahead of a number of regional competitors in this space.\n              - generic [ref=e125]:\n                - paragraph [ref=e126]: Celeste Ang\n                - paragraph [ref=e127]: Head of DevRel, Virtuals Protocol\n          - generic [ref=e129]:\n            - paragraph [ref=e130]: The LLM also provides reasoning and planning across multi-agent workflows and image understanding, which is particularly useful when users tag Butler under an X post, asking them to understand an image and perform actions based on its interpretation.\n            - paragraph [ref=e131]: “For example, a user may tag Butler with a request to place a trade based on information in a chart included in a social post,” says Celeste Ang, Head of DevRel, Virtuals Protocol.\n            - paragraph [ref=e132]: In ACP, the Evaluation stage serves as the final trust checkpoint in an agent-to-agent transaction. After a provider agent creates a deliverable for the job, an evaluator agent needs to determine whether the agent’s deliverable truly satisfies the original user request—a non-trivial problem when both requests and outputs are expressed in natural language. To solve this, the platform uses Gemini 3.0 Flash on Vertex AI as one of the generalist evaluation agents. The model semantically compares the user’s request, negotiated terms, and the agent’s final output to verify alignment, detect omissions or scope drift, and produce a structured evaluation result. This evaluation result is then used to decide if a job is completed or rejected, enabling scalable and trustworthy agent-to-agent commerce.\n            - paragraph [ref=e133]:\n              - text: In addition,\n              - link \"Vertex AI Search\" [ref=e134] [cursor=pointer]:\n                - /url: https://docs.cloud.google.com/generative-ai-app-builder/docs\n              - text: powers the ACP search algorithm that enables users to identify agents that suit their use cases. The service indexes all agents in the ACP agent registry based on data attributes, including agent name, agent description, job offerings, job SLAs, success rates, ratings and reviews, and number of unique buyers, enabling users to customize searches by a range of parameters to make the best possible agent selection.\n        - generic [ref=e135]:\n          - generic [ref=e136]:\n            - img [ref=e138]\n            - heading \"Why Google Cloud\" [level=1] [ref=e140]\n          - paragraph [ref=e143]: Virtuals Protocol turned to Gemini 3 Flash on Vertex AI to power Butler after evaluating several models across multiple versions of the agent. Most of the models considered experienced rate limitations that caused the chat interface to become unreliable at production scale.\n          - generic [ref=e145]:\n            - paragraph [ref=e146]: “Gemini 3 Flash on Vertex AI was a lot more stable and predictable than the alternatives, and had strong out-of-the-box support for a range of languages,” says Ang. “In addition, its versatility and superior prompt customization options helped minimize the number of queries that were refused, improving the customer experience. Finally, it provided the right balance of price and performance for our needs.”\n            - paragraph [ref=e147]: To build the search algorithm for the ACP SDK, Virtuals Protocol turned to Google AI based on its previous positive experiences with the provider’s technologies. “Our evaluation found Vertex Search was low code, scaled seamlessly, and was easy to populate,” says Ang. “Its simplicity meant we were able to create the algorithm in just two weeks, and early feedback from our team is that our capability now is far superior to what we had previously.”\n            - paragraph [ref=e148]: “With Google Cloud and Google AI, we have gained considerable velocity in building a super ambitious product and staying ahead of several regional competitors in this space,” concludes Ang.\n          - generic [ref=e149]:\n            - generic:\n              - generic:\n                - generic:\n                  - generic:\n                    - generic:\n                      - img \"Close up view of young woman pointing to mobile screen\"\n          - figure [ref=e151]:\n            - generic [ref=e152]:\n              - blockquote [ref=e153]: Our evaluation found that Vertex Search was low-code, scaled seamlessly, and was easy to populate. Its simplicity meant we were able to create the algorithm in just two weeks, and early feedback from our team is that our capability now is far superior to what we had previously.\n              - generic [ref=e155]:\n                - paragraph [ref=e156]: Celeste Ang\n                - paragraph [ref=e157]: Head of DevRel, Virtuals Protocol\n          - generic:\n            - generic:\n              - generic:\n                - generic:\n                  - generic:\n                    - generic:\n                      - img \"Virtuals Protocol architecture diagram\"\n      - generic [ref=e162]:\n        - paragraph [ref=e163]: Virtuals Protocol builds infrastructure for deploying autonomous AI agents that can create services and engage in on-chain commerce. The platform enables teams to launch and operate AI agents with native ownership, incentive alignment, and automated settlement through smart contracts. By combining agent deployment, coordination, and transaction infrastructure into a unified protocol layer, Virtuals Protocol supports the development of scalable, agent-native applications.\n        - paragraph [ref=e164]: \"Industry: Technology\"\n        - paragraph [ref=e165]: \"Locations: United States, Europe and Malaysia\"\n        - paragraph [ref=e166]:\n          - text: \"Products:\"\n          - link \"Gemini 3 Flash\" [ref=e167] [cursor=pointer]:\n            - /url: https://docs.cloud.google.com/vertex-ai/generative-ai/docs/models/gemini/3-flash\n          - text: \",\"\n          - link \"Vertex AI Search\" [ref=e168] [cursor=pointer]:\n            - /url: https://docs.cloud.google.com/generative-ai-app-builder/docs\n  - banner [ref=e169]:\n    - generic [ref=e172]:\n      - link \"Google Cloud\" [ref=e174] [cursor=pointer]:\n        - /url: https://cloud.google.com/\n        - img \"Google Cloud\" [ref=e175]\n      - generic [ref=e176]:\n        - navigation [ref=e179]:\n          - text: chevron_left\n          - link \"Overview\" [ref=e181] [cursor=pointer]:\n            - /url: https://cloud.google.com/why-google-cloud\n          - link \"Solutions\" [ref=e183] [cursor=pointer]:\n            - /url: https://cloud.google.com/solutions\n          - link \"Products\" [ref=e185] [cursor=pointer]:\n            - /url: https://cloud.google.com/products\n          - link \"Pricing\" [ref=e187] [cursor=pointer]:\n            - /url: https://cloud.google.com/pricing\n          - link \"Resources\" [ref=e189] [cursor=pointer]:\n            - /url: https://cloud.google.com/docs/get-started\n          - text: chevron_right\n        - generic [ref=e193]:\n          - generic:\n            - generic: \n          - generic [ref=e194]:\n            - generic: search\n            - generic:\n              - combobox \"Search\"\n            - button \"Search\" [ref=e196] [cursor=pointer]: send\n      - generic [ref=e197]:\n        - link \"Docs\" [ref=e199] [cursor=pointer]:\n          - /url: https://cloud.google.com/docs\n        - link \"Support\" [ref=e201] [cursor=pointer]:\n          - /url: https://cloud.google.com/support-hub\n      - link \"Sign in\" [ref=e204] [cursor=pointer]:\n        - /url: https://accounts.google.com/AccountChooser?continue=https://cloud.google.com/customers/virtualsprotocol&hl=en-US&prompt=select_account&service=cloudconsole\n  - contentinfo [ref=e205]:\n    - generic [ref=e206]:\n      - navigation \"Footer Links\" [ref=e208]:\n        - list [ref=e209]:\n          - listitem [ref=e210]:\n            - heading \"Why Google\" [level=3] [ref=e211]\n            - list [ref=e212]:\n              - listitem [ref=e213]:\n                - link \"Choosing Google Cloud\" [ref=e214] [cursor=pointer]:\n                  - /url: https://cloud.google.com/why-google-cloud\n              - listitem [ref=e215]:\n                - link \"Trust and security\" [ref=e216] [cursor=pointer]:\n                  - /url: https://cloud.google.com/trust-center\n              - listitem [ref=e217]:\n                - link \"Modern Infrastructure Cloud\" [ref=e218] [cursor=pointer]:\n                  - /url: https://cloud.google.com/solutions/modern-infrastructure\n              - listitem [ref=e219]:\n                - link \"Multicloud\" [ref=e220] [cursor=pointer]:\n                  - /url: https://cloud.google.com/multicloud\n              - listitem [ref=e221]:\n                - link \"Global infrastructure\" [ref=e222] [cursor=pointer]:\n                  - /url: https://cloud.google.com/infrastructure\n              - listitem [ref=e223]:\n                - link \"Locations\" [ref=e224] [cursor=pointer]:\n                  - /url: https://cloud.google.com/about/locations\n              - listitem [ref=e225]:\n                - link \"Customers and case studies\" [ref=e226] [cursor=pointer]:\n                  - /url: https://cloud.google.com/customers\n              - listitem [ref=e227]:\n                - link \"Analyst reports\" [ref=e228] [cursor=pointer]:\n                  - /url: https://cloud.google.com/analyst-reports\n              - listitem [ref=e229]:\n                - link \"Whitepapers\" [ref=e230] [cursor=pointer]:\n                  - /url: https://cloud.google.com/whitepapers\n              - listitem [ref=e231]:\n                - link \"Blog\" [ref=e232] [cursor=pointer]:\n                  - /url: https://cloud.google.com/blog\n          - listitem [ref=e233]:\n            - heading \"Products and pricing\" [level=3] [ref=e234]\n            - list [ref=e235]:\n              - listitem [ref=e236]:\n                - link \"Google Cloud pricing\" [ref=e237] [cursor=pointer]:\n                  - /url: https://cloud.google.com/pricing\n              - listitem [ref=e238]:\n                - link \"Google Workspace pricing\" [ref=e239] [cursor=pointer]:\n                  - /url: https://workspace.google.com/pricing.html\n              - listitem [ref=e240]:\n                - link \"See all products\" [ref=e241] [cursor=pointer]:\n                  - /url: https://cloud.google.com/products\n          - listitem [ref=e242]:\n            - heading \"Solutions\" [level=3] [ref=e243]\n            - list [ref=e244]:\n              - listitem [ref=e245]:\n                - link \"Infrastructure modernization\" [ref=e246] [cursor=pointer]:\n                  - /url: https://cloud.google.com/solutions/infrastructure-modernization/\n              - listitem [ref=e247]:\n                - link \"Databases\" [ref=e248] [cursor=pointer]:\n                  - /url: https://cloud.google.com/solutions/databases\n              - listitem [ref=e249]:\n                - link \"Application modernization\" [ref=e250] [cursor=pointer]:\n                  - /url: https://cloud.google.com/solutions/application-modernization\n              - listitem [ref=e251]:\n                - link \"Smart analytics\" [ref=e252] [cursor=pointer]:\n                  - /url: https://cloud.google.com/solutions/data-analytics-and-ai\n              - listitem [ref=e253]:\n                - link \"Artificial Intelligence\" [ref=e254] [cursor=pointer]:\n                  - /url: https://cloud.google.com/solutions/ai\n              - listitem [ref=e255]:\n                - link \"Security\" [ref=e256] [cursor=pointer]:\n                  - /url: https://cloud.google.com/solutions/security\n              - listitem [ref=e257]:\n                - link \"Productivity & work transformation\" [ref=e258] [cursor=pointer]:\n                  - /url: https://workspace.google.com/enterprise\n              - listitem [ref=e259]:\n                - link \"Industry solutions\" [ref=e260] [cursor=pointer]:\n                  - /url: https://cloud.google.com/solutions/#industry-solutions\n              - listitem [ref=e261]:\n                - link \"DevOps solutions\" [ref=e262] [cursor=pointer]:\n                  - /url: https://cloud.google.com/devops\n              - listitem [ref=e263]:\n                - link \"Small business solutions\" [ref=e264] [cursor=pointer]:\n                  - /url: https://cloud.google.com/solutions#section-14\n              - listitem [ref=e265]:\n                - link \"See all solutions\" [ref=e266] [cursor=pointer]:\n                  - /url: https://cloud.google.com/solutions\n          - listitem [ref=e267]:\n            - heading \"Resources\" [level=3] [ref=e268]\n            - list [ref=e269]:\n              - listitem [ref=e270]:\n                - link \"Google Cloud Affiliate Program\" [ref=e271] [cursor=pointer]:\n                  - /url: https://cloud.google.com/affiliate-program\n              - listitem [ref=e272]:\n                - link \"Google Cloud documentation\" [ref=e273] [cursor=pointer]:\n                  - /url: https://docs.cloud.google.com/\n              - listitem [ref=e274]:\n                - link \"Google Cloud quickstarts\" [ref=e275] [cursor=pointer]:\n                  - /url: https://docs.cloud.google.com/docs/get-started/\n              - listitem [ref=e276]:\n                - link \"Google Cloud Marketplace\" [ref=e277] [cursor=pointer]:\n                  - /url: https://cloud.google.com/marketplace\n              - listitem [ref=e278]:\n                - link \"Learn about cloud computing\" [ref=e279] [cursor=pointer]:\n                  - /url: https://cloud.google.com/discover\n              - listitem [ref=e280]:\n                - link \"Support\" [ref=e281] [cursor=pointer]:\n                  - /url: https://cloud.google.com/support-hub\n              - listitem [ref=e282]:\n                - link \"Code samples\" [ref=e283] [cursor=pointer]:\n                  - /url: https://docs.cloud.google.com/docs/samples\n              - listitem [ref=e284]:\n                - link \"Cloud Architecture Center\" [ref=e285] [cursor=pointer]:\n                  - /url: https://docs.cloud.google.com/architecture/\n              - listitem [ref=e286]:\n                - link \"Training\" [ref=e287] [cursor=pointer]:\n                  - /url: https://cloud.google.com/learn/training\n              - listitem [ref=e288]:\n                - link \"Certifications\" [ref=e289] [cursor=pointer]:\n                  - /url: https://cloud.google.com/learn/certification\n              - listitem [ref=e290]:\n                - link \"Google for Developers\" [ref=e291] [cursor=pointer]:\n                  - /url: https://developers.google.com\n              - listitem [ref=e292]:\n                - link \"Google Cloud for Startups\" [ref=e293] [cursor=pointer]:\n                  - /url: https://cloud.google.com/startup\n              - listitem [ref=e294]:\n                - link \"System status\" [ref=e295] [cursor=pointer]:\n                  - /url: https://status.cloud.google.com\n              - listitem [ref=e296]:\n                - link \"Release Notes\" [ref=e297] [cursor=pointer]:\n                  - /url: https://docs.cloud.google.com/release-notes\n          - listitem [ref=e298]:\n            - heading \"Engage\" [level=3] [ref=e299]\n            - list [ref=e300]:\n              - listitem [ref=e301]:\n                - link \"Contact sales\" [ref=e302] [cursor=pointer]:\n                  - /url: https://cloud.google.com/contact\n              - listitem [ref=e303]:\n                - link \"Find a Partner\" [ref=e304] [cursor=pointer]:\n                  - /url: https://cloud.google.com/find-a-partner\n              - listitem [ref=e305]:\n                - link \"Become a Partner\" [ref=e306] [cursor=pointer]:\n                  - /url: https://cloud.google.com/partners/become-a-partner\n              - listitem [ref=e307]:\n                - link \"Events\" [ref=e308] [cursor=pointer]:\n                  - /url: https://cloud.google.com/events\n              - listitem [ref=e309]:\n                - link \"Podcasts\" [ref=e310] [cursor=pointer]:\n                  - /url: https://cloud.google.com/podcasts\n              - listitem [ref=e311]:\n                - link \"Developer Center\" [ref=e312] [cursor=pointer]:\n                  - /url: https://cloud.google.com/developers\n              - listitem [ref=e313]:\n                - link \"Press Corner\" [ref=e314] [cursor=pointer]:\n                  - /url: https://www.googlecloudpresscorner.com\n              - listitem [ref=e315]:\n                - link \"Google Cloud on YouTube\" [ref=e316] [cursor=pointer]:\n                  - /url: https://www.youtube.com/googlecloud\n              - listitem [ref=e317]:\n                - link \"Google Cloud Tech on YouTube\" [ref=e318] [cursor=pointer]:\n                  - /url: https://www.youtube.com/googlecloudplatform\n              - listitem [ref=e319]:\n                - link \"Follow on X\" [ref=e320] [cursor=pointer]:\n                  - /url: https://x.com/googlecloud\n              - listitem [ref=e321]:\n                - link \"Join User Research\" [ref=e322] [cursor=pointer]:\n                  - /url: https://userresearch.google.com/?reserved=1&utm_source=website&Q_Language=en&utm_medium=own_srch&utm_campaign=CloudWebFooter&utm_term=0&utm_content=0&productTag=clou&campaignDate=jul19&pType=devel&referral_code=jk212693\n              - listitem [ref=e323]:\n                - link \"We're hiring. Join Google Cloud!\" [ref=e324] [cursor=pointer]:\n                  - /url: https://careers.google.com/cloud\n              - listitem [ref=e325]:\n                - link \"Community forums\" [ref=e326] [cursor=pointer]:\n                  - /url: https://discuss.google.dev/c/google-cloud/14\n      - navigation \"Utility links\" [ref=e328]:\n        - list [ref=e329]:\n          - listitem [ref=e330]:\n            - link \"About Google\" [ref=e331] [cursor=pointer]:\n              - /url: https://about.google\n          - listitem [ref=e332]:\n            - text: \"|\"\n            - link \"Privacy\" [ref=e333] [cursor=pointer]:\n              - /url: https://policies.google.com/privacy\n          - listitem [ref=e334]:\n            - text: \"|\"\n            - link \"Site terms\" [ref=e335] [cursor=pointer]:\n              - /url: https://policies.google.com/terms\n          - listitem [ref=e336]:\n            - text: \"|\"\n            - link \"Google Cloud terms\" [ref=e337] [cursor=pointer]:\n              - /url: https://cloud.google.com/product-terms\n          - text: \"|\"\n          - listitem [ref=e338]:\n            - text: \"|\"\n            - 'link \"Our third decade of climate action: join us\" [ref=e339] [cursor=pointer]':\n              - /url: https://cloud.google.com/sustainability\n          - listitem [ref=e340]:\n            - generic [ref=e341]: Sign up for the Google Cloud newsletter\n            - generic [ref=e345] [cursor=pointer]:\n              - text: Subscribe\n              - link \"Subscribe\" [ref=e346]:\n                - /url: https://cloud.google.com/newsletter\n        - combobox \"‪English‬\" [ref=e350] [cursor=pointer]:\n          - generic: language\n          - generic:\n            - generic: ‪English‬\n          - generic:\n            - img\n"
+                          }
+                        },
+                        "inline_data": null,
+                        "text": null,
+                        "thought": null,
+                        "thought_signature": null,
+                        "video_metadata": null
+                      }
+                    ],
+                    "role": "user"
+                  }
+                },
+                {
+                  "author": "case_study_researcher",
+                  "content": {
+                    "parts": [
+                      {
+                        "media_resolution": null,
+                        "code_execution_result": null,
+                        "executable_code": null,
+                        "file_data": null,
+                        "function_call": {
+                          "id": "adk-bd88dc64-bd8e-4115-bd4c-eb19e4c27064",
+                          "args": {
+                            "command": "playwright-cli eval \"document.body.innerText\""
+                          },
+                          "name": "run_browser_command",
+                          "partial_args": null,
+                          "will_continue": null
+                        },
+                        "function_response": null,
+                        "inline_data": null,
+                        "text": null,
+                        "thought": null,
+                        "thought_signature": "CvsCAb4-9vufCaYTVFlB0E9Ne13p4r7kIOMVopvVvhyZ-y3oiVLG0FiEc5wlqy4D9zjeFEnKme9AEOZ7XGDGSGXOWg5QieCVpCbbNlajsswBcrSj0ePwgndsR4DJGAPjWacvlyftJMiirOzYa1AOvYJE6auRhb0eRtL_8GvFgq0ETN5vKDQDVkiNeEp2jZfCBz08OGonW83vDA4pk_JFkN4jfPI7EiA4AF3MmQvromJ6LU2nYScXGEiFX51R3Ulzk8OAjfqd8NB80DtAxcuJc61jgB9k6iditJ_V5bW1ZM_aHgDl_q4zeTGJxmjU6UpIdLUZh6QZLWUVg0xA5Wjf5k7uWaqzXatoI_InkzWKvnsFb5Vclx7CZNdpRhCVORxeB12qL7hVxvRgz10tTq3mOAt-AJOLkDKRUQdsYViZ6PZUH-g_PnQwsa1ZJ7G6juJULm9wmlnkUgZ3MvbBNvwjjrd90xwh2gmgtNfEeIDhUtg_uib6rrdE8gX_4MPIkQ==",
+                        "video_metadata": null
+                      }
+                    ],
+                    "role": "model"
+                  }
+                },
+                {
+                  "author": "case_study_researcher",
+                  "content": {
+                    "parts": [
+                      {
+                        "media_resolution": null,
+                        "code_execution_result": null,
+                        "executable_code": null,
+                        "file_data": null,
+                        "function_call": null,
+                        "function_response": {
+                          "will_continue": null,
+                          "scheduling": null,
+                          "parts": null,
+                          "id": "adk-bd88dc64-bd8e-4115-bd4c-eb19e4c27064",
+                          "name": "run_browser_command",
+                          "response": {
+                            "status": "success",
+                            "output": "### Result\n\"Virtuals Protocol case study\\nThe new way to drive value from autonomous AI agents\\nWhy Google Cloud\\nVirtuals Protocol drives the economic contribution of autonomous AI agents with Google AI\\nGet started for free\\nGOOGLE CLOUD RESULTS\\n\\nEnables the development of a comprehensive search algorithm in two weeks with Vertex AI Search\\n\\nProvides reasoning and planning across multi-agent workflows to turbocharge commerce with Gemini 3 Flash\\n\\nSupports users worldwide with multi-language support through Gemini 3 Flash\\n\\nBoosts trust in transaction authentication, improving the user experience with Gemini 3 Flash\\n\\nWith Google Cloud and Google AI, Virtuals Protocol enables humans and AI agents to collaborate seamlessly to drive economic value.\\n\\nThe new way to drive value from autonomous AI agents\\n\\nEnabling autonomous AI agents to drive real economic activity at a global scale is the mission of Virtuals Protocol.\\n\\nVirtuals Protocol is building the foundational infrastructure for an open economy of AI agents, a system where autonomous software and physical agents can coordinate, transact, and generate value across digital and real-world environments.\\n\\nThe platform operates across three tightly integrated layers:\\n\\nAgent Tokenization and Launch Infrastructure\\n\\nA permissionless platform that enables teams to deploy, tokenize, and scale autonomous AI agents with native on-chain ownership and incentive alignment.\\n\\nAgent Commerce Protocol (ACP)\\n\\nA standardized protocol that enables secure, autonomous agent-to-agent commerce through smart contracts, allowing agents to discover services, negotiate, execute tasks, and settle payments without human intermediaries.\\n\\nPhysical AI and Robotics Infrastructure\\n\\nAn emerging research and deployment layer designed to extend autonomous agents into the physical world, enabling AI systems to operate alongside humans in real environments through robotics and embodied intelligence.\\n\\nTogether, these layers form the foundation of a programmable, agent-native economy, where AI agents are not applications, but economic actors.\\n\\nACP has two primary aspects. An agent-to-agent feature enables agents to coordinate to complete transactions, while a Butler or concierge-style agent enables consumers to interact with agents selected from more than 1,300 available on the Virtuals Protocol platform to complete transactions.\\n\\nThe Butler agent, which can be accessed on X or the Virtuals Protocol website, relies on multi-language support in Gemini 3 Flash to accommodate users around the world, including China, Korea, and Russia.\\n\\nWith Google Cloud and Google AI, we have gained considerable velocity in building a super ambitious product and staying ahead of a number of regional competitors in this space.\\n\\nCeleste Ang\\n\\nHead of DevRel, Virtuals Protocol\\n\\nThe LLM also provides reasoning and planning across multi-agent workflows and image understanding, which is particularly useful when users tag Butler under an X post, asking them to understand an image and perform actions based on its interpretation.\\n\\n“For example, a user may tag Butler with a request to place a trade based on information in a chart included in a social post,” says Celeste Ang, Head of DevRel, Virtuals Protocol.\\n\\nIn ACP, the Evaluation stage serves as the final trust checkpoint in an agent-to-agent transaction. After a provider agent creates a deliverable for the job, an evaluator agent needs to determine whether the agent’s deliverable truly satisfies the original user request—a non-trivial problem when both requests and outputs are expressed in natural language. To solve this, the platform uses Gemini 3.0 Flash on Vertex AI as one of the generalist evaluation agents. The model semantically compares the user’s request, negotiated terms, and the agent’s final output to verify alignment, detect omissions or scope drift, and produce a structured evaluation result. This evaluation result is then used to decide if a job is completed or rejected, enabling scalable and trustworthy agent-to-agent commerce.\\n\\nIn addition, Vertex AI Search powers the ACP search algorithm that enables users to identify agents that suit their use cases. The service indexes all agents in the ACP agent registry based on data attributes, including agent name, agent description, job offerings, job SLAs, success rates, ratings and reviews, and number of unique buyers, enabling users to customize searches by a range of parameters to make the best possible agent selection.\\n\\nWhy Google Cloud\\n\\nVirtuals Protocol turned to Gemini 3 Flash on Vertex AI to power Butler after evaluating several models across multiple versions of the agent. Most of the models considered experienced rate limitations that caused the chat interface to become unreliable at production scale.\\n\\n“Gemini 3 Flash on Vertex AI was a lot more stable and predictable than the alternatives, and had strong out-of-the-box support for a range of languages,” says Ang. “In addition, its versatility and superior prompt customization options helped minimize the number of queries that were refused, improving the customer experience. Finally, it provided the right balance of price and performance for our needs.”\\n\\nTo build the search algorithm for the ACP SDK, Virtuals Protocol turned to Google AI based on its previous positive experiences with the provider’s technologies. “Our evaluation found Vertex Search was low code, scaled seamlessly, and was easy to populate,” says Ang. “Its simplicity meant we were able to create the algorithm in just two weeks, and early feedback from our team is that our capability now is far superior to what we had previously.”\\n\\n“With Google Cloud and Google AI, we have gained considerable velocity in building a super ambitious product and staying ahead of several regional competitors in this space,” concludes Ang.\\n\\nOur evaluation found that Vertex Search was low-code, scaled seamlessly, and was easy to populate. Its simplicity meant we were able to create the algorithm in just two weeks, and early feedback from our team is that our capability now is far superior to what we had previously.\\n\\nCeleste Ang\\n\\nHead of DevRel, Virtuals Protocol\\n\\nVirtuals Protocol builds infrastructure for deploying autonomous AI agents that can create services and engage in on-chain commerce. The platform enables teams to launch and operate AI agents with native ownership, incentive alignment, and automated settlement through smart contracts. By combining agent deployment, coordination, and transaction infrastructure into a unified protocol layer, Virtuals Protocol supports the development of scalable, agent-native applications.\\n\\nIndustry: Technology\\n\\nLocations: United States, Europe and Malaysia\\n\\nProducts: Gemini 3 Flash, Vertex AI Search\\n\\nOverview\\nSolutions\\nProducts\\nPricing\\nResources\\n\\nsearch\\nsend\\nDocs\\nSupport\\nSign in\\nWhy Google\\nChoosing Google Cloud\\nTrust and security\\nModern Infrastructure Cloud\\nMulticloud\\nGlobal infrastructure\\nLocations\\nCustomers and case studies\\nAnalyst reports\\nWhitepapers\\nBlog\\nProducts and pricing\\nGoogle Cloud pricing\\nGoogle Workspace pricing\\nSee all products\\nSolutions\\nInfrastructure modernization\\nDatabases\\nApplication modernization\\nSmart analytics\\nArtificial Intelligence\\nSecurity\\nProductivity & work transformation\\nIndustry solutions\\nDevOps solutions\\nSmall business solutions\\nSee all solutions\\nResources\\nGoogle Cloud Affiliate Program\\nGoogle Cloud documentation\\nGoogle Cloud quickstarts\\nGoogle Cloud Marketplace\\nLearn about cloud computing\\nSupport\\nCode samples\\nCloud Architecture Center\\nTraining\\nCertifications\\nGoogle for Developers\\nGoogle Cloud for Startups\\nSystem status\\nRelease Notes\\nEngage\\nContact sales\\nFind a Partner\\nBecome a Partner\\nEvents\\nPodcasts\\nDeveloper Center\\nPress Corner\\nGoogle Cloud on YouTube\\nGoogle Cloud Tech on YouTube\\nFollow on X\\nJoin User Research\\nWe're hiring. Join Google Cloud!\\nCommunity forums\\nAbout Google\\nPrivacy\\nSite terms\\nGoogle Cloud terms\\nOur third decade of climate action: join us\\nSign up for the Google Cloud newsletter\\nSubscribe\\nlanguage\\n‪English‬\"\n### Ran Playwright code\n```js\nawait page.evaluate('() => (document.body.innerText)');\n```\n"
+                          }
+                        },
+                        "inline_data": null,
+                        "text": null,
+                        "thought": null,
+                        "thought_signature": null,
+                        "video_metadata": null
+                      }
+                    ],
+                    "role": "user"
+                  }
+                },
+                {
+                  "author": "case_study_researcher",
+                  "content": {
+                    "parts": [
+                      {
+                        "media_resolution": null,
+                        "code_execution_result": null,
+                        "executable_code": null,
+                        "file_data": null,
+                        "function_call": null,
+                        "function_response": null,
+                        "inline_data": null,
+                        "text": "```markdown\n# Virtuals Protocol drives the economic contribution of autonomous AI agents with Google AI\n\n## Google Cloud results\n\n*   Enables the development of a comprehensive search algorithm in two weeks with Vertex AI Search\n*   Provides reasoning and planning across multi-agent workflows to turbocharge commerce with Gemini 3 Flash\n*   Supports users worldwide with multi-language support through Gemini 3 Flash\n*   Boosts trust in transaction authentication, improving the user experience with Gemini 3 Flash\n\nWith Google Cloud and Google AI, Virtuals Protocol enables humans and AI agents to collaborate seamlessly to drive economic value.\n\n## The new way to drive value from autonomous AI agents\n\nEnabling autonomous AI agents to drive real economic activity at a global scale is the mission of Virtuals Protocol.\n\nVirtuals Protocol is building the foundational infrastructure for an open economy of AI agents, a system where autonomous software and physical agents can coordinate, transact, and generate value across digital and real-world environments.\n\nThe platform operates across three tightly integrated layers:\n\n*   **Agent Tokenization and Launch Infrastructure:** A permissionless platform that enables teams to deploy, tokenize, and scale autonomous AI agents with native on-chain ownership and incentive alignment.\n*   **Agent Commerce Protocol (ACP):** A standardized protocol that enables secure, autonomous agent-to-agent commerce through smart contracts, allowing agents to discover services, negotiate, execute tasks, and settle payments without human intermediaries.\n*   **Physical AI and Robotics Infrastructure:** An emerging research and deployment layer designed to extend autonomous agents into the physical world, enabling AI systems to operate alongside humans in real environments through robotics and embodied intelligence.\n\nTogether, these layers form the foundation of a programmable, agent-native economy, where AI agents are not applications, but economic actors.\n\nACP has two primary aspects. An agent-to-agent feature enables agents to coordinate to complete transactions, while a Butler or concierge-style agent enables consumers to interact with agents selected from more than 1,300 available on the Virtuals Protocol platform to complete transactions.\n\nThe Butler agent, which can be accessed on X or the Virtuals Protocol website, relies on multi-language support in Gemini 3 Flash to accommodate users around the world, including China, Korea, and Russia.\n\n> With Google Cloud and Google AI, we have gained considerable velocity in building a super ambitious product and staying ahead of a number of regional competitors in this space.\n>\n> Celeste Ang, Head of DevRel, Virtuals Protocol\n\nThe LLM also provides reasoning and planning across multi-agent workflows and image understanding, which is particularly useful when users tag Butler under an X post, asking them to understand an image and perform actions based on its interpretation.\n\n“For example, a user may tag Butler with a request to place a trade based on information in a chart included in a social post,” says Celeste Ang, Head of DevRel, Virtuals Protocol.\n\nIn ACP, the Evaluation stage serves as the final trust checkpoint in an agent-to-agent transaction. After a provider agent creates a deliverable for the job, an evaluator agent needs to determine whether the agent’s deliverable truly satisfies the original user request—a non-trivial problem when both requests and outputs are expressed in natural language. To solve this, the platform uses Gemini 3.0 Flash on Vertex AI as one of the generalist evaluation agents. The model semantically compares the user’s request, negotiated terms, and the agent’s final output to verify alignment, detect omissions or scope drift, and produce a structured evaluation result. This evaluation result is then used to decide if a job is completed or rejected, enabling scalable and trustworthy agent-to-agent commerce.\n\nIn addition, Vertex AI Search powers the ACP search algorithm that enables users to identify agents that suit their use cases. The service indexes all agents in the ACP agent registry based on data attributes, including agent name, agent description, job offerings, job SLAs, success rates, ratings and reviews, and number of unique buyers, enabling users to customize searches by a range of parameters to make the best possible agent selection.\n\n## Why Google Cloud\n\nVirtuals Protocol turned to Gemini 3 Flash on Vertex AI to power Butler after evaluating several models across multiple versions of the agent. Most of the models considered experienced rate limitations that caused the chat interface to become unreliable at production scale.\n\n“Gemini 3 Flash on Vertex AI was a lot more stable and predictable than the alternatives, and had strong out-of-the-box support for a range of languages,” says Ang. “In addition, its versatility and superior prompt customization options helped minimize the number of queries that were refused, improving the customer experience. Finally, it provided the right balance of price and performance for our needs.”\n\nTo build the search algorithm for the ACP SDK, Virtuals Protocol turned to Google AI based on its previous positive experiences with the provider’s technologies. “Our evaluation found Vertex Search was low code, scaled seamlessly, and was easy to populate,” says Ang. “Its simplicity meant we were able to create the algorithm in just two weeks, and early feedback from our team is that our capability now is far superior to what we had previously.”\n\n“With Google Cloud and Google AI, we have gained considerable velocity in building a super ambitious product and staying ahead of several regional competitors in this space,” concludes Ang.\n\n> Our evaluation found that Vertex Search was low-code, scaled seamlessly, and was easy to populate. Its simplicity meant we were able to create the algorithm in just two weeks, and early feedback from our team is that our capability now is far superior to what we had previously.\n>\n> Celeste Ang, Head of DevRel, Virtuals Protocol\n\nVirtuals Protocol builds infrastructure for deploying autonomous AI agents that can create services and engage in on-chain commerce. The platform enables teams to launch and operate AI agents with native ownership, incentive alignment, and automated settlement through smart contracts. By combining agent deployment, coordination, and transaction infrastructure into a unified protocol layer, Virtuals Protocol supports the development of scalable, agent-native applications.\n\n*   **Industry:** Technology\n*   **Locations:** United States, Europe and Malaysia\n*   **Products:** Gemini 3 Flash, Vertex AI Search\n```",
+                        "thought": null,
+                        "thought_signature": "CrkFAb4-9vs7NoCWQvQtU_-0aLQTBVoN1WTokRiusL3pqrga1IUCB1GOdYKM2wIR_YJisKJUFXA3My7MCj_axZW4lq1C3Y0n6QpqeQx3HlgfCZR2nQxCoEsZxayOrB11nnetEbJYPzkllhw9PLjnMCD6Htbpf2o4k5uYenco80zYlYdNiOg24IeHO24MWQv88igT4u2MtVY0cuyXTpd056nW09K2JciF9G_it2Zl9f5exvYaIgtw_1ai7Mbu3IWQKFHZKSXw1jDI5yKMgyTkgQmNf-FKgwTOcH_MDq4iwrP1bYtrvx_fE8ZBt9VDTSiTJI29yQ8_Xu49SAUbzCUHNrL8ry8iKatWpI8dtVLBiv88OM1Tjw9M5OEK62SSwSPRMFcn4L7uWbkr41ZE82CpU5PpnRlxIsqt2ynt1ml1fUoyLp1NiBzvQS8dY-UOj6zCESt7uIIXYEvtPkYv14_AXYxK693GNweouq9D0xhKkmHgVvrKE1y2W8cHFPO5BWDLYk1cSj07f4us7fOg5Csgb4hwp9WpMrWIBITh3FqQMlrKfr4pP5WvHe11ZUaXT-KYOEvPRtmljwUrzmWtQBZXS-D3y5YLT7tiulxzFfzD0IZGu5tfOwub7EQQ0rvzvbsXwu7hTuClY8PIg4y9DhRZ8nTKYLmAaiICmuoJGD_QZGis9kJMyxvg8kQPAtrvyzGgE_VWBBLR1DEzIdfVN8lI_73l_HgrPbUy6aLrHM122LAivD8c0q8l17TrdJL2DjpYJKlpN8N8SPzQkdMZD4pHVEUOPOS5EnObNWTU1Vy_JLezGmK0eJV6A5MvC5fZFnsPkl2aln3Hr5eC7j9V4nvzeIGP8omjAoY7NUYo3BVQ6D82UvMWhG-bDyuN3tPz5AY4W0cusiL3CGH07Oc0jANfB9Q6HPM-oWHXmrJtzQ==",
+                        "video_metadata": null
+                      },
+                      {
+                        "media_resolution": null,
+                        "code_execution_result": null,
+                        "executable_code": null,
+                        "file_data": null,
+                        "function_call": null,
+                        "function_response": null,
+                        "inline_data": null,
+                        "text": "\nNow I will save this content using the `save_case_study` tool and then close the browser.",
+                        "thought": null,
+                        "thought_signature": null,
+                        "video_metadata": null
+                      },
+                      {
+                        "media_resolution": null,
+                        "code_execution_result": null,
+                        "executable_code": null,
+                        "file_data": null,
+                        "function_call": {
+                          "id": "adk-8d7b9db0-ab97-432c-a8fe-3ab7c5d7b7fc",
+                          "args": {
+                            "topic": "Agentic AI",
+                            "company": "Virtuals Protocol",
+                            "markdown_content": "# Virtuals Protocol drives the economic contribution of autonomous AI agents with Google AI\n\n## Google Cloud results\n\n*   Enables the development of a comprehensive search algorithm in two weeks with Vertex AI Search\n*   Provides reasoning and planning across multi-agent workflows to turbocharge commerce with Gemini 3 Flash\n*   Supports users worldwide with multi-language support through Gemini 3 Flash\n*   Boosts trust in transaction authentication, improving the user experience with Gemini 3 Flash\n\nWith Google Cloud and Google AI, Virtuals Protocol enables humans and AI agents to collaborate seamlessly to drive economic value.\n\n## The new way to drive value from autonomous AI agents\n\nEnabling autonomous AI agents to drive real economic activity at a global scale is the mission of Virtuals Protocol.\n\nVirtuals Protocol is building the foundational infrastructure for an open economy of AI agents, a system where autonomous software and physical agents can coordinate, transact, and generate value across digital and real-world environments.\n\nThe platform operates across three tightly integrated layers:\n\n*   **Agent Tokenization and Launch Infrastructure:** A permissionless platform that enables teams to deploy, tokenize, and scale autonomous AI agents with native on-chain ownership and incentive alignment.\n*   **Agent Commerce Protocol (ACP):** A standardized protocol that enables secure, autonomous agent-to-agent commerce through smart contracts, allowing agents to discover services, negotiate, execute tasks, and settle payments without human intermediaries.\n*   **Physical AI and Robotics Infrastructure:** An emerging research and deployment layer designed to extend autonomous agents into the physical world, enabling AI systems to operate alongside humans in real environments through robotics and embodied intelligence.\n\nTogether, these layers form the foundation of a programmable, agent-native economy, where AI agents are not applications, but economic actors.\n\nACP has two primary aspects. An agent-to-agent feature enables agents to coordinate to complete transactions, while a Butler or concierge-style agent enables consumers to interact with agents selected from more than 1,300 available on the Virtuals Protocol platform to complete transactions.\n\nThe Butler agent, which can be accessed on X or the Virtuals Protocol website, relies on multi-language support in Gemini 3 Flash to accommodate users around the world, including China, Korea, and Russia.\n\n> With Google Cloud and Google AI, we have gained considerable velocity in building a super ambitious product and staying ahead of a number of regional competitors in this space.\n>\n> Celeste Ang, Head of DevRel, Virtuals Protocol\n\nThe LLM also provides reasoning and planning across multi-agent workflows and image understanding, which is particularly useful when users tag Butler under an X post, asking them to understand an image and perform actions based on its interpretation.\n\n“For example, a user may tag Butler with a request to place a trade based on information in a chart included in a social post,” says Celeste Ang, Head of DevRel, Virtuals Protocol.\n\nIn ACP, the Evaluation stage serves as the final trust checkpoint in an agent-to-agent transaction. After a provider agent creates a deliverable for the job, an evaluator agent needs to determine whether the agent’s deliverable truly satisfies the original user request—a non-trivial problem when both requests and outputs are expressed in natural language. To solve this, the platform uses Gemini 3.0 Flash on Vertex AI as one of the generalist evaluation agents. The model semantically compares the user’s request, negotiated terms, and the agent’s final output to verify alignment, detect omissions or scope drift, and produce a structured evaluation result. This evaluation result is then used to decide if a job is completed or rejected, enabling scalable and trustworthy agent-to-agent commerce.\n\nIn addition, Vertex AI Search powers the ACP search algorithm that enables users to identify agents that suit their use cases. The service indexes all agents in the ACP agent registry based on data attributes, including agent name, agent description, job offerings, job SLAs, success rates, ratings and reviews, and number of unique buyers, enabling users to customize searches by a range of parameters to make the best possible agent selection.\n\n## Why Google Cloud\n\nVirtuals Protocol turned to Gemini 3 Flash on Vertex AI to power Butler after evaluating several models across multiple versions of the agent. Most of the models considered experienced rate limitations that caused the chat interface to become unreliable at production scale.\n\n“Gemini 3 Flash on Vertex AI was a lot more stable and predictable than the alternatives, and had strong out-of-the-box support for a range of languages,” says Ang. “In addition, its versatility and superior prompt customization options helped minimize the number of queries that were refused, improving the customer experience. Finally, it provided the right balance of price and performance for our needs.”\n\nTo build the search algorithm for the ACP SDK, Virtuals Protocol turned to Google AI based on its previous positive experiences with the provider’s technologies. “Our evaluation found Vertex Search was low code, scaled seamlessly, and was easy to populate,” says Ang. “Its simplicity meant we were able to create the algorithm in just two weeks, and early feedback from our team is that our capability now is far superior to what we had previously.”\n\n“With Google Cloud and Google AI, we have gained considerable velocity in building a super ambitious product and staying ahead of several regional competitors in this space,” concludes Ang.\n\n> Our evaluation found that Vertex Search was low-code, scaled seamlessly, and was easy to populate. Its simplicity meant we we were able to create the algorithm in just two weeks, and early feedback from our team is that our capability now is far superior to what we had previously.\n>\n> Celeste Ang, Head of DevRel, Virtuals Protocol\n\nVirtuals Protocol builds infrastructure for deploying autonomous AI agents that can create services and engage in on-chain commerce. The platform enables teams to launch and operate AI agents with native ownership, incentive alignment, and automated settlement through smart contracts. By combining agent deployment, coordination, and transaction infrastructure into a unified protocol layer, Virtuals Protocol supports the development of scalable, agent-native applications.\n\n*   **Industry:** Technology\n*   **Locations:** United States, Europe and Malaysia\n*   **Products:** Gemini 3 Flash, Vertex AI Search\n"
+                          },
+                          "name": "save_case_study",
+                          "partial_args": null,
+                          "will_continue": null
+                        },
+                        "function_response": null,
+                        "inline_data": null,
+                        "text": null,
+                        "thought": null,
+                        "thought_signature": null,
+                        "video_metadata": null
+                      }
+                    ],
+                    "role": "model"
+                  }
+                },
+                {
+                  "author": "case_study_researcher",
+                  "content": {
+                    "parts": [
+                      {
+                        "media_resolution": null,
+                        "code_execution_result": null,
+                        "executable_code": null,
+                        "file_data": null,
+                        "function_call": null,
+                        "function_response": {
+                          "will_continue": null,
+                          "scheduling": null,
+                          "parts": null,
+                          "id": "adk-8d7b9db0-ab97-432c-a8fe-3ab7c5d7b7fc",
+                          "name": "save_case_study",
+                          "response": {
+                            "status": "success",
+                            "filepath": "/Users/luissala/development/agent-clinic/e101/improved_agent/knowledge_base/agentic_ai_virtuals_protocol.md"
+                          }
+                        },
+                        "inline_data": null,
+                        "text": null,
+                        "thought": null,
+                        "thought_signature": null,
+                        "video_metadata": null
+                      }
+                    ],
+                    "role": "user"
+                  }
+                },
+                {
+                  "author": "case_study_researcher",
+                  "content": {
+                    "parts": [
+                      {
+                        "media_resolution": null,
+                        "code_execution_result": null,
+                        "executable_code": null,
+                        "file_data": null,
+                        "function_call": {
+                          "id": "adk-21a6450f-2c01-45d1-bf8a-b0b8c538bb90",
+                          "args": {
+                            "command": "playwright-cli close"
+                          },
+                          "name": "run_browser_command",
+                          "partial_args": null,
+                          "will_continue": null
+                        },
+                        "function_response": null,
+                        "inline_data": null,
+                        "text": null,
+                        "thought": null,
+                        "thought_signature": "CpkBAb4-9vuoRusQUzkk9k5RzlyPxjad-uSIcT3I8liMZMtiB7S1mgBk3TwIpyQRefB_PcVD4XC6fy9C0X5UMnlIyXcaytGcSAeka8x9OAYSL5WV_sS1EcFlQac9g_ukyHIKLaOtI_6YT5iBpOnXqyMc0rLUBoy51OCN3hf7thxEau12wdRXIis1nFuDVoYhPxZCbARlqE9tYxJ8",
+                        "video_metadata": null
+                      }
+                    ],
+                    "role": "model"
+                  }
+                },
+                {
+                  "author": "case_study_researcher",
+                  "content": {
+                    "parts": [
+                      {
+                        "media_resolution": null,
+                        "code_execution_result": null,
+                        "executable_code": null,
+                        "file_data": null,
+                        "function_call": null,
+                        "function_response": {
+                          "will_continue": null,
+                          "scheduling": null,
+                          "parts": null,
+                          "id": "adk-21a6450f-2c01-45d1-bf8a-b0b8c538bb90",
+                          "name": "run_browser_command",
+                          "response": {
+                            "status": "success",
+                            "output": "Browser 'default' closed\n\n"
+                          }
+                        },
+                        "inline_data": null,
+                        "text": null,
+                        "thought": null,
+                        "thought_signature": null,
+                        "video_metadata": null
+                      }
+                    ],
+                    "role": "user"
+                  }
+                }
+              ]
+            },
+            "creation_timestamp": 1773609794.5325649,
+            "rubrics": null,
+            "app_details": {
+              "agent_details": {
+                "case_study_researcher": {
+                  "name": "case_study_researcher",
+                  "instructions": "\nYou are the Case Study Researcher Agent.\nYour job is to search for and extract Google Cloud customer case studies from 'https://cloud.google.com/customers' on behalf of the user.\n\nYou have access to a custom tool, `run_browser_command`, to control the Playwright CLI.\nYou MUST follow these strict guidelines when browsing:\n1. Initialize the browser using `run_browser_command(\"playwright-cli open\")`.\n2. Navigate to the Google Cloud customers page using `run_browser_command(\"playwright-cli goto https://cloud.google.com/customers\")`.\n3. Read the Snapshot Content provided in the tool output. Playwright CLI outputs a YAML snapshot of the page with element references (e.g. `e1`, `e21`).\n4. Interact with the search functionality using the reference IDs from the snapshot. For example:\n   - `playwright-cli fill e5 'Topic'` (Replace e5 with the actual ref for the search input).\n   - `playwright-cli press e5 'Enter'`.\n   - `playwright-cli click e7`\n5. Wait for results. Do not run `playwright-cli wait` as it is not a valid command. Instead, you can run `playwright-cli snapshot` to get an updated snapshot.\n6. Click on the most relevant search result to view the full case study using its `eX` ref.\n7. Extract the text of the case study. To get clean text for the page, use:\n   `playwright-cli eval \"document.body.innerText\"`\n   Do NOT return complex javascript functions.\n8. Format the extracted text as a clean Markdown document. Remove navigation bars, footers, and HTML clutter.\n9. Use the `save_case_study` tool to save your work. Provide the original topic, the company name from the case study, and the formatted markdown strings.\n10. Close the browser with `run_browser_command(\"playwright-cli close\")`.\n\n\nYou are an agent. Your internal name is \"case_study_researcher\". The description about you is \"An agent that scrapes Google Cloud customer case studies and saves them to a local knowledge base.\".",
+                  "tool_declarations": [
+                    {
+                      "retrieval": null,
+                      "computer_use": null,
+                      "file_search": null,
+                      "google_search": null,
+                      "google_maps": null,
+                      "code_execution": null,
+                      "enterprise_web_search": null,
+                      "function_declarations": [
+                        {
+                          "description": "Executes a playwright-cli command safely.\n\n    Args:\n        command: The playwright-cli command to execute (must start with 'playwright-cli').\n\n    Returns:\n        dict with status and output.\n    ",
+                          "name": "run_browser_command",
+                          "parameters": {
+                            "additional_properties": null,
+                            "defs": null,
+                            "ref": null,
+                            "any_of": null,
+                            "default": null,
+                            "description": null,
+                            "enum": null,
+                            "example": null,
+                            "format": null,
+                            "items": null,
+                            "max_items": null,
+                            "max_length": null,
+                            "max_properties": null,
+                            "maximum": null,
+                            "min_items": null,
+                            "min_length": null,
+                            "min_properties": null,
+                            "minimum": null,
+                            "nullable": null,
+                            "pattern": null,
+                            "properties": {
+                              "command": {
+                                "additional_properties": null,
+                                "defs": null,
+                                "ref": null,
+                                "any_of": null,
+                                "default": null,
+                                "description": null,
+                                "enum": null,
+                                "example": null,
+                                "format": null,
+                                "items": null,
+                                "max_items": null,
+                                "max_length": null,
+                                "max_properties": null,
+                                "maximum": null,
+                                "min_items": null,
+                                "min_length": null,
+                                "min_properties": null,
+                                "minimum": null,
+                                "nullable": null,
+                                "pattern": null,
+                                "properties": null,
+                                "property_ordering": null,
+                                "required": null,
+                                "title": null,
+                                "type": "STRING"
+                              }
+                            },
+                            "property_ordering": null,
+                            "required": [
+                              "command"
+                            ],
+                            "title": null,
+                            "type": "OBJECT"
+                          },
+                          "parameters_json_schema": null,
+                          "response": null,
+                          "response_json_schema": null,
+                          "behavior": null
+                        },
+                        {
+                          "description": "Saves a markdown string to the local knowledge base directory.\n\n    Args:\n        topic: The search topic or domain (e.g. 'retail', 'agentic_ai').\n        company: The name of the customer/company.\n        markdown_content: The formatted markdown text to save.\n\n    Returns:\n        dict with status and filepath.\n    ",
+                          "name": "save_case_study",
+                          "parameters": {
+                            "additional_properties": null,
+                            "defs": null,
+                            "ref": null,
+                            "any_of": null,
+                            "default": null,
+                            "description": null,
+                            "enum": null,
+                            "example": null,
+                            "format": null,
+                            "items": null,
+                            "max_items": null,
+                            "max_length": null,
+                            "max_properties": null,
+                            "maximum": null,
+                            "min_items": null,
+                            "min_length": null,
+                            "min_properties": null,
+                            "minimum": null,
+                            "nullable": null,
+                            "pattern": null,
+                            "properties": {
+                              "topic": {
+                                "additional_properties": null,
+                                "defs": null,
+                                "ref": null,
+                                "any_of": null,
+                                "default": null,
+                                "description": null,
+                                "enum": null,
+                                "example": null,
+                                "format": null,
+                                "items": null,
+                                "max_items": null,
+                                "max_length": null,
+                                "max_properties": null,
+                                "maximum": null,
+                                "min_items": null,
+                                "min_length": null,
+                                "min_properties": null,
+                                "minimum": null,
+                                "nullable": null,
+                                "pattern": null,
+                                "properties": null,
+                                "property_ordering": null,
+                                "required": null,
+                                "title": null,
+                                "type": "STRING"
+                              },
+                              "company": {
+                                "additional_properties": null,
+                                "defs": null,
+                                "ref": null,
+                                "any_of": null,
+                                "default": null,
+                                "description": null,
+                                "enum": null,
+                                "example": null,
+                                "format": null,
+                                "items": null,
+                                "max_items": null,
+                                "max_length": null,
+                                "max_properties": null,
+                                "maximum": null,
+                                "min_items": null,
+                                "min_length": null,
+                                "min_properties": null,
+                                "minimum": null,
+                                "nullable": null,
+                                "pattern": null,
+                                "properties": null,
+                                "property_ordering": null,
+                                "required": null,
+                                "title": null,
+                                "type": "STRING"
+                              },
+                              "markdown_content": {
+                                "additional_properties": null,
+                                "defs": null,
+                                "ref": null,
+                                "any_of": null,
+                                "default": null,
+                                "description": null,
+                                "enum": null,
+                                "example": null,
+                                "format": null,
+                                "items": null,
+                                "max_items": null,
+                                "max_length": null,
+                                "max_properties": null,
+                                "maximum": null,
+                                "min_items": null,
+                                "min_length": null,
+                                "min_properties": null,
+                                "minimum": null,
+                                "nullable": null,
+                                "pattern": null,
+                                "properties": null,
+                                "property_ordering": null,
+                                "required": null,
+                                "title": null,
+                                "type": "STRING"
+                              }
+                            },
+                            "property_ordering": null,
+                            "required": [
+                              "topic",
+                              "company",
+                              "markdown_content"
+                            ],
+                            "title": null,
+                            "type": "OBJECT"
+                          },
+                          "parameters_json_schema": null,
+                          "response": null,
+                          "response_json_schema": null,
+                          "behavior": null
+                        }
+                      ],
+                      "google_search_retrieval": null,
+                      "parallel_ai_search": null,
+                      "url_context": null,
+                      "mcp_servers": null
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "expected_invocation": {
+            "invocation_id": "80783a4c-8608-4151-a2cb-1131701c4339",
+            "user_content": {
+              "parts": [
+                {
+                  "media_resolution": null,
+                  "code_execution_result": null,
+                  "executable_code": null,
+                  "file_data": null,
+                  "function_call": null,
+                  "function_response": null,
+                  "inline_data": null,
+                  "text": "Can you find a customer success story related to Agentic AI?",
+                  "thought": null,
+                  "thought_signature": null,
+                  "video_metadata": null
+                }
+              ],
+              "role": "user"
+            },
+            "final_response": {
+              "parts": [
+                {
+                  "media_resolution": null,
+                  "code_execution_result": null,
+                  "executable_code": null,
+                  "file_data": null,
+                  "function_call": null,
+                  "function_response": null,
+                  "inline_data": null,
+                  "text": "I found and saved a customer success story related to Agentic AI.",
+                  "thought": null,
+                  "thought_signature": null,
+                  "video_metadata": null
+                }
+              ],
+              "role": "model"
+            },
+            "intermediate_data": {
+              "tool_uses": [
+                {
+                  "id": null,
+                  "args": {},
+                  "name": "run_browser_command",
+                  "partial_args": null,
+                  "will_continue": null
+                },
+                {
+                  "id": null,
+                  "args": {},
+                  "name": "save_case_study",
+                  "partial_args": null,
+                  "will_continue": null
+                }
+              ],
+              "tool_responses": [],
+              "intermediate_responses": []
+            },
+            "creation_timestamp": 1773609792.656919,
+            "rubrics": null,
+            "app_details": null
+          },
+          "eval_metric_results": [
+            {
+              "metric_name": "tool_trajectory_avg_score",
+              "threshold": 1.0,
+              "criterion": {
+                "threshold": 1.0
+              },
+              "custom_function_path": null,
+              "score": 0.0,
+              "eval_status": 2,
+              "details": {
+                "rubric_scores": null
+              }
+            },
+            {
+              "metric_name": "response_match_score",
+              "threshold": 0.8,
+              "criterion": {
+                "threshold": 0.8
+              },
+              "custom_function_path": null,
+              "score": 0.6285714285714286,
+              "eval_status": 2,
+              "details": {
+                "rubric_scores": null
+              }
+            }
+          ]
+        }
+      ],
+      "session_id": "___eval___session___5d4e8671-e906-4964-87a4-bbe358aac20f",
+      "session_details": null,
+      "user_id": "test_user_id"
+    }
+  ],
+  "creation_timestamp": 1773609843.891744
+}

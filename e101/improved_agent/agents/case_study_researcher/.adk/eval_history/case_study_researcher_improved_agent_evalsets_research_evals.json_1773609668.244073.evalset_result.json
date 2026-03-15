@@ -1,0 +1,1626 @@
+{
+  "eval_set_result_id": "case_study_researcher_improved_agent/evalsets/research_evals.json_1773609668.244073",
+  "eval_set_result_name": "case_study_researcher_improved_agent_evalsets_research_evals.json_1773609668.244073",
+  "eval_set_id": "improved_agent/evalsets/research_evals.json",
+  "eval_case_results": [
+    {
+      "eval_set_file": "improved_agent/evalsets/research_evals.json",
+      "eval_set_id": "improved_agent/evalsets/research_evals.json",
+      "eval_id": "find_retail_bigquery_case_study",
+      "final_eval_status": 2,
+      "eval_metric_results": null,
+      "overall_eval_metric_results": [
+        {
+          "metric_name": "tool_trajectory_avg_score",
+          "threshold": 1.0,
+          "criterion": {
+            "threshold": 1.0
+          },
+          "custom_function_path": null,
+          "score": 0.0,
+          "eval_status": 2,
+          "details": {
+            "rubric_scores": null
+          }
+        },
+        {
+          "metric_name": "response_match_score",
+          "threshold": 0.8,
+          "criterion": {
+            "threshold": 0.8
+          },
+          "custom_function_path": null,
+          "score": 0.16666666666666669,
+          "eval_status": 2,
+          "details": {
+            "rubric_scores": null
+          }
+        }
+      ],
+      "eval_metric_result_per_invocation": [
+        {
+          "actual_invocation": {
+            "invocation_id": "e-ec0453bc-9808-4c64-9f13-6f6d10d49b3c",
+            "user_content": {
+              "parts": [
+                {
+                  "media_resolution": null,
+                  "code_execution_result": null,
+                  "executable_code": null,
+                  "file_data": null,
+                  "function_call": null,
+                  "function_response": null,
+                  "inline_data": null,
+                  "text": "Find a retail case study involving BigQuery.",
+                  "thought": null,
+                  "thought_signature": null,
+                  "video_metadata": null
+                }
+              ],
+              "role": "user"
+            },
+            "final_response": {
+              "parts": [
+                {
+                  "media_resolution": null,
+                  "code_execution_result": null,
+                  "executable_code": null,
+                  "file_data": null,
+                  "function_call": null,
+                  "function_response": null,
+                  "inline_data": null,
+                  "text": "I have found and saved a retail case study involving BigQuery.\n\n**Company:** Morrisons\n**Topic:** Retail BigQuery\n**Summary:** Morrisons, a major UK supermarket chain, migrated its on-premise data stack to Google Cloud to achieve real-time insights. By using **BigQuery** and **Looker**, they reduced data reporting lag by over 98% (from 24 hours to 15 minutes). This enables store managers to optimize stock levels in real-time and powers an in-app \"Product Finder\" that helps 50,000 customers daily find items in-store.\n\nThe full case study has been saved to your knowledge base at `/Users/luissala/development/agent-clinic/e101/improved_agent/knowledge_base/retail_bigquery_morrisons.md`.",
+                  "thought": null,
+                  "thought_signature": "EtwBCtkBAb4-9vt4FI0Q5P7G8C2lyX30PFCeCGKEfqVpDrPJlY7SdtXAOjTT4w99p3ne2Ttzld4JVY3e_725q6L2ZJU6tG9D_qshWCzJ2GgNXS7k6d7SOspowghoch3Gr64qu-VlkjQiIUFkirTFVvD3noPBcjyupWnGDquagem6uJ_oGWNvPcUOOvJZneVglW34UqQkNaYPfPL7MEv0UGQ7ER76GPvfDv3_CqfGO5jvDEPmbkBwp8Eif523gJb5lrhdzcmVROUDfUbtoHM_REKCZvr-HS30WitCn9bSlg==",
+                  "video_metadata": null
+                }
+              ],
+              "role": "model"
+            },
+            "intermediate_data": {
+              "invocation_events": [
+                {
+                  "author": "case_study_researcher",
+                  "content": {
+                    "parts": [
+                      {
+                        "media_resolution": null,
+                        "code_execution_result": null,
+                        "executable_code": null,
+                        "file_data": null,
+                        "function_call": {
+                          "id": "8denw6p1",
+                          "args": {
+                            "command": "playwright-cli open"
+                          },
+                          "name": "run_browser_command",
+                          "partial_args": null,
+                          "will_continue": null
+                        },
+                        "function_response": null,
+                        "inline_data": null,
+                        "text": null,
+                        "thought": null,
+                        "thought_signature": "EvoDCvcDAb4-9vsemKhvZ9YFAd2ED5OPlb5DMdz5ikg9e3X3D--qcY4_YhnTB-_3aP8OhNRpKQrsneLLDJHlqctStyfNDiDZKt19uIfuKKO0WDyIpsiXz28cZR1Z2IG3Qt61UgHsB08iugFdNqsqLijG5Ju5ASA-TPh6EmF2XBuF_CsEzCyvIDXxcvlaBa-NikmvP6Q-FwnwWCOxpKAvG2xM_pmdYcaHqy2xD50Gom2VqkVu9RxC6aJwQdKDM4LN4wETMrO_o0SwSj5bmx-eX5HxMH-B1QlFEI8Xp9jkSSTx5FmTrS63FI13O7lw7wOpA_cr9f3LGcwHRJISVLVZb5_XEF231ISkFsd6mrzMD3fQ5ZcY0ljJZmQYwPF1c9HU5ppZCWiKIXZYFwhEmrLuo3rknEPOGOjFI7hvJ7_LZ5CT20J4HjEz4SaUBQr6sKTcv5KcitJma_UCIC5J-E1a8L1chKlQr5Sn2Z8NGUD8aA11-J9ZCP9C9HLcpsPnYpCG57RP4IIQY50xFBt0w2sn5SepPPLI3kktxvzRdv0PGr4worpUWPq4UgyKnyH1ZEqyFoI_MjK4lTQiq7Pulxe_6vuDgu0mw6xC3aLab7C7aJigP-WkoHvZXzmyv-7Z3Po7MltTaFrypCmTvMSS7VoO_TgYIWrMtCaTSMO_uKo=",
+                        "video_metadata": null
+                      }
+                    ],
+                    "role": "model"
+                  }
+                },
+                {
+                  "author": "case_study_researcher",
+                  "content": {
+                    "parts": [
+                      {
+                        "media_resolution": null,
+                        "code_execution_result": null,
+                        "executable_code": null,
+                        "file_data": null,
+                        "function_call": null,
+                        "function_response": {
+                          "will_continue": null,
+                          "scheduling": null,
+                          "parts": null,
+                          "id": "8denw6p1",
+                          "name": "run_browser_command",
+                          "response": {
+                            "status": "success",
+                            "output": "### Browser `default` opened with pid 95182.\n- default:\n  - browser-type: chrome\n  - user-data-dir: <in-memory>\n  - headed: false\n---\n### Page\n- Page URL: about:blank\n### Snapshot\n- [Snapshot](.playwright-cli/page-2026-03-15T21-19-13-126Z.yml)\n"
+                          }
+                        },
+                        "inline_data": null,
+                        "text": null,
+                        "thought": null,
+                        "thought_signature": null,
+                        "video_metadata": null
+                      }
+                    ],
+                    "role": "user"
+                  }
+                },
+                {
+                  "author": "case_study_researcher",
+                  "content": {
+                    "parts": [
+                      {
+                        "media_resolution": null,
+                        "code_execution_result": null,
+                        "executable_code": null,
+                        "file_data": null,
+                        "function_call": {
+                          "id": "yopmmhyn",
+                          "args": {
+                            "command": "playwright-cli goto https://cloud.google.com/customers"
+                          },
+                          "name": "run_browser_command",
+                          "partial_args": null,
+                          "will_continue": null
+                        },
+                        "function_response": null,
+                        "inline_data": null,
+                        "text": null,
+                        "thought": null,
+                        "thought_signature": "ElcKVQG-Pvb7o1ZEHk85jedyGxCt4ZeDxErmZfe1fZJ8hC3aJx-nQnhEoiViG6wxscPXQWIBx6eI2vthnYozxWdh9fpW77PSTjWQBoEI4AfFg2dYxRgxLmU=",
+                        "video_metadata": null
+                      }
+                    ],
+                    "role": "model"
+                  }
+                },
+                {
+                  "author": "case_study_researcher",
+                  "content": {
+                    "parts": [
+                      {
+                        "media_resolution": null,
+                        "code_execution_result": null,
+                        "executable_code": null,
+                        "file_data": null,
+                        "function_call": null,
+                        "function_response": {
+                          "will_continue": null,
+                          "scheduling": null,
+                          "parts": null,
+                          "id": "yopmmhyn",
+                          "name": "run_browser_command",
+                          "response": {
+                            "status": "success",
+                            "output": "### Ran Playwright code\n```js\nawait page.goto('https://cloud.google.com/customers');\n```\n### Page\n- Page URL: https://cloud.google.com/customers\n- Page Title: Customers | Google Cloud\n- Console: 1 errors, 0 warnings\n### Snapshot\n- [Snapshot](.playwright-cli/page-2026-03-15T21-19-19-375Z.yml)\n### Events\n- New console entries: .playwright-cli/console-2026-03-15T21-19-18-347Z.log#L1\n"
+                          }
+                        },
+                        "inline_data": null,
+                        "text": null,
+                        "thought": null,
+                        "thought_signature": null,
+                        "video_metadata": null
+                      }
+                    ],
+                    "role": "user"
+                  }
+                },
+                {
+                  "author": "case_study_researcher",
+                  "content": {
+                    "parts": [
+                      {
+                        "media_resolution": null,
+                        "code_execution_result": null,
+                        "executable_code": null,
+                        "file_data": null,
+                        "function_call": {
+                          "id": "gql5c368",
+                          "args": {
+                            "command": "playwright-cli eval \"document.querySelector('input') ? document.querySelector('input').outerHTML : 'no input found'\""
+                          },
+                          "name": "run_browser_command",
+                          "partial_args": null,
+                          "will_continue": null
+                        },
+                        "function_response": null,
+                        "inline_data": null,
+                        "text": null,
+                        "thought": null,
+                        "thought_signature": "Es8ECswEAb4-9vsIwiZFMAVkwSWVs_LbMY91cpd0X9kPE_OQiVCwZCLiIhJhhxxTAd2z-UCxJJ6gi9goqSIx3E7hDFm7dXFZOnLn0lIqVjU8nylqrtRqUtpHQLpOoIKCM6fA_hTjocoADqUHMlDK9nUmQp-b4fH5hW4lP_zKJWAT5Ag1SXsWIXUmLHhaglIkjD7FMenNsJsMN9xRtPxA9NdoMt3tcLAosXyHfD4I1JwENnQuQrDDjzxYs743sbV9wk5ordqBBtRoyyqZ9LvTMB3TieTvaYpHL4HuvCnoDnqnFPWrZKMAN_nWF9LGBXt2f0kMv1swbeK83L8lt1p5OPo2oQJq4LeH5aDY3rEpqUsBRQEznigqcdiBgjohowZ37hp-nb5AOdZ-qZ3hbFaydnZke1eagNRkiCK5oB1OFOdLOL8pzhAiZs_srbttOZbELMuXZLHLoWBIK_92p52FHXIxEOUvlhSpjppYWGur1ZnFah70Tu0CwYzLsgaMyRIJhPL87riMaURQpKrPeDpqwBWRgbMq42j6FWxI9gBcmbIOktur89QtStU_1gf7MfiiS5fwuiXxNOiOLWEVuyIiPpJvhgmhOiLl1h-pFDebOnvu_Min3N_nsZZUIlNO_btgR_hXaEWaAM2KnAA-j-7g89riH_lkT9P5NxEHzXQraiuhtHtKkRfjtAcevpKOupT8r7TA6MfYrBDax7N_dsX_Ujs1ft36dlIYrMThX-OMpHOjlvi8rb-hfOSFd1dFmN9BI6Q02MbbnODaIyLKyUUhm8qE",
+                        "video_metadata": null
+                      }
+                    ],
+                    "role": "model"
+                  }
+                },
+                {
+                  "author": "case_study_researcher",
+                  "content": {
+                    "parts": [
+                      {
+                        "media_resolution": null,
+                        "code_execution_result": null,
+                        "executable_code": null,
+                        "file_data": null,
+                        "function_call": null,
+                        "function_response": {
+                          "will_continue": null,
+                          "scheduling": null,
+                          "parts": null,
+                          "id": "gql5c368",
+                          "name": "run_browser_command",
+                          "response": {
+                            "status": "success",
+                            "output": "### Result\n\"<input class=\\\"VfPpkd-muHVFf-bMcfAe\\\" type=\\\"checkbox\\\" jsname=\\\"YPqjbf\\\" jsaction=\\\"focus:AHmuwe; blur:O22p3e;change:WPi0i;\\\" checked=\\\"\\\" tabindex=\\\"-1\\\" aria-hidden=\\\"true\\\">\"\n### Ran Playwright code\n```js\nawait page.evaluate('() => (document.querySelector(\\'input\\') ? document.querySelector(\\'input\\').outerHTML : \\'no input found\\')');\n```\n"
+                          }
+                        },
+                        "inline_data": null,
+                        "text": null,
+                        "thought": null,
+                        "thought_signature": null,
+                        "video_metadata": null
+                      }
+                    ],
+                    "role": "user"
+                  }
+                },
+                {
+                  "author": "case_study_researcher",
+                  "content": {
+                    "parts": [
+                      {
+                        "media_resolution": null,
+                        "code_execution_result": null,
+                        "executable_code": null,
+                        "file_data": null,
+                        "function_call": {
+                          "id": "chutxiqv",
+                          "args": {
+                            "command": "playwright-cli eval \"Array.from(document.querySelectorAll('input')).map(i => i.outerHTML)\""
+                          },
+                          "name": "run_browser_command",
+                          "partial_args": null,
+                          "will_continue": null
+                        },
+                        "function_response": null,
+                        "inline_data": null,
+                        "text": null,
+                        "thought": null,
+                        "thought_signature": "EuwBCukBAb4-9vsZTlVPgarYBCRR7rAyxMkMeczrstDt_9QXYXw9N-DTRJfJK3NxuuWEmhKf3SyRcewLo1Oiy9yimn1_3vxbem51y7xB3fbHj_WKMNXAuMDbKjjyBRI94EnmKJHMoqsK-UECZWDf3UQWZyFCTjWWnLz4RiQs-78fA4SV3BIlaVj-Bh6stP2ZmarBT6yCG64d_jGxIKvyNIWqr4NnF7SdE75w4dS1jAF5vmcRxeTr4bkvfml-0vS1SOM5EtJU9Lnc3yHb0xcw0m8B10WPtkoDTSfS7K8Qc9Kpi2jeyLfMy0FtvIN3nD8=",
+                        "video_metadata": null
+                      }
+                    ],
+                    "role": "model"
+                  }
+                },
+                {
+                  "author": "case_study_researcher",
+                  "content": {
+                    "parts": [
+                      {
+                        "media_resolution": null,
+                        "code_execution_result": null,
+                        "executable_code": null,
+                        "file_data": null,
+                        "function_call": null,
+                        "function_response": {
+                          "will_continue": null,
+                          "scheduling": null,
+                          "parts": null,
+                          "id": "chutxiqv",
+                          "name": "run_browser_command",
+                          "response": {
+                            "status": "success",
+                            "output": "### Error\nError: page._evaluateFunction: TypeError: result is not a function\n    at UtilityScript.evaluate (<anonymous>:303:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)\n"
+                          }
+                        },
+                        "inline_data": null,
+                        "text": null,
+                        "thought": null,
+                        "thought_signature": null,
+                        "video_metadata": null
+                      }
+                    ],
+                    "role": "user"
+                  }
+                },
+                {
+                  "author": "case_study_researcher",
+                  "content": {
+                    "parts": [
+                      {
+                        "media_resolution": null,
+                        "code_execution_result": null,
+                        "executable_code": null,
+                        "file_data": null,
+                        "function_call": {
+                          "id": "w5ky8a57",
+                          "args": {
+                            "command": "playwright-cli screenshot"
+                          },
+                          "name": "run_browser_command",
+                          "partial_args": null,
+                          "will_continue": null
+                        },
+                        "function_response": null,
+                        "inline_data": null,
+                        "text": null,
+                        "thought": null,
+                        "thought_signature": "EtIBCs8BAb4-9vslD1LjvhwwxBucKgEGu-67RBwrVqE_ICCprKp4ttJ6nBgLTH5nMOCItnOj_7NoeoX10SfzT9wbrSHFlEvseXivtRPmgK5kvoiH0mhVRU4xUoV6xUKUIqcmkyYvR0ZizmPYGSWkinf9-jsoAiVvIkOlGOEtzGP3S6xEGZ5rtElRacf3jlYrW0b8PaIJjV3LjYTS40F0NpooSSf8pZYM3YNbYLTKSwY10MOV-q1fn7Nvf28pA6hY9IPdJQ6o0BwPns9k__8rs3ZE6nIa",
+                        "video_metadata": null
+                      }
+                    ],
+                    "role": "model"
+                  }
+                },
+                {
+                  "author": "case_study_researcher",
+                  "content": {
+                    "parts": [
+                      {
+                        "media_resolution": null,
+                        "code_execution_result": null,
+                        "executable_code": null,
+                        "file_data": null,
+                        "function_call": null,
+                        "function_response": {
+                          "will_continue": null,
+                          "scheduling": null,
+                          "parts": null,
+                          "id": "w5ky8a57",
+                          "name": "run_browser_command",
+                          "response": {
+                            "status": "success",
+                            "output": "### Result\n- [Screenshot of viewport](.playwright-cli/page-2026-03-15T21-19-33-490Z.png)\n### Ran Playwright code\n```js\n// Screenshot viewport and save it as .playwright-cli/page-2026-03-15T21-19-33-490Z.png\nawait page.screenshot({\npath: '.playwright-cli/page-2026-03-15T21-19-33-490Z.png',\n  scale: 'css',\n  type: 'png'\n});\n```\n"
+                          }
+                        },
+                        "inline_data": null,
+                        "text": null,
+                        "thought": null,
+                        "thought_signature": null,
+                        "video_metadata": null
+                      }
+                    ],
+                    "role": "user"
+                  }
+                },
+                {
+                  "author": "case_study_researcher",
+                  "content": {
+                    "parts": [
+                      {
+                        "media_resolution": null,
+                        "code_execution_result": null,
+                        "executable_code": null,
+                        "file_data": null,
+                        "function_call": {
+                          "id": "mvjv4sqs",
+                          "args": {
+                            "command": "playwright-cli eval \"document.body.innerText\""
+                          },
+                          "name": "run_browser_command",
+                          "partial_args": null,
+                          "will_continue": null
+                        },
+                        "function_response": null,
+                        "inline_data": null,
+                        "text": null,
+                        "thought": null,
+                        "thought_signature": "EpMBCpABAb4-9vsH9s-dbztT4e_zRNeGhZjOgxh_nRFQ0w0wkTUT7C81NKlg9BrP9rYBBhtk62duAwF2n4zHN_zAkRGJ0tMhx74KyPkAt9I2KH2Okkvv75A6AX-p-L_rn4ydoBKMeRjkmQmHcWNv7Dfqea4X7QJqqyccXmaEVImPRCGE50s9k28CYzHB8np27XPoriR5",
+                        "video_metadata": null
+                      }
+                    ],
+                    "role": "model"
+                  }
+                },
+                {
+                  "author": "case_study_researcher",
+                  "content": {
+                    "parts": [
+                      {
+                        "media_resolution": null,
+                        "code_execution_result": null,
+                        "executable_code": null,
+                        "file_data": null,
+                        "function_call": null,
+                        "function_response": {
+                          "will_continue": null,
+                          "scheduling": null,
+                          "parts": null,
+                          "id": "mvjv4sqs",
+                          "name": "run_browser_command",
+                          "response": {
+                            "status": "success",
+                            "output": "### Result\n\"Google Cloud customer stories\\n\\nOrganizations worldwide are turning to Google Cloud for their digital transformations. Today, nine of the top 10 AI Labs, and nearly all the AI unicorns, are Google Cloud customers. Read about more than 1001 gen AI use cases or watch customer success stories.\\n\\nContact sales\\nTry Google Cloud for free\\nReal-world benefits for customers\\n\\nDriving growth and efficiency\\n\\nMillennium BCP uses BigQuery to boost conversion rates 2.6x in digital sales efforts.\\n\\nRead the case study\\n\\nBattling security threats\\n\\nApex Fintech Solutions reduced its threat detection turnaround time by up to 75%. \\n\\nWatch the video\\n\\nBetter inventory forecasting\\n\\nThe Super-Pharm pharmacy chain uses Vertex AI to improve inventory accuracy by up to 90%.\\n\\nRead the case study\\nFeatured stories\\nDia\\nDia boosts its omnichannel ecommerce with the scalability of Google Cloud\\nLearn more\\nEversana\\nEVERSANA creates the first \\\"AI Agency Platform\\\" to revolutionize pharma marketing\\nLearn more\\nLowe's\\nLowe’s constructs a sophisticated search engine with Vertex AI\\nWatch video\\nWipro\\nWipro is transforming cost optimization with Google Cloud AI solutions\\nLearn more\\nNatura Cosmetics\\nNatura revolutionizes testing for new substances\\nLearn more\\nSwarovski\\nSwarovski partners with Google Cloud to personalize luxury\\nLearn more\\nFILTER BY\\nProduct Category\\nAI and Machine Learning\\nAPI Management\\nCompute\\nContainers\\nData Analytics\\nDatabases\\nDeveloper Tools\\nGoogle Workspace\\nNetworking\\nOperations\\nSecurity and Identity\\nServerless Computing\\nStorage\\nOther\\nIndustry\\nRegion\\nAsia Pacific & Japan\\nEurope, Middle East & Africa\\nLatin America\\nU.S. & Canada\\nsearch\\nsend\\nAI and Machine Learning\\nclose\\nU.S. & Canada\\nclose\\nClear all\\nComplyAdvantage cut development time 37% with Gemini Code Assist, enabling predictable, timely delivery of a major new offering.\\nUsing Google Earth Engine and AI-driven geospatial modeling to accurately predict wildfire risk enables Delos to offer affordable insurance to California homeowners deemed uninsurable by other carriers.\\nBy providing the exploration and analysis platform for a 500-petabyte dataset–the largest astronomical dataset in history–Google Cloud helps Rubin Observatory chart the cosmos and democratize science for 30,000 researchers worldwide.\\nMacroFactor uses Firebase, Flutter, and Gemini to scale its top-rated nutrition app to 400k+ users and deliver trusted, AI-powered food logging.\\nWith Google Cloud and Google AI, Virtuals Protocol enables humans and AI agents to collaborate seamlessly to drive economic value.\\nThe Hugging Face platform gives everyone access to open-source AI tools and 13 million AI builders can now easily deploy over two AI models and build their own AI applications on Google Cloud in a matter of clicks.\\nEon transforms static backup archives into instantly queryable data lakes and, on Google Cloud, integrates with Gemini, Vertex AI, and BigQuery for natural-language search and analytics.\\nRefik Anadol Studio used Google Cloud, including Vertex AI and Gemini 2.5 Flash, to build the \\\"Large Nature Model,\\\" boosting speed 23x and accuracy 40% to power DATALAND exhibition's intelligent nature art.\\nWorkers at Gordon Food Service foster an innovation-forward mindset by using AI-powered applications and tools from Google Cloud to boost productivity and elevate customer service.\\nBMC Helix uses autonomous AI agents on Vertex AI to help enterprise IT move beyond delivering simple reliability and toward unlocking new possibilities through Service Operations.\\nShopify uses Claude on Vertex AI to scale Sidekick, an AI-enabled commerce assistant, to make it easier for millions of merchants to get more done faster.\\nSabre uses Gemini models, Vertex AI Agent Builder, and semantic search technologies on Vertex AI to launch airline and travel retailing innovations.\\nShow more\\n\\nWe're ready to help you along your digital transformation journey.\\n\\nContact sales\\nTry Google Cloud for free\\n\\nRead more of our in depth customer stories\\n\\nVisit our blog\\n\\nLearn what industry analysts are saying about Google Cloud\\n\\nExplore analyst reports\\n\\nNetwork with other professionals\\n\\nJoin the Google Cloud community\\nOverview\\nSolutions\\nProducts\\nPricing\\nResources\\n\\nsearch\\nsend\\nDocs\\nSupport\\nSign in\\nWhy Google\\nChoosing Google Cloud\\nTrust and security\\nModern Infrastructure Cloud\\nMulticloud\\nGlobal infrastructure\\nLocations\\nCustomers and case studies\\nAnalyst reports\\nWhitepapers\\nBlog\\nProducts and pricing\\nGoogle Cloud pricing\\nGoogle Workspace pricing\\nSee all products\\nSolutions\\nInfrastructure modernization\\nDatabases\\nApplication modernization\\nSmart analytics\\nArtificial Intelligence\\nSecurity\\nProductivity & work transformation\\nIndustry solutions\\nDevOps solutions\\nSmall business solutions\\nSee all solutions\\nResources\\nGoogle Cloud Affiliate Program\\nGoogle Cloud documentation\\nGoogle Cloud quickstarts\\nGoogle Cloud Marketplace\\nLearn about cloud computing\\nSupport\\nCode samples\\nCloud Architecture Center\\nTraining\\nCertifications\\nGoogle for Developers\\nGoogle Cloud for Startups\\nSystem status\\nRelease Notes\\nEngage\\nContact sales\\nFind a Partner\\nBecome a Partner\\nEvents\\nPodcasts\\nDeveloper Center\\nPress Corner\\nGoogle Cloud on YouTube\\nGoogle Cloud Tech on YouTube\\nFollow on X\\nJoin User Research\\nWe're hiring. Join Google Cloud!\\nCommunity forums\\nAbout Google\\nPrivacy\\nSite terms\\nGoogle Cloud terms\\nOur third decade of climate action: join us\\nSign up for the Google Cloud newsletter\\nSubscribe\\nlanguage\\n‪English‬\"\n### Ran Playwright code\n```js\nawait page.evaluate('() => (document.body.innerText)');\n```\n"
+                          }
+                        },
+                        "inline_data": null,
+                        "text": null,
+                        "thought": null,
+                        "thought_signature": null,
+                        "video_metadata": null
+                      }
+                    ],
+                    "role": "user"
+                  }
+                },
+                {
+                  "author": "case_study_researcher",
+                  "content": {
+                    "parts": [
+                      {
+                        "media_resolution": null,
+                        "code_execution_result": null,
+                        "executable_code": null,
+                        "file_data": null,
+                        "function_call": {
+                          "id": "nneqnus4",
+                          "args": {
+                            "command": "playwright-cli eval \"Array.from(document.querySelectorAll('input, button')).filter(el => el.innerText.toLowerCase().includes('search') || el.getAttribute('aria-label')?.toLowerCase().includes('search') || el.placeholder?.toLowerCase().includes('search')).map(el => ({tag: el.tagName, text: el.innerText, aria: el.getAttribute('aria-label'), placeholder: el.placeholder}))\""
+                          },
+                          "name": "run_browser_command",
+                          "partial_args": null,
+                          "will_continue": null
+                        },
+                        "function_response": null,
+                        "inline_data": null,
+                        "text": null,
+                        "thought": null,
+                        "thought_signature": "EugICuUIAb4-9vtfQb6UmDOWzaTU_2lphlt0jFI68b17qnMNbFWLXTRkWwJ1lVg-tJaCK087IZpSqmF22nBVVV5-zDd2xTblYzK_svHL8GZS-Vs8q9OokkgycX7VooqtMl5GFeMY4vlSSeq-f5lCRJG4fF-4uUEc_MA--OUqRCuAecoCB0zoGgj1PlPFDjvEqcg2POYVKOx_EYyzcyeq5M7b72nxXoNhaaNizomZzYjXNJWX-uBcMolELzhNeg-eETjjCtlyZGzl-7OjZBhv05pcHyNoEepuukhbCLdAgYY5EIdqfyrcukZ-wRlybSFK1V7Og5W_j_I65EiAffiFN_pDD1TyvnRxGg35r0UkgQazAXZdyyeoMBtJNOBb-s99dcd1a1Wohyl4bsPZ8dlzhMxeNGDQlbVq-yisZIXW7h-M4NlCNPTCmYka-Mw_btnKq6TnxQH8rvFUVvf6lgGVlO2T28p1c5nYnLLtcTHHh8DGqcK_J_ofUL9SlNko8LHz3T2VQBbtXyXLgbUQcBCGW_Qu-XzEq_DtqfaWuUfItPpHiLHj9VkDlzjoP_lW1sbt43mYHB7GSO-TyTJJlbIw6Jn1LWDpQIn0VSy7tg_4uSo8HQRz5Fi_dQ-8OR1UMwlEtzqYAve4jZPdpIlWSGtEU-FdaNXd-u0u90B-gDEmDDp7RKXZazILTZtQVDhkWg1sX6ej-YH3BETWZiCfO5yrCh7bwyHGcrGaevFupHZbR7AIlhlTkHB1PTLNm8t5LiG4-DvLNaUWXI0JHLS88lRi3RBwgDUURXXj-cUPsM81lyn62EZiziL0gXY9p10MwLicB48YNehGjwJQLJMGeVFSOGTIl4k6bGSPIeOcr4FwOgoM3u0z7wI-ybADHPhU5qL6ll-xk_8KQ_SWc4k17UWR0o-dj6bJHAa6lf5_e_-8AhiAe6bmSRaXOc98GkupjE_MPZyIjWDrfX1Ihln-1UQu1NilRkPnn2xKXxH8yZQ4FIFVas5cFNiHgSHQz3CQnkLQjwbH51wcLG3nn1kxUC72qQi7ey5h7-pyWvk2jcJp8D0VRlxe_89yqFJErTZ_hNTfX-bFZhdK4cEB-Vv6fSZz-o3xxXVgoLYgRxzRbXmOfzxO50XqWxZSsdk9nXFZXj0wGzZpDJiGfosHW_2Lg5cA97IpK2yEqVty7Tu0AMViRN0CS0vb7aeLqrYC0l4RyAsxA3XJ8fwMnubc9hAhbR0PlNpTvlfod_UiAAlq0rpoKJ5qrWzCTy_R4w32ZCCJW-XLJ6XjP2eHm3_pwOUeDDTKqJif4gz-NGFQaK1kYNTLMyMr0heLm6H3E6JoEKt_diDFRw3gSSyvRpCKYS7efXbDmwlp4v0GL026GzlBopS9n-04A_04GuNnfVopLRPXRlg6VTU0-pZN-Tqj5XbhncNgltZekytS_3uBCOFY_EH-o13LBEhb9ZtYKPLFdr6AGOQW6Fy6L6tM9c_wH-FwMDANfQSUGOSxW86yIis_",
+                        "video_metadata": null
+                      }
+                    ],
+                    "role": "model"
+                  }
+                },
+                {
+                  "author": "case_study_researcher",
+                  "content": {
+                    "parts": [
+                      {
+                        "media_resolution": null,
+                        "code_execution_result": null,
+                        "executable_code": null,
+                        "file_data": null,
+                        "function_call": null,
+                        "function_response": {
+                          "will_continue": null,
+                          "scheduling": null,
+                          "parts": null,
+                          "id": "nneqnus4",
+                          "name": "run_browser_command",
+                          "response": {
+                            "status": "success",
+                            "output": "### Error\nError: page._evaluateFunction: TypeError: result is not a function\n    at UtilityScript.evaluate (<anonymous>:303:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)\n"
+                          }
+                        },
+                        "inline_data": null,
+                        "text": null,
+                        "thought": null,
+                        "thought_signature": null,
+                        "video_metadata": null
+                      }
+                    ],
+                    "role": "user"
+                  }
+                },
+                {
+                  "author": "case_study_researcher",
+                  "content": {
+                    "parts": [
+                      {
+                        "media_resolution": null,
+                        "code_execution_result": null,
+                        "executable_code": null,
+                        "file_data": null,
+                        "function_call": {
+                          "id": "bjimkqxa",
+                          "args": {
+                            "command": "playwright-cli eval \"JSON.stringify(Array.from(document.querySelectorAll('input, button')).filter(el => (el.innerText && el.innerText.toLowerCase().includes('search')) || (el.getAttribute('aria-label') && el.getAttribute('aria-label').toLowerCase().includes('search')) || (el.placeholder && el.placeholder.toLowerCase().includes('search'))).map(el => ({tag: el.tagName, text: el.innerText, aria: el.getAttribute('aria-label'), placeholder: el.placeholder})))\""
+                          },
+                          "name": "run_browser_command",
+                          "partial_args": null,
+                          "will_continue": null
+                        },
+                        "function_response": null,
+                        "inline_data": null,
+                        "text": null,
+                        "thought": null,
+                        "thought_signature": "EusBCugBAb4-9vtYmf21oHnNDu4casK2GhMFBbQ1rU3DXoqlyiddhzbLcEL-qMAo1R-HADmlopJKc-atBVwd7dYwIH1RRcCuzPwTo2JhXHTNYMRhe_AbT23B9xwPRjJL-mBaEPXR6uJK4mL_N-khbA3hOroK1jXWApjRLFuDxX5p-qgDJ0-DjtsssjVYoagPGZKK9a_qw8P8ng2nwysxdzuo3Dsv9YYfH56ozmUG9VUT_zTNH409Lig1szlNxfMKwYsdF7Rqb5Kg8RSbOyn14EMOCYniQ0GfVlEaRDFh-PsefX8YN51yBUwmHiHQEA==",
+                        "video_metadata": null
+                      }
+                    ],
+                    "role": "model"
+                  }
+                },
+                {
+                  "author": "case_study_researcher",
+                  "content": {
+                    "parts": [
+                      {
+                        "media_resolution": null,
+                        "code_execution_result": null,
+                        "executable_code": null,
+                        "file_data": null,
+                        "function_call": null,
+                        "function_response": {
+                          "will_continue": null,
+                          "scheduling": null,
+                          "parts": null,
+                          "id": "bjimkqxa",
+                          "name": "run_browser_command",
+                          "response": {
+                            "status": "success",
+                            "output": "### Error\nError: page._evaluateFunction: TypeError: result is not a function\n    at UtilityScript.evaluate (<anonymous>:303:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)\n"
+                          }
+                        },
+                        "inline_data": null,
+                        "text": null,
+                        "thought": null,
+                        "thought_signature": null,
+                        "video_metadata": null
+                      }
+                    ],
+                    "role": "user"
+                  }
+                },
+                {
+                  "author": "case_study_researcher",
+                  "content": {
+                    "parts": [
+                      {
+                        "media_resolution": null,
+                        "code_execution_result": null,
+                        "executable_code": null,
+                        "file_data": null,
+                        "function_call": {
+                          "id": "nzxlts70",
+                          "args": {
+                            "command": "playwright-cli click \"'Data Analytics'\""
+                          },
+                          "name": "run_browser_command",
+                          "partial_args": null,
+                          "will_continue": null
+                        },
+                        "function_response": null,
+                        "inline_data": null,
+                        "text": null,
+                        "thought": null,
+                        "thought_signature": "EoMGCoAGAb4-9vvgmixVEkl18tnromJ-Bncv9zx-R3EkhVbYaUV1Ji3bM_-9Actb_24XnamsO-8mpB_8ypT42NUl-NJdwgVewwV4Uxa5cAJqy2qSlrOSyT0y41jAUmHOROk6wViV6kBwxVr_WSs3kgIYGrePbvlgb_vR-BG40Czz9yCV2GJk1cGGl0iBAZ_Fc-7G3AiBjHML9hcA_xADQN-eU5RcI_zqRxu-qQwoITMFHEOjZPJf7P1WvPNx5yZ7ZVzeTrg-79wpAoAOj4oRiZzj_pAr5NoaPixCK7UyR0_Mi9imdOekJS_JQar6CxvvEjYgnV029oZgSyXgAxcqxrwXloNngTjNNMUU8I0_iD5VRYvfzeAxGr-F-Yu8KMzTh8vsV1-7veRkjCLpkK_ZQIl5XJyIx_giFTO7ksd155D_I4-RRHAsW20paB04uT3ITlSCliNQL2E4EeieWmMjKGiYpxYdzOFvyDf6u05r2FH0FRER2pJkkQYQTeyy8WP3IuktelV1lSEkPhnSVDIPOb6gYdoxgP93_9iJUB1Fv49wE8oFydSb4S8oFevuXWIgoR_G23jbG_LW8dwOb7Jkz5Ehq37ZMAbI8DjHyB7BpcSO2NMZ1vj59ZHncmSvGRoCRnn7G53s_oHQeHmlAiAgpPtuWED5Cu7XQgn3uLu0PMlc8jO8tDER_PUbvIxTDGfDCQzaOQI6T0bvFQ9PyAKyK-2dnrNXXBruu75EKGA8XCuNVCepjhErGJCMmPHOrDjQsnRzc5cnifIpcuXn_BzGccZT4S3h718xpFsllmf5-jkdrNfjlorwdfdW8ZVCq5RMAxSN6H5GoizdQBGtQMAhrGvGpEyCWxcc9FC9-zjWQZdd8gbl3GKPuykbhoHYzuTNdVKFBLViqULr2oG0zr9aGXPo2ZRspcTOmjSB2zLeD6C4Zp2Um5nhWS2gEEggsyOWD3dfuQHMhLvzxe2tRzZ_IObzvGujjkvzM3i82EaprV2NvujdHEmsOU5Ub0S3rTmQSzZt_QjK",
+                        "video_metadata": null
+                      }
+                    ],
+                    "role": "model"
+                  }
+                },
+                {
+                  "author": "case_study_researcher",
+                  "content": {
+                    "parts": [
+                      {
+                        "media_resolution": null,
+                        "code_execution_result": null,
+                        "executable_code": null,
+                        "file_data": null,
+                        "function_call": null,
+                        "function_response": {
+                          "will_continue": null,
+                          "scheduling": null,
+                          "parts": null,
+                          "id": "nzxlts70",
+                          "name": "run_browser_command",
+                          "response": {
+                            "status": "success",
+                            "output": "### Error\nError: Ref 'Data Analytics' not found in the current page snapshot. Try capturing new snapshot.\n"
+                          }
+                        },
+                        "inline_data": null,
+                        "text": null,
+                        "thought": null,
+                        "thought_signature": null,
+                        "video_metadata": null
+                      }
+                    ],
+                    "role": "user"
+                  }
+                },
+                {
+                  "author": "case_study_researcher",
+                  "content": {
+                    "parts": [
+                      {
+                        "media_resolution": null,
+                        "code_execution_result": null,
+                        "executable_code": null,
+                        "file_data": null,
+                        "function_call": {
+                          "id": "ynl64qpb",
+                          "args": {
+                            "command": "playwright-cli click \"text=Data Analytics\""
+                          },
+                          "name": "run_browser_command",
+                          "partial_args": null,
+                          "will_continue": null
+                        },
+                        "function_response": null,
+                        "inline_data": null,
+                        "text": null,
+                        "thought": null,
+                        "thought_signature": "EugBCuUBAb4-9vsZotxii4h42V1vuXCzrJjVFnvWBkeCu_mdbS6klZ7iKv7Fg0Y2j3-E1J9Vp1s-e6Cx0rQPZZ8uliv58VyRvBykYIvDD-pmERHIml_4zfGngOc7oMsLxwbbA_XKffEU0UU_9alm-SUPrGZhad0Niwgw7aEdiUF4EcwlEwFfWkL9GHuNa7uLyGvInCT8mbyWmm6wlVY-8GL7kRkXu2NYjIBwZ718l-rpivTDGWWXC1MkretXJ_T1NVhMgg-srPjEyE2k7uuOdvilziSaV9wPAGb-sT0ok4Hca2Ip1WM_tuAyAA==",
+                        "video_metadata": null
+                      }
+                    ],
+                    "role": "model"
+                  }
+                },
+                {
+                  "author": "case_study_researcher",
+                  "content": {
+                    "parts": [
+                      {
+                        "media_resolution": null,
+                        "code_execution_result": null,
+                        "executable_code": null,
+                        "file_data": null,
+                        "function_call": null,
+                        "function_response": {
+                          "will_continue": null,
+                          "scheduling": null,
+                          "parts": null,
+                          "id": "ynl64qpb",
+                          "name": "run_browser_command",
+                          "response": {
+                            "status": "success",
+                            "output": "### Error\nError: Ref text=Data Analytics not found in the current page snapshot. Try capturing new snapshot.\n"
+                          }
+                        },
+                        "inline_data": null,
+                        "text": null,
+                        "thought": null,
+                        "thought_signature": null,
+                        "video_metadata": null
+                      }
+                    ],
+                    "role": "user"
+                  }
+                },
+                {
+                  "author": "case_study_researcher",
+                  "content": {
+                    "parts": [
+                      {
+                        "media_resolution": null,
+                        "code_execution_result": null,
+                        "executable_code": null,
+                        "file_data": null,
+                        "function_call": {
+                          "id": "w4ufrhpu",
+                          "args": {
+                            "command": "playwright-cli fill \"input[aria-label='Search']\" \"retail BigQuery\""
+                          },
+                          "name": "run_browser_command",
+                          "partial_args": null,
+                          "will_continue": null
+                        },
+                        "function_response": null,
+                        "inline_data": null,
+                        "text": null,
+                        "thought": null,
+                        "thought_signature": "EqsECqgEAb4-9vtqLvzychzC2-Rgn1jbCz8eo0Fnp6I-MBx687TueV6jY8nqGGGTKKDRIdPu5Xq4z3blzczaSx-dGWct3kZz_SJI2f-A4QGb68FnXiYQpaptPkgRKxiQSxYKZmFUKWxAFxYAwUQBNfljZROX8cTH1wRY46knbujMhzwOiGv6z4IG6Rqr1S_bTR8eO4I1hf_C9uLvIOE22B_JM-jQpbMbHQ1kIeQt5AsVJnSJdO0t2S_GFlUZpkCcjaovQFUcARU33zrRtfu8cZ280-Cbq7Zx653R1OO6Uy3657F-HmF7eKTcN1bMlkfja9Gsu0AJbimRmB5Cpd1KgQVmB7JCDVoFmj3VD7GOZ73EOE_MGS2qbWlB6nur1nEfmT36F1_1gknOzh8vveYYnuF0J9539SEJRituJajLPulJfWLIc_Xq7uAbda2f89NV8k-y8Fahhf9xuj53J7JGFJm6AoZKfye2nn1fQ9rsq6m0s2QiOJXu4BuxKbVqTtRXwt98xp7J1vN5adsq3t_Ep5y6U7jvW3sEoqKYndxMwO3MhfBZewLYpp4mJ_koO1Vj06DFKvUJi4zFNiy6gHXQ18PgJ3anreAbstFhyphcNhIYgODdBM1-_KpJljtC0xxjgOHYRdIqLhqGofs440yhVhFNOUft-BWapJ8T5p-UZjL25fQuvnFgQ41T2M41yxRCEf9pLOyb0s4QwOIj7fm2Och-GNJVm48O-8f9P_Yc",
+                        "video_metadata": null
+                      }
+                    ],
+                    "role": "model"
+                  }
+                },
+                {
+                  "author": "case_study_researcher",
+                  "content": {
+                    "parts": [
+                      {
+                        "media_resolution": null,
+                        "code_execution_result": null,
+                        "executable_code": null,
+                        "file_data": null,
+                        "function_call": null,
+                        "function_response": {
+                          "will_continue": null,
+                          "scheduling": null,
+                          "parts": null,
+                          "id": "w4ufrhpu",
+                          "name": "run_browser_command",
+                          "response": {
+                            "status": "success",
+                            "output": "### Error\nError: Ref input[aria-label='Search'] not found in the current page snapshot. Try capturing new snapshot.\n"
+                          }
+                        },
+                        "inline_data": null,
+                        "text": null,
+                        "thought": null,
+                        "thought_signature": null,
+                        "video_metadata": null
+                      }
+                    ],
+                    "role": "user"
+                  }
+                },
+                {
+                  "author": "case_study_researcher",
+                  "content": {
+                    "parts": [
+                      {
+                        "media_resolution": null,
+                        "code_execution_result": null,
+                        "executable_code": null,
+                        "file_data": null,
+                        "function_call": {
+                          "id": "qa828h2h",
+                          "args": {
+                            "command": "playwright-cli eval \"Array.from(document.querySelectorAll('input')).map(i => i.outerHTML).join(', ')\""
+                          },
+                          "name": "run_browser_command",
+                          "partial_args": null,
+                          "will_continue": null
+                        },
+                        "function_response": null,
+                        "inline_data": null,
+                        "text": null,
+                        "thought": null,
+                        "thought_signature": "ErQDCrEDAb4-9vtJA712r2nWZ_4n-4n0tkaYAOOIN_v9JqZyj1phgw9mRS4BSJnk74A97L5oDEBhAjfEAS7tOPwiJoNE-57hPvbouymXaP3eJbA4y7HLuS7UDtobZSkhsTWbHpNwolO8mVNZf_PyJCKu6539Q-jlATiECulWSweSk5DpOSn5MQ2La4V9VL6GDpYJSiQRMf30mEDgqcqAGiC-vclR2xNX5Wopj9ZSCC7InR4UV69JcaXpG7t01wLukqO8tDDSEC7LkyCna7zjBU5ul3dzvkoHxjq6zMF32iIo_ep3dIuppaOX9vD1SzT3VVACpyouokM1ywg9f9QaT5OQ6NAwEad46z-wIYZIMkNrCP9k6A2jVKq_8B87QG80Q123xt1hIyz9G90ISd4VOjqhA_vRI-9NORWmQrvlkG7ecyrmSdxrpdWgHymbKFMxKkwgMGEs2tJl7kzdGEXssm8ztpAGez6JcI-yYnfKzxoS5cGCO-a8fNuQ6oS056lzz3yG4-c5GibMX94JeapbqOyjo6ncFE6W2hiaLIqoRyUtoi3KUJFoqerqLFPiWYoAUe6FEvAVjA==",
+                        "video_metadata": null
+                      }
+                    ],
+                    "role": "model"
+                  }
+                },
+                {
+                  "author": "case_study_researcher",
+                  "content": {
+                    "parts": [
+                      {
+                        "media_resolution": null,
+                        "code_execution_result": null,
+                        "executable_code": null,
+                        "file_data": null,
+                        "function_call": null,
+                        "function_response": {
+                          "will_continue": null,
+                          "scheduling": null,
+                          "parts": null,
+                          "id": "qa828h2h",
+                          "name": "run_browser_command",
+                          "response": {
+                            "status": "success",
+                            "output": "### Error\nError: page._evaluateFunction: TypeError: result is not a function\n    at UtilityScript.evaluate (<anonymous>:303:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)\n"
+                          }
+                        },
+                        "inline_data": null,
+                        "text": null,
+                        "thought": null,
+                        "thought_signature": null,
+                        "video_metadata": null
+                      }
+                    ],
+                    "role": "user"
+                  }
+                },
+                {
+                  "author": "case_study_researcher",
+                  "content": {
+                    "parts": [
+                      {
+                        "media_resolution": null,
+                        "code_execution_result": null,
+                        "executable_code": null,
+                        "file_data": null,
+                        "function_call": {
+                          "id": "wvhatysd",
+                          "args": {
+                            "command": "playwright-cli click \"'Swarovski'\""
+                          },
+                          "name": "run_browser_command",
+                          "partial_args": null,
+                          "will_continue": null
+                        },
+                        "function_response": null,
+                        "inline_data": null,
+                        "text": null,
+                        "thought": null,
+                        "thought_signature": "EpcICpQIAb4-9vs3VcUZt9dkVbW3SaYRySsWmYNjm7OE01xvf3QRWRV0YC99whfO9PkjsLpJciJog8zrKie7SmfYun89Rly2cZDpoUnbOlRhyrRCPeZA4F8egGxK9wzSYGgHIZskgd-Iixj8BnhP3UiE49K4R97U4W4kKVzTL2bINxXbIv-MqGuQTTnCsoESKIKnK2HwRNG4Colz15ot3xjBkCpbVInkzIb1VpJ3L2QB-aqSTyL3eTWAGX_UY8oHwpgdE8Yu0Hqk9rFgnrF6F0CL7wtRhBnLtheZd4C1cxp8jujDa5ap5iNzQKGeLMqFbtAmaUoqHGhUjOP6M79JwnlXumxRLq178JBgw8mMMiWe1kr3xbTHO5pqKpt5c7K7LNtrctOWoRZz6a-_Mz8XGPzlWLiIPI5Xawi8wcV9rHKfQZONgWD18XCz4ZMPO5GPMoDUPt9FuS43RF-zinak2iz4EW395rtQcbBr1noAoUCbT8Lgs3ywkXPLBM9VCnf0o1GBBfYNvU-8-iXxtICZiEcK-WsqBKRIOCkoiCxUsGXHiBiwZCuv5iNjdSWNDYJWAG_YdT4N9dBbIW4mgks0VkGBPIw7g3gf9NGxMBXMnmXMOJ_E3HuhHYaMqnNqcSJQ_PDjfncYKvB_OqjisUBSjXVhnNu2NoRky1VVKNhgRhD9bETyHcC7Ciutr2l1HHm-oHHKw8ulIisGkXw7eF5fKlqsEDLuZ2Yy-q9w7WBDyhLCsbbpMRzXNaRlLoRGN16Xs3mHkNcvpeQUFnWG21cRDzdnoS_WlHEmo_fv8jIySa-qdUlb7pB4O-fKytcBHPzNL4KWaAk84PN1f-jpcu_8gwgKwVkIgbm1hERMmpI8wW_XaDqaI2FXV-Gaax2ZZdkNLMD_QBpsSGrS2czHRV8nyCrWoRt5riBtft797h3Ye52OSIXCNWD2tJjDPJbKMvl-T6h3rf2ftuUrur3cvVPFlYnG4LYqW57s_2g_LkfbFMLOXL_F2jrm_-hQeoDdEvNelP548Dt914iwXcFtpzbLQcRbTDSdt-DcntXntQySa7pDl5uB3DHBF0jo9en58aKiOZLNMe7kGkSUIiiQPpkeHG1cpMY2cRvzxr919pLCNJAdWI2sa67y19vITJsAjCjlmmzbYm5wZmFWdAY6hdcHrRLjf38T-g3EopFfQ6aFnPotuRAJ9eAUY1mBTgtgFBYzCG-itEQ4wGC0jPLIY6QVMN0GhxHxYG53d8rqBIfbHUW18xZ-bQ-302hLaG9vXZpuW01vh0Eog1JdU0pWOAKPmPxCF8rWTYVVD7dDMXK_jbY6tntsbrGg-pn-1PgjFhIH-oMCzARtCD-7yR-SjyrVB4bl5g2aV3wiDjhYWUpB09S6IhFJxb6xBk7J",
+                        "video_metadata": null
+                      }
+                    ],
+                    "role": "model"
+                  }
+                },
+                {
+                  "author": "case_study_researcher",
+                  "content": {
+                    "parts": [
+                      {
+                        "media_resolution": null,
+                        "code_execution_result": null,
+                        "executable_code": null,
+                        "file_data": null,
+                        "function_call": null,
+                        "function_response": {
+                          "will_continue": null,
+                          "scheduling": null,
+                          "parts": null,
+                          "id": "wvhatysd",
+                          "name": "run_browser_command",
+                          "response": {
+                            "status": "success",
+                            "output": "### Error\nError: Ref 'Swarovski' not found in the current page snapshot. Try capturing new snapshot.\n"
+                          }
+                        },
+                        "inline_data": null,
+                        "text": null,
+                        "thought": null,
+                        "thought_signature": null,
+                        "video_metadata": null
+                      }
+                    ],
+                    "role": "user"
+                  }
+                },
+                {
+                  "author": "case_study_researcher",
+                  "content": {
+                    "parts": [
+                      {
+                        "media_resolution": null,
+                        "code_execution_result": null,
+                        "executable_code": null,
+                        "file_data": null,
+                        "function_call": {
+                          "id": "htp7nens",
+                          "args": {
+                            "command": "playwright-cli click \"'search'\""
+                          },
+                          "name": "run_browser_command",
+                          "partial_args": null,
+                          "will_continue": null
+                        },
+                        "function_response": null,
+                        "inline_data": null,
+                        "text": null,
+                        "thought": null,
+                        "thought_signature": "EtcCCtQCAb4-9vuwsv_8b6-4QQ9elAXpGmBUs59vgSnjZ8iYdCmgHBkRtpopvuIps3IdxEKi0eOzbalfPxiQzHkF3GTFenRzGIRP8-5bfzO3zxRjc3WSjueqRIX8WqYQSsdhcv516h1dKWjNBTfIGl7G02TVCHbcD50JWgjtE-QpqmcHLzmQEPpxkoUpW73-loZCe3tk-7H8D5pkN3BJr_SwL2gXfB27gdIJStsv0Vm1PhP1l94TOsWc9gZn6Kh6T1OgYXmP7CLRqP2ssSfptck5Y0ILy_a7XkTYlrPpdjgqjh0nGqhOW_WCfWyq6yBrqW3pvFz601YGScBGLsg6UKt5S9LI9ZoYxi3UuqDy_wyxjRNEcBDhtgocwWLFVqxWxCsXoLd_uS0QN3IALVuHQSL2mw_OMAouGkjP983nJkHxui82y5AWwVNWrPXfOzkq97wul4BQfci4aA==",
+                        "video_metadata": null
+                      }
+                    ],
+                    "role": "model"
+                  }
+                },
+                {
+                  "author": "case_study_researcher",
+                  "content": {
+                    "parts": [
+                      {
+                        "media_resolution": null,
+                        "code_execution_result": null,
+                        "executable_code": null,
+                        "file_data": null,
+                        "function_call": null,
+                        "function_response": {
+                          "will_continue": null,
+                          "scheduling": null,
+                          "parts": null,
+                          "id": "htp7nens",
+                          "name": "run_browser_command",
+                          "response": {
+                            "status": "success",
+                            "output": "### Error\nError: Ref 'search' not found in the current page snapshot. Try capturing new snapshot.\n"
+                          }
+                        },
+                        "inline_data": null,
+                        "text": null,
+                        "thought": null,
+                        "thought_signature": null,
+                        "video_metadata": null
+                      }
+                    ],
+                    "role": "user"
+                  }
+                },
+                {
+                  "author": "case_study_researcher",
+                  "content": {
+                    "parts": [
+                      {
+                        "media_resolution": null,
+                        "code_execution_result": null,
+                        "executable_code": null,
+                        "file_data": null,
+                        "function_call": {
+                          "id": "tfm2s54z",
+                          "args": {
+                            "command": "playwright-cli click \"'Dia'\""
+                          },
+                          "name": "run_browser_command",
+                          "partial_args": null,
+                          "will_continue": null
+                        },
+                        "function_response": null,
+                        "inline_data": null,
+                        "text": null,
+                        "thought": null,
+                        "thought_signature": "ErgHCrUHAb4-9vsY_XRW7jJ2YkqG3ys7AULja5SdzG-mVptCEkzpBXp01ovD9AWmabfTIzTlZ4-HODbbr3g5krsJpfOgUvwjbYeVuQLaXX4BHyQHR8O_IXYfKaTTtttiYjjOh_ks3xyOBD2pFjSazRFr2QSkSXYDMMgKVxI7CPBLIzXjv9b-YwN4cQzJS8HefZnh5u3k6K8fFlNsYyCXjXsDcTmphDx1dzJdU7HdX3VrL6mkpymd7mOZwIZnMyrpIkr-NX2O5UMQ_V1V-6-Zvhds_E610Mil6UV_58j_gK_MlA82UVnLjkEk9xh0DYP_U-E5fMKyHgiXUUcK7vzlFZ8m9oFu2cMkn6FATY5phBHOYzozQWBqBKfFrafbHGJaQ19mk4ee9ovzKrvHiRg4xssXj24TJ5GTJCjlV5pV4xWl8RAjfj3ikPBc-lnv2I_XgzwNve4zuvnpY2N9s4R3nR01RZYSuQMAurGQPtHGvkg97e01FNAU6DDviZd8OCOBdaL8VJopCrKFe99cBWpeshCp0IExU5GU3hxYNqfsaFXWUr1E-mTs_gsabnv5f41e1vpf322HGa-VmwID_Yh2bDlr_SY_Oy_9Dwk1T3IYD4PwfTJVOf9QmM4TCUPwPwRe8PZUkIdog8G6ujjlTI-0biQ13de2Zam4JOfuMTB-TKRNsziM92-akLcSQnxuyPC8Xe991BBwjvf5-ACWduumsZYDXzHDbjHiC70W0TCbfh0aPT-l2TISDjAVQ0OPI_e0POOOf2zSHyzsgLaG1X9z7_55t-z2jsHJDkWq1twSguN42YJvVqa9NZQWU2Vm8ajaYNQ3Cw2XOru7B2UO4SLIuEMYBUrnQT9xy6ZCA4qLnx6F_h2BVwqWgn-nThdWtoYf3b5ftYTaWMW2cUUdSitod2MUfWLhdeHpn_DZCyC8jl0bBgHOmy3_Qoy1Bf4wo6FdxZmz8TkZBWOQU1-eio6DfsfljiYdF08pwt71Tmy3X75n6wke_SHbXCqb22_LOrsSLqD1RiT9XFdl_pYzslOf9HuMko0ai5Vl5AU1K2vPAMDl3K3usnCNdi47S8q_UBCLibqQ8ZSo6ePa7NvuZbO35ETJKiSF_48foWnFOwgPofdTE8mZLkrp2HhBXosHjnNjCid1-L90t8CF-qJ5l04EJFTYs6k5_fE5vyZLsUJN83VarCl3GO2hIXEusw5yWXnRw1zaa7FFGzNCMdRgxRIns8CTNG9oFzlmmrRCAjQKFOt1Kph2Y0SNr3wGqg==",
+                        "video_metadata": null
+                      }
+                    ],
+                    "role": "model"
+                  }
+                },
+                {
+                  "author": "case_study_researcher",
+                  "content": {
+                    "parts": [
+                      {
+                        "media_resolution": null,
+                        "code_execution_result": null,
+                        "executable_code": null,
+                        "file_data": null,
+                        "function_call": null,
+                        "function_response": {
+                          "will_continue": null,
+                          "scheduling": null,
+                          "parts": null,
+                          "id": "tfm2s54z",
+                          "name": "run_browser_command",
+                          "response": {
+                            "status": "success",
+                            "output": "### Error\nError: Ref 'Dia' not found in the current page snapshot. Try capturing new snapshot.\n"
+                          }
+                        },
+                        "inline_data": null,
+                        "text": null,
+                        "thought": null,
+                        "thought_signature": null,
+                        "video_metadata": null
+                      }
+                    ],
+                    "role": "user"
+                  }
+                },
+                {
+                  "author": "case_study_researcher",
+                  "content": {
+                    "parts": [
+                      {
+                        "media_resolution": null,
+                        "code_execution_result": null,
+                        "executable_code": null,
+                        "file_data": null,
+                        "function_call": {
+                          "id": "hqv7yy23",
+                          "args": {
+                            "command": "playwright-cli eval \"() => Array.from(document.querySelectorAll('a')).map(a => a.innerText + ' (' + a.href + ')')\""
+                          },
+                          "name": "run_browser_command",
+                          "partial_args": null,
+                          "will_continue": null
+                        },
+                        "function_response": null,
+                        "inline_data": null,
+                        "text": null,
+                        "thought": null,
+                        "thought_signature": "Er0BCroBAb4-9vsy0W6IXvrv-tQwgjzKMAJyUgQbRTKwlxWYpmzOCA4F-CBWo1_dPd6B3iiBZsu_ggbUEOGqHomiIwdTyc_PDD5OaFhj2ng_W9IemQK7HkZD486xT-5iwcC9FyMeVQ6JQ01kGPwbXoWeH6M_ITbvm72v0VYCBKK1-EC5zGfgeA4SUv6iShAQmJqiyV85tX2y5Ly9Qq_rWp2Tcn4BQISkroLLpyLpEGj2eaU8curY79d3pS1vCT6H",
+                        "video_metadata": null
+                      }
+                    ],
+                    "role": "model"
+                  }
+                },
+                {
+                  "author": "case_study_researcher",
+                  "content": {
+                    "parts": [
+                      {
+                        "media_resolution": null,
+                        "code_execution_result": null,
+                        "executable_code": null,
+                        "file_data": null,
+                        "function_call": null,
+                        "function_response": {
+                          "will_continue": null,
+                          "scheduling": null,
+                          "parts": null,
+                          "id": "hqv7yy23",
+                          "name": "run_browser_command",
+                          "response": {
+                            "status": "success",
+                            "output": "### Result\n[\n  \"more than 1001 gen AI use cases (https://cloud.google.com/transform/101-real-world-generative-ai-use-cases-from-industry-leaders)\",\n  \"customer success stories (https://www.youtube.com/playlist?list=PLBgogxgQVM9txN9onpAbB457h6ZMCiDMi)\",\n  \" (https://cloud.google.com/contact)\",\n  \" (https://console.cloud.google.com/freetrial)\",\n  \" (https://youtu.be/vsPtOl1TeOg?si=j7OjvLdyc1PjSMX0)\",\n  \" (https://cloud.google.com/customers/millennium-bcp)\",\n  \" (https://www.youtube.com/watch?v=s3OCiI7NB3s)\",\n  \" (https://cloud.google.com/customers/super-pharm)\",\n  \" (https://cloud.google.com/customers/morrisons?hl=en)\",\n  \" (https://cloud.google.com/customers/revolut-data?hl=en)\",\n  \" (https://www.youtube.com/watch?v=KlyAJNvt6tg&list=PLBgogxgQVM9txN9onpAbB457h6ZMCiDMi&index=3)\",\n  \" (https://cloud.google.com/customers/orienta)\",\n  \" (https://cloud.google.com/customers/etsy-ai?hl=en)\",\n  \" (https://www.youtube.com/watch?v=3kcR39hjEvQ)\",\n  \" (https://cloud.google.com/customers/uniformed-services-university?hl=en)\",\n  \" (https://cloud.google.com/customers/somapay)\",\n  \"Dia\\nDia boosts its omnichannel ecommerce with the scalability of Google Cloud\\nLearn more (https://cloud.google.com/customers/intl/es-419/dia-espana?hl=es-419)\",\n  \"Eversana\\nEVERSANA creates the first \\\"AI Agency Platform\\\" to revolutionize pharma marketing\\nLearn more (https://cloud.google.com/customers/eversana?hl=en)\",\n  \"Lowe's\\nLowe’s constructs a sophisticated search engine with Vertex AI\\nWatch video (https://www.youtube.com/watch?v=YFi8mgQeNaU)\",\n  \"Wipro\\nWipro is transforming cost optimization with Google Cloud AI solutions\\nLearn more (https://cloud.google.com/customers/wipro)\",\n  \"Natura Cosmetics\\nNatura revolutionizes testing for new substances\\nLearn more (https://cloud.google.com/customers/natura?hl=en)\",\n  \"Swarovski\\nSwarovski partners with Google Cloud to personalize luxury\\nLearn more (https://cloud.google.com/customers/swarovski?hl=en)\",\n  \"ComplyAdvantage cut development time 37% with Gemini Code Assist, enabling predictable, timely delivery of a major new offering. (https://cloud.google.com/customers/complyadvantage)\",\n  \"Using Google Earth Engine and AI-driven geospatial modeling to accurately predict wildfire risk enables Delos to offer affordable insurance to California homeowners deemed uninsurable by other carriers. (https://cloud.google.com/customers/delos)\",\n  \"By providing the exploration and analysis platform for a 500-petabyte dataset–the largest astronomical dataset in history–Google Cloud helps Rubin Observatory chart the cosmos and democratize science for 30,000 researchers worldwide. (https://cloud.google.com/customers/rubin-observatory)\",\n  \"MacroFactor uses Firebase, Flutter, and Gemini to scale its top-rated nutrition app to 400k+ users and deliver trusted, AI-powered food logging. (https://cloud.google.com/customers/macrofactor)\",\n  \"With Google Cloud and Google AI, Virtuals Protocol enables humans and AI agents to collaborate seamlessly to drive economic value. (https://cloud.google.com/customers/virtualsprotocol)\",\n  \"The Hugging Face platform gives everyone access to open-source AI tools and 13 million AI builders can now easily deploy over two AI models and build their own AI applications on Google Cloud in a matter of clicks. (https://cloud.google.com/customers/hugging-face)\",\n  \"Eon transforms static backup archives into instantly queryable data lakes and, on Google Cloud, integrates with Gemini, Vertex AI, and BigQuery for natural-language search and analytics. (https://cloud.google.com/customers/eon)\",\n  \"Refik Anadol Studio used Google Cloud, including Vertex AI and Gemini 2.5 Flash, to build the \\\"Large Nature Model,\\\" boosting speed 23x and accuracy 40% to power DATALAND exhibition's intelligent nature art. (https://cloud.google.com/customers/refikanadolstudio)\",\n  \"Workers at Gordon Food Service foster an innovation-forward mindset by using AI-powered applications and tools from Google Cloud to boost productivity and elevate customer service. (https://cloud.google.com/customers/gordonfoodservice)\",\n  \"BMC Helix uses autonomous AI agents on Vertex AI to help enterprise IT move beyond delivering simple reliability and toward unlocking new possibilities through Service Operations. (https://cloud.google.com/customers/bmc-helix)\",\n  \"Shopify uses Claude on Vertex AI to scale Sidekick, an AI-enabled commerce assistant, to make it easier for millions of merchants to get more done faster. (https://cloud.google.com/customers/shopify)\",\n  \"Sabre uses Gemini models, Vertex AI Agent Builder, and semantic search technologies on Vertex AI to launch airline and travel retailing innovations. (https://cloud.google.com/customers/sabre)\",\n  \" (https://cloud.google.com/contact)\",\n  \" (https://console.cloud.google.com/freetrial)\",\n  \"Visit our blog (https://cloud.google.com/blog)\",\n  \"Explore analyst reports (https://cloud.google.com/analyst-reports)\",\n  \"Join the Google Cloud community (https://www.googlecloudcommunity.com/)\",\n  \" (https://cloud.google.com/)\",\n  \"Overview (https://cloud.google.com/why-google-cloud)\",\n  \" (https://cloud.google.com/#)\",\n  \"Solutions (https://cloud.google.com/solutions)\",\n  \" (https://cloud.google.com/#)\",\n  \"Products (https://cloud.google.com/products)\",\n  \" (https://cloud.google.com/#)\",\n  \"Pricing (https://cloud.google.com/pricing)\",\n  \" (https://cloud.google.com/#)\",\n  \"Resources (https://cloud.google.com/docs/get-started)\",\n  \" (https://cloud.google.com/#)\",\n  \"Docs (https://cloud.google.com/docs)\",\n  \"Support (https://cloud.google.com/support-hub)\",\n  \"Contact us (https://cloud.google.com/contact)\",\n  \"Docs (https://cloud.google.com/docs)\",\n  \"Support (https://cloud.google.com/support-hub)\",\n  \"Console (https://console.cloud.google.com/)\",\n  \"Sign in (https://accounts.google.com/AccountChooser?continue=https://cloud.google.com/customers&hl=en-US&prompt=select_account&service=cloudconsole)\",\n  \" (https://console.cloud.google.com/freetrial)\",\n  \" (https://console.cloud.google.com/freetrial)\",\n  \" (https://cloud.google.com/contact)\",\n  \" (https://cloud.google.com/transform)\",\n  \" (https://cloud.google.com/why-google-cloud)\",\n  \" (https://cloud.google.com/ai)\",\n  \" (https://cloud.google.com/multicloud)\",\n  \" (https://cloud.google.com/infrastructure)\",\n  \" (https://cloud.google.com/data-cloud)\",\n  \" (https://cloud.google.com/solutions/modern-infrastructure)\",\n  \" (https://cloud.google.com/security)\",\n  \" (https://workspace.google.com/)\",\n  \" (https://cloud.google.com/executive-insights)\",\n  \" (https://cloud.google.com/analyst-reports)\",\n  \" (https://cloud.google.com/whitepapers)\",\n  \" (https://cloud.google.com/customers)\",\n  \" (https://cloud.google.com/#)\",\n  \" (https://cloud.google.com/#)\",\n  \" (https://cloud.google.com/#)\",\n  \" (https://cloud.google.com/#)\",\n  \" (https://cloud.google.com/#)\",\n  \" (https://cloud.google.com/#)\",\n  \" (https://cloud.google.com/#)\",\n  \" (https://cloud.google.com/#)\",\n  \" (https://cloud.google.com/#)\",\n  \" (https://cloud.google.com/#)\",\n  \" (https://cloud.google.com/solutions)\",\n  \" (https://cloud.google.com/solutions#industry-solutions)\",\n  \" (https://cloud.google.com/solutions/retail)\",\n  \" (https://cloud.google.com/solutions/cpg)\",\n  \" (https://cloud.google.com/solutions/financial-services)\",\n  \" (https://cloud.google.com/solutions/healthcare-life-sciences)\",\n  \" (https://cloud.google.com/solutions/media-entertainment)\",\n  \" (https://cloud.google.com/solutions/telecommunications)\",\n  \" (https://cloud.google.com/solutions/games)\",\n  \" (https://cloud.google.com/solutions/manufacturing)\",\n  \" (https://cloud.google.com/solutions/supply-chain-logistics)\",\n  \" (https://cloud.google.com/gov)\",\n  \" (https://cloud.google.com/edu/higher-education)\",\n  \" (https://cloud.google.com/solutions#industry-solutions)\",\n  \"Application ModernizationAssess, plan, implement, and measure software practices and capabilities to modernize and simplify your organization’s business application portfolios. (https://cloud.google.com/solutions/camp)\",\n  \"CAMPProgram that uses DORA to improve your software delivery capabilities. (https://cloud.google.com/solutions/camp)\",\n  \"Modernize Traditional ApplicationsAnalyze, categorize, and get started with cloud migration on traditional workloads. (https://cloud.google.com/solutions/modernize-traditional-applications)\",\n  \"Migrate from PaaS: Cloud Foundry, OpenshiftTools for moving your existing containers into Google's managed container services. (https://cloud.google.com/solutions/migrate-from-paas)\",\n  \"Migrate from MainframeAutomated tools and prescriptive guidance for moving your mainframe apps to the cloud. (https://cloud.google.com/solutions/mainframe-modernization)\",\n  \"Modernize Software DeliverySoftware supply chain best practices - innerloop productivity, CI/CD and S3C. (https://cloud.google.com/solutions/software-delivery)\",\n  \"DevOps Best PracticesProcesses and resources for implementing DevOps in your org. (https://cloud.google.com/devops)\",\n  \"SRE PrinciplesTools and resources for adopting SRE in your org. (https://cloud.google.com/sre)\",\n  \"Platform EngineeringComprehensive suite of managed services and Golden Paths to build, manage, and scale IDPs. (https://cloud.google.com/solutions/platform-engineering)\",\n  \"Run Applications at the EdgeGuidance for localized and low latency apps on Google’s hardware agnostic edge solution. (https://cloud.google.com/solutions/modernize-with-edge)\",\n  \"Architect for MulticloudManage workloads across multiple clouds with a consistent platform. (https://cloud.google.com/solutions/architect-multicloud)\",\n  \"Go ServerlessFully managed environment for developing, deploying and scaling apps. (https://cloud.google.com/solutions/serverless)\",\n  \"Artificial IntelligenceAdd intelligence and efficiency to your business with AI and machine learning. (https://cloud.google.com/solutions/ai)\",\n  \"Customer Engagement Suite with Google AIEnd-to-end application that combines our most advanced conversational AI. (https://cloud.google.com/solutions/customer-engagement-ai)\",\n  \"Document AIDocument processing and data capture automated at scale. (https://cloud.google.com/document-ai)\",\n  \"Vertex AI Search for commerceGoogle-quality search and product recommendations for retailers. (https://cloud.google.com/solutions/retail-product-discovery)\",\n  \"Google Cloud with GeminiAI assistants for application development, coding, and more. (https://cloud.google.com/ai/gemini)\",\n  \"Generative AI on Google CloudTransform content creation and discovery, research, customer service, and developer efficiency with the power of generative AI. (https://cloud.google.com/use-cases/generative-ai)\",\n  \"APIs and ApplicationsSpeed up the pace of innovation without coding, using APIs, apps, and automation. (https://cloud.google.com/solutions/apis-and-applications)\",\n  \"New Business Channels Using APIsAttract and empower an ecosystem of developers and partners. (https://cloud.google.com/solutions/new-channels-using-apis)\",\n  \"Unlocking Legacy Applications Using APIsCloud services for extending and modernizing legacy apps. (https://cloud.google.com/solutions/unlocking-legacy-applications)\",\n  \"Open Banking APIxSimplify and accelerate secure delivery of open banking compliant APIs. (https://cloud.google.com/solutions/open-banking-apix)\",\n  \"Data AnalyticsGenerate instant insights from data at any scale with a serverless, fully managed analytics platform that significantly simplifies analytics. (https://cloud.google.com/solutions/data-analytics-and-ai)\",\n  \"Data MigrationMigrate and modernize your data warehouse and data lakes with AI-powered migration services. (https://cloud.google.com/solutions/data-migration)\",\n  \"Data LakehouseUnify and govern your multimodal data with a high-performance and open data lakehouse. (https://cloud.google.com/solutions/data-lakehouse)\",\n  \"Real-time AnalyticsInsights from ingesting, processing, and analyzing event streams. (https://cloud.google.com/solutions/stream-analytics)\",\n  \"Marketing AnalyticsSolutions for collecting, analyzing, and activating customer data. (https://cloud.google.com/solutions/marketing-analytics)\",\n  \"DatasetsData from Google, public, and commercial providers to enrich your analytics and AI initiatives. (https://cloud.google.com/datasets)\",\n  \"Business IntelligenceSolutions for modernizing your BI stack and creating rich data experiences. (https://cloud.google.com/solutions/business-intelligence)\",\n  \"AI for Data AnalyticsWrite SQL, build predictive models, and visualize data with AI for data analytics. (https://cloud.google.com/use-cases/ai-data-analytics)\",\n  \"Geospatial AnalyticsA comprehensive platform to solve for geospatial use cases at scale. (https://cloud.google.com/solutions/geospatial)\",\n  \"DatabasesMigrate and manage enterprise data with security, reliability, high availability, and fully managed data services. (https://cloud.google.com/solutions/databases)\",\n  \"Database MigrationGuides and tools to simplify your database migration life cycle. (https://cloud.google.com/solutions/database-migration)\",\n  \"Database ModernizationUpgrades to modernize your operational database infrastructure. (https://cloud.google.com/solutions/database-modernization)\",\n  \"Databases for GamesBuild global, live games with Google Cloud databases. (https://cloud.google.com/solutions/databases/games)\",\n  \"Google Cloud DatabasesDatabase services to migrate, manage, and modernize data. (https://cloud.google.com/products/databases)\",\n  \"Migrate Oracle workloads to Google CloudRehost, replatform, rewrite your Oracle workloads. (https://cloud.google.com/solutions/oracle)\",\n  \"Open Source DatabasesFully managed open source databases with enterprise-grade support. (https://cloud.google.com/solutions/open-source-databases)\",\n  \"SQL Server on Google CloudOptions for running SQL Server virtual machines on Google Cloud. (https://cloud.google.com/sql-server)\",\n  \"Gemini for DatabasesSupercharge database development and management with AI. (https://cloud.google.com/products/gemini/databases)\",\n  \"Infrastructure ModernizationMigrate quickly with solutions for SAP, VMware, Windows, Oracle, and other workloads. (https://cloud.google.com/solutions/infrastructure-modernization)\",\n  \"Application MigrationDiscovery and analysis tools for moving to the cloud. (https://cloud.google.com/solutions/application-migration)\",\n  \"SAP on Google CloudCertifications for running SAP applications and SAP HANA. (https://cloud.google.com/solutions/sap)\",\n  \"High Performance ComputingCompute, storage, and networking options to support any workload. (https://cloud.google.com/solutions/hpc)\",\n  \"Windows on Google CloudTools and partners for running Windows workloads. (https://cloud.google.com/windows)\",\n  \"Data Center MigrationMigration solutions for VMs, apps, databases, and more. (https://cloud.google.com/solutions/data-center-migration)\",\n  \"Active AssistAutomatic cloud resource optimization and increased security. (https://cloud.google.com/solutions/active-assist)\",\n  \"Virtual DesktopsRemote work solutions for desktops and applications (VDI & DaaS). (https://cloud.google.com/solutions/virtual-desktops)\",\n  \"Rapid Migration and Modernization ProgramEnd-to-end migration program to simplify your path to the cloud. (https://cloud.google.com/solutions/cloud-migration-program)\",\n  \"Backup and Disaster RecoveryEnsure your business continuity needs are met. (https://cloud.google.com/solutions/backup-dr)\",\n  \"Red Hat on Google CloudGoogle and Red Hat provide an enterprise-grade platform for traditional on-prem and custom applications. (https://cloud.google.com/solutions/redhat)\",\n  \"Cross-Cloud NetworkSimplify hybrid and multicloud networking, and secure your workloads, data, and users. (https://cloud.google.com/solutions/cross-cloud-network)\",\n  \"ObservabilityMonitor, troubleshoot, and improve app performance with end-to-end visibility. (https://cloud.google.com/solutions/observability)\",\n  \"Productivity and CollaborationChange the way teams work with solutions designed for humans and built for impact. (https://workspace.google.com/enterprise/)\",\n  \"Google WorkspaceCollaboration and productivity tools for enterprises. (https://workspace.google.com/solutions/enterprise/?enterprise-benefits_activeEl=connect)\",\n  \"Google Workspace EssentialsSecure video meetings and modern collaboration for teams. (https://workspace.google.com/essentials/)\",\n  \"Cloud IdentityUnified platform for IT admins to manage user devices and apps. (https://cloud.google.com/identity)\",\n  \"Chrome EnterpriseChromeOS, Chrome Browser, and Chrome devices built for business. (https://chromeenterprise.google/)\",\n  \"SecurityDetect, investigate, and respond to online threats to help protect your business. (https://cloud.google.com/solutions/security)\",\n  \"Agentic SOCDelivering better security outcomes with AI agents. (https://cloud.google.com/solutions/agentic-soc)\",\n  \"Web App and API ProtectionThreat and fraud protection for your web applications and APIs. (https://cloud.google.com/security/solutions/web-app-and-api-protection)\",\n  \"Security and Resilience FrameworkSolutions for each phase of the security and resilience life cycle. (https://cloud.google.com/security/solutions/security-and-resilience)\",\n  \"Risk and compliance as code (RCaC)Solution to modernize your governance, risk, and compliance function with automation. (https://cloud.google.com/solutions/risk-and-compliance-as-code)\",\n  \"Software Supply Chain SecuritySolution for improving end-to-end software supply chain security. (https://cloud.google.com/security/solutions/software-supply-chain-security)\",\n  \"Security FoundationRecommended products to help achieve a strong security posture. (https://cloud.google.com/security/solutions/security-foundation)\",\n  \"Google Cloud Cybershield™Strengthen nationwide cyber defense. (https://cloud.google.com/security/solutions/secops-cybershield)\",\n  \"Startups and SMBAccelerate startup and SMB growth with tailored solutions and programs. (https://cloud.google.com/solutions#section-13)\",\n  \"Startup ProgramGet financial, business, and technical support to take your startup to the next level. (https://cloud.google.com/startup)\",\n  \"Small and Medium BusinessExplore solutions for web hosting, app development, AI, and analytics. (https://cloud.google.com/solutions/smb)\",\n  \"Software as a ServiceBuild better SaaS products, scale efficiently, and grow your business. (https://cloud.google.com/saas)\",\n  \" (https://cloud.google.com/#)\",\n  \" (https://cloud.google.com/#)\",\n  \" (https://cloud.google.com/#)\",\n  \" (https://cloud.google.com/#)\",\n  \" (https://cloud.google.com/#)\",\n  \" (https://cloud.google.com/#)\",\n  \" (https://cloud.google.com/#)\",\n  \" (https://cloud.google.com/#)\",\n  \" (https://cloud.google.com/#)\",\n  \" (https://cloud.google.com/#)\",\n  \" (https://cloud.google.com/#)\",\n  \" (https://cloud.google.com/#)\",\n  \" (https://cloud.google.com/#)\",\n  \" (https://cloud.google.com/#)\",\n  \" (https://cloud.google.com/#)\",\n  \" (https://cloud.google.com/#)\",\n  \" (https://cloud.google.com/#)\",\n  \" (https://cloud.google.com/#)\",\n  \" (https://cloud.google.com/#)\",\n  \" (https://cloud.google.com/#)\",\n  \" (https://cloud.google.com/#)\",\n  \" (https://cloud.google.com/#)\",\n  \" (https://cloud.google.com/#)\",\n  \" (https://cloud.google.com/#)\",\n  \" (https://cloud.google.com/products#featured-products)\",\n  \" (https://cloud.google.com/products/compute)\",\n  \" (https://cloud.google.com/storage)\",\n  \" (https://cloud.google.com/bigquery)\",\n  \" (https://cloud.google.com/run)\",\n  \" (https://cloud.google.com/kubernetes-engine)\",\n  \" (https://cloud.google.com/vertex-ai)\",\n  \" (https://cloud.google.com/looker)\",\n  \" (https://cloud.google.com/apigee)\",\n  \" (https://cloud.google.com/sql)\",\n  \" (https://cloud.google.com/gemini-enterprise)\",\n  \" (https://cloud.google.com/cdn)\",\n  \" (https://cloud.google.com/products#featured-products)\",\n  \"AI and Machine Learning (https://cloud.google.com/products/ai)\",\n  \"Vertex AI PlatformUnified platform for ML models and generative AI. (https://cloud.google.com/vertex-ai)\",\n  \"Vertex AI StudioBuild, tune, and deploy foundation models on Vertex AI. (https://cloud.google.com/generative-ai-studio)\",\n  \"Vertex AI Agent BuilderBuild and deploy gen AI experiences. (https://cloud.google.com/products/agent-builder)\",\n  \"Conversational AgentsBuild conversational AI with both deterministic and gen AI functionality. (https://cloud.google.com/products/conversational-agents)\",\n  \"Vertex AI SearchBuild Google-quality search for your enterprise apps and experiences. (https://cloud.google.com/enterprise-search)\",\n  \"Speech-to-TextSpeech recognition and transcription across 125 languages. (https://cloud.google.com/speech-to-text)\",\n  \"Text-to-SpeechSpeech synthesis in 220+ voices and 40+ languages. (https://cloud.google.com/text-to-speech)\",\n  \"Translation AILanguage detection, translation, and glossary support. (https://cloud.google.com/translate)\",\n  \"Gemini EnterpriseSecure platform to discover, create, run, and govern AI agents. (https://cloud.google.com/gemini-enterprise)\",\n  \"Vision AICustom and pre-trained models to detect emotion, text, and more. (https://cloud.google.com/vision)\",\n  \"Contact Center as a ServiceOmnichannel contact center solution that is native to the cloud. (https://cloud.google.com/solutions/contact-center-ai-platform)\",\n  \"See all AI and machine learning products (https://cloud.google.com/products?pds=CAE#ai-and-machine-learning)\",\n  \"LookerPlatform for BI, data applications, and embedded analytics. (https://cloud.google.com/looker)\",\n  \"Looker StudioInteractive data suite for dashboarding, reporting, and analytics. (https://cloud.google.com/looker-studio)\",\n  \"Compute (https://cloud.google.com/products/compute)\",\n  \"Compute EngineVirtual machines running in Google’s data center. (https://cloud.google.com/products/compute)\",\n  \"App EngineServerless application platform for apps and back ends. (https://cloud.google.com/appengine)\",\n  \"Cloud GPUsGPUs for ML, scientific computing, and 3D visualization. (https://cloud.google.com/gpu)\",\n  \"Migrate to Virtual MachinesServer and virtual machine migration to Compute Engine. (https://cloud.google.com/products/cloud-migration/virtual-machines)\",\n  \"Spot VMsCompute instances for batch jobs and fault-tolerant workloads. (https://cloud.google.com/spot-vms)\",\n  \"BatchFully managed service for scheduling batch jobs. (https://cloud.google.com/batch)\",\n  \"Sole-Tenant NodesDedicated hardware for compliance, licensing, and management. (https://cloud.google.com/compute/docs/nodes/sole-tenant-nodes)\",\n  \"Bare MetalInfrastructure to run specialized workloads on Google Cloud. (https://cloud.google.com/bare-metal)\",\n  \"RecommenderUsage recommendations for Google Cloud products and services. (https://cloud.google.com/recommender/docs/whatis-activeassist)\",\n  \"VMware EngineFully managed, native VMware Cloud Foundation software stack. (https://cloud.google.com/vmware-engine)\",\n  \"Cloud RunFully managed environment for running containerized apps. (https://cloud.google.com/run)\",\n  \"See all compute products (https://cloud.google.com/products?pds=CAUSAQw#compute)\",\n  \"Containers (https://cloud.google.com/containers)\",\n  \"Google Kubernetes EngineManaged environment for running containerized apps. (https://cloud.google.com/kubernetes-engine)\",\n  \"Cloud RunFully managed environment for running containerized apps. (https://cloud.google.com/run)\",\n  \"Cloud BuildSolution for running build steps in a Docker container. (https://cloud.google.com/build)\",\n  \"Artifact RegistryPackage manager for build artifacts and dependencies. (https://cloud.google.com/artifact-registry/docs)\",\n  \"Cloud CodeIDE support to write, run, and debug Kubernetes applications. (https://cloud.google.com/code)\",\n  \"Cloud DeployFully managed continuous delivery to GKE and Cloud Run. (https://cloud.google.com/deploy)\",\n  \"Migrate to ContainersComponents for migrating VMs into system containers on GKE. (https://cloud.google.com/products/cloud-migration/containers)\",\n  \"Deep Learning ContainersContainers with data science frameworks, libraries, and tools. (https://cloud.google.com/deep-learning-containers/docs)\",\n  \"KnativeComponents to create Kubernetes-native cloud-based software. (https://knative.dev/docs/)\",\n  \"Data Analytics (https://cloud.google.com/solutions/data-analytics-and-ai)\",\n  \"BigQueryAutonomous data to AI platform for analytics and data science. (https://cloud.google.com/bigquery)\",\n  \"LookerPlatform for BI, data applications, and embedded analytics. (https://cloud.google.com/looker)\",\n  \"DataflowReal-time analytics for stream and batch processing. (https://cloud.google.com/products/dataflow)\",\n  \"Pub/SubMessaging service for event ingestion and delivery. (https://cloud.google.com/pubsub)\",\n  \"DataprocManaged service for running Apache Spark and Apache Hadoop clusters. (https://cloud.google.com/dataproc)\",\n  \"Google Cloud Serverless for Apache SparkQuick VM startup and dynamic autoscaling for Spark workloads. (https://cloud.google.com/products/serverless-spark)\",\n  \"Cloud ComposerWorkflow orchestration service built on Apache Airflow. (https://cloud.google.com/composer)\",\n  \"BigLakeStorage engine for building data lakehouses with Apache Iceberg. (https://cloud.google.com/biglake)\",\n  \"Dataplex Universal CatalogA unified data-to-AI governance fabric for all Google Cloud services. (https://cloud.google.com/dataplex)\",\n  \"BigQuery Migration ServicesFree-to-use, cloud-native and AI-powered data migration services. (https://cloud.google.com/solutions/data-migration)\",\n  \"Managed Service for Apache KafkaManaged Kafka service to operate highly available Apache Kafka clusters. (https://cloud.google.com/products/managed-service-for-apache-kafka)\",\n  \"See all data analytics products (https://cloud.google.com/products?pds=CAQ#data-analytics)\",\n  \"Databases (https://cloud.google.com/products/databases)\",\n  \"AlloyDB for PostgreSQLFully managed, PostgreSQL-compatible database for enterprise workloads. (https://cloud.google.com/alloydb)\",\n  \"Cloud SQLFully managed database for MySQL, PostgreSQL, and SQL Server. (https://cloud.google.com/sql)\",\n  \"FirestoreHighly scalable and serverless NoSQL document database, with MongoDB compatibility. (https://cloud.google.com/firestore)\",\n  \"SpannerCloud-native relational database with unlimited scale and 99.999% availability. (https://cloud.google.com/spanner)\",\n  \"BigtableCloud-native wide-column database for large-scale, low-latency workloads. (https://cloud.google.com/bigtable)\",\n  \"DatastreamServerless change data capture and replication service. (https://cloud.google.com/datastream)\",\n  \"Database Migration ServiceServerless, minimal downtime migrations to Cloud SQL. (https://cloud.google.com/database-migration)\",\n  \"Bare Metal SolutionFully managed infrastructure for your Oracle workloads. (https://cloud.google.com/bare-metal)\",\n  \"MemorystoreFully managed Redis and Memcached for sub-millisecond data access. (https://cloud.google.com/memorystore)\",\n  \"Developer Tools (https://cloud.google.com/products/tools)\",\n  \"Artifact RegistryUniversal package manager for build artifacts and dependencies. (https://cloud.google.com/artifact-registry/docs)\",\n  \"Cloud CodeIDE support to write, run, and debug Kubernetes applications. (https://cloud.google.com/code)\",\n  \"Cloud BuildContinuous integration and continuous delivery platform. (https://cloud.google.com/build)\",\n  \"Cloud DeployFully managed continuous delivery to GKE and Cloud Run. (https://cloud.google.com/deploy)\",\n  \"Cloud Deployment ManagerService for creating and managing Google Cloud resources. (https://cloud.google.com/deployment-manager/docs)\",\n  \"Cloud SDKCommand-line tools and libraries for Google Cloud. (https://cloud.google.com/sdk)\",\n  \"Cloud SchedulerCron job scheduler for task automation and management. (https://cloud.google.com/scheduler/docs)\",\n  \"Cloud Source RepositoriesPrivate Git repository to store, manage, and track code. (https://cloud.google.com/source-repositories/docs)\",\n  \"Infrastructure ManagerAutomate infrastructure management with Terraform. (https://cloud.google.com/infrastructure-manager/docs)\",\n  \"Cloud WorkstationsManaged and secure development environments in the cloud. (https://cloud.google.com/workstations)\",\n  \"Gemini Code AssistAI-powered assistant available across Google Cloud and your IDE. (https://cloud.google.com/products/gemini/code-assist)\",\n  \"See all developer tools (https://cloud.google.com/products?pds=CAI#developer-tools)\",\n  \"Distributed Cloud (https://cloud.google.com/distributed-cloud)\",\n  \"Google Distributed Cloud ConnectedDistributed cloud services for edge workloads. (https://cloud.google.com/distributed-cloud-connected)\",\n  \"Google Distributed Cloud Air-gappedDistributed cloud for air-gapped workloads. (https://cloud.google.com/distributed-cloud-air-gapped)\",\n  \"Google Kubernetes EngineManaged environment for running containerized apps. (https://cloud.google.com/kubernetes-engine)\",\n  \"Apigee API ManagementAPI management, development, and security platform. (https://cloud.google.com/apigee)\",\n  \"Migrate to ContainersTool to move workloads and existing applications to GKE. (https://cloud.google.com/products/cloud-migration/containers)\",\n  \"Cloud BuildService for executing builds on Google Cloud infrastructure. (https://cloud.google.com/build)\",\n  \"ObservabilityMonitoring, logging, and application performance suite. (https://cloud.google.com/products/observability)\",\n  \"Cloud Service MeshFully managed service mesh based on Envoy and Istio. (https://cloud.google.com/products/service-mesh)\",\n  \"Google Distributed CloudFully managed solutions for the edge and data centers. (https://cloud.google.com/distributed-cloud)\",\n  \"Anti Money Laundering AIDetect suspicious, potential money laundering activity with AI. (https://cloud.google.com/anti-money-laundering-ai)\",\n  \"Cloud Healthcare APISolution for bridging existing care systems and apps on Google Cloud. (https://cloud.google.com/healthcare-api)\",\n  \"Device Connect for FitbitGain a 360-degree patient view with connected Fitbit data on Google Cloud. (https://cloud.google.com/device-connect)\",\n  \"Telecom Network AutomationReady to use cloud-native automation for telecom networks. (https://cloud.google.com/telecom-network-automation)\",\n  \"Telecom Data FabricTelecom data management and analytics with an automated approach. (https://cloud.google.com/telecom-data-fabric)\",\n  \"Telecom Subscriber InsightsIngests data to improve subscriber acquisition and retention. (https://cloud.google.com/telecom-subscriber-insights)\",\n  \"Spectrum Access System (SAS)Controls fundamental access to the Citizens Broadband Radio Service (CBRS). (https://cloud.google.com/products/spectrum-access-system)\",\n  \"Integration Services (https://cloud.google.com/integration-services)\",\n  \"Application IntegrationConnect to 3rd party apps and enable data consistency without code. (https://cloud.google.com/application-integration)\",\n  \"WorkflowsWorkflow orchestration for serverless products and API services. (https://cloud.google.com/workflows)\",\n  \"Apigee API ManagementManage the full life cycle of APIs anywhere with visibility and control. (https://cloud.google.com/apigee)\",\n  \"Cloud TasksTask management service for asynchronous task execution. (https://cloud.google.com/tasks/docs)\",\n  \"Cloud SchedulerCron job scheduler for task automation and management. (https://cloud.google.com/scheduler/docs)\",\n  \"DataprocService for running Apache Spark and Apache Hadoop clusters. (https://cloud.google.com/dataproc)\",\n  \"Cloud Data FusionData integration for building and managing data pipelines. (https://cloud.google.com/data-fusion)\",\n  \"Cloud ComposerWorkflow orchestration service built on Apache Airflow. (https://cloud.google.com/composer)\",\n  \"Pub/SubMessaging service for event ingestion and delivery. (https://cloud.google.com/pubsub)\",\n  \"EventarcBuild an event-driven architecture that can connect any service. (https://cloud.google.com/eventarc/docs)\",\n  \"Management Tools (https://cloud.google.com/products/management)\",\n  \"Cloud ShellInteractive shell environment with a built-in command line. (https://cloud.google.com/shell/docs)\",\n  \"Cloud consoleWeb-based interface for managing and monitoring cloud apps. (https://cloud.google.com/cloud-console)\",\n  \"Cloud EndpointsDeployment and development management for APIs on Google Cloud. (https://cloud.google.com/endpoints/docs)\",\n  \"Cloud IAMPermissions management system for Google Cloud resources. (https://cloud.google.com/security/products/iam)\",\n  \"Cloud APIsProgrammatic interfaces for  Google Cloud services. (https://cloud.google.com/apis)\",\n  \"Service CatalogService catalog for admins managing internal enterprise solutions. (https://cloud.google.com/service-catalog/docs)\",\n  \"Cost ManagementTools for monitoring, controlling, and optimizing your costs. (https://cloud.google.com/cost-management)\",\n  \"ObservabilityMonitoring, logging, and application performance suite. (https://cloud.google.com/products/observability)\",\n  \"Carbon FootprintDashboard to view and export Google Cloud carbon emissions reports. (https://cloud.google.com/carbon-footprint)\",\n  \"Config ConnectorKubernetes add-on for managing Google Cloud resources. (https://cloud.google.com/config-connector/docs/overview)\",\n  \"Active AssistTools for easily managing performance, security, and cost. (https://cloud.google.com/solutions/active-assist)\",\n  \"See all management tools (https://cloud.google.com/products?pds=CAY#managment-tools)\",\n  \"Maps and Geospatial (https://cloud.google.com/solutions/geospatial)\",\n  \"Earth EngineGeospatial platform for Earth observation data and analysis. (https://cloud.google.com/earth-engine)\",\n  \"Google Maps PlatformCreate immersive location experiences and improve business operations. (https://mapsplatform.google.com/)\",\n  \"Cloud CDNContent delivery network for serving web and video content. (https://cloud.google.com/cdn)\",\n  \"Live Stream APIService to convert live video and package for streaming. (https://cloud.google.com/livestream/docs)\",\n  \"OpenCueOpen source render manager for visual effects and animation. (https://www.opencue.io/docs/getting-started/)\",\n  \"Transcoder APIConvert video files and package them for optimized delivery. (https://cloud.google.com/transcoder/docs)\",\n  \"Video Stitcher APIService for dynamic or server side ad insertion. (https://cloud.google.com/video-stitcher/docs)\",\n  \"Migration (https://cloud.google.com/products/cloud-migration)\",\n  \"Migration CenterUnified platform for migrating and modernizing with Google Cloud. (https://cloud.google.com/migration-center/docs)\",\n  \"Application MigrationApp migration to the cloud for low-cost refresh cycles. (https://cloud.google.com/solutions/application-migration)\",\n  \"Migrate to Virtual MachinesComponents for migrating VMs and physical servers to Compute Engine. (https://cloud.google.com/products/cloud-migration/virtual-machines)\",\n  \"Cloud Foundation ToolkitReference templates for Deployment Manager and Terraform. (https://cloud.google.com/docs/terraform/blueprints/terraform-blueprints)\",\n  \"Database Migration ServiceServerless, minimal downtime migrations to Cloud SQL. (https://cloud.google.com/database-migration)\",\n  \"Migrate to ContainersComponents for migrating VMs into system containers on GKE. (https://cloud.google.com/products/cloud-migration/containers)\",\n  \"BigQuery Migration ServicesStreamlined data warehouse and data lake migration tooling and incentives. (https://cloud.google.com/solutions/data-migration)\",\n  \"Rapid Migration and Modernization ProgramEnd-to-end migration program to simplify your path to the cloud. (https://cloud.google.com/solutions/cloud-migration-program)\",\n  \"Transfer ApplianceStorage server for moving large volumes of data to Google Cloud. (https://cloud.google.com/transfer-appliance/docs/4.0/overview)\",\n  \"Storage Transfer ServiceData transfers from online and on-premises sources to Cloud Storage. (https://cloud.google.com/storage-transfer-service)\",\n  \"VMware EngineMigrate and run your VMware workloads natively on Google Cloud. (https://cloud.google.com/vmware-engine)\",\n  \"Immersive Stream for XRHosts, renders, and streams 3D and XR experiences. (https://cloud.google.com/immersive-stream/xr)\",\n  \"Networking (https://cloud.google.com/products/networking)\",\n  \"Cloud ArmorSecurity policies and defense against web and DDoS attacks. (https://cloud.google.com/security/products/armor)\",\n  \"Cloud CDN and Media CDNContent delivery network for serving web and video content. (https://cloud.google.com/cdn)\",\n  \"Cloud DNSDomain name system for reliable and low-latency name lookups. (https://cloud.google.com/dns)\",\n  \"Cloud Load BalancingService for distributing traffic across applications and regions. (https://cloud.google.com/load-balancing)\",\n  \"Cloud NATNAT service for giving private instances internet access. (https://cloud.google.com/nat)\",\n  \"Cloud ConnectivityConnectivity options for VPN, peering, and enterprise needs. (https://cloud.google.com/hybrid-connectivity)\",\n  \"Network Connectivity CenterConnectivity management to help simplify and scale networks. (https://cloud.google.com/network-connectivity-center)\",\n  \"Network Intelligence CenterNetwork monitoring, verification, and optimization platform. (https://cloud.google.com/network-intelligence-center)\",\n  \"Network Service TiersCloud network options  based on performance, availability, and cost. (https://cloud.google.com/network-tiers)\",\n  \"Virtual Private CloudSingle VPC for an entire organization, isolated within projects. (https://cloud.google.com/vpc)\",\n  \"Private Service ConnectSecure connection between your VPC and services. (https://cloud.google.com/private-service-connect)\",\n  \"See all networking products (https://cloud.google.com/products?pds=CAUSAQ0#networking)\",\n  \"Operations (https://cloud.google.com/products/operations)\",\n  \"Cloud LoggingGoogle Cloud audit, platform, and application logs management. (https://cloud.google.com/logging)\",\n  \"Cloud MonitoringInfrastructure and application health with rich metrics. (https://cloud.google.com/monitoring)\",\n  \"Error ReportingApplication error identification and analysis. (https://cloud.google.com/error-reporting/docs/grouping-errors)\",\n  \"Managed Service for PrometheusFully-managed Prometheus on Google Cloud. (https://cloud.google.com/managed-prometheus)\",\n  \"Cloud TraceTracing system collecting latency data from applications. (https://cloud.google.com/trace/docs)\",\n  \"Cloud ProfilerCPU and heap profiler for analyzing application performance. (https://cloud.google.com/profiler/docs)\",\n  \"Cloud QuotasManage quotas for all Google Cloud services. (https://cloud.google.com/docs/quotas)\",\n  \"AppSheetNo-code development platform to build and extend applications. (https://about.appsheet.com/home/)\",\n  \"Gemini EnterpriseSecure platform to discover, create, run, and govern AI agents. (https://cloud.google.com/gemini-enterprise)\",\n  \"Google WorkspaceCollaboration and productivity tools for individuals and organizations. (https://workspace.google.com/solutions/enterprise/?enterprise-benefits_activeEl=connect/)\",\n  \"Google Workspace EssentialsSecure video meetings and modern collaboration for teams. (https://workspace.google.com/essentials/)\",\n  \"Cloud IdentityUnified platform for IT admins to manage user devices and apps. (https://cloud.google.com/identity)\",\n  \"Chrome EnterpriseChromeOS, Chrome browser, and Chrome devices built for business. (https://chromeenterprise.google/)\",\n  \"Security and Identity (https://cloud.google.com/products/security-and-identity)\",\n  \"Cloud IAMPermissions management system for Google Cloud resources. (https://cloud.google.com/security/products/iam)\",\n  \"Sensitive Data ProtectionDiscover, classify, and protect your valuable data assets. (https://cloud.google.com/security/products/sensitive-data-protection)\",\n  \"Mandiant Managed DefenseFind and eliminate threats with confidence 24x7. (https://cloud.google.com/security/products/managed-defense)\",\n  \"Google Threat IntelligenceKnow who’s targeting you. (https://cloud.google.com/security/products/threat-intelligence)\",\n  \"Security Command CenterPlatform for defending against threats to your Google Cloud assets. (https://cloud.google.com/security/products/security-command-center)\",\n  \"Cloud Key ManagementManage encryption keys on Google Cloud. (https://cloud.google.com/security/products/security-key-management)\",\n  \"Mandiant Incident ResponseMinimize the impact of a breach. (https://cloud.google.com/security/consulting/mandiant-incident-response-services)\",\n  \"Chrome Enterprise PremiumGet secure enterprise browsing with extensive endpoint visibility. (https://docs.cloud.google.com/chrome-enterprise-premium/)\",\n  \"Assured WorkloadsCompliance and security controls for sensitive workloads. (https://cloud.google.com/security/products/assured-workloads)\",\n  \"Google Security OperationsDetect, investigate, and respond to cyber threats. (https://cloud.google.com/security/products/security-operations)\",\n  \"Mandiant ConsultingGet expert guidance before, during, and after an incident. (https://cloud.google.com/security/consulting/mandiant-services)\",\n  \"See all security and identity products (https://cloud.google.com/products?pds=CAg#security-and-identity)\",\n  \"Serverless (https://cloud.google.com/serverless)\",\n  \"Cloud RunFully managed environment for running containerized apps. (https://cloud.google.com/run)\",\n  \"Cloud FunctionsPlatform for creating functions that respond to cloud events. (https://cloud.google.com/functions)\",\n  \"App EngineServerless application platform for apps and back ends. (https://cloud.google.com/appengine)\",\n  \"WorkflowsWorkflow orchestration for serverless products and API services. (https://cloud.google.com/workflows)\",\n  \"API GatewayDevelop, deploy, secure, and manage APIs with a fully managed gateway. (https://cloud.google.com/api-gateway/docs)\",\n  \"Storage (https://cloud.google.com/products/storage)\",\n  \"Cloud StorageObject storage that’s secure, durable, and scalable. (https://cloud.google.com/storage)\",\n  \"Block StorageHigh-performance storage for AI, analytics, databases, and enterprise applications. (https://cloud.google.com/products/block-storage)\",\n  \"FilestoreFile storage that is highly scalable and secure. (https://cloud.google.com/filestore)\",\n  \"Persistent DiskBlock storage for virtual machine instances running on Google Cloud. (https://cloud.google.com/persistent-disk)\",\n  \"Cloud Storage for FirebaseObject storage for storing and serving user-generated content. (https://firebase.google.com/products/storage)\",\n  \"Local SSDBlock storage that is locally attached for high-performance needs. (https://cloud.google.com/products/local-ssd)\",\n  \"Storage Transfer ServiceData transfers from online and on-premises sources to Cloud Storage. (https://cloud.google.com/storage-transfer-service)\",\n  \"Google Cloud Managed LustreHigh performance managed parallel file service. (https://cloud.google.com/products/managed-lustre)\",\n  \"Google Cloud NetApp VolumesFile storage service for NFS, SMB, and multi-protocol environments. (https://cloud.google.com/netapp-volumes)\",\n  \"Backup and DR ServiceService for centralized, application-consistent data protection. (https://cloud.google.com/backup-disaster-recovery)\",\n  \"Web3 (https://cloud.google.com/web3)\",\n  \"Blockchain Node EngineFully managed node hosting for developing on the blockchain. (https://cloud.google.com/blockchain-node-engine)\",\n  \"Blockchain RPCEnterprise-grade RPC for building on the blockchain. (https://cloud.google.com/products/blockchain-rpc)\",\n  \" (https://cloud.google.com/contact/form?direct=true)\",\n  \" (https://cloud.google.com/pricing)\",\n  \" (https://cloud.google.com/products/calculator)\",\n  \" (https://cloud.google.com/free)\",\n  \" (https://cloud.google.com/architecture/framework/cost-optimization)\",\n  \" (https://cloud.google.com/cost-management)\",\n  \" (https://cloud.google.com/compute/all-pricing)\",\n  \" (https://cloud.google.com/sql/pricing)\",\n  \" (https://cloud.google.com/kubernetes-engine/pricing)\",\n  \" (https://cloud.google.com/storage/pricing)\",\n  \" (https://cloud.google.com/bigquery/pricing)\",\n  \" (https://cloud.google.com/pricing/list)\",\n  \" (https://cloud.google.com/free)\",\n  \" (https://cloud.google.com/solution-generator)\",\n  \" (https://cloud.google.com/docs/tutorials?doctype=quickstart)\",\n  \" (https://cloud.google.com/blog)\",\n  \" (https://cloud.google.com/learn)\",\n  \" (https://cloud.google.com/certification)\",\n  \" (https://cloud.google.com/discover)\",\n  \" (https://cloud.google.com/architecture)\",\n  \" (https://cloud.google.com/innovators/innovatorsplus)\",\n  \" (https://cloud.google.com/developers)\",\n  \" (https://cloud.google.com/events)\",\n  \" (https://discuss.google.dev/c/google-cloud/14)\",\n  \" (https://cloud.google.com/consulting)\",\n  \" (https://cloud.google.com/marketplace)\",\n  \" (https://cloud.google.com/partners)\",\n  \" (https://partners.cloud.google.com/)\",\n  \" (https://cloud.google.com/)\",\n  \"Overview (https://cloud.google.com/why-google-cloud)\",\n  \"Solutions (https://cloud.google.com/solutions)\",\n  \"Products (https://cloud.google.com/products)\",\n  \"Pricing (https://cloud.google.com/pricing)\",\n  \"Resources (https://cloud.google.com/docs/get-started)\",\n  \"Docs (https://cloud.google.com/docs)\",\n  \"Support (https://cloud.google.com/support-hub)\",\n  \"Console (https://console.cloud.google.com/)\",\n  \"Learn more (https://cloud.google.com/transform)\",\n  \"Why Google Cloud (https://cloud.google.com/why-google-cloud)\",\n  \"AI and ML (https://cloud.google.com/ai)\",\n  \"Multicloud (https://cloud.google.com/multicloud)\",\n  \"Global infrastructure (https://cloud.google.com/infrastructure)\",\n  \"Data Cloud (https://cloud.google.com/data-cloud)\",\n  \"Modern Infrastructure Cloud (https://cloud.google.com/solutions/modern-infrastructure)\",\n  \"Security (https://cloud.google.com/security)\",\n  \"Productivity and collaboration (https://workspace.google.com/)\",\n  \"Executive insights (https://cloud.google.com/executive-insights)\",\n  \"Analyst reports (https://cloud.google.com/analyst-reports)\",\n  \"Whitepapers (https://cloud.google.com/whitepapers)\",\n  \"Customer stories (https://cloud.google.com/customers)\",\n  \"Industry Solutions (https://cloud.google.com/solutions#industry-solutions)\",\n  \"Retail (https://cloud.google.com/solutions/retail)\",\n  \"Consumer Packaged Goods (https://cloud.google.com/solutions/cpg)\",\n  \"Financial Services (https://cloud.google.com/solutions/financial-services)\",\n  \"Healthcare and Life Sciences (https://cloud.google.com/solutions/healthcare-life-sciences)\",\n  \"Media and Entertainment (https://cloud.google.com/solutions/media-entertainment)\",\n  \"Telecommunications (https://cloud.google.com/solutions/telecommunications)\",\n  \"Games (https://cloud.google.com/solutions/games)\",\n  \"Manufacturing (https://cloud.google.com/solutions/manufacturing)\",\n  \"Supply Chain and Logistics (https://cloud.google.com/solutions/supply-chain-logistics)\",\n  \"Government (https://cloud.google.com/gov)\",\n  \"Education (https://cloud.google.com/edu/higher-education)\",\n  \"See all industry solutions (https://cloud.google.com/solutions#industry-solutions)\",\n  \"See all solutions (https://cloud.google.com/solutions)\",\n  \"Application Modernization (https://cloud.google.com/solutions/camp)\",\n  \"CAMP (https://cloud.google.com/solutions/camp)\",\n  \"Modernize Traditional Applications (https://cloud.google.com/solutions/modernize-traditional-applications)\",\n  \"Migrate from PaaS: Cloud Foundry, Openshift (https://cloud.google.com/solutions/migrate-from-paas)\",\n  \"Migrate from Mainframe (https://cloud.google.com/solutions/mainframe-modernization)\",\n  \"Modernize Software Delivery (https://cloud.google.com/solutions/software-delivery)\",\n  \"DevOps Best Practices (https://cloud.google.com/devops)\",\n  \"SRE Principles (https://cloud.google.com/sre)\",\n  \"Platform Engineering (https://cloud.google.com/solutions/platform-engineering)\",\n  \"Run Applications at the Edge (https://cloud.google.com/solutions/modernize-with-edge)\",\n  \"Architect for Multicloud (https://cloud.google.com/solutions/architect-multicloud)\",\n  \"Go Serverless (https://cloud.google.com/solutions/serverless)\",\n  \"Artificial Intelligence (https://cloud.google.com/solutions/ai)\",\n  \"Customer Engagement Suite with Google AI (https://cloud.google.com/solutions/customer-engagement-ai)\",\n  \"Document AI (https://cloud.google.com/document-ai)\",\n  \"Vertex AI Search for commerce (https://cloud.google.com/solutions/retail-product-discovery)\",\n  \"Google Cloud with Gemini (https://cloud.google.com/ai/gemini)\",\n  \"Generative AI on Google Cloud (https://cloud.google.com/use-cases/generative-ai)\",\n  \"APIs and Applications (https://cloud.google.com/solutions/apis-and-applications)\",\n  \"New Business Channels Using APIs (https://cloud.google.com/solutions/new-channels-using-apis)\",\n  \"Unlocking Legacy Applications Using APIs (https://cloud.google.com/solutions/unlocking-legacy-applications)\",\n  \"Open Banking APIx (https://cloud.google.com/solutions/open-banking-apix)\",\n  \"Data Analytics (https://cloud.google.com/solutions/data-analytics-and-ai)\",\n  \"Data Migration (https://cloud.google.com/solutions/data-migration)\",\n  \"Data Lakehouse (https://cloud.google.com/solutions/data-lakehouse)\",\n  \"Real-time Analytics (https://cloud.google.com/solutions/stream-analytics)\",\n  \"Marketing Analytics (https://cloud.google.com/solutions/marketing-analytics)\",\n  \"Datasets (https://cloud.google.com/datasets)\",\n  \"Business Intelligence (https://cloud.google.com/solutions/business-intelligence)\",\n  \"AI for Data Analytics (https://cloud.google.com/use-cases/ai-data-analytics)\",\n  \"Geospatial Analytics (https://cloud.google.com/solutions/geospatial)\",\n  \"Databases (https://cloud.google.com/solutions/databases)\",\n  \"Database Migration (https://cloud.google.com/solutions/database-migration)\",\n  \"Database Modernization (https://cloud.google.com/solutions/database-modernization)\",\n  \"Databases for Games (https://cloud.google.com/solutions/databases/games)\",\n  \"Google Cloud Databases (https://cloud.google.com/products/databases)\",\n  \"Migrate Oracle workloads to Google Cloud (https://cloud.google.com/solutions/oracle)\",\n  \"Open Source Databases (https://cloud.google.com/solutions/open-source-databases)\",\n  \"SQL Server on Google Cloud (https://cloud.google.com/sql-server)\",\n  \"Gemini for Databases (https://cloud.google.com/products/gemini/databases)\",\n  \"Infrastructure Modernization (https://cloud.google.com/solutions/infrastructure-modernization)\",\n  \"Application Migration (https://cloud.google.com/solutions/application-migration)\",\n  \"SAP on Google Cloud (https://cloud.google.com/solutions/sap)\",\n  \"High Performance Computing (https://cloud.google.com/solutions/hpc)\",\n  \"Windows on Google Cloud (https://cloud.google.com/windows)\",\n  \"Data Center Migration (https://cloud.google.com/solutions/data-center-migration)\",\n  \"Active Assist (https://cloud.google.com/solutions/active-assist)\",\n  \"Virtual Desktops (https://cloud.google.com/solutions/virtual-desktops)\",\n  \"Rapid Migration and Modernization Program (https://cloud.google.com/solutions/cloud-migration-program)\",\n  \"Backup and Disaster Recovery (https://cloud.google.com/solutions/backup-dr)\",\n  \"Red Hat on Google Cloud (https://cloud.google.com/solutions/redhat)\",\n  \"Cross-Cloud Network (https://cloud.google.com/solutions/cross-cloud-network)\",\n  \"Observability (https://cloud.google.com/solutions/observability)\",\n  \"Productivity and Collaboration (https://workspace.google.com/enterprise/)\",\n  \"Google Workspace (https://workspace.google.com/solutions/enterprise/?enterprise-benefits_activeEl=connect)\",\n  \"Google Workspace Essentials (https://workspace.google.com/essentials/)\",\n  \"Cloud Identity (https://cloud.google.com/identity)\",\n  \"Chrome Enterprise (https://chromeenterprise.google/)\",\n  \"Security (https://cloud.google.com/solutions/security)\",\n  \"Agentic SOC (https://cloud.google.com/solutions/agentic-soc)\",\n  \"Web App and API Protection (https://cloud.google.com/security/solutions/web-app-and-api-protection)\",\n  \"Security and Resilience Framework (https://cloud.google.com/security/solutions/security-and-resilience)\",\n  \"Risk and compliance as code (RCaC) (https://cloud.google.com/solutions/risk-and-compliance-as-code)\",\n  \"Software Supply Chain Security (https://cloud.google.com/security/solutions/software-supply-chain-security)\",\n  \"Security Foundation (https://cloud.google.com/security/solutions/security-foundation)\",\n  \"Google Cloud Cybershield™ (https://cloud.google.com/security/solutions/secops-cybershield)\",\n  \"Startups and SMB (https://cloud.google.com/solutions#section-13)\",\n  \"Startup Program (https://cloud.google.com/startup)\",\n  \"Small and Medium Business (https://cloud.google.com/solutions/smb)\",\n  \"Software as a Service (https://cloud.google.com/saas)\",\n  \"Compute Engine (https://cloud.google.com/products/compute)\",\n  \"Cloud Storage (https://cloud.google.com/storage)\",\n  \"BigQuery (https://cloud.google.com/bigquery)\",\n  \"Cloud Run (https://cloud.google.com/run)\",\n  \"Google Kubernetes Engine (https://cloud.google.com/kubernetes-engine)\",\n  \"Vertex AI (https://cloud.google.com/vertex-ai)\",\n  \"Looker (https://cloud.google.com/looker)\",\n  \"Apigee API Management (https://cloud.google.com/apigee)\",\n  \"Cloud SQL (https://cloud.google.com/sql)\",\n  \"Gemini Enterprise (https://cloud.google.com/gemini-enterprise)\",\n  \"Cloud CDN (https://cloud.google.com/cdn)\",\n  \"See all products (100+) (https://cloud.google.com/products#featured-products)\",\n  \"AI and Machine Learning (https://cloud.google.com/products/ai)\",\n  \"Vertex AI Platform (https://cloud.google.com/vertex-ai)\",\n  \"Vertex AI Studio (https://cloud.google.com/generative-ai-studio)\",\n  \"Vertex AI Agent Builder (https://cloud.google.com/products/agent-builder)\",\n  \"Conversational Agents (https://cloud.google.com/products/conversational-agents)\",\n  \"Vertex AI Search (https://cloud.google.com/enterprise-search)\",\n  \"Speech-to-Text (https://cloud.google.com/speech-to-text)\",\n  \"Text-to-Speech (https://cloud.google.com/text-to-speech)\",\n  \"Translation AI (https://cloud.google.com/translate)\",\n  \"Gemini Enterprise (https://cloud.google.com/gemini-enterprise)\",\n  \"Vision AI (https://cloud.google.com/vision)\",\n  \"Contact Center as a Service (https://cloud.google.com/solutions/contact-center-ai-platform)\",\n  \"See all AI and machine learning products (https://cloud.google.com/products?pds=CAE#ai-and-machine-learning)\",\n  \"Looker (https://cloud.google.com/looker)\",\n  \"Looker Studio (https://cloud.google.com/looker-studio)\",\n  \"Compute (https://cloud.google.com/products/compute)\",\n  \"Compute Engine (https://cloud.google.com/products/compute)\",\n  \"App Engine (https://cloud.google.com/appengine)\",\n  \"Cloud GPUs (https://cloud.google.com/gpu)\",\n  \"Migrate to Virtual Machines (https://cloud.google.com/products/cloud-migration/virtual-machines)\",\n  \"Spot VMs (https://cloud.google.com/spot-vms)\",\n  \"Batch (https://cloud.google.com/batch)\",\n  \"Sole-Tenant Nodes (https://cloud.google.com/compute/docs/nodes/sole-tenant-nodes)\",\n  \"Bare Metal (https://cloud.google.com/bare-metal)\",\n  \"Recommender (https://cloud.google.com/recommender/docs/whatis-activeassist)\",\n  \"VMware Engine (https://cloud.google.com/vmware-engine)\",\n  \"Cloud Run (https://cloud.google.com/run)\",\n  \"See all compute products (https://cloud.google.com/products?pds=CAUSAQw#compute)\",\n  \"Containers (https://cloud.google.com/containers)\",\n  \"Google Kubernetes Engine (https://cloud.google.com/kubernetes-engine)\",\n  \"Cloud Run (https://cloud.google.com/run)\",\n  \"Cloud Build (https://cloud.google.com/build)\",\n  \"Artifact Registry (https://cloud.google.com/artifact-registry/docs)\",\n  \"Cloud Code (https://cloud.google.com/code)\",\n  \"Cloud Deploy (https://cloud.google.com/deploy)\",\n  \"Migrate to Containers (https://cloud.google.com/products/cloud-migration/containers)\",\n  \"Deep Learning Containers (https://cloud.google.com/deep-learning-containers/docs)\",\n  \"Knative (https://knative.dev/docs/)\",\n  \"Data Analytics (https://cloud.google.com/solutions/data-analytics-and-ai)\",\n  \"BigQuery (https://cloud.google.com/bigquery)\",\n  \"Looker (https://cloud.google.com/looker)\",\n  \"Dataflow (https://cloud.google.com/products/dataflow)\",\n  \"Pub/Sub (https://cloud.google.com/pubsub)\",\n  \"Dataproc (https://cloud.google.com/dataproc)\",\n  \"Google Cloud Serverless for Apache Spark (https://cloud.google.com/products/serverless-spark)\",\n  \"Cloud Composer (https://cloud.google.com/composer)\",\n  \"BigLake (https://cloud.google.com/biglake)\",\n  \"Dataplex Universal Catalog (https://cloud.google.com/dataplex)\",\n  \"BigQuery Migration Services (https://cloud.google.com/solutions/data-migration)\",\n  \"Managed Service for Apache Kafka (https://cloud.google.com/products/managed-service-for-apache-kafka)\",\n  \"See all data analytics products (https://cloud.google.com/products?pds=CAQ#data-analytics)\",\n  \"Databases (https://cloud.google.com/products/databases)\",\n  \"AlloyDB for PostgreSQL (https://cloud.google.com/alloydb)\",\n  \"Cloud SQL (https://cloud.google.com/sql)\",\n  \"Firestore (https://cloud.google.com/firestore)\",\n  \"Spanner (https://cloud.google.com/spanner)\",\n  \"Bigtable (https://cloud.google.com/bigtable)\",\n  \"Datastream (https://cloud.google.com/datastream)\",\n  \"Database Migration Service (https://cloud.google.com/database-migration)\",\n  \"Bare Metal Solution (https://cloud.google.com/bare-metal)\",\n  \"Memorystore (https://cloud.google.com/memorystore)\",\n  \"Developer Tools (https://cloud.google.com/products/tools)\",\n  \"Artifact Registry (https://cloud.google.com/artifact-registry/docs)\",\n  \"Cloud Code (https://cloud.google.com/code)\",\n  \"Cloud Build (https://cloud.google.com/build)\",\n  \"Cloud Deploy (https://cloud.google.com/deploy)\",\n  \"Cloud Deployment Manager (https://cloud.google.com/deployment-manager/docs)\",\n  \"Cloud SDK (https://cloud.google.com/sdk)\",\n  \"Cloud Scheduler (https://cloud.google.com/scheduler/docs)\",\n  \"Cloud Source Repositories (https://cloud.google.com/source-repositories/docs)\",\n  \"Infrastructure Manager (https://cloud.google.com/infrastructure-manager/docs)\",\n  \"Cloud Workstations (https://cloud.google.com/workstations)\",\n  \"Gemini Code Assist (https://cloud.google.com/products/gemini/code-assist)\",\n  \"See all developer tools (https://cloud.google.com/products?pds=CAI#developer-tools)\",\n  \"Distributed Cloud (https://cloud.google.com/distributed-cloud)\",\n  \"Google Distributed Cloud Connected (https://cloud.google.com/distributed-cloud-connected)\",\n  \"Google Distributed Cloud Air-gapped (https://cloud.google.com/distributed-cloud-air-gapped)\",\n  \"Google Kubernetes Engine (https://cloud.google.com/kubernetes-engine)\",\n  \"Apigee API Management (https://cloud.google.com/apigee)\",\n  \"Migrate to Containers (https://cloud.google.com/products/cloud-migration/containers)\",\n  \"Cloud Build (https://cloud.google.com/build)\",\n  \"Observability (https://cloud.google.com/products/observability)\",\n  \"Cloud Service Mesh (https://cloud.google.com/products/service-mesh)\",\n  \"Google Distributed Cloud (https://cloud.google.com/distributed-cloud)\",\n  \"Anti Money Laundering AI (https://cloud.google.com/anti-money-laundering-ai)\",\n  \"Cloud Healthcare API (https://cloud.google.com/healthcare-api)\",\n  \"Device Connect for Fitbit (https://cloud.google.com/device-connect)\",\n  \"Telecom Network Automation (https://cloud.google.com/telecom-network-automation)\",\n  \"Telecom Data Fabric (https://cloud.google.com/telecom-data-fabric)\",\n  \"Telecom Subscriber Insights (https://cloud.google.com/telecom-subscriber-insights)\",\n  \"Spectrum Access System (SAS) (https://cloud.google.com/products/spectrum-access-system)\",\n  \"Integration Services (https://cloud.google.com/integration-services)\",\n  \"Application Integration (https://cloud.google.com/application-integration)\",\n  \"Workflows (https://cloud.google.com/workflows)\",\n  \"Apigee API Management (https://cloud.google.com/apigee)\",\n  \"Cloud Tasks (https://cloud.google.com/tasks/docs)\",\n  \"Cloud Scheduler (https://cloud.google.com/scheduler/docs)\",\n  \"Dataproc (https://cloud.google.com/dataproc)\",\n  \"Cloud Data Fusion (https://cloud.google.com/data-fusion)\",\n  \"Cloud Composer (https://cloud.google.com/composer)\",\n  \"Pub/Sub (https://cloud.google.com/pubsub)\",\n  \"Eventarc (https://cloud.google.com/eventarc/docs)\",\n  \"Management Tools (https://cloud.google.com/products/management)\",\n  \"Cloud Shell (https://cloud.google.com/shell/docs)\",\n  \"Cloud console (https://cloud.google.com/cloud-console)\",\n  \"Cloud Endpoints (https://cloud.google.com/endpoints/docs)\",\n  \"Cloud IAM (https://cloud.google.com/security/products/iam)\",\n  \"Cloud APIs (https://cloud.google.com/apis)\",\n  \"Service Catalog (https://cloud.google.com/service-catalog/docs)\",\n  \"Cost Management (https://cloud.google.com/cost-management)\",\n  \"Observability (https://cloud.google.com/products/observability)\",\n  \"Carbon Footprint (https://cloud.google.com/carbon-footprint)\",\n  \"Config Connector (https://cloud.google.com/config-connector/docs/overview)\",\n  \"Active Assist (https://cloud.google.com/solutions/active-assist)\",\n  \"See all management tools (https://cloud.google.com/products?pds=CAY#managment-tools)\",\n  \"Maps and Geospatial (https://cloud.google.com/solutions/geospatial)\",\n  \"Earth Engine (https://cloud.google.com/earth-engine)\",\n  \"Google Maps Platform (https://mapsplatform.google.com/)\",\n  \"Cloud CDN (https://cloud.google.com/cdn)\",\n  \"Live Stream API (https://cloud.google.com/livestream/docs)\",\n  \"OpenCue (https://www.opencue.io/docs/getting-started/)\",\n  \"Transcoder API (https://cloud.google.com/transcoder/docs)\",\n  \"Video Stitcher API (https://cloud.google.com/video-stitcher/docs)\",\n  \"Migration (https://cloud.google.com/products/cloud-migration)\",\n  \"Migration Center (https://cloud.google.com/migration-center/docs)\",\n  \"Application Migration (https://cloud.google.com/solutions/application-migration)\",\n  \"Migrate to Virtual Machines (https://cloud.google.com/products/cloud-migration/virtual-machines)\",\n  \"Cloud Foundation Toolkit (https://cloud.google.com/docs/terraform/blueprints/terraform-blueprints)\",\n  \"Database Migration Service (https://cloud.google.com/database-migration)\",\n  \"Migrate to Containers (https://cloud.google.com/products/cloud-migration/containers)\",\n  \"BigQuery Migration Services (https://cloud.google.com/solutions/data-migration)\",\n  \"Rapid Migration and Modernization Program (https://cloud.google.com/solutions/cloud-migration-program)\",\n  \"Transfer Appliance (https://cloud.google.com/transfer-appliance/docs/4.0/overview)\",\n  \"Storage Transfer Service (https://cloud.google.com/storage-transfer-service)\",\n  \"VMware Engine (https://cloud.google.com/vmware-engine)\",\n  \"Immersive Stream for XR (https://cloud.google.com/immersive-stream/xr)\",\n  \"Networking (https://cloud.google.com/products/networking)\",\n  \"Cloud Armor (https://cloud.google.com/security/products/armor)\",\n  \"Cloud CDN and Media CDN (https://cloud.google.com/cdn)\",\n  \"Cloud DNS (https://cloud.google.com/dns)\",\n  \"Cloud Load Balancing (https://cloud.google.com/load-balancing)\",\n  \"Cloud NAT (https://cloud.google.com/nat)\",\n  \"Cloud Connectivity (https://cloud.google.com/hybrid-connectivity)\",\n  \"Network Connectivity Center (https://cloud.google.com/network-connectivity-center)\",\n  \"Network Intelligence Center (https://cloud.google.com/network-intelligence-center)\",\n  \"Network Service Tiers (https://cloud.google.com/network-tiers)\",\n  \"Virtual Private Cloud (https://cloud.google.com/vpc)\",\n  \"Private Service Connect (https://cloud.google.com/private-service-connect)\",\n  \"See all networking products (https://cloud.google.com/products?pds=CAUSAQ0#networking)\",\n  \"Operations (https://cloud.google.com/products/operations)\",\n  \"Cloud Logging (https://cloud.google.com/logging)\",\n  \"Cloud Monitoring (https://cloud.google.com/monitoring)\",\n  \"Error Reporting (https://cloud.google.com/error-reporting/docs/grouping-errors)\",\n  \"Managed Service for Prometheus (https://cloud.google.com/managed-prometheus)\",\n  \"Cloud Trace (https://cloud.google.com/trace/docs)\",\n  \"Cloud Profiler (https://cloud.google.com/profiler/docs)\",\n  \"Cloud Quotas (https://cloud.google.com/docs/quotas)\",\n  \"AppSheet (https://about.appsheet.com/home/)\",\n  \"Gemini Enterprise (https://cloud.google.com/gemini-enterprise)\",\n  \"Google Workspace (https://workspace.google.com/solutions/enterprise/?enterprise-benefits_activeEl=connect/)\",\n  \"Google Workspace Essentials (https://workspace.google.com/essentials/)\",\n  \"Cloud Identity (https://cloud.google.com/identity)\",\n  \"Chrome Enterprise (https://chromeenterprise.google/)\",\n  \"Security and Identity (https://cloud.google.com/products/security-and-identity)\",\n  \"Cloud IAM (https://cloud.google.com/security/products/iam)\",\n  \"Sensitive Data Protection (https://cloud.google.com/security/products/sensitive-data-protection)\",\n  \"Mandiant Managed Defense (https://cloud.google.com/security/products/managed-defense)\",\n  \"Google Threat Intelligence (https://cloud.google.com/security/products/threat-intelligence)\",\n  \"Security Command Center (https://cloud.google.com/security/products/security-command-center)\",\n  \"Cloud Key Management (https://cloud.google.com/security/products/security-key-management)\",\n  \"Mandiant Incident Response (https://cloud.google.com/security/consulting/mandiant-incident-response-services)\",\n  \"Chrome Enterprise Premium (https://docs.cloud.google.com/chrome-enterprise-premium/)\",\n  \"Assured Workloads (https://cloud.google.com/security/products/assured-workloads)\",\n  \"Google Security Operations (https://cloud.google.com/security/products/security-operations)\",\n  \"Mandiant Consulting (https://cloud.google.com/security/consulting/mandiant-services)\",\n  \"See all security and identity products (https://cloud.google.com/products?pds=CAg#security-and-identity)\",\n  \"Serverless (https://cloud.google.com/serverless)\",\n  \"Cloud Run (https://cloud.google.com/run)\",\n  \"Cloud Functions (https://cloud.google.com/functions)\",\n  \"App Engine (https://cloud.google.com/appengine)\",\n  \"Workflows (https://cloud.google.com/workflows)\",\n  \"API Gateway (https://cloud.google.com/api-gateway/docs)\",\n  \"Storage (https://cloud.google.com/products/storage)\",\n  \"Cloud Storage (https://cloud.google.com/storage)\",\n  \"Block Storage (https://cloud.google.com/products/block-storage)\",\n  \"Filestore (https://cloud.google.com/filestore)\",\n  \"Persistent Disk (https://cloud.google.com/persistent-disk)\",\n  \"Cloud Storage for Firebase (https://firebase.google.com/products/storage)\",\n  \"Local SSD (https://cloud.google.com/products/local-ssd)\",\n  \"Storage Transfer Service (https://cloud.google.com/storage-transfer-service)\",\n  \"Google Cloud Managed Lustre (https://cloud.google.com/products/managed-lustre)\",\n  \"Google Cloud NetApp Volumes (https://cloud.google.com/netapp-volumes)\",\n  \"Backup and DR Service (https://cloud.google.com/backup-disaster-recovery)\",\n  \"Web3 (https://cloud.google.com/web3)\",\n  \"Blockchain Node Engine (https://cloud.google.com/blockchain-node-engine)\",\n  \"Blockchain RPC (https://cloud.google.com/products/blockchain-rpc)\",\n  \"Request a quote (https://cloud.google.com/contact/form?direct=true)\",\n  \"Google Cloud pricing (https://cloud.google.com/pricing)\",\n  \"Pricing calculator (https://cloud.google.com/products/calculator)\",\n  \"Google Cloud free tier (https://cloud.google.com/free)\",\n  \"Cost optimization framework (https://cloud.google.com/architecture/framework/cost-optimization)\",\n  \"Cost management tools (https://cloud.google.com/cost-management)\",\n  \"Compute Engine (https://cloud.google.com/compute/all-pricing)\",\n  \"Cloud SQL (https://cloud.google.com/sql/pricing)\",\n  \"Google Kubernetes Engine (https://cloud.google.com/kubernetes-engine/pricing)\",\n  \"Cloud Storage (https://cloud.google.com/storage/pricing)\",\n  \"BigQuery (https://cloud.google.com/bigquery/pricing)\",\n  \"See full price list with 100+ products (https://cloud.google.com/pricing/list)\",\n  \"Google Cloud Free Program (https://cloud.google.com/free)\",\n  \"Solution Generator (https://cloud.google.com/solution-generator)\",\n  \"Quickstarts (https://cloud.google.com/docs/tutorials?doctype=quickstart)\",\n  \"Blog (https://cloud.google.com/blog)\",\n  \"Learning Hub (https://cloud.google.com/learn)\",\n  \"Google Cloud certification (https://cloud.google.com/certification)\",\n  \"Cloud computing basics (https://cloud.google.com/discover)\",\n  \"Cloud Architecture Center (https://cloud.google.com/architecture)\",\n  \"Innovators (https://cloud.google.com/innovators/innovatorsplus)\",\n  \"Developer Center (https://cloud.google.com/developers)\",\n  \"Events and webinars (https://cloud.google.com/events)\",\n  \"Google Cloud Community (https://discuss.google.dev/c/google-cloud/14)\",\n  \"Google Cloud Consulting (https://cloud.google.com/consulting)\",\n  \"Google Cloud Marketplace (https://cloud.google.com/marketplace)\",\n  \"Find a partner (https://cloud.google.com/partners)\",\n  \"Google Cloud partners (https://partners.cloud.google.com/)\",\n  \"Choosing Google Cloud (https://cloud.google.com/why-google-cloud)\",\n  \"Trust and security (https://cloud.google.com/trust-center)\",\n  \"Modern Infrastructure Cloud (https://cloud.google.com/solutions/modern-infrastructure)\",\n  \"Multicloud (https://cloud.google.com/multicloud)\",\n  \"Global infrastructure (https://cloud.google.com/infrastructure)\",\n  \"Locations (https://cloud.google.com/about/locations)\",\n  \"Customers and case studies (https://cloud.google.com/customers)\",\n  \"Analyst reports (https://cloud.google.com/analyst-reports)\",\n  \"Whitepapers (https://cloud.google.com/whitepapers)\",\n  \"Blog (https://cloud.google.com/blog)\",\n  \"Google Cloud pricing (https://cloud.google.com/pricing)\",\n  \"Google Workspace pricing (https://workspace.google.com/pricing.html)\",\n  \"See all products (https://cloud.google.com/products)\",\n  \"Infrastructure modernization (https://cloud.google.com/solutions/infrastructure-modernization/)\",\n  \"Databases (https://cloud.google.com/solutions/databases)\",\n  \"Application modernization (https://cloud.google.com/solutions/application-modernization)\",\n  \"Smart analytics (https://cloud.google.com/solutions/data-analytics-and-ai)\",\n  \"Artificial Intelligence (https://cloud.google.com/solutions/ai)\",\n  \"Security (https://cloud.google.com/solutions/security)\",\n  \"Productivity & work transformation (https://workspace.google.com/enterprise)\",\n  \"Industry solutions (https://cloud.google.com/solutions/#industry-solutions)\",\n  \"DevOps solutions (https://cloud.google.com/devops)\",\n  \"Small business solutions (https://cloud.google.com/solutions#section-14)\",\n  \"See all solutions (https://cloud.google.com/solutions)\",\n  \"Google Cloud Affiliate Program (https://cloud.google.com/affiliate-program)\",\n  \"Google Cloud documentation (https://docs.cloud.google.com/)\",\n  \"Google Cloud quickstarts (https://docs.cloud.google.com/docs/get-started/)\",\n  \"Google Cloud Marketplace (https://cloud.google.com/marketplace)\",\n  \"Learn about cloud computing (https://cloud.google.com/discover)\",\n  \"Support (https://cloud.google.com/support-hub)\",\n  \"Code samples (https://docs.cloud.google.com/docs/samples)\",\n  \"Cloud Architecture Center (https://docs.cloud.google.com/architecture/)\",\n  \"Training (https://cloud.google.com/learn/training)\",\n  \"Certifications (https://cloud.google.com/learn/certification)\",\n  \"Google for Developers (https://developers.google.com/)\",\n  \"Google Cloud for Startups (https://cloud.google.com/startup)\",\n  \"System status (https://status.cloud.google.com/)\",\n  \"Release Notes (https://docs.cloud.google.com/release-notes)\",\n  \"Contact sales (https://cloud.google.com/contact)\",\n  \"Find a Partner (https://cloud.google.com/find-a-partner)\",\n  \"Become a Partner (https://cloud.google.com/partners/become-a-partner)\",\n  \"Events (https://cloud.google.com/events)\",\n  \"Podcasts (https://cloud.google.com/podcasts)\",\n  \"Developer Center (https://cloud.google.com/developers)\",\n  \"Press Corner (https://www.googlecloudpresscorner.com/)\",\n  \"Google Cloud on YouTube (https://www.youtube.com/googlecloud)\",\n  \"Google Cloud Tech on YouTube (https://www.youtube.com/googlecloudplatform)\",\n  \"Follow on X (https://x.com/googlecloud)\",\n  \"Join User Research (https://userresearch.google.com/?reserved=1&utm_source=website&Q_Language=en&utm_medium=own_srch&utm_campaign=CloudWebFooter&utm_term=0&utm_content=0&productTag=clou&campaignDate=jul19&pType=devel&referral_code=jk212693)\",\n  \"We're hiring. Join Google Cloud! (https://careers.google.com/cloud)\",\n  \"Community forums (https://discuss.google.dev/c/google-cloud/14)\",\n  \"About Google (https://about.google/)\",\n  \"Privacy (https://policies.google.com/privacy)\",\n  \"Site terms (https://policies.google.com/terms)\",\n  \"Google Cloud terms (https://cloud.google.com/product-terms)\",\n  \"Cookies management controls (https://cloud.google.com/#)\",\n  \"Our third decade of climate action: join us (https://cloud.google.com/sustainability)\",\n  \" (https://cloud.google.com/newsletter)\"\n]\n### Ran Playwright code\n```js\nawait page.evaluate('() => Array.from(document.querySelectorAll(\\'a\\')).map(a => a.innerText + \\' (\\' + a.href + \\')\\')');\n```\n"
+                          }
+                        },
+                        "inline_data": null,
+                        "text": null,
+                        "thought": null,
+                        "thought_signature": null,
+                        "video_metadata": null
+                      }
+                    ],
+                    "role": "user"
+                  }
+                },
+                {
+                  "author": "case_study_researcher",
+                  "content": {
+                    "parts": [
+                      {
+                        "media_resolution": null,
+                        "code_execution_result": null,
+                        "executable_code": null,
+                        "file_data": null,
+                        "function_call": {
+                          "id": "it0qzdxt",
+                          "args": {
+                            "command": "playwright-cli goto https://cloud.google.com/customers/morrisons?hl=en"
+                          },
+                          "name": "run_browser_command",
+                          "partial_args": null,
+                          "will_continue": null
+                        },
+                        "function_response": null,
+                        "inline_data": null,
+                        "text": null,
+                        "thought": null,
+                        "thought_signature": "EtYFCtMFAb4-9vtUQuByX0EcwOfF2OcJ0pclBkKlZR1_Yq0i0tSyqBjboF4pWbSrfTz30lmM8vCVmnHmRkhqdaRnjN8jMPV7iNzNFwhhBufjOWzxbGjaaRZMMhE1Z8HvYo40LHFsv4F4ohzS9KvPoXmS8mlFUS5wt5JampRCf_khZlAsAP6l-1OVmyFSlMs3GKqxeWcGpeh86MzplfrGGQwvViENT-Ra1_WuTEyoZ-Jk0wEKxm2XvELOo4RcDNs-o93Lcsbol1GrKOuoYvQWkO61NDi7wgOj0Tffbjl3yrSHdRKO87NwdzNrVjsqVprUIGQiKi17RIwVDAp1IDzETLA8Gp9CQDPz-4x-jQ-M6GHB0ppSyVSj27hNIRmU7HV259n4hOp_icJDMk7e2u8ZXBpSWYvP9TFE7aeXG9Cmnid3sP5SywJanKoH-JapqfqfGz99s5o9NDKXMroGWDqbPPJql3m6SG05HGTBrJl0YgOFhNMDq24LjD7ncBZ-DSjrvzUngAfCeQFnhUJEFzirc8UR8u2xoA9DjHZewzl8uS5K-J6F2Jr-gHBSPGBynmzd-ZL9kwDreGBVmMiv1tclj4QmHbTcM4KxTeZ60jlcco2XeGx2xOdG1CvtfNIzYmj_Zj5NZGsDuA_kkfLSPeRAjPi3OzOOpAp7YseFMHLrbdxe5K85yfq3F29ZTz3nLFwL_Ls64-x9FnBOX3XQp3gDRT21uDtmP-V8LWdMLSpTja_ZyRNuxeWOL8_lTAf0MgdN2GRFfZUfKkVdrDz319-0WbumRHcxYpVZm0_BSffxD3cndWcIfN-_sXslO9bev6uJQAVdA13mXVV9r2p0zgZ7Lt472-mNZ9YTIfGXi_DRnPACZmJXQMJPzJmIocK7wjPbTPSaAa6OAwY4dtkG1l1h_vM8ECP6df0_EVq877ha_ym7OzCQskHiaJ_Vw8rKd_KcHSZ0MiFS4I8C",
+                        "video_metadata": null
+                      }
+                    ],
+                    "role": "model"
+                  }
+                },
+                {
+                  "author": "case_study_researcher",
+                  "content": {
+                    "parts": [
+                      {
+                        "media_resolution": null,
+                        "code_execution_result": null,
+                        "executable_code": null,
+                        "file_data": null,
+                        "function_call": null,
+                        "function_response": {
+                          "will_continue": null,
+                          "scheduling": null,
+                          "parts": null,
+                          "id": "it0qzdxt",
+                          "name": "run_browser_command",
+                          "response": {
+                            "status": "success",
+                            "output": "### Ran Playwright code\n```js\nawait page.goto('https://cloud.google.com/customers/morrisons?hl=en');\n```\n### Page\n- Page URL: https://cloud.google.com/customers/morrisons?hl=en\n- Page Title: Morrisons case study | Google Cloud\n### Snapshot\n- [Snapshot](.playwright-cli/page-2026-03-15T21-20-05-572Z.yml)\n"
+                          }
+                        },
+                        "inline_data": null,
+                        "text": null,
+                        "thought": null,
+                        "thought_signature": null,
+                        "video_metadata": null
+                      }
+                    ],
+                    "role": "user"
+                  }
+                },
+                {
+                  "author": "case_study_researcher",
+                  "content": {
+                    "parts": [
+                      {
+                        "media_resolution": null,
+                        "code_execution_result": null,
+                        "executable_code": null,
+                        "file_data": null,
+                        "function_call": {
+                          "id": "rcmjxwnp",
+                          "args": {
+                            "command": "playwright-cli eval \"document.body.innerText\""
+                          },
+                          "name": "run_browser_command",
+                          "partial_args": null,
+                          "will_continue": null
+                        },
+                        "function_response": null,
+                        "inline_data": null,
+                        "text": null,
+                        "thought": null,
+                        "thought_signature": "ElkKVwG-Pvb7aEhtGIP3Ua6lXPgmVSAUklMjqHzPJ65lxEt_EMsMQVEoPcz1Wg1sqokz2_nc7xWrKiMRGwpfnI40mPvkhg3BIjVvupEG0BEkV_Ko8oP9pxaSEw==",
+                        "video_metadata": null
+                      }
+                    ],
+                    "role": "model"
+                  }
+                },
+                {
+                  "author": "case_study_researcher",
+                  "content": {
+                    "parts": [
+                      {
+                        "media_resolution": null,
+                        "code_execution_result": null,
+                        "executable_code": null,
+                        "file_data": null,
+                        "function_call": null,
+                        "function_response": {
+                          "will_continue": null,
+                          "scheduling": null,
+                          "parts": null,
+                          "id": "rcmjxwnp",
+                          "name": "run_browser_command",
+                          "response": {
+                            "status": "success",
+                            "output": "### Result\n\"Morrisons case study\\nMeeting customers’ expectations with real-time data insights\\nGiving customers a guided tour with the in-app Product Finder\\nA firm foundation for future innovation\\nMorrisons: Meeting customer demand with real-time data reporting\\nGet started for free\\nGOOGLE CLOUD RESULTS\\n\\nReduces lag on data reporting by 98.96%, from one day to 15 minutes with BigQuery and Looker\\n\\nEmpowers teams to optimize product supply with real-time data\\n\\nForecasts product sales and customer purchase preferences with ML models in Vertex AI\\n\\nWith its on-premise data stack, Morrisons only had daily access to its business data. Migrating to BigQuery and Looker gave Morrisons the real-time data it needed to optimize operations and deliver the best service to customers.\\n\\nMorrisons has come a long way since founder William Morrison began selling butter and eggs at his Bradford market stall in 1899. Now one of the UK’s largest supermarkets, Morrisons serves nine million customers a week across its 500 supermarkets and 1,600 Morrisons Daily stores, with more than 97% of UK postcodes covered by its online delivery service. Some things, though, haven’t changed. Morrisons’ rich British heritage is proudly on display at the fresh-produce counters throughout its stores, where the supermarket’s unique status as a food producer, with its own farms and abattoirs, enables it to stock the freshest, highest-quality produce. \\n\\nAlongside this rich heritage, Morrisons boasts an equally strong culture of innovation. Across the UK, Morrisons’ customers expect to find the freshest products on the shelves, whenever they want them. Delivering on these expectations requires a vast and highly complex logistics operation to ensure supply lines run without friction, warehouses are stocked, and deliveries arrive precisely on time. That operation in turn needs data to enable accurate reporting and sophisticated machine-learning (ML) models to forecast demand. The richer and more up to date the data, the more accurate the predictions, and the better Morrisons can give customers the products they demand. \\n\\nPreviously, the data Morrisons used for reporting and ML forecasting was stored in an on-premise database. For security reasons, Morrisons couldn’t connect this database to its cloud systems, so it needed to export its data before it could be used. As a result, the company typically produced its reports on a daily basis, meaning its models were not built on real-time information.\\n\\n“If you can't access the data in real time, it becomes very difficult to build algorithms that can operate in real time, so you're always working a day behind the real world,” explains Peter Laflin, Chief Data Officer at Morrisons. “By migrating our data to Google Cloud, we’ve gone from being able to report daily to having real-time reports to ensure our operation is running as effectively as possible for our customers.”\\n\\nBy migrating our data to Google Cloud, we’ve gone from being able to report daily to having real-time reports to ensure our operation is running as effectively as possible for our customers.\\n\\nPeter Laflin\\n\\nChief Data Officer, Morrisons\\n\\nMeeting customers’ expectations with real-time data insights\\n\\nMorrisons chose to migrate its data to BigQuery because of its first-party integration with Vertex AI, which Morrisons’ ML engineers use to build their models. With the limitless scalability of BigQuery, the team no longer needed to worry about reaching the limit of its processing power, as it did with its on-premise database. At the same time, Morrisons also wanted to integrate its reporting layer with its data layer to save time building new pipelines to third-party systems. Impressed with its ease-of-use, Morrisons chose to switch to Looker from its previous third-party business intelligence (BI) tool.\\n\\n“We talked to a number of providers, but ease of data engineering and integration were our key priorities, which is what we got by integrating Looker with BigQuery,” Laflin explains. “With Looker’s semantic layer, our data scientists have much less work to do in the modeling steps, making their jobs much easier, which means we can ship new dashboards very quickly.”\\n\\nThe Morrisons team worked closely with Google Cloud partner TCS to optimize data flows from BigQuery to Looker to enable accurate real-time reporting and predictions. These reports and insights are now having a significant impact in departments across the business. For example, every sale made by any Morrisons store now feeds directly into BigQuery, with data pipelines automatically updating relevant dashboards in Looker, with no more than a fifteen-minute delay. This is a 98.96% improvement on its previous setup, when reports were produced daily. Now, a store manager can look at a Looker dashboard and understand exactly what products are available in store at that moment, and what they need to order to keep stock levels constant. What’s more, with NotebookLM, built with Gemini 2.0, employees can convert those reports into audio files to listen to on their mobile devices while they are on the move, increasing their efficiency as they work.\\n\\nWith Looker, anybody in the business can access the data they need without needing to understand where the data is, how it works, or how to query it. The business insights we can now give our employees are endless.\\n\\nPeter Laflin\\n\\nChief Data Officer, Morrisons\\n\\n“With Looker, anybody in the business can access the data they need without needing to understand where the data is, how it works, or how to query it,” adds Laflin. “The business insights we can now give our employees are endless.”\\n\\nGiving customers a guided tour with the in-app Product Finder\\n\\nHaving all its data in BigQuery has allowed Morrisons to create new solutions for customers that wouldn’t have been possible before. The supermarket’s new Product Finder in the Morrisons app is a prime example. During the busy Christmas and Easter periods each year, Laflin’s team descends onto the shop floors of Morrisons supermarkets to help serve customers. They spend much of their time helping customers to find products in the busy stores, a task often complicated by the fact that shelves have been temporarily rearranged for seasonal promotions.\\n\\nThe Google Cloud team has been fantastic throughout. They’re very knowledgeable and helpful, and they care as much about our customers as we do.\\n\\nPeter Laflin\\n\\nChief Data Officer, Morrisons\\n\\nLast year, with all its data now in BigQuery, Laflin and his team built a simple tool to use on their phones to help customers find the products they were looking for. This tool was so effective, they then decided to build a full version and make it available to customers all year round. Now, a customer can use the Product Finder on their phones as they walk around the supermarket. By typing in the name of a product, they can immediately find which aisle a product is on and in which part of that aisle. The Product Finder is proving very popular among shoppers, receiving 50,000 hits a day over the most recent Easter period. It is not just the customers that benefit — helping people find the products they’re looking for helps Morrisons in turn to sell more products.\\n\\nThe Product Finder uses Cloud Run functions to process the customer’s search term. Gemini 1.5 Pro helps to make sense of that search term and correlate it with one of the supermarket’s product codes. That product code is then sent to BigQuery, where the product data lives, including availability and location for each supermarket. Finally, that information is sent back to the customer in a matter of seconds, giving them real-time information about the product’s availability and location, and allowing them to quickly find a product, even if the shelves have been rearranged that day. For Laflin, it’s not just the Google Cloud technology that helps when developing such projects, but the relationship with the Google Cloud team, too. \\n\\nA firm foundation for future innovation\\n\\nWith real-time data, Morrisons can now use Vertex AI to build accurate ML forecasting models to help departments across the business make strategic decisions. The fact that Vertex AI is a managed service allows Morrisons’ ML engineers to forget about maintaining the infrastructure and concentrate on their business objectives. “We can be far more expressive in exploring the data and modeling it for whatever purpose we need, whether that’s trying to predict how many items we might sell next week, whether a customer is likely to buy a product from us, or how we optimize our network to reduce the number of miles we drive every year. There's a whole range of business problems that we can now solve easily using Vertex AI,” Laflin explains.\\n\\nAt the same time, Morrisons is continuing to use Gemini and BigQuery to help customers in other ways, too. With all customer feedback automatically stored in BigQuery, Morrisons has a real-time view of customer sentiment and trends. With Gemini it summarizes those trends, giving departments across the business the ability to understand what customers’ particular issues are at that moment, enabling the supermarket to take immediate steps to resolve them.\\n\\nHaving given staff access to dashboards of data, Laflin’s team is now looking at how Morrisons can go even further, expanding its use of Gemini to give employees their own personal assistants to help explore business data using generative AI. \\n\\nFor Laflin, projects like this wouldn’t have been possible prior to modernizing the company’s data stack. “The difference between then and now is like night and day,” says Laflin. “When we started, our data scientists had to wait to access the data each day. Now, not only can the data scientist access it in real time, our business colleagues can too. That’s all been made possible by Google Cloud.”\\n\\nThe difference between then and now is like night and day. When we started, our data scientists had to wait to access the data each day. Now, not only can the data scientist access it in real time, our business colleagues can too. That’s all been made possible by Google Cloud.\\n\\nPeter Laflin\\n\\nChief Data Officer, Morrisons\\n\\nMorrisons is one of the UK’s largest supermarkets and serves nine million customers a week across its 500 supermarkets and 1,600 Morrisons Daily stores, with more than 97% of UK postcodes covered by its online delivery service. \\n\\nIndustry: Retail\\n\\nLocation: UK\\n\\nProducts: BigQuery, Looker, Cloud Run functions, Gemini, Vertex AI\\n\\n\\n\\n\\nAbout Google Cloud partner — TCS\\n\\nTata Consultancy Services (TCS) is a digital transformation and technology partner of choice for industry-leading organizations worldwide. Since its inception in 1968, TCS has upheld the highest standards of innovation, engineering excellence, and customer service.\\n\\nGOOGLE CLOUD PARTNERS\\nOverview\\nSolutions\\nProducts\\nPricing\\nResources\\n\\nsearch\\nsend\\nDocs\\nSupport\\nSign in\\nWhy Google\\nChoosing Google Cloud\\nTrust and security\\nModern Infrastructure Cloud\\nMulticloud\\nGlobal infrastructure\\nLocations\\nCustomers and case studies\\nAnalyst reports\\nWhitepapers\\nBlog\\nProducts and pricing\\nGoogle Cloud pricing\\nGoogle Workspace pricing\\nSee all products\\nSolutions\\nInfrastructure modernization\\nDatabases\\nApplication modernization\\nSmart analytics\\nArtificial Intelligence\\nSecurity\\nProductivity & work transformation\\nIndustry solutions\\nDevOps solutions\\nSmall business solutions\\nSee all solutions\\nResources\\nGoogle Cloud Affiliate Program\\nGoogle Cloud documentation\\nGoogle Cloud quickstarts\\nGoogle Cloud Marketplace\\nLearn about cloud computing\\nSupport\\nCode samples\\nCloud Architecture Center\\nTraining\\nCertifications\\nGoogle for Developers\\nGoogle Cloud for Startups\\nSystem status\\nRelease Notes\\nEngage\\nContact sales\\nFind a Partner\\nBecome a Partner\\nEvents\\nPodcasts\\nDeveloper Center\\nPress Corner\\nGoogle Cloud on YouTube\\nGoogle Cloud Tech on YouTube\\nFollow on X\\nJoin User Research\\nWe're hiring. Join Google Cloud!\\nCommunity forums\\nAbout Google\\nPrivacy\\nSite terms\\nGoogle Cloud terms\\nOur third decade of climate action: join us\\nSign up for the Google Cloud newsletter\\nSubscribe\\nlanguage\\n‪English‬\"\n### Ran Playwright code\n```js\nawait page.evaluate('() => (document.body.innerText)');\n```\n"
+                          }
+                        },
+                        "inline_data": null,
+                        "text": null,
+                        "thought": null,
+                        "thought_signature": null,
+                        "video_metadata": null
+                      }
+                    ],
+                    "role": "user"
+                  }
+                },
+                {
+                  "author": "case_study_researcher",
+                  "content": {
+                    "parts": [
+                      {
+                        "media_resolution": null,
+                        "code_execution_result": null,
+                        "executable_code": null,
+                        "file_data": null,
+                        "function_call": {
+                          "id": "f3rwzqu7",
+                          "args": {
+                            "markdown_content": "# Morrisons Case Study: Meeting Customers’ Expectations with Real-Time Data Insights\n\nMorrisons, one of the UK’s largest supermarkets, serves nine million customers weekly across 500 supermarkets and 1,600 Morrisons Daily stores. To maintain its commitment to fresh produce and innovation, Morrisons modernized its data stack by migrating from an on-premise system to Google Cloud.\n\n## The Challenge\nPreviously, Morrisons' data for reporting and machine learning (ML) forecasting was stored in an on-premise database. Due to security restrictions, this data had to be exported before use, leading to reports being produced on a daily basis. This meant that teams were always working with data that was at least 24 hours behind the real world, making it difficult to optimize operations or build real-time algorithms.\n\n## The Solution\nMorrisons migrated its data to **BigQuery** and integrated it with **Looker** for business intelligence. They also utilized **Vertex AI** for ML modeling and **Gemini** for generative AI capabilities.\n\n### Key Components:\n- **BigQuery:** Serves as the central, scalable data warehouse for all business data, including real-time sales feeds from every store.\n- **Looker:** Provides a semantic reporting layer that allows employees across the business to access insights without needing to write complex queries.\n- **Vertex AI:** Used by ML engineers to build forecasting models for product sales, customer preferences, and network optimization.\n- **Gemini & NotebookLM:** Used to summarize customer sentiment trends and convert reports into audio files for on-the-go employees.\n- **Cloud Run Functions:** Power the \"Product Finder\" tool in the Morrisons app, processing searches in real-time.\n\n## Key Results\n- **98.96% Reduction in Data Lag:** Reporting lag was reduced from one day to just 15 minutes.\n- **Real-Time Inventory Management:** Store managers can now see exact product availability in real-time, enabling more accurate ordering and stocking.\n- **Improved Customer Experience:** The \"Product Finder\" tool receives 50,000 hits daily, helping customers locate items in-store, even when layouts change for seasonal promotions.\n- **Enhanced Strategic Decision-Making:** Accurate ML models now help optimize the logistics network, reducing the number of miles driven annually.\n\n## Conclusion\nBy modernizing its data infrastructure with Google Cloud, Morrisons has transformed from a daily reporting cycle to a real-time, data-driven operation. This shift has empowered both data scientists and business colleagues to solve complex problems and deliver better service to millions of customers.\n\n> \"The difference between then and now is like night and day. When we started, our data scientists had to wait to access the data each day. Now, not only can the data scientist access it in real time, our business colleagues can too. That’s all been made possible by Google Cloud.\"\n> \n> — **Peter Laflin**, Chief Data Officer, Morrisons\n",
+                            "topic": "retail BigQuery",
+                            "company": "Morrisons"
+                          },
+                          "name": "save_case_study",
+                          "partial_args": null,
+                          "will_continue": null
+                        },
+                        "function_response": null,
+                        "inline_data": null,
+                        "text": null,
+                        "thought": null,
+                        "thought_signature": "Eu4CCusCAb4-9vs5OYwUX0oRgGjZ8QoZnraE5q0HGkD9Y2IVvitvPBmwzfG_5Oaa6j3AyVx0egzz6D4qxWRHCvgEtpaznGzc-GsyWtcmK23Bqql_-KbGpb7vXGr5mlcC9FrZ-BvcK3cu7q4qGsgE1bPSEG-7gQfUGt8garTaM1WPzqurFL1fMZK7PGG65b7epgdzZu3ZR4pqUwML5fqqObC1_hxvWDSwiw42njzMx0lO3oKATxCoTX5EXoH0Q1hD4gCzeSO6P_Xv_Ocw6Q3qC4MtYlPaYjNu-ZY6QyNqFi6TYKPWX3pOkZN2sist3RQdsXvLh5tupiKeRbjqUpcZaTcgrqZ2ruN3_WmqIs_bZ0tiVr9FuH0rCy6TdMapmioVv8I048wWhsaHVHd4q9OVCHGR1lx5m4ccVWRffVA8ClC7adBMS8yQXW9byJGikcWuvKCUBUePQyLsKj5IWDfdIOPJ9GsbhrV0D9UM1xI2KFyE",
+                        "video_metadata": null
+                      }
+                    ],
+                    "role": "model"
+                  }
+                },
+                {
+                  "author": "case_study_researcher",
+                  "content": {
+                    "parts": [
+                      {
+                        "media_resolution": null,
+                        "code_execution_result": null,
+                        "executable_code": null,
+                        "file_data": null,
+                        "function_call": null,
+                        "function_response": {
+                          "will_continue": null,
+                          "scheduling": null,
+                          "parts": null,
+                          "id": "f3rwzqu7",
+                          "name": "save_case_study",
+                          "response": {
+                            "status": "success",
+                            "filepath": "/Users/luissala/development/agent-clinic/e101/improved_agent/knowledge_base/retail_bigquery_morrisons.md"
+                          }
+                        },
+                        "inline_data": null,
+                        "text": null,
+                        "thought": null,
+                        "thought_signature": null,
+                        "video_metadata": null
+                      }
+                    ],
+                    "role": "user"
+                  }
+                },
+                {
+                  "author": "case_study_researcher",
+                  "content": {
+                    "parts": [
+                      {
+                        "media_resolution": null,
+                        "code_execution_result": null,
+                        "executable_code": null,
+                        "file_data": null,
+                        "function_call": {
+                          "id": "zulcd0rv",
+                          "args": {
+                            "command": "playwright-cli close"
+                          },
+                          "name": "run_browser_command",
+                          "partial_args": null,
+                          "will_continue": null
+                        },
+                        "function_response": null,
+                        "inline_data": null,
+                        "text": null,
+                        "thought": null,
+                        "thought_signature": "EnsKeQG-Pvb7_ij8Qs6316hqC8_Pp76uC_pO98lEHtAsq1iY1AAaJgK4Ccw7eWxZhJGmegtblhBB7VKhzuDdkz-Tpk29Qvr3g_o8nMon747I92bgUsVZJRdFdPia65Q6y08FZQoQrvHjmmmgeg1lUvs5bTdoCMrfQc6x2A8=",
+                        "video_metadata": null
+                      }
+                    ],
+                    "role": "model"
+                  }
+                },
+                {
+                  "author": "case_study_researcher",
+                  "content": {
+                    "parts": [
+                      {
+                        "media_resolution": null,
+                        "code_execution_result": null,
+                        "executable_code": null,
+                        "file_data": null,
+                        "function_call": null,
+                        "function_response": {
+                          "will_continue": null,
+                          "scheduling": null,
+                          "parts": null,
+                          "id": "zulcd0rv",
+                          "name": "run_browser_command",
+                          "response": {
+                            "status": "success",
+                            "output": "Browser 'default' closed\n\n"
+                          }
+                        },
+                        "inline_data": null,
+                        "text": null,
+                        "thought": null,
+                        "thought_signature": null,
+                        "video_metadata": null
+                      }
+                    ],
+                    "role": "user"
+                  }
+                }
+              ]
+            },
+            "creation_timestamp": 1773609551.68359,
+            "rubrics": null,
+            "app_details": {
+              "agent_details": {
+                "case_study_researcher": {
+                  "name": "case_study_researcher",
+                  "instructions": "\nYou are the Case Study Researcher Agent.\nYour job is to search for and extract Google Cloud customer case studies from 'https://cloud.google.com/customers' on behalf of the user.\n\nYou have access to a custom tool, `run_browser_command`, to control the Playwright CLI.\nYou MUST follow these strict guidelines when browsing:\n1. Initialize the browser using `run_browser_command(\"playwright-cli open\")`.\n2. Navigate to the Google Cloud customers page using `run_browser_command(\"playwright-cli goto https://cloud.google.com/customers\")`.\n3. Interact with the search functionality. You may need to click, type, and press enter. For example:\n   - `playwright-cli fill 'input[name=\"q\"]' 'Topic'` (Replace the selector with the actual search input).\n   - `playwright-cli press 'input[name=\"q\"]' 'Enter'`.\n4. Wait for results. You can use sleep commands or check the page content.\n5. Click on the most relevant search result to view the full case study.\n6. Extract the text of the case study. The preferred approach to get clean text is:\n   `playwright-cli eval \"document.body.innerText\"`\n7. Format the extracted text as a clean Markdown document. Remove navigation bars, footers, and HTML clutter.\n8. Use the `save_case_study` tool to save your work. Provide the original topic, the company name from the case study, and the formatted markdown strings.\n9. Close the browser with `run_browser_command(\"playwright-cli close\")`.\n\n\nYou are an agent. Your internal name is \"case_study_researcher\". The description about you is \"An agent that scrapes Google Cloud customer case studies and saves them to a local knowledge base.\".",
+                  "tool_declarations": [
+                    {
+                      "retrieval": null,
+                      "computer_use": null,
+                      "file_search": null,
+                      "google_search": null,
+                      "google_maps": null,
+                      "code_execution": null,
+                      "enterprise_web_search": null,
+                      "function_declarations": [
+                        {
+                          "description": "Executes a playwright-cli command safely.\n\n    Args:\n        command: The playwright-cli command to execute (must start with 'playwright-cli').\n\n    Returns:\n        dict with status and output.\n    ",
+                          "name": "run_browser_command",
+                          "parameters": {
+                            "additional_properties": null,
+                            "defs": null,
+                            "ref": null,
+                            "any_of": null,
+                            "default": null,
+                            "description": null,
+                            "enum": null,
+                            "example": null,
+                            "format": null,
+                            "items": null,
+                            "max_items": null,
+                            "max_length": null,
+                            "max_properties": null,
+                            "maximum": null,
+                            "min_items": null,
+                            "min_length": null,
+                            "min_properties": null,
+                            "minimum": null,
+                            "nullable": null,
+                            "pattern": null,
+                            "properties": {
+                              "command": {
+                                "additional_properties": null,
+                                "defs": null,
+                                "ref": null,
+                                "any_of": null,
+                                "default": null,
+                                "description": null,
+                                "enum": null,
+                                "example": null,
+                                "format": null,
+                                "items": null,
+                                "max_items": null,
+                                "max_length": null,
+                                "max_properties": null,
+                                "maximum": null,
+                                "min_items": null,
+                                "min_length": null,
+                                "min_properties": null,
+                                "minimum": null,
+                                "nullable": null,
+                                "pattern": null,
+                                "properties": null,
+                                "property_ordering": null,
+                                "required": null,
+                                "title": null,
+                                "type": "STRING"
+                              }
+                            },
+                            "property_ordering": null,
+                            "required": [
+                              "command"
+                            ],
+                            "title": null,
+                            "type": "OBJECT"
+                          },
+                          "parameters_json_schema": null,
+                          "response": null,
+                          "response_json_schema": null,
+                          "behavior": null
+                        },
+                        {
+                          "description": "Saves a markdown string to the local knowledge base directory.\n\n    Args:\n        topic: The search topic or domain (e.g. 'retail', 'agentic_ai').\n        company: The name of the customer/company.\n        markdown_content: The formatted markdown text to save.\n\n    Returns:\n        dict with status and filepath.\n    ",
+                          "name": "save_case_study",
+                          "parameters": {
+                            "additional_properties": null,
+                            "defs": null,
+                            "ref": null,
+                            "any_of": null,
+                            "default": null,
+                            "description": null,
+                            "enum": null,
+                            "example": null,
+                            "format": null,
+                            "items": null,
+                            "max_items": null,
+                            "max_length": null,
+                            "max_properties": null,
+                            "maximum": null,
+                            "min_items": null,
+                            "min_length": null,
+                            "min_properties": null,
+                            "minimum": null,
+                            "nullable": null,
+                            "pattern": null,
+                            "properties": {
+                              "topic": {
+                                "additional_properties": null,
+                                "defs": null,
+                                "ref": null,
+                                "any_of": null,
+                                "default": null,
+                                "description": null,
+                                "enum": null,
+                                "example": null,
+                                "format": null,
+                                "items": null,
+                                "max_items": null,
+                                "max_length": null,
+                                "max_properties": null,
+                                "maximum": null,
+                                "min_items": null,
+                                "min_length": null,
+                                "min_properties": null,
+                                "minimum": null,
+                                "nullable": null,
+                                "pattern": null,
+                                "properties": null,
+                                "property_ordering": null,
+                                "required": null,
+                                "title": null,
+                                "type": "STRING"
+                              },
+                              "company": {
+                                "additional_properties": null,
+                                "defs": null,
+                                "ref": null,
+                                "any_of": null,
+                                "default": null,
+                                "description": null,
+                                "enum": null,
+                                "example": null,
+                                "format": null,
+                                "items": null,
+                                "max_items": null,
+                                "max_length": null,
+                                "max_properties": null,
+                                "maximum": null,
+                                "min_items": null,
+                                "min_length": null,
+                                "min_properties": null,
+                                "minimum": null,
+                                "nullable": null,
+                                "pattern": null,
+                                "properties": null,
+                                "property_ordering": null,
+                                "required": null,
+                                "title": null,
+                                "type": "STRING"
+                              },
+                              "markdown_content": {
+                                "additional_properties": null,
+                                "defs": null,
+                                "ref": null,
+                                "any_of": null,
+                                "default": null,
+                                "description": null,
+                                "enum": null,
+                                "example": null,
+                                "format": null,
+                                "items": null,
+                                "max_items": null,
+                                "max_length": null,
+                                "max_properties": null,
+                                "maximum": null,
+                                "min_items": null,
+                                "min_length": null,
+                                "min_properties": null,
+                                "minimum": null,
+                                "nullable": null,
+                                "pattern": null,
+                                "properties": null,
+                                "property_ordering": null,
+                                "required": null,
+                                "title": null,
+                                "type": "STRING"
+                              }
+                            },
+                            "property_ordering": null,
+                            "required": [
+                              "topic",
+                              "company",
+                              "markdown_content"
+                            ],
+                            "title": null,
+                            "type": "OBJECT"
+                          },
+                          "parameters_json_schema": null,
+                          "response": null,
+                          "response_json_schema": null,
+                          "behavior": null
+                        }
+                      ],
+                      "google_search_retrieval": null,
+                      "parallel_ai_search": null,
+                      "url_context": null,
+                      "mcp_servers": null
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "expected_invocation": {
+            "invocation_id": "de8c9f38-9661-42a7-91cf-ab60e8a912a5",
+            "user_content": {
+              "parts": [
+                {
+                  "media_resolution": null,
+                  "code_execution_result": null,
+                  "executable_code": null,
+                  "file_data": null,
+                  "function_call": null,
+                  "function_response": null,
+                  "inline_data": null,
+                  "text": "Find a retail case study involving BigQuery.",
+                  "thought": null,
+                  "thought_signature": null,
+                  "video_metadata": null
+                }
+              ],
+              "role": "user"
+            },
+            "final_response": {
+              "parts": [
+                {
+                  "media_resolution": null,
+                  "code_execution_result": null,
+                  "executable_code": null,
+                  "file_data": null,
+                  "function_call": null,
+                  "function_response": null,
+                  "inline_data": null,
+                  "text": "I found and saved a retail case study involving BigQuery.",
+                  "thought": null,
+                  "thought_signature": null,
+                  "video_metadata": null
+                }
+              ],
+              "role": "model"
+            },
+            "intermediate_data": {
+              "tool_uses": [
+                {
+                  "id": null,
+                  "args": {},
+                  "name": "run_browser_command",
+                  "partial_args": null,
+                  "will_continue": null
+                },
+                {
+                  "id": null,
+                  "args": {},
+                  "name": "run_browser_command",
+                  "partial_args": null,
+                  "will_continue": null
+                },
+                {
+                  "id": null,
+                  "args": {},
+                  "name": "run_browser_command",
+                  "partial_args": null,
+                  "will_continue": null
+                },
+                {
+                  "id": null,
+                  "args": {},
+                  "name": "run_browser_command",
+                  "partial_args": null,
+                  "will_continue": null
+                },
+                {
+                  "id": null,
+                  "args": {},
+                  "name": "save_case_study",
+                  "partial_args": null,
+                  "will_continue": null
+                },
+                {
+                  "id": null,
+                  "args": {},
+                  "name": "run_browser_command",
+                  "partial_args": null,
+                  "will_continue": null
+                }
+              ],
+              "tool_responses": [],
+              "intermediate_responses": []
+            },
+            "creation_timestamp": 1773609549.937767,
+            "rubrics": null,
+            "app_details": null
+          },
+          "eval_metric_results": [
+            {
+              "metric_name": "tool_trajectory_avg_score",
+              "threshold": 1.0,
+              "criterion": {
+                "threshold": 1.0
+              },
+              "custom_function_path": null,
+              "score": 0.0,
+              "eval_status": 2,
+              "details": {
+                "rubric_scores": null
+              }
+            },
+            {
+              "metric_name": "response_match_score",
+              "threshold": 0.8,
+              "criterion": {
+                "threshold": 0.8
+              },
+              "custom_function_path": null,
+              "score": 0.16666666666666669,
+              "eval_status": 2,
+              "details": {
+                "rubric_scores": null
+              }
+            }
+          ]
+        }
+      ],
+      "session_id": "___eval___session___9e45ad64-d1cd-47b0-a66e-67c98a4ad623",
+      "session_details": null,
+      "user_id": "test_user_id"
+    }
+  ],
+  "creation_timestamp": 1773609668.244073
+}
