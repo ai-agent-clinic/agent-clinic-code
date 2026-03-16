@@ -27,9 +27,9 @@ uv run adk run improved_agent/agents/<agent_name>
 ```
 
 ### Script Execution (Standalone)
-Scripts or agents can usually be run natively if they implement `if __name__ == "__main__":`. Use standard Python execution:
+Scripts or agents can usually be run natively if they implement `if __name__ == "__main__":`. Because of how Python handles internal packaging, if your script uses relative imports (e.g. `from .tools import ...`), you must use the `-m` module execution flag:
 ```bash
-uv run python improved_agent/agents/<agent_name>/agent.py
+uv run python -m improved_agent.agents.<agent_name>.agent [optional_query]
 ```
 
 ### Useful SDK Flags
