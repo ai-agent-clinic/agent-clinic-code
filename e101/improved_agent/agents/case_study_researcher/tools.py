@@ -51,6 +51,11 @@ def run_browser_command(command: str) -> dict:
             try:
                 with open(snapshot_path, "r") as f:
                     snapshot_content = f.read()
+                    
+                import os
+                if os.path.exists(snapshot_path):
+                    os.remove(snapshot_path)
+
                 output += f"\n\n### Snapshot Content ({snapshot_path})\n{snapshot_content}\n"
             except Exception as read_err:
                 output += f"\n\n### Snapshot Content Error\nCould not read snapshot: {read_err}\n"
