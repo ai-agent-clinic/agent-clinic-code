@@ -8,3 +8,6 @@ help: ## Show this help message
 
 run-original: ## Run the app using functions-framework locally
 	uv run functions-framework --source original_agent/main.py --target run_agent_logic --debug
+
+eval: ## Run the evaluation for the improved case study researcher
+	uv run adk eval --config_file_path improved_agent/evalsets/eval_config.json improved_agent/agents/case_study_researcher improved_agent/evalsets/research_evals.json
