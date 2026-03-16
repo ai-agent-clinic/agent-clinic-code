@@ -7,15 +7,18 @@ from google.adk.tools import skill_toolset
 from google.adk.runners import InMemoryRunner
 from google.genai.types import Content, Part
 from .tools import run_browser_command, save_case_study, CaseStudy, CaseStudyList
+from google.adk.sessions import InMemorySessionService
+from google.adk.runners import Runner
+from google.genai import types
 import json
+from google.adk.agents.sequential_agent import SequentialAgent
+from .tools import SearchPlan
 
 playwright_skill = load_skill_from_dir(
     pathlib.Path(__file__).parent.parent.parent / "skills" / "playwright-cli"
 )
 
-playwright_toolset = skill_toolset.SkillToolset(
-    skills=[playwright_skill]
-)
+playwright_toolset = skill_toolset.SkillToolset(skills=[playwright_skill])
 
 PLANNER_INSTRUCTIONS = """
 You are the Search Planner Agent.
@@ -44,26 +47,24 @@ Respond ONLY with a JSON object matching the requested CaseStudyList schema as y
 CRITICAL: When the user asks you to "respond with exactly this: '[some phrase]'", you MUST output ONLY that exact phrase in your final response. Do not add conversational padding, do not say "Here is the response", and do not include the markdown content in the chat. Just the exact phrase or the JSON object.
 """
 
-from google.adk.agents.sequential_agent import SequentialAgent
-from .tools import SearchPlan
 
 planner_agent = Agent(
-    model='gemini-3-flash-preview',
-    name='search_planner',
-    description='Analyzes the query and generates 3-5 optimal search terms.',
+    model="gemini-3-flash-preview",
+    name="search_planner",
+    description="Analyzes the query and generates 3-5 optimal search terms.",
     instruction=PLANNER_INSTRUCTIONS,
     output_schema=SearchPlan,
-    output_key="search_plan"
+    output_key="search_plan",
 )
 
 researcher_agent = Agent(
-    model='gemini-3-flash-preview',
-    name='case_study_researcher',
-    description='An agent that scrapes Google Cloud customer case studies and extracts them into structured JSON data.',
+    model="gemini-3-flash-preview",
+    name="case_study_researcher",
+    description="An agent that scrapes Google Cloud customer case studies and extracts them into structured JSON data.",
     instruction=RESEARCHER_INSTRUCTIONS,
     tools=[playwright_toolset, run_browser_command],
     output_schema=CaseStudyList,
-    output_key="case_study_result"
+    output_key="case_study_result",
 )
 
 SELECTOR_INSTRUCTIONS = """
@@ -74,23 +75,19 @@ Return ONLY the selected case studies as a structured CaseStudyList json object.
 """
 
 selector_agent = Agent(
-    model='gemini-3-flash-preview',
-    name='case_study_selector',
-    description='Selects the top relevant case studies from the web research.',
+    model="gemini-3-flash-preview",
+    name="case_study_selector",
+    description="Selects the top relevant case studies from the web research.",
     instruction=SELECTOR_INSTRUCTIONS,
     output_schema=CaseStudyList,
-    output_key="selected_case_studies"
+    output_key="selected_case_studies",
 )
 
 root_agent = SequentialAgent(
-    name='case_study_pipeline',
-    sub_agents=[planner_agent, researcher_agent, selector_agent]
+    name="case_study_pipeline",
+    sub_agents=[planner_agent, researcher_agent, selector_agent],
 )
 
-from google.adk.sessions import InMemorySessionService
-from google.adk.runners import Runner
-from google.genai import types
-import json
 
 async def case_study_research(query: str) -> dict:
     """Execute the sequential pipeline (planner -> researcher) to extract structured case study intel."""
@@ -100,37 +97,55 @@ async def case_study_research(query: str) -> dict:
 
     session_service = InMemorySessionService()
     runner = Runner(
-        app_name=app_name,
-        agent=root_agent,
-        session_service=session_service
+        app_name=app_name, agent=root_agent, session_service=session_service
     )
-    
+
     try:
-        await session_service.create_session(app_name=app_name, user_id=user_id, session_id=session_id)
-        
+        await session_service.create_session(
+            app_name=app_name, user_id=user_id, session_id=session_id
+        )
+
         user_message = types.Content(role="user", parts=[types.Part(text=query)])
-        async for event in runner.run_async(user_id=user_id, session_id=session_id, new_message=user_message):
+        async for event in runner.run_async(
+            user_id=user_id, session_id=session_id, new_message=user_message
+        ):
             # Print minimal event progress to stdout just for tracking
-            agent_name = getattr(event, 'agent_name', getattr(event, 'source', 'Unknown'))
+            agent_name = getattr(
+                event, "agent_name", getattr(event, "source", "Unknown")
+            )
             if event.is_final_response():
                 print(f"Pipeline executed step for {agent_name}...")
-        
-        current_session = await session_service.get_session(app_name=app_name, user_id=user_id, session_id=session_id)
+
+        current_session = await session_service.get_session(
+            app_name=app_name, user_id=user_id, session_id=session_id
+        )
         raw_json = current_session.state.get("selected_case_studies")
-        
+
         if raw_json:
             try:
                 # ADK session state returns a pre-parsed dictionary matching the output_schema
                 case_study_data = CaseStudyList.model_validate(raw_json)
                 result = save_case_study(query, case_study_data)
-                return {"status": "success", "data": case_study_data.model_dump(), "filepath": result.get("filepath", "")}
+                return {
+                    "status": "success",
+                    "data": case_study_data.model_dump(),
+                    "filepath": result.get("filepath", ""),
+                }
             except Exception as e:
-                return {"status": "error", "message": f"Failed to parse case study JSON: {e}", "raw": raw_json}
+                return {
+                    "status": "error",
+                    "message": f"Failed to parse case study JSON: {e}",
+                    "raw": raw_json,
+                }
         else:
-             return {"status": "error", "message": "No 'selected_case_studies' found in session state."}
-             
+            return {
+                "status": "error",
+                "message": "No 'selected_case_studies' found in session state.",
+            }
+
     except Exception as e:
         return {"status": "error", "message": f"Error executing pipeline: {e}"}
+
 
 if __name__ == "__main__":
     if len(sys.argv) > 1:
@@ -139,5 +154,7 @@ if __name__ == "__main__":
         result = asyncio.run(case_study_research(query))
         print(f"\\nPipeline Result:\\n{json.dumps(result, indent=2)}")
     else:
-        print("Starting interactive mode... please use the ADK CLI to run interactively:")
+        print(
+            "Starting interactive mode... please use the ADK CLI to run interactively:"
+        )
         print("uv run adk run improved_agent/agents/case_study_researcher")
