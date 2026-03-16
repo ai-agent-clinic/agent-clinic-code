@@ -110,3 +110,5 @@ dmypy.json
 .playwright-cli/
 
 .env
+
+improved_agent/knowledge_base/
