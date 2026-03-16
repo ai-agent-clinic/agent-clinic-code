@@ -233,7 +233,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // Build Email
         modalSubject.innerText = emailObj.subject || "No Subject";
-        modalEmailContent.innerText = emailObj.outreach_body || "Failed to generate body.";
+        modalEmailContent.innerHTML = emailObj.outreach_body || "Failed to generate body.";
         
         // Build Sources
         modalSources.innerHTML = '';

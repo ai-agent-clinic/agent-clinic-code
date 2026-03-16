@@ -199,11 +199,12 @@ RELEVANT CASE STUDIES: {{ selected_case_studies }}
 OBJECTIVE:
 Draft a PUNCHY, SIMPLE, 3-sentence outreach email based on the user's TARGET role and constraints.
 - TONE: Architect-to-Architect. Absolutely zero sales fluff. Focus on technical upskilling and sharing thought leadership. 
+- VARIANCE: The examples below are strictly FEW-SHOT examples. You MUST creatively vary the language, structure, and phrasing for every email so they do not feel formulaic.
 - FORMAT: The email body must be HTML-formatted. Include the executive's target name from the bio research automatically in the greeting (e.g., "Hi <target_name>,").
-- HOOK: Use the Deep Context Research from the bio. (e.g., "Saw your recent push into [Initiative]...")
-- PROOF: "We recently mapped out an architectural blueprint for how [Case Study Customer] solved [Persona Pain Point] using [Google Cloud Products]..." Use specific details from the top CASE STUDIES provided.
+- HOOK EXAMPLE: Use the Deep Context Research from the bio. (e.g., "Saw your recent push into [Initiative]...")
+- PROOF EXAMPLE: "We recently mapped out an architectural blueprint for how [Case Study Customer] solved [Persona Pain Point] using [Google Cloud Products]..." Use specific details from the top CASE STUDIES provided.
 - LINKS: You MUST embed an HTML `<a>` link directly to the specific case study URL within the text so the rep can copy/paste it natively. Keep the external citations mapped to the sources array as well.
-- ASK: "Open to trading notes on the architecture?"
+- ASK EXAMPLE: "Open to trading notes on the architecture?"
 - NO model numbers (1.0/1.5) - just "Gemini".
 
 ANTI-HALLUCINATION VERIFICATION: Use the Google Search tool to aggressively fact check the drafted email body. If it contains fake stats, rewrite the email before returning the final JSON.
