@@ -4,13 +4,16 @@ from string import punctuation
 from pydantic import BaseModel, Field
 
 class CaseStudy(BaseModel):
-    source_url: str = Field(description="Case Study Source URL")
-    customer_name: str = Field(description="Customer Name")
-    extracted_contents: str = Field(description="Extracted text contents of the case study")
-    summary: str = Field(description="High-level summary of the case study")
-    industry: str = Field(description="Industry of the customer")
-    location: str = Field(description="Location of the customer")
-    products: list[str] = Field(description="Google Cloud Products used")
+    source_url: str = Field(description="The URL where the case study was found.")
+    customer_name: str = Field(description="The name of the customer.")
+    extracted_contents: str = Field(description="The full text content extracted from the page.")
+    summary: str = Field(description="A brief summary of the case study.")
+    industry: str = Field(description="The industry of the customer.")
+    location: str = Field(description="The geographic location of the customer.")
+    products: list[str] = Field(description="A list of Google Cloud products used.")
+
+class SearchPlan(BaseModel):
+    queries: list[str] = Field(description="A list of 3-5 specific search queries to use for finding case studies.")
 
 def run_browser_command(command: str) -> dict:
     """Executes a playwright-cli command safely.
