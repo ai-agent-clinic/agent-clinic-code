@@ -1,7 +1,16 @@
 import os
 import subprocess
 from string import punctuation
+from pydantic import BaseModel, Field
 
+class CaseStudy(BaseModel):
+    source_url: str = Field(description="Case Study Source URL")
+    customer_name: str = Field(description="Customer Name")
+    extracted_contents: str = Field(description="Extracted text contents of the case study")
+    summary: str = Field(description="High-level summary of the case study")
+    industry: str = Field(description="Industry of the customer")
+    location: str = Field(description="Location of the customer")
+    products: list[str] = Field(description="Google Cloud Products used")
 
 def run_browser_command(command: str) -> dict:
     """Executes a playwright-cli command safely.
@@ -45,13 +54,12 @@ def run_browser_command(command: str) -> dict:
         return {"status": "error", "message": str(e)}
 
 
-def save_case_study(topic: str, company: str, markdown_content: str) -> dict:
-    """Saves a markdown string to the local knowledge base directory.
+def save_case_study(topic: str, case_study: CaseStudy) -> dict:
+    """Saves a structured case study to the local knowledge base directory as a JSON file.
 
     Args:
         topic: The search topic or domain (e.g. 'retail', 'agentic_ai').
-        company: The name of the customer/company.
-        markdown_content: The formatted markdown text to save.
+        case_study: The structured CaseStudy object containing extracted information.
 
     Returns:
         dict with status and filepath.
@@ -61,9 +69,9 @@ def save_case_study(topic: str, company: str, markdown_content: str) -> dict:
          return name.translate(str.maketrans("", "", punctuation)).replace(" ", "_").lower()
     
     topic_clean = sanitize(topic)
-    company_clean = sanitize(company)
+    company_clean = sanitize(case_study.customer_name)
     
-    filename = f"{topic_clean}_{company_clean}.md"
+    filename = f"{topic_clean}_{company_clean}.json"
     
     # Target directory setup
     base_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -74,7 +82,7 @@ def save_case_study(topic: str, company: str, markdown_content: str) -> dict:
     
     try:
         with open(filepath, "w") as f:
-            f.write(markdown_content)
+            f.write(case_study.model_dump_json(indent=2))
         return {"status": "success", "filepath": filepath}
     except Exception as e:
         return {"status": "error", "message": str(e)}

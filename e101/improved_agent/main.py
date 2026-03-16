@@ -15,9 +15,9 @@ HEADER_IMAGE_URL = "https://storage.googleapis.com/titanium-assets-12345/Gemini_
 
 # --- 🎯 STRATEGIC ACCOUNTS ---
 TARGET_COMPANIES = [
-    {"name": "Apple", "domain": "apple.com", "industry": "Consumer Electronics / Hardware"},
-    {"name": "Microsoft", "domain": "microsoft.com", "industry": "Enterprise Software / Cloud Computing"},
-    {"name": "Amazon", "domain": "amazon.com", "industry": "E-commerce / Cloud Computing"}
+    {"name": "Johnson & Johnson", "domain": "jnj.com", "industry": "Healthcare"},
+    {"name": "Procter & Gamble", "domain": "pg.com", "industry": "Consumer Goods"},
+    {"name": "Exxon Mobil", "domain": "exxonmobil.com", "industry": "Energy"}
 ]
 
 # --- 🏆 THE MEGA-VAULT 6.0 (Expanded & Deep) ---

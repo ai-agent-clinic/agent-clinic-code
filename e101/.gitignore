@@ -110,5 +110,7 @@ dmypy.json
 .playwright-cli/
 
 .env
+**/.adk/
 
+# Case study research
 improved_agent/knowledge_base/

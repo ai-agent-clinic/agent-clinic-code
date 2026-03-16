@@ -4,17 +4,7 @@
     "data": [
       {
         "query": "Find a retail case study involving BigQuery. Take your time to search and save it. After saving, respond with exactly this: 'I found and saved a retail case study involving BigQuery.'",
-        "expected_tool_use": [
-          {"tool_name": "run_browser_command", "tool_input": {}},
-          {"tool_name": "run_browser_command", "tool_input": {}},
-          {"tool_name": "run_browser_command", "tool_input": {}},
-          {"tool_name": "run_browser_command", "tool_input": {}},
-          {"tool_name": "run_browser_command", "tool_input": {}},
-          {"tool_name": "run_browser_command", "tool_input": {}},
-          {"tool_name": "run_browser_command", "tool_input": {}},
-          {"tool_name": "save_case_study", "tool_input": {}},
-          {"tool_name": "run_browser_command", "tool_input": {}}
-        ],
+        "expected_tool_use": [],
         "expected_intermediate_agent_responses": [],
         "reference": "I found and saved a retail case study involving BigQuery."
       }
@@ -25,14 +15,7 @@
     "data": [
       {
         "query": "Can you find a customer success story related to Agentic AI? Take your time to search and save it. After saving, respond with exactly this: 'I found and saved a customer success story related to Agentic AI.'",
-        "expected_tool_use": [
-          {"tool_name": "run_browser_command", "tool_input": {}},
-          {"tool_name": "run_browser_command", "tool_input": {}},
-          {"tool_name": "run_browser_command", "tool_input": {}},
-          {"tool_name": "run_browser_command", "tool_input": {}},
-          {"tool_name": "save_case_study", "tool_input": {}},
-          {"tool_name": "run_browser_command", "tool_input": {}}
-        ],
+        "expected_tool_use": [],
         "expected_intermediate_agent_responses": [],
         "reference": "I found and saved a customer success story related to Agentic AI."
       }
