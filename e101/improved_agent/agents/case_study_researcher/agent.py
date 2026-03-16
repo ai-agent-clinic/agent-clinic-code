@@ -6,7 +6,7 @@ from google.adk.skills import load_skill_from_dir
 from google.adk.tools import skill_toolset
 from google.adk.runners import InMemoryRunner
 from google.genai.types import Content, Part
-from .tools import run_browser_command, save_case_study, CaseStudy
+from .tools import run_browser_command, save_case_study, CaseStudy, CaseStudyList
 import json
 
 playwright_skill = load_skill_from_dir(
@@ -35,11 +35,11 @@ Here are the optimal search terms formulated by the planner:
 When browsing:
 1. Initialize the browser by navigating to the Google Cloud customers page.
 2. Search for the requested topics using the planned search terms.
-3. Extract the clean text of the case study. Remove navigation bars, footers, and HTML clutter.
+3. Extract the clean text of the case studies. Remove navigation bars, footers, and HTML clutter.
 4. Format the extracted text as a clean Markdown document.
-5. Once you have all the information, provide a structured CaseStudy object containing the source URL, customer name, extracted contents, summary, industry, location, and products used.
+5. Once you have all the information, provide a structured CaseStudyList object containing all extracted case studies.
 
-Respond ONLY with a JSON object matching the requested CaseStudy schema as your final response.
+Respond ONLY with a JSON object matching the requested CaseStudyList schema as your final response.
 
 CRITICAL: When the user asks you to "respond with exactly this: '[some phrase]'", you MUST output ONLY that exact phrase in your final response. Do not add conversational padding, do not say "Here is the response", and do not include the markdown content in the chat. Just the exact phrase or the JSON object.
 """
@@ -62,13 +62,29 @@ researcher_agent = Agent(
     description='An agent that scrapes Google Cloud customer case studies and extracts them into structured JSON data.',
     instruction=RESEARCHER_INSTRUCTIONS,
     tools=[playwright_toolset, run_browser_command],
-    output_schema=CaseStudy,
+    output_schema=CaseStudyList,
     output_key="case_study_result"
+)
+
+SELECTOR_INSTRUCTIONS = """
+You are the Case Study Selector Agent.
+Review the user's original query and the retrieved case studies list: {{ case_study_result }}.
+Pick the 2-3 most relevant case studies matching the query constraints. 
+Return ONLY the selected case studies as a structured CaseStudyList json object.
+"""
+
+selector_agent = Agent(
+    model='gemini-3-flash-preview',
+    name='case_study_selector',
+    description='Selects the top relevant case studies from the web research.',
+    instruction=SELECTOR_INSTRUCTIONS,
+    output_schema=CaseStudyList,
+    output_key="selected_case_studies"
 )
 
 root_agent = SequentialAgent(
     name='case_study_pipeline',
-    sub_agents=[planner_agent, researcher_agent]
+    sub_agents=[planner_agent, researcher_agent, selector_agent]
 )
 
 from google.adk.sessions import InMemorySessionService
@@ -100,17 +116,18 @@ async def case_study_research(query: str) -> dict:
                 print(f"Pipeline executed step for {agent_name}...")
         
         current_session = await session_service.get_session(app_name=app_name, user_id=user_id, session_id=session_id)
-        raw_json = current_session.state.get("case_study_result")
+        raw_json = current_session.state.get("selected_case_studies")
         
         if raw_json:
             try:
-                case_study_data = CaseStudy.model_validate_json(raw_json)
+                # ADK session state returns a pre-parsed dictionary matching the output_schema
+                case_study_data = CaseStudyList.model_validate(raw_json)
                 result = save_case_study(query, case_study_data)
                 return {"status": "success", "data": case_study_data.model_dump(), "filepath": result.get("filepath", "")}
             except Exception as e:
                 return {"status": "error", "message": f"Failed to parse case study JSON: {e}", "raw": raw_json}
         else:
-             return {"status": "error", "message": "No 'case_study_result' found in session state."}
+             return {"status": "error", "message": "No 'selected_case_studies' found in session state."}
              
     except Exception as e:
         return {"status": "error", "message": f"Error executing pipeline: {e}"}

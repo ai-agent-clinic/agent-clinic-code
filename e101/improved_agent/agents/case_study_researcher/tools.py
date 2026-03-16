@@ -12,6 +12,9 @@ class CaseStudy(BaseModel):
     location: str = Field(description="The geographic location of the customer.")
     products: list[str] = Field(description="A list of Google Cloud products used.")
 
+class CaseStudyList(BaseModel):
+    case_studies: list[CaseStudy] = Field(description="A list of case studies.")
+
 class SearchPlan(BaseModel):
     queries: list[str] = Field(description="A list of 3-5 specific search queries to use for finding case studies.")
 
@@ -57,12 +60,12 @@ def run_browser_command(command: str) -> dict:
         return {"status": "error", "message": str(e)}
 
 
-def save_case_study(topic: str, case_study: CaseStudy) -> dict:
-    """Saves a structured case study to the local knowledge base directory as a JSON file.
+def save_case_study(topic: str, case_studies: CaseStudyList) -> dict:
+    """Saves a structured list of case studies to the local knowledge base directory as a JSON file.
 
     Args:
         topic: The search topic or domain (e.g. 'retail', 'agentic_ai').
-        case_study: The structured CaseStudy object containing extracted information.
+        case_studies: The structured CaseStudyList object containing extracted case studies.
 
     Returns:
         dict with status and filepath.
@@ -72,9 +75,8 @@ def save_case_study(topic: str, case_study: CaseStudy) -> dict:
          return name.translate(str.maketrans("", "", punctuation)).replace(" ", "_").lower()
     
     topic_clean = sanitize(topic)
-    company_clean = sanitize(case_study.customer_name)
     
-    filename = f"{topic_clean}_{company_clean}.json"
+    filename = f"{topic_clean}_top_case_studies.json"
     
     # Target directory setup
     base_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -85,7 +87,7 @@ def save_case_study(topic: str, case_study: CaseStudy) -> dict:
     
     try:
         with open(filepath, "w") as f:
-            f.write(case_study.model_dump_json(indent=2))
+            f.write(case_studies.model_dump_json(indent=2))
         return {"status": "success", "filepath": filepath}
     except Exception as e:
         return {"status": "error", "message": str(e)}

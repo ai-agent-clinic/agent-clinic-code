@@ -20,6 +20,8 @@ TARGET_COMPANIES = [
     {"name": "Exxon Mobil", "domain": "exxonmobil.com", "industry": "Energy"}
 ]
 
+from improved_agent.agents.case_study_researcher.agent import case_study_research
+
 # --- 🏆 THE MEGA-VAULT 6.0 (Expanded & Deep) ---
 CASE_STUDIES = """
 [PRODUCTIVITY - GEMINI ENTERPRISE]
@@ -93,12 +95,11 @@ async def verify_intel(client, target, data):
         logger.warning(f"Auditor failed for {target['name']}: {e}")
         return data
 
-async def generate_intel(client, target, role):
+async def research_company(client, target, role):
     current_year = datetime.date.today().year
     prompt = f"""
     SYSTEM: Senior Strategic Cloud Architect. High-Cognition Protocol. CURRENT YEAR: {current_year}.
     TARGET: {target['name']} ({target['industry']}) | WEBSITE: {target['domain']} | ROLE: {role}.
-    VAULT: {CASE_STUDIES}
 
     OBJECTIVE:
     1. SCOUR: Analyze {target['name']}'s technical focus and identify the Name of the current {role}.
@@ -111,12 +112,6 @@ async def generate_intel(client, target, role):
        - Gemini Enterprise: (LOCKED to Gemini Enterprise). Target: VP Cust Success/Product.
        - Security: (Analyze target to recommend ONE: Mandiant or BeyondCorp). Target: CISO.
        - Data & AI: (Analyze target to recommend ONE: BigQuery, Vertex AI, or Looker). Target: Head of Data/AI.
-    5. OUTREACH (THOUGHT LEADERSHIP): Draft a PUNCHY, SIMPLE, 3-sentence email.
-       - TONE: Architect-to-Architect. Absolutely zero sales fluff. Focus on technical upskilling and sharing thought leadership. 
-       - HOOK: Use the Deep Context Research. (e.g., "Saw your recent push into [Initiative]..." or "Read [CEO]'s note on scaling your data infra...")
-       - PROOF: "We recently mapped out an architectural blueprint for how [Vault Case] solved [Persona Pain Point]..."
-       - ASK: "Open to trading notes on the architecture?"
-       - NO "I hope this finds you well". NO model numbers (1.0/1.5).
 
     CRITICAL FORMATTING: Return ONLY valid JSON. Start with ```json and end with ```.
     OUTPUT STRUCTURE:
@@ -124,14 +119,11 @@ async def generate_intel(client, target, role):
     {{ 
       "target_name": "Full Name of the Executive",
       "bio": "Strategic snapshot including the specific quote, tech stack, or roadmap finding...",
-      "subject": "Professional subject line...",
-      "outreach_body": "Hi [Name], [Body of email]...",
       "hack": {{ 
         "Gemini Enterprise": {{ "name": "Name", "persona": "Title", "solution": "Gemini Enterprise", "hook": "..." }}, 
         "Security": {{ "name": "Name", "persona": "Title", "solution": "Specific Product", "hook": "..." }}, 
         "Data & AI": {{ "name": "Name", "persona": "Title", "solution": "Specific Product", "hook": "..." }} 
-      }}, 
-      "sources": [{{ "title": "...", "url": "..." }}] 
+      }}
     }}
     ```
     """
@@ -167,6 +159,55 @@ async def generate_intel(client, target, role):
                 await asyncio.sleep(2)
                 
     return {"error": f"Failed after 5 attempts. Last error: {last_exception}"}
+
+async def draft_executive_email(client, target, role, research_data, case_study_data):
+    current_year = datetime.date.today().year
+    case_study_text = json.dumps(case_study_data.get("data", {}))
+    
+    prompt = f"""
+    SYSTEM: Senior Strategic Cloud Architect. High-Cognition Protocol. CURRENT YEAR: {current_year}.
+    TARGET: {target['name']} ({target['industry']}) | ROLE: {role}.
+    TARGET BIO & RESEARCH: {json.dumps(research_data)}
+    RELEVANT CASE STUDY: {case_study_text}
+
+    OBJECTIVE:
+    Draft a PUNCHY, SIMPLE, 3-sentence outreach email.
+    - TONE: Architect-to-Architect. Absolutely zero sales fluff. Focus on technical upskilling and sharing thought leadership. 
+    - HOOK: Use the Deep Context Research from the bio. (e.g., "Saw your recent push into [Initiative]..." or "Read [CEO]'s note on scaling your data infra...")
+    - PROOF: "We recently mapped out an architectural blueprint for how [Case Study Customer] solved [Persona Pain Point] using [Google Cloud Products]..." Use specific details from the top CASE STUDIES provided.
+    - ASK: "Open to trading notes on the architecture?"
+    - NO "I hope this finds you well". NO model numbers (1.0/1.5).
+
+    CRITICAL FORMATTING: Return ONLY valid JSON. Start with ```json and end with ```.
+    OUTPUT STRUCTURE:
+    ```json
+    {{ 
+      "subject": "Professional subject line...",
+      "outreach_body": "Hi [Name], [Body of email]...",
+      "sources": [{{ "title": "...", "url": "..." }}] 
+    }}
+    ```
+    """
+    for attempt in range(5): 
+        try:
+            response = await client.aio.models.generate_content(
+                model=MODEL_ID, contents=prompt,
+                config=types.GenerateContentConfig(
+                    tools=[types.Tool(google_search=types.GoogleSearch())], 
+                    temperature=0.2
+                )
+            )
+            
+            safe_text = response.text if response.text else ""
+            match = re.search(r'```json\s*(\{.*?\})\s*```', safe_text, re.DOTALL)
+            if not match: match = re.search(r'(\{.*?\})', safe_text, re.DOTALL)
+            
+            if match: return json.loads(match.group(1))
+            else: await asyncio.sleep(2)
+        except Exception as e:
+            await asyncio.sleep(5)
+                
+    return {"error": f"Failed to draft email."}
 
 def build_card(name, industry, role, data):
     target_name = data.get("target_name", "Unknown Executive")
@@ -234,22 +275,41 @@ def build_card(name, industry, role, data):
 
 async def process_single_account(client, target, role):
     logger.info(f"Analyzing {target['name']}...")
-    data = await generate_intel(client, target, role)
     
-    if data and "error" not in data:
-        logger.info(f"🕵️ Verifying Intel for {target['name']}...")
-        data = await verify_intel(client, target, data)
+    # Step 1: Research Company
+    research_data = await research_company(client, target, role)
+    if "error" in research_data:
+        return False, "", research_data["error"]
         
-        if data and "error" not in data:
-            card_html = build_card(target['name'], target['industry'], role, data)
-            logger.info(f"✅ Success: {target['name']}")
-            return True, card_html, None
-        else:
-            return False, "", data.get("error", "Verification Failed")
-    elif data and "error" in data:
-        return False, "", data["error"]
+    # Step 2: Fetch Case Study
+    logger.info(f"📚 Fetching dynamic case study for {target['name']} ({target['industry']})...")
+    case_study_query = f"Research case studies for a customer in the {target['industry']} industry or a company similar to {target['name']}."
+    case_study_data = await case_study_research(case_study_query)
+    
+    if case_study_data.get("status") == "error":
+        logger.warning(f"Failed to fetch case study: {case_study_data.get('message', 'Unknown')}. Falling back to default case studies.")
+        # Provide a fallback empty state if it fails
+        case_study_data = {"data": {"case_studies": []}}
+
+    # Step 3: Draft Outreach Email
+    logger.info(f"✍️ Drafting outreach email for {target['name']}...")
+    email_data = await draft_executive_email(client, target, role, research_data, case_study_data)
+    if "error" in email_data:
+        return False, "", email_data["error"]
         
-    return False, "", "Unknown Error"
+    # Combine Intel
+    final_data = {**research_data, **email_data}
+    
+    # Step 4: Verify Intel
+    logger.info(f"🕵️ Verifying Intel for {target['name']}...")
+    final_data = await verify_intel(client, target, final_data)
+    
+    if final_data and "error" not in final_data:
+        card_html = build_card(target['name'], target['industry'], role, final_data)
+        logger.info(f"✅ Success: {target['name']}")
+        return True, card_html, None
+        
+    return False, "", final_data.get("error", "Unknown Error")
 
 async def orchestrate_all(client, role):
     cards_html = ""
