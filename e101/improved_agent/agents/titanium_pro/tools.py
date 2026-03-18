@@ -1,8 +1,44 @@
 import os
 import subprocess
+import json
 from string import punctuation
 from pydantic import BaseModel, Field
 
+from .vector_search import search_vector_search, insert_case_study_into_cache
+
+def search_vector_search_tool(query: str, company: str, top_k: int = 5) -> str:
+    """Searches the Vector Search cache for relevant case studies based on query and company.
+    
+    Args:
+        query: The search term or topic.
+        company: The company name.
+        top_k: Top K results to fetch.
+        
+    Returns:
+        JSON string of case studies retrieved from cache.
+    """
+    results = search_vector_search(query, company, top_k)
+    return json.dumps(results, indent=2)
+
+def save_case_study_to_cache(source_url: str, company: str, content: str, industry: str = "", products_used: str = "", metrics: str = "") -> dict:
+    """Records a newly found case study from web scraping into the vector search cache.
+    
+    Args:
+        source_url: The original URL of the case study.
+        company: Customer company name.
+        content: Extracted content.
+        industry: Industry of the customer.
+        products_used: Products used by customer, comma separated.
+        metrics: Key business metrics.
+        
+    Returns:
+        A dict indicating success or error.
+    """
+    skip_caching = os.environ.get("SKIP_SCRAPING_IF_CACHED", "false").lower() == "true"
+    if not skip_caching:
+        insert_case_study_into_cache(source_url, company, content, industry, products_used, metrics)
+        return {"status": "success", "message": "Inserted into cache"}
+    return {"status": "skipped", "message": "Caching is disabled"}
 
 class CaseStudy(BaseModel):
     source_url: str = Field(description="The URL where the case study was found.")

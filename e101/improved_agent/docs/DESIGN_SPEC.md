@@ -52,3 +52,9 @@ The orchestrator supports two primary execution modalities:
 - **Structured Outputs**: All critical data transitions use **Pydantic schemas** (`OutreachEmail`, `CompanyResearch`). The pipeline strictly avoids regex parsing.
 - **Browser Automation Security**: The system uses a restricted wrapper (`run_browser_command`) around the `playwright-cli`. 
 - **Workspace Hygiene**: The `playwright-cli` wrapper implements automatic cleanup procedures, deleting temporal snapshot `.yml` files immediately after they are read by the agent tools to prevent workspace clutter.
+
+## 5. Bulk Case Study Crawler
+To eagerly populate the Vector Search cache, Titanium Pro includes a standalone crawler (`improved_agent/scripts/bulk_case_study_crawler.py`) that operates in two phases:
+- **Phase 1 (Deterministic)**: Automates the browser natively via `playwright-cli` to iterate through pagination and extract every case study URL from `https://cloud.google.com/customers`.
+- **Phase 2 (AI-Assisted)**: Iterates the URLs, fetching the raw HTML and using the Gemini API structured output generation (`gemini-2.5-flash`) to predictably extract the core editorial content into Markdown and map JSON metadata (Company, Metrics, Industry). The clean Pydantic object is then passed into the caching layer.
+- **Convenience Targets**: Run via `make run-crawler-phase-1`, `make run-crawler-phase-2`, or `make run-crawler-all`.

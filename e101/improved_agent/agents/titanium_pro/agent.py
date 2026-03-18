@@ -19,6 +19,8 @@ from google.genai import types
 from .tools import (
     run_browser_command,
     save_case_study,
+    search_vector_search_tool,
+    save_case_study_to_cache,
     CaseStudyList,
     SearchPlan,
     CompanyResearch,
@@ -133,18 +135,22 @@ planner_agent = Agent(
 
 CASE_STUDY_RESEARCHER_INSTRUCTIONS = """
 You are the Case Study Researcher Agent.
-Your job is to search for and extract Google Cloud customer case studies from 'https://cloud.google.com/customers' on behalf of the user.
+Your job is to find relevant Google Cloud customer case studies for the user's target company.
 
-You have the `playwright-cli` skill. Use this skill to interact with the browser.
+You have the following tools at your disposal:
+1. `search_vector_search_tool`: Searches the local Vector Search cache for existing case studies.
+2. `playwright-cli` via `run_browser_command`: Live web scraping tool.
+3. `save_case_study_to_cache`: Saves newly found case studies to the Vector Search cache.
 
 Here are the optimal search terms formulated by the planner:
 {{ search_plan }}
 
-When browsing:
-1. Navigate to the Google Cloud customers page.
-2. Search using the planned search terms.
-3. Extract the clean text of the case studies. Remove HTML clutter.
-4. Provide a structured CaseStudyList object containing all extracted case studies.
+WORKFLOW:
+1. **Cache First:** Iteratively use `search_vector_search_tool` with the planned search terms and the target company to find relevant case studies that we have already cached.
+2. **Evaluate Cache:** If you find at least 3 highly relevant case studies in the cache, you may proceed to output them.
+3. **Fallback to Web (If Needed):** If the cache doesn't have enough relevant results, use `playwright-cli` to navigate to 'https://cloud.google.com/customers' or run live web searches to find new case studies.
+4. **Cache New Findings:** For EVERY new case study you extract from the live web, you MUST call `save_case_study_to_cache` to store it for future use.
+5. Provide a structured CaseStudyList object containing all extracted case studies.
 
 Respond ONLY with a JSON object matching the requested CaseStudyList schema.
 """
@@ -154,7 +160,7 @@ case_study_researcher = Agent(
     name="case_study_researcher",
     description="Scrapes Google Cloud customer case studies into structured JSON data.",
     instruction=CASE_STUDY_RESEARCHER_INSTRUCTIONS,
-    tools=[playwright_toolset, run_browser_command],
+    tools=[search_vector_search_tool, save_case_study_to_cache, playwright_toolset, run_browser_command],
     output_schema=CaseStudyList,
     output_key="case_study_result",
 )
@@ -509,6 +515,14 @@ if __name__ == "__main__":
         # Simplistic parsing for testing via CLI
         target = " ".join(sys.argv[1:])
         print(f"Running Titanium Pro pipeline for: {target}")
+        
+        from .vector_search import initialize_collection
+        print("Checking/Initializing Vector Search Collection...")
+        try:
+            initialize_collection()
+        except Exception as e:
+            print(f"Failed to initialize Vector Search collection: {e}")
+            
         result = asyncio.run(generate_intel(target, "example.com", "CTO"))
         print(f"\nPipeline Result:\n{json.dumps(result, indent=2)}")
     else:

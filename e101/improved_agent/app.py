@@ -13,6 +13,16 @@ app = Quart(__name__)
 # Enable CORS for the streaming endpoint if frontend is served separately
 app = cors(app, allow_origin="*")
 
+@app.before_serving
+async def startup():
+    from improved_agent.agents.titanium_pro.vector_search import initialize_collection
+    import asyncio
+    print("Checking/Initializing Vector Search Collection...")
+    try:
+        await asyncio.to_thread(initialize_collection)
+    except Exception as e:
+        print(f"Failed to initialize Vector Search collection: {e}")
+
 @app.route("/")
 async def index():
     """Renders the main dashboard interface."""
