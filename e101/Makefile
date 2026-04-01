@@ -15,6 +15,10 @@ run-improved: ## Run the improved app using functions-framework locally
 eval: ## Run the evaluation for the improved case study researcher
 	uv run --env-file .env adk eval --config_file_path improved_agent/evalsets/eval_config.json improved_agent/agents/case_study_researcher improved_agent/evalsets/research_evals.json
 
+run-web: ## Run the ADK web interface for the improved case study researcher
+	uv run --env-file .env adk web improved_agent/agents/case_study_researcher
+
+
 run: ## Run the case study researcher interactively or with a query (e.g. make run query="Find retail case studies")
 	@if [ "$(query)" = "" ]; then \
 		uv run --env-file .env python -m improved_agent.agents.case_study_researcher.agent; \
