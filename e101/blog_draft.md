@@ -11,7 +11,7 @@ Over the course of an hour, the team tore down and rebuilt the agent for product
 
 **Architecture: The Orchestrated Pipeline Swap**
 
-![The Orchestrated Pipeline Swap](/Users/luissala/.gemini/antigravity/brain/b7df1c3f-02c1-4e55-b31d-1c3666878206/pipeline_diagram_1776385458973.png)
+![The Orchestrated Pipeline Swap](assets/pipeline_diagram.png)
 
 ### 2. Force Structured Outputs (via Pydantic)
 **The Breakdown:** Originally, Titanium forced JSON outputs out of the model via extensive hard-coding straight inside the prompt string. It resulted in dirty code, fragile parsing, and wasted tokens describing the exact structure over and over again.
@@ -40,7 +40,7 @@ class CompanyIntel(BaseModel):
 
 **Architecture: The RAG Pipeline Intake**
 
-![The RAG Pipeline Intake](/Users/luissala/.gemini/antigravity/brain/b7df1c3f-02c1-4e55-b31d-1c3666878206/rag_pipeline_diagram_1776385472127.png)
+![The RAG Pipeline Intake](assets/rag_pipeline_diagram.png)
 
 ### 4. Observability is Non-Negotiable
 **The Breakdown:** When an LLM gets confused in a standard script, it’s a "black box." You know something failed, but you have no idea which component caused the break.
