@@ -15,7 +15,7 @@ Over the course of an hour, the team tore down and rebuilt the agent for product
 
 ### 2. Force Structured Outputs (via Pydantic)
 **The Breakdown:** Originally, Titanium forced JSON outputs out of the model via extensive hard-coding straight inside the prompt string. It resulted in dirty code, fragile parsing, and wasted tokens describing the exact structure over and over again.
-**The Fix:** When swapping to ADK, we eradicated schema formatting instructions out of the prompt. Instead, we injected native Pydantic objects directly as explicit schema definitions. ADK uses LLM function calling features dynamically under the hood to abstract the boilerplate and force adherence. By shifting the "contract" from a fuzzy natural language request to a runtime-validated Python object, we guarantee structural integrity and eliminate brittle custom parsing.
+**The Fix:** When swapping to ADK, we eradicated schema formatting instructions out of the prompt. Instead, we injected native Pydantic objects directly as explicit schema definitions. ADK uses [Vertex AI Structured Outputs](https://cloud.google.com/vertex-ai/docs/generative-ai/multimodal/configure-model-outputs) dynamically under the hood to abstract the boilerplate and force adherence. By shifting the "contract" from a fuzzy natural language request to a runtime-validated Python object, we guarantee structural integrity and eliminate brittle custom parsing.
 
 ```python
 # BEFORE: Prompt String Bloat
@@ -35,7 +35,7 @@ class CompanyIntel(BaseModel):
 
 ### 3. Replace Hardcoded State with a Dynamic RAG Pipeline
 **The Breakdown:** Titanium’s context corpus was artificially tiny. It only knew about 12 hardcoded case studies written directly into the Python file. It couldn't scale or learn without a developer manually updating the code.
-**The Fix:** We built a dynamic data intake system. An async crawler (Playwright) runs in the background to autonomously scrape Google Cloud's customer success website and batch them to Google Cloud Vector Search. Back in the pipeline, the Case Study Researcher runs a true Hybrid Search on the indexed corpus to fetch ideal case studies. *(Note: Hybrid Search combines the semantic "meaning" of a query with the precision of exact keyword matching via Reciprocal Rank Fusion, ensuring the agent doesn't miss specific technical terms).*
+**The Fix:** We built a dynamic data intake system. An async crawler (Playwright) runs in the background to autonomously scrape Google Cloud's customer success website and batch them to [Google Cloud Vector Search](https://cloud.google.com/vertex-ai/docs/vector-search/overview). Back in the pipeline, the Case Study Researcher runs a true Hybrid Search on the indexed corpus to fetch ideal case studies. *(Note: Hybrid Search combines the semantic "meaning" of a query with the precision of exact keyword matching via Reciprocal Rank Fusion, ensuring the agent doesn't miss specific technical terms).*
 **The Lesson:** Hardcoding is fine for a prototype, but a production pipeline needs to refresh itself. True agentic value comes from giving agents the tools to autonomously fetch, scale, and query via Vector Search. Stop hardcoding your context limits.
 
 **Architecture: The RAG Pipeline Intake**
@@ -44,7 +44,7 @@ class CompanyIntel(BaseModel):
 
 ### 4. Observability is Non-Negotiable
 **The Breakdown:** When an LLM gets confused in a standard script, it’s a "black box." You know something failed, but you have no idea which component caused the break.
-**The Fix:** We tapped into ADK’s first-class support for OpenTelemetry. Out of the box, ADK emits distributed traces for full execution flows, capturing model requests, tokens, and tool executions. 
+**The Fix:** We tapped into ADK’s first-class support for [OpenTelemetry on Google Cloud](https://cloud.google.com/observability/docs/concepts/opentelemetry). Out of the box, ADK emits distributed traces for full execution flows, capturing model requests, tokens, and tool executions. 
 
 ```python
 # Bootstrapping OTel in ADK is a one-liner
