@@ -9,15 +9,16 @@ load_dotenv()
 
 # --- 🔐 SECURE CONFIGURATION ---
 API_KEY = str(os.environ.get("GEMINI_API_KEY", "")).strip()
-MODEL_ID = 'gemini-3.1-pro-preview' 
+MODEL_ID = "gemini-3.1-pro-preview"
 HEADER_IMAGE_URL = "https://storage.googleapis.com/titanium-assets-12345/Gemini_Generated_Image_r64uqkr64uqkr64u.png"
 
 
 # --- 🎯 STRATEGIC ACCOUNTS ---
 TARGET_COMPANIES = [
-    {"name": "Johnson & Johnson", "domain": "jnj.com", "industry": "Healthcare"},
-    {"name": "Procter & Gamble", "domain": "pg.com", "industry": "Consumer Goods"},
-    {"name": "Exxon Mobil", "domain": "exxonmobil.com", "industry": "Energy"}
+    {"name": "Ford", "domain": "ford.com", "industry": "Automotive"},
+    # {"name": "Johnson & Johnson", "domain": "jnj.com", "industry": "Healthcare"},
+    # {"name": "Procter & Gamble", "domain": "pg.com", "industry": "Consumer Goods"},
+    # {"name": "Exxon Mobil", "domain": "exxonmobil.com", "industry": "Energy"}
 ]
 
 from improved_agent.agents.case_study_researcher.agent import case_study_research
@@ -51,13 +52,16 @@ CASE_STUDIES = """
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("TitaniumAgent")
 
+
 def get_current_rotation_role():
     roles = ["CTO", "CFO", "CEO", "CIO", "VP of Engineering", "Head of Product"]
     return roles[datetime.date.today().isocalendar()[1] % len(roles)]
 
+
 async def verify_intel(client, target, data):
-    if "error" in data: return data
-    
+    if "error" in data:
+        return data
+
     prompt = f"""
     SYSTEM: Chief Intelligence Auditor & Fact Checker.
     TARGET: {target['name']} ({target['industry']})
@@ -76,24 +80,26 @@ async def verify_intel(client, target, data):
     """
     try:
         response = await client.aio.models.generate_content(
-            model=MODEL_ID, contents=prompt,
+            model=MODEL_ID,
+            contents=prompt,
             config=types.GenerateContentConfig(
-                tools=[types.Tool(google_search=types.GoogleSearch())],
-                temperature=0.0 
-            )
+                tools=[types.Tool(google_search=types.GoogleSearch())], temperature=0.0
+            ),
         )
-        
+
         safe_text = response.text if response.text else ""
-        match = re.search(r'```json\s*(\{.*?\})\s*```', safe_text, re.DOTALL)
-        if not match: match = re.search(r'(\{.*?\})', safe_text, re.DOTALL)
-        
-        if match: 
+        match = re.search(r"```json\s*(\{.*?\})\s*```", safe_text, re.DOTALL)
+        if not match:
+            match = re.search(r"(\{.*?\})", safe_text, re.DOTALL)
+
+        if match:
             return json.loads(match.group(1))
         else:
             return data
     except Exception as e:
         logger.warning(f"Auditor failed for {target['name']}: {e}")
         return data
+
 
 async def research_company(client, target, role):
     current_year = datetime.date.today().year
@@ -128,42 +134,50 @@ async def research_company(client, target, role):
     ```
     """
     last_exception = None
-    for attempt in range(5): 
+    for attempt in range(5):
         try:
             response = await client.aio.models.generate_content(
-                model=MODEL_ID, contents=prompt,
+                model=MODEL_ID,
+                contents=prompt,
                 config=types.GenerateContentConfig(
-                    tools=[types.Tool(google_search=types.GoogleSearch())], 
-                    temperature=0.2
-                )
+                    tools=[types.Tool(google_search=types.GoogleSearch())],
+                    temperature=0.2,
+                ),
             )
-            
+
             safe_text = response.text if response.text else ""
-            match = re.search(r'```json\s*(\{.*?\})\s*```', safe_text, re.DOTALL)
-            if not match: match = re.search(r'(\{.*?\})', safe_text, re.DOTALL)
-            
-            if match: return json.loads(match.group(1))
+            match = re.search(r"```json\s*(\{.*?\})\s*```", safe_text, re.DOTALL)
+            if not match:
+                match = re.search(r"(\{.*?\})", safe_text, re.DOTALL)
+
+            if match:
+                return json.loads(match.group(1))
             else:
-                logger.warning(f"Attempt {attempt+1}: No JSON found or Empty Response. Retrying...")
+                logger.warning(
+                    f"Attempt {attempt+1}: No JSON found or Empty Response. Retrying..."
+                )
                 await asyncio.sleep(2)
         except Exception as e:
             last_exception = e
             error_str = str(e)
-            wait_time = (2 ** attempt) * 5
-            
+            wait_time = (2**attempt) * 5
+
             if "503" in error_str or "429" in error_str:
-                logger.warning(f"Server Busy/Quota (Attempt {attempt+1}/5). Sleeping {wait_time}s...")
+                logger.warning(
+                    f"Server Busy/Quota (Attempt {attempt+1}/5). Sleeping {wait_time}s..."
+                )
                 await asyncio.sleep(wait_time)
             else:
                 logger.warning(f"Attempt {attempt+1} Error: {e}")
                 await asyncio.sleep(2)
-                
+
     return {"error": f"Failed after 5 attempts. Last error: {last_exception}"}
+
 
 async def draft_executive_email(client, target, role, research_data, case_study_data):
     current_year = datetime.date.today().year
     case_study_text = json.dumps(case_study_data.get("data", {}))
-    
+
     prompt = f"""
     SYSTEM: Senior Strategic Cloud Architect. High-Cognition Protocol. CURRENT YEAR: {current_year}.
     TARGET: {target['name']} ({target['industry']}) | ROLE: {role}.
@@ -188,26 +202,31 @@ async def draft_executive_email(client, target, role, research_data, case_study_
     }}
     ```
     """
-    for attempt in range(5): 
+    for attempt in range(5):
         try:
             response = await client.aio.models.generate_content(
-                model=MODEL_ID, contents=prompt,
+                model=MODEL_ID,
+                contents=prompt,
                 config=types.GenerateContentConfig(
-                    tools=[types.Tool(google_search=types.GoogleSearch())], 
-                    temperature=0.2
-                )
+                    tools=[types.Tool(google_search=types.GoogleSearch())],
+                    temperature=0.2,
+                ),
             )
-            
+
             safe_text = response.text if response.text else ""
-            match = re.search(r'```json\s*(\{.*?\})\s*```', safe_text, re.DOTALL)
-            if not match: match = re.search(r'(\{.*?\})', safe_text, re.DOTALL)
-            
-            if match: return json.loads(match.group(1))
-            else: await asyncio.sleep(2)
+            match = re.search(r"```json\s*(\{.*?\})\s*```", safe_text, re.DOTALL)
+            if not match:
+                match = re.search(r"(\{.*?\})", safe_text, re.DOTALL)
+
+            if match:
+                return json.loads(match.group(1))
+            else:
+                await asyncio.sleep(2)
         except Exception as e:
             await asyncio.sleep(5)
-                
+
     return {"error": f"Failed to draft email."}
+
 
 def build_card(name, industry, role, data):
     target_name = data.get("target_name", "Unknown Executive")
@@ -215,7 +234,7 @@ def build_card(name, industry, role, data):
     subject = str(data.get("subject", "No subject."))
     body = str(data.get("outreach_body", "No content."))
     hack = data.get("hack", {})
-    
+
     hack_rows = ""
     for k, v in hack.items():
         if isinstance(v, dict):
@@ -223,14 +242,14 @@ def build_card(name, industry, role, data):
             p_hook = v.get("hook", "")
             p_persona = v.get("persona", "Executive")
             p_solution = v.get("solution", "Solution")
-            
+
             if p_name and "Unknown" not in p_name and "NA" not in p_name:
                 search_query = urllib.parse.quote(f"{p_name} {name}")
                 search_url = f"https://www.linkedin.com/search/results/people/?keywords={search_query}"
                 link_html = f'<a href="{search_url}" style="color:#15803d; font-weight:bold; text-decoration:underline;">{p_name} 🔍</a>'
             else:
                 link_html = f'<span style="color:#64748b; font-weight:bold;">Position Vacant</span>'
-            
+
             hack_rows += f"""
             <div style="margin-bottom:16px; border-left: 4px solid #16a34a; padding-left:16px; padding-top:4px; padding-bottom:4px;">
                 <div style="font-size:11px; color:#64748b; font-weight:800; text-transform:uppercase; letter-spacing:0.5px;">{k}</div>
@@ -240,8 +259,14 @@ def build_card(name, industry, role, data):
             </div>
             """
 
-    src_html = "<br>".join([f'• <a href="{s["url"]}" style="color:#2563eb; font-weight:600; text-decoration:none;">{s["title"]}</a>' for s in data.get("sources", []) if isinstance(s, dict)])
-    
+    src_html = "<br>".join(
+        [
+            f'• <a href="{s["url"]}" style="color:#2563eb; font-weight:600; text-decoration:none;">{s["title"]}</a>'
+            for s in data.get("sources", [])
+            if isinstance(s, dict)
+        ]
+    )
+
     return f"""
     <div style="background:#ffffff; border:1px solid #e2e8f0; border-radius:16px; margin-bottom:40px; padding:32px; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05), 0 8px 10px -6px rgba(0,0,0,0.01);">
         <div style="border-bottom:2px solid #f8fafc; padding-bottom:16px; margin-bottom:24px;">
@@ -273,86 +298,97 @@ def build_card(name, industry, role, data):
     </div>
     """
 
+
 async def process_single_account(client, target, role):
     logger.info(f"Analyzing {target['name']}...")
-    
+
     # Step 1: Research Company
     research_data = await research_company(client, target, role)
     if "error" in research_data:
         return False, "", research_data["error"]
-        
+
     # Step 2: Fetch Case Study
-    logger.info(f"📚 Fetching dynamic case study for {target['name']} ({target['industry']})...")
+    logger.info(
+        f"📚 Fetching dynamic case study for {target['name']} ({target['industry']})..."
+    )
     case_study_query = f"Research case studies for a customer in the {target['industry']} industry or a company similar to {target['name']}."
     case_study_data = await case_study_research(case_study_query)
-    
+
     if case_study_data.get("status") == "error":
-        logger.warning(f"Failed to fetch case study: {case_study_data.get('message', 'Unknown')}. Falling back to default case studies.")
+        logger.warning(
+            f"Failed to fetch case study: {case_study_data.get('message', 'Unknown')}. Falling back to default case studies."
+        )
         # Provide a fallback empty state if it fails
         case_study_data = {"data": {"case_studies": []}}
 
     # Step 3: Draft Outreach Email
     logger.info(f"✍️ Drafting outreach email for {target['name']}...")
-    email_data = await draft_executive_email(client, target, role, research_data, case_study_data)
+    email_data = await draft_executive_email(
+        client, target, role, research_data, case_study_data
+    )
     if "error" in email_data:
         return False, "", email_data["error"]
-        
+
     # Combine Intel
     final_data = {**research_data, **email_data}
-    
+
     # Step 4: Verify Intel
     logger.info(f"🕵️ Verifying Intel for {target['name']}...")
     final_data = await verify_intel(client, target, final_data)
-    
+
     if final_data and "error" not in final_data:
-        card_html = build_card(target['name'], target['industry'], role, final_data)
+        card_html = build_card(target["name"], target["industry"], role, final_data)
         logger.info(f"✅ Success: {target['name']}")
         return True, card_html, None
-        
+
     return False, "", final_data.get("error", "Unknown Error")
+
 
 async def orchestrate_all(client, role):
     cards_html = ""
     success_count = 0
     last_error = ""
-    
+
     chunk_size = 3
     for i in range(0, len(TARGET_COMPANIES), chunk_size):
-        batch = TARGET_COMPANIES[i:i + chunk_size]
+        batch = TARGET_COMPANIES[i : i + chunk_size]
         logger.info(f"🌊 Launching Wave {i//chunk_size + 1}...")
-        
+
         tasks = [process_single_account(client, target, role) for target in batch]
         results = await asyncio.gather(*tasks)
-        
+
         for success, html, err in results:
             if success:
                 cards_html += html
                 success_count += 1
             else:
                 last_error = err
-        
+
         if i + chunk_size < len(TARGET_COMPANIES):
-            logger.info("⏳ Wave complete. Cooling down API for 60 seconds to bypass Quota Wall...")
+            logger.info(
+                "⏳ Wave complete. Cooling down API for 60 seconds to bypass Quota Wall..."
+            )
             await asyncio.sleep(60)
-            
+
     return success_count, cards_html, last_error
+
 
 @functions_framework.http
 def run_agent_logic(request):
     logger.info("Titanium 7.1 (UI Polish) Initiated...")
-    if not API_KEY: 
+    if not API_KEY:
         return "<h1>ERROR: API Key Missing.</h1>", 400
-    
+
     client = genai.Client(api_key=API_KEY)
     role = get_current_rotation_role()
     total_targets = len(TARGET_COMPANIES)
-    
+
     # Run the orchestrator
     success_count, cards_html, last_error = asyncio.run(orchestrate_all(client, role))
-        
-    if success_count == 0: 
+
+    if success_count == 0:
         return f"<h1>ANALYSIS FAILED</h1><p>Last Error: {last_error}</p>", 500
-    
+
     # Wrap the output in a clean webpage shell with strict UTF-8 encoding
     full_html = f"""
     <!DOCTYPE html>
@@ -414,6 +450,6 @@ def run_agent_logic(request):
         </body>
     </html>
     """
-    
+
     # The crucial fix: hardcoding utf-8 into the response header
-    return full_html, 200, {'Content-Type': 'text/html; charset=utf-8'}
+    return full_html, 200, {"Content-Type": "text/html; charset=utf-8"}

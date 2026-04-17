@@ -14,9 +14,10 @@ HEADER_IMAGE_URL = "https://storage.googleapis.com/titanium-assets-12345/Gemini_
 
 # --- 🎯 STRATEGIC ACCOUNTS ---
 TARGET_COMPANIES = [
-    {"name": "Johnson & Johnson", "domain": "jnj.com", "industry": "Healthcare"},
-    {"name": "Procter & Gamble", "domain": "pg.com", "industry": "Consumer Goods"},
-    {"name": "Exxon Mobil", "domain": "exxonmobil.com", "industry": "Energy"}
+    {"name": "Ford", "domain": "ford.com", "industry": "Automotive"},
+    # {"name": "Johnson & Johnson", "domain": "jnj.com", "industry": "Healthcare"},
+    # {"name": "Procter & Gamble", "domain": "pg.com", "industry": "Consumer Goods"},
+    # {"name": "Exxon Mobil", "domain": "exxonmobil.com", "industry": "Energy"}
 ]
 
 # --- 🏆 THE MEGA-VAULT 6.0 (Expanded & Deep) ---
@@ -50,14 +51,15 @@ def get_current_rotation_role():
     roles = ["CTO", "CFO", "CEO", "CIO", "VP of Engineering", "Head of Product"]
     return roles[datetime.date.today().isocalendar()[1] % len(roles)]
 
+
 _ROBUST_PRO_MODEL = Gemini(
-    model="gemini-3.1-pro-preview", 
+    model="gemini-3.1-pro-preview",
     retry_options=types.HttpRetryOptions(
-        initial_delay=2,          
-        attempts=5,               
-        exp_base=2.0,             
-        max_delay=60,             
-        http_status_codes=[429, 503], 
+        initial_delay=2,
+        attempts=5,
+        exp_base=2.0,
+        max_delay=60,
+        http_status_codes=[429, 503],
     ),
 )
 
@@ -137,7 +139,8 @@ titanium_v1_agent = Agent(
 
 root_agent = titanium_v1_agent
 
-# UI Export logic to render ADK dashboard 
+# UI Export logic to render ADK dashboard
+
 
 def build_card(name, industry, role, email_data):
     target_name = email_data.target_name
@@ -145,28 +148,30 @@ def build_card(name, industry, role, email_data):
     subject = email_data.subject
     body = email_data.outreach_body
     hack = email_data.hack
-    
+
     hack_rows = ""
-    hack_map = {{
-        "Gemini Enterprise": hack.gemini_enterprise,
-        "Security": hack.security,
-        "Data & AI": hack.data_ai
-    }}
-    
+    hack_map = {
+        {
+            "Gemini Enterprise": hack.gemini_enterprise,
+            "Security": hack.security,
+            "Data & AI": hack.data_ai,
+        }
+    }
+
     for k, v in hack_map.items():
         if v:
             p_name = v.name
             p_hook = v.hook
             p_persona = v.persona
             p_solution = v.solution
-            
+
             if p_name and "Unknown" not in p_name and "NA" not in p_name:
                 search_query = urllib.parse.quote(f"{{p_name}} {{name}}")
                 search_url = f"https://www.linkedin.com/search/results/people/?keywords={{search_query}}"
                 link_html = f'<a href="{{search_url}}" style="color:#15803d; font-weight:bold; text-decoration:underline;">{{p_name}} 🔍</a>'
             else:
                 link_html = f'<span style="color:#64748b; font-weight:bold;">Position Vacant</span>'
-            
+
             hack_rows += f"""
             <div style="margin-bottom:16px; border-left: 4px solid #16a34a; padding-left:16px; padding-top:4px; padding-bottom:4px;">
                 <div style="font-size:11px; color:#64748b; font-weight:800; text-transform:uppercase; letter-spacing:0.5px;">{{k}}</div>
@@ -176,8 +181,13 @@ def build_card(name, industry, role, email_data):
             </div>
             """
 
-    src_html = "<br>".join([f'• <a href="{{s.url}}" style="color:#2563eb; font-weight:600; text-decoration:none;">{{s.title}}</a>' for s in email_data.sources])
-    
+    src_html = "<br>".join(
+        [
+            f'• <a href="{{s.url}}" style="color:#2563eb; font-weight:600; text-decoration:none;">{{s.title}}</a>'
+            for s in email_data.sources
+        ]
+    )
+
     return f"""
     <div style="background:#ffffff; border:1px solid #e2e8f0; border-radius:16px; margin-bottom:40px; padding:32px; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05), 0 8px 10px -6px rgba(0,0,0,0.01);">
         <div style="border-bottom:2px solid #f8fafc; padding-bottom:16px; margin-bottom:24px;">
@@ -209,19 +219,20 @@ def build_card(name, industry, role, email_data):
     </div>
     """
 
+
 def render_html_dashboard(outreaches_list, role):
     cards_html = ""
     company_map = {{c["name"]: c for c in TARGET_COMPANIES}}
-    
+
     for account_data in outreaches_list.accounts:
         target_name = account_data.account_name
         email_info = account_data.outreach
         industry = company_map.get(target_name, {{}}).get("industry", "Unknown")
         cards_html += build_card(target_name, industry, role, email_info)
-        
+
     total_targets = len(TARGET_COMPANIES)
     success_count = len(outreaches_list.accounts)
-    
+
     full_html = f"""
     <!DOCTYPE html>
     <html lang="en">
@@ -282,5 +293,5 @@ def render_html_dashboard(outreaches_list, role):
         </body>
     </html>
     """
-    
+
     return full_html

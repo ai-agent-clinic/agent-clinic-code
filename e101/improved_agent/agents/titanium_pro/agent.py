@@ -35,20 +35,20 @@ HEADER_IMAGE_URL = "https://storage.googleapis.com/titanium-assets-12345/Gemini_
 # --------------------------------------------------------------------------------
 
 _RETRY_OPTIONS = types.HttpRetryOptions(
-    initial_delay=2,          # Wait 2 seconds before the first retry
-    attempts=5,               # Maximum number of attempts (including the first)
-    exp_base=2.0,             # Exponential backoff multiplier
-    max_delay=60,             # Maximum wait time between retries
-    http_status_codes=[429, 503], # The specific transient errors we want to catch
+    initial_delay=2,  # Wait 2 seconds before the first retry
+    attempts=5,  # Maximum number of attempts (including the first)
+    exp_base=2.0,  # Exponential backoff multiplier
+    max_delay=60,  # Maximum wait time between retries
+    http_status_codes=[429, 503],  # The specific transient errors we want to catch
 )
 
-_ROBUST_FLASH_MODEL = Gemini(
-    model="gemini-3-flash-preview", 
+_FLASH_MODEL = Gemini(
+    model="gemini-3-flash-preview",
     retry_options=_RETRY_OPTIONS,
 )
 
-_ROBUST_PRO_MODEL = Gemini(
-    model="gemini-3-pro-preview", 
+_PRO_MODEL = Gemini(
+    model="gemini-3.1-pro-preview",
     retry_options=_RETRY_OPTIONS,
 )
 
@@ -97,7 +97,7 @@ Respond ONLY with a JSON object matching the requested CompanyResearch schema fo
 """
 
 company_researcher = Agent(
-    model=_ROBUST_FLASH_MODEL,  # Use robust fast model for research scraping
+    model=_FLASH_MODEL,  # Use robust fast model for research scraping
     name="company_researcher",
     description="Searches for strategic target context and builds a cross-sell matrix.",
     instruction=COMPANY_RESEARCHER_INSTRUCTIONS,
@@ -120,7 +120,7 @@ Return ONLY a JSON list of strictly formatted search queries matching the Search
 """
 
 planner_agent = Agent(
-    model=_ROBUST_FLASH_MODEL,
+    model=_FLASH_MODEL,
     name="search_planner",
     description="Analyzes the query and generates 3-5 optimal search terms.",
     instruction=PLANNER_INSTRUCTIONS,
@@ -156,11 +156,16 @@ Respond ONLY with a JSON object matching the requested CaseStudyList schema.
 """
 
 case_study_researcher = Agent(
-    model=_ROBUST_FLASH_MODEL,
+    model=_FLASH_MODEL,
     name="case_study_researcher",
     description="Scrapes Google Cloud customer case studies into structured JSON data.",
     instruction=CASE_STUDY_RESEARCHER_INSTRUCTIONS,
-    tools=[search_vector_search_tool, save_case_study_to_cache, playwright_toolset, run_browser_command],
+    tools=[
+        search_vector_search_tool,
+        # save_case_study_to_cache,
+        # playwright_toolset,
+        # run_browser_command,
+    ],
     output_schema=CaseStudyList,
     output_key="case_study_result",
 )
@@ -182,7 +187,7 @@ Return ONLY the selected case studies as a structured CaseStudyList json object.
 """
 
 selector_agent = Agent(
-    model=_ROBUST_FLASH_MODEL,
+    model=_FLASH_MODEL,
     name="case_study_selector",
     description="Selects the top relevant case studies from the web research.",
     instruction=SELECTOR_INSTRUCTIONS,
@@ -219,7 +224,7 @@ Respond ONLY with a JSON object matching the empty OutreachEmail schema format.
 """
 
 email_drafter = Agent(
-    model=_ROBUST_PRO_MODEL,  # Use robust Pro model for drafting and verification
+    model=_PRO_MODEL,  # Use robust Pro model for drafting and verification
     name="email_drafter",
     description="Drafts the outbound executive email based on collected intelligence.",
     instruction=EMAIL_DRAFTER_INSTRUCTIONS,
@@ -244,6 +249,15 @@ titanium_pro_agent = SequentialAgent(
     ],
 )
 
+titanium_basic = SequentialAgent(
+    name="titanium_pro_pipeline",
+    sub_agents=[
+        company_researcher,
+        case_study_researcher,
+        email_drafter,
+    ],
+)
+
 root_agent = titanium_pro_agent
 
 # --------------------------------------------------------------------------------
@@ -251,17 +265,13 @@ root_agent = titanium_pro_agent
 # --------------------------------------------------------------------------------
 
 
-async def generate_intel(
-    target_name: str, domain: str, role: str
-) -> dict:
+async def generate_intel(target_name: str, domain: str, role: str) -> dict:
     """Execute the full titanium pipeline and return the aggregated intel dictionary."""
     session_id = f"pipeline_{target_name.replace(' ', '_')}"
     user_id = "titanium_user"
     app_name = "titanium_pro_app"
 
-    query = (
-        f"Target: {target_name}. Domain: {domain}. Role: {role}."
-    )
+    query = f"Target: {target_name}. Domain: {domain}. Role: {role}."
 
     session_service = InMemorySessionService()
     runner = Runner(
@@ -306,9 +316,11 @@ async def generate_intel(
 # HEADLESS CLOUD FUNCTION / UI EXPORT LOGIC
 # --------------------------------------------------------------------------------
 
+
 def get_current_rotation_role():
     roles = ["CTO", "CFO", "CEO", "CIO", "VP of Engineering", "Head of Product"]
     return roles[datetime.date.today().isocalendar()[1] % len(roles)]
+
 
 def build_card(name, role, data):
     research = data.get("research", {})
@@ -320,7 +332,7 @@ def build_card(name, role, data):
     subject = str(email.get("subject", "No subject."))
     body = str(email.get("outreach_body", "No content."))
     hack = research.get("hack", {})
-    
+
     hack_rows = ""
     for k, v in hack.items():
         if isinstance(v, dict):
@@ -328,14 +340,14 @@ def build_card(name, role, data):
             p_hook = v.get("hook", "")
             p_persona = v.get("persona", "Executive")
             p_solution = v.get("solution", "Solution")
-            
+
             if p_name and "Unknown" not in p_name and "NA" not in p_name:
                 search_query = urllib.parse.quote(f"{p_name} {name}")
                 search_url = f"https://www.linkedin.com/search/results/people/?keywords={search_query}"
                 link_html = f'<a href="{search_url}" style="color:#15803d; font-weight:bold; text-decoration:underline;">{p_name} 🔍</a>'
             else:
                 link_html = f'<span style="color:#64748b; font-weight:bold;">Position Vacant</span>'
-            
+
             hack_rows += f"""
             <div style="margin-bottom:16px; border-left: 4px solid #16a34a; padding-left:16px; padding-top:4px; padding-bottom:4px;">
                 <div style="font-size:11px; color:#64748b; font-weight:800; text-transform:uppercase; letter-spacing:0.5px;">{k}</div>
@@ -345,8 +357,14 @@ def build_card(name, role, data):
             </div>
             """
 
-    src_html = "<br>".join([f'• <a href="{s["url"]}" style="color:#2563eb; font-weight:600; text-decoration:none;">{s["title"]}</a>' for s in email.get("sources", []) if isinstance(s, dict)])
-    
+    src_html = "<br>".join(
+        [
+            f'• <a href="{s["url"]}" style="color:#2563eb; font-weight:600; text-decoration:none;">{s["title"]}</a>'
+            for s in email.get("sources", [])
+            if isinstance(s, dict)
+        ]
+    )
+
     return f"""
     <div style="background:#ffffff; border:1px solid #e2e8f0; border-radius:16px; margin-bottom:40px; padding:32px; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05), 0 8px 10px -6px rgba(0,0,0,0.01);">
         <div style="border-bottom:2px solid #f8fafc; padding-bottom:16px; margin-bottom:24px;">
@@ -378,51 +396,55 @@ def build_card(name, role, data):
     </div>
     """
 
+
 async def process_single_account(target, role):
     print(f"Analyzing {target['name']}...")
-    result = await generate_intel(target['name'], target['domain'], role)
-    
+    result = await generate_intel(target["name"], target["domain"], role)
+
     if result.get("status") == "success":
-        card_html = build_card(target['name'], role, result)
+        card_html = build_card(target["name"], role, result)
         print(f"✅ Success: {target['name']}")
         return True, card_html, None
-        
+
     return False, "", result.get("message", "Unknown Error")
+
 
 async def orchestrate_all(companies, role):
     cards_html = ""
     success_count = 0
     last_error = ""
-    
+
     chunk_size = 3
     for i in range(0, len(companies), chunk_size):
-        batch = companies[i:i + chunk_size]
+        batch = companies[i : i + chunk_size]
         print(f"🌊 Launching Wave {i//chunk_size + 1}...")
-        
+
         tasks = [process_single_account(target, role) for target in batch]
         results = await asyncio.gather(*tasks)
-        
+
         for success, html, err in results:
             if success:
                 cards_html += html
                 success_count += 1
             else:
                 last_error = err
-    
+
     return success_count, cards_html, last_error
+
 
 @functions_framework.http
 def run_agent_logic(request):
     print("Titanium Pro Headless Cloud Function Initiated...")
-    
+
     request_json = request.get_json(silent=True) or {}
     role = request_json.get("role", get_current_rotation_role())
-    
+
     companies = []
     csv_data = request_json.get("csv_data")
     if csv_data:
         import csv
         import io
+
         reader = csv.reader(io.StringIO(csv_data))
         for row in reader:
             if not row or len(row) < 2:
@@ -434,16 +456,21 @@ def run_agent_logic(request):
         companies = request_json.get("companies", [])
 
     if not companies:
-        return "<h1>BAD REQUEST</h1><p>Please provide a JSON payload with 'csv_data' or 'companies'.</p>", 400
+        return (
+            "<h1>BAD REQUEST</h1><p>Please provide a JSON payload with 'csv_data' or 'companies'.</p>",
+            400,
+        )
 
     total_targets = len(companies)
-    
+
     # Run the orchestrator
-    success_count, cards_html, last_error = asyncio.run(orchestrate_all(companies, role))
-        
-    if success_count == 0: 
+    success_count, cards_html, last_error = asyncio.run(
+        orchestrate_all(companies, role)
+    )
+
+    if success_count == 0:
         return f"<h1>ANALYSIS FAILED</h1><p>Last Error: {last_error}</p>", 500
-    
+
     # Wrap the output in a clean webpage shell with strict UTF-8 encoding
     full_html = f"""
     <!DOCTYPE html>
@@ -505,9 +532,9 @@ def run_agent_logic(request):
         </body>
     </html>
     """
-    
+
     # The crucial fix: hardcoding utf-8 into the response header
-    return full_html, 200, {'Content-Type': 'text/html; charset=utf-8'}
+    return full_html, 200, {"Content-Type": "text/html; charset=utf-8"}
 
 
 if __name__ == "__main__":
@@ -515,14 +542,15 @@ if __name__ == "__main__":
         # Simplistic parsing for testing via CLI
         target = " ".join(sys.argv[1:])
         print(f"Running Titanium Pro pipeline for: {target}")
-        
+
         from .vector_search import initialize_collection
+
         print("Checking/Initializing Vector Search Collection...")
         try:
             initialize_collection()
         except Exception as e:
             print(f"Failed to initialize Vector Search collection: {e}")
-            
+
         result = asyncio.run(generate_intel(target, "example.com", "CTO"))
         print(f"\nPipeline Result:\n{json.dumps(result, indent=2)}")
     else:

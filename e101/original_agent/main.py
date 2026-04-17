@@ -14,9 +14,7 @@ HEADER_IMAGE_URL = "https://storage.googleapis.com/titanium-assets-12345/Gemini_
 
 
 # --- 🎯 STRATEGIC ACCOUNTS ---
-TARGET_COMPANIES = [
-    {"name": "Ford Motor Company", "domain": "ford.com", "industry": "Automotive"}
-]
+TARGET_COMPANIES = [{"name": "Waymo", "domain": "waymo.com", "industry": "Rideshare"}]
 
 # --- 🏆 THE MEGA-VAULT 6.0 (Expanded & Deep) ---
 CASE_STUDIES = """

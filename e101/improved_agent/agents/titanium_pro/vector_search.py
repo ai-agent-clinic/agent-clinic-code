@@ -2,6 +2,7 @@ import os
 import hashlib
 from google.cloud import vectorsearch_v1beta
 
+
 def _get_project_and_location():
     project_id = os.environ.get("PROJECT_ID")
     location = os.environ.get("LOCATION", "us-central1")
@@ -9,24 +10,33 @@ def _get_project_and_location():
         raise ValueError("PROJECT_ID environment variable not set.")
     return project_id, location
 
+
 def get_collection_id() -> str:
     return os.environ.get("VECTOR_SEARCH_COLLECTION_ID", "case-studies")
+
 
 def get_clients():
     vector_search_service_client = vectorsearch_v1beta.VectorSearchServiceClient()
     data_object_service_client = vectorsearch_v1beta.DataObjectServiceClient()
-    data_object_search_service_client = vectorsearch_v1beta.DataObjectSearchServiceClient()
-    return vector_search_service_client, data_object_service_client, data_object_search_service_client
+    data_object_search_service_client = (
+        vectorsearch_v1beta.DataObjectSearchServiceClient()
+    )
+    return (
+        vector_search_service_client,
+        data_object_service_client,
+        data_object_search_service_client,
+    )
+
 
 def initialize_collection():
     """Initializes the Vector Search Collection if it doesn't exist."""
     project_id, location = _get_project_and_location()
     collection_id = get_collection_id()
     vector_search_service_client, _, _ = get_clients()
-    
+
     parent = f"projects/{project_id}/locations/{location}"
     collection_name = f"{parent}/collections/{collection_id}"
-    
+
     # Check if exists
     try:
         vector_search_service_client.get_collection(name=collection_name)
@@ -37,7 +47,7 @@ def initialize_collection():
             print(f"Error checking collection: {e}")
             # we might just want to continue or raise
             pass
-    
+
     print(f"Creating Collection: {collection_id}...")
     request = vectorsearch_v1beta.CreateCollectionRequest(
         parent=parent,
@@ -59,7 +69,9 @@ def initialize_collection():
                     "dense_vector": {
                         "dimensions": 768,
                         "vertex_embedding_config": {
-                            "model_id": os.environ.get("EMBEDDING_MODEL", "gemini-embedding-001"),
+                            "model_id": os.environ.get(
+                                "EMBEDDING_MODEL", "gemini-embedding-001"
+                            ),
                             "text_template": ("Company: {company} Content: {content}"),
                             "task_type": "RETRIEVAL_DOCUMENT",
                         },
@@ -68,10 +80,11 @@ def initialize_collection():
             },
         },
     )
-    
+
     operation = vector_search_service_client.create_collection(request=request)
     operation.result()
     print(f"Collection {collection_id} created successfully.")
+
 
 def search_vector_search(query: str, company: str, top_k: int = 5) -> list[dict]:
     """Executes a Hybrid Search against the Vector Search Collection."""
@@ -79,7 +92,7 @@ def search_vector_search(query: str, company: str, top_k: int = 5) -> list[dict]
     collection_id = get_collection_id()
     _, _, data_object_search_service_client = get_clients()
     parent = f"projects/{project_id}/locations/{location}/collections/{collection_id}"
-    
+
     # We will do hybrid search looking for both semantic meaning and keyword matches.
     batch_search_request = vectorsearch_v1beta.BatchSearchDataObjectsRequest(
         parent=parent,
@@ -90,9 +103,7 @@ def search_vector_search(query: str, company: str, top_k: int = 5) -> list[dict]
                     search_field="content_embedding",
                     task_type="QUESTION_ANSWERING",
                     top_k=top_k,
-                    output_fields=vectorsearch_v1beta.OutputFields(
-                        data_fields=["*"]
-                    ),
+                    output_fields=vectorsearch_v1beta.OutputFields(data_fields=["*"]),
                 )
             ),
             vectorsearch_v1beta.Search(
@@ -100,9 +111,7 @@ def search_vector_search(query: str, company: str, top_k: int = 5) -> list[dict]
                     search_text=f"{company} {query}",
                     data_field_names=["company", "content", "industry"],
                     top_k=top_k,
-                    output_fields=vectorsearch_v1beta.OutputFields(
-                        data_fields=["*"]
-                    ),
+                    output_fields=vectorsearch_v1beta.OutputFields(data_fields=["*"]),
                 )
             ),
         ],
@@ -112,34 +121,46 @@ def search_vector_search(query: str, company: str, top_k: int = 5) -> list[dict]
             )
         ),
     )
-    
+
     try:
-        batch_results = data_object_search_service_client.batch_search_data_objects(batch_search_request)
+        batch_results = data_object_search_service_client.batch_search_data_objects(
+            batch_search_request
+        )
         results = []
         if batch_results.results:
             combined_results = batch_results.results[0]
             for result in combined_results.results:
                 data = result.data_object.data
-                results.append({
-                    "id": result.data_object.name.split("/")[-1],
-                    "company": data.get("company", ""),
-                    "content": data.get("content", ""),
-                    "industry": data.get("industry", ""),
-                    "products_used": data.get("products_used", ""),
-                    "metrics": data.get("metrics", ""),
-                })
+                results.append(
+                    {
+                        "id": result.data_object.name.split("/")[-1],
+                        "company": data.get("company", ""),
+                        "content": data.get("content", ""),
+                        "industry": data.get("industry", ""),
+                        "products_used": data.get("products_used", ""),
+                        "metrics": data.get("metrics", ""),
+                    }
+                )
         return results
     except Exception as e:
         print(f"Vector search failed: {e}")
         return []
 
-def insert_case_study_into_cache(source_url: str, company: str, content: str, industry: str = "", products_used: str = "", metrics: str = ""):
+
+def insert_case_study_into_cache(
+    source_url: str,
+    company: str,
+    content: str,
+    industry: str = "",
+    products_used: str = "",
+    metrics: str = "",
+):
     """Inserts a single case study into the Vector Search Collection for lazy caching."""
     project_id, location = _get_project_and_location()
     collection_id = get_collection_id()
     _, data_object_service_client, _ = get_clients()
     parent = f"projects/{project_id}/locations/{location}/collections/{collection_id}"
-    
+
     # Create an idempotent ID using a hash of the URL to prevent duplicates from breaking.
     # The user asked to use the URL itself as the ID, but it should be a valid string for data_object_id.
     # URLs often contain slashes and special characters which might not be valid for resource names.
@@ -147,8 +168,9 @@ def insert_case_study_into_cache(source_url: str, company: str, content: str, in
     # "Since every case study has a unique URL, let's use that as the dedupe key."
     # Let's try inserting with the URL encoded. If it fails due to character limits, we hash.
     import hashlib
-    safe_id = hashlib.sha256(source_url.encode('utf-8')).hexdigest()
-    
+
+    safe_id = hashlib.sha256(source_url.encode("utf-8")).hexdigest()
+
     request = vectorsearch_v1beta.CreateDataObjectRequest(
         parent=parent,
         data_object_id=safe_id,
@@ -156,7 +178,9 @@ def insert_case_study_into_cache(source_url: str, company: str, content: str, in
             "data": {
                 "source_url": source_url,
                 "company": company,
-                "content": content[-32000:], # ensure we don't exceed text max length limits
+                "content": content[
+                    -32000:
+                ],  # ensure we don't exceed text max length limits
                 "industry": industry,
                 "products_used": products_used,
                 "metrics": metrics,
