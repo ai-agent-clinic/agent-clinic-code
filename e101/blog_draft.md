@@ -1,6 +1,6 @@
 Building an AI agent that works beautifully on your local machine is easy. Building one that survives contact with reality—handling rate limits, avoiding infinite loops, and scaling beyond hardcoded data—is a completely different beast. This isn't just about elegant code; it's about avoiding runaway cloud bills, reputational damage from hallucinated outputs, and the sheer operational nightmare of a silent failure in production.
 
-We see these fragile architectures every day. That’s why we launched the AI Agent Clinic. In our premiere episode, Luis Sala sat down with Jacob Badish to tear down "Titanium"—a promising but brittle sales research agent. Titanium's original job was to research a target company and draft a personalized outreach email. While the prototype ran, it was slow, relied on a monolithic Python script, and was limited to a hardcoded list of just 12 case studies.
+To solve these "fragile architecture" patterns, we launched the AI Agent Clinic. Our first mission: a complete teardown of "Titanium"—a promising but brittle sales research agent. In our premiere episode, Luis Sala sat down with Jacob Badish to rebuild it from the ground up. Titanium's original job was to research a target company and draft a personalized outreach email. While the prototype ran, it was slow, relied on a monolithic Python script, and was limited to a hardcoded list of just 12 case studies.
 
 Over the course of an hour, the team tore down and rebuilt the agent for production. Here are the core breakdowns, the fixes, and the engineering lessons from Episode 1.
 
@@ -10,18 +10,12 @@ Over the course of an hour, the team tore down and rebuilt the agent for product
 **The Lesson:** Separation of concerns. Specialized agents with narrow tasks run more reliably than a single LLM trying to execute a massive, multi-step prompt.
 
 **Architecture: The Orchestrated Pipeline Swap**
-```mermaid
-graph TD
-    A[User Prompt] --> B[Company Researcher Agent: Initial reconnaissance]
-    B --> C[Search Planner Agent: Maps strategy]
-    C --> D[Case Study Researcher Agent: Executes strategy, pulls raw data]
-    D --> E[Selector Agent: Filters data, picks best 1-2 case studies]
-    E --> F[Drafter Agent: Synthesizes context into final email]
-```
+
+![The Orchestrated Pipeline Swap](/Users/luissala/.gemini/antigravity/brain/b7df1c3f-02c1-4e55-b31d-1c3666878206/pipeline_diagram_1776385458973.png)
 
 ### 2. Force Structured Outputs (via Pydantic)
 **The Breakdown:** Originally, Titanium forced JSON outputs out of the model via extensive hard-coding straight inside the prompt string. It resulted in dirty code, fragile parsing, and wasted tokens describing the exact structure over and over again.
-**The Fix:** When swapping to ADK, we eradicated schema formatting instructions out of the prompt. Instead, we injected native Pydantic objects directly as explicit schema definitions. ADK uses LLM function calling features dynamically under the hood to abstract the boilerplate and force adherence.
+**The Fix:** When swapping to ADK, we eradicated schema formatting instructions out of the prompt. Instead, we injected native Pydantic objects directly as explicit schema definitions. ADK uses LLM function calling features dynamically under the hood to abstract the boilerplate and force adherence. By shifting the "contract" from a fuzzy natural language request to a runtime-validated Python object, we guarantee structural integrity and eliminate brittle custom parsing.
 
 ```python
 # BEFORE: Prompt String Bloat
@@ -41,20 +35,25 @@ class CompanyIntel(BaseModel):
 
 ### 3. Replace Hardcoded State with a Dynamic RAG Pipeline
 **The Breakdown:** Titanium’s context corpus was artificially tiny. It only knew about 12 hardcoded case studies written directly into the Python file. It couldn't scale or learn without a developer manually updating the code.
-**The Fix:** We built a dynamic data intake system. An async crawler (Playwright) runs in the background to autonomously scrape Google Cloud's customer success website and batch them to Google Cloud Vector Search. Back in the pipeline, the Case Study Researcher runs a true Hybrid Search (combining Semantic & Exact Text searches via Reciprocal Rank Fusion) on the indexed corpus to fetch ideal case studies.
+**The Fix:** We built a dynamic data intake system. An async crawler (Playwright) runs in the background to autonomously scrape Google Cloud's customer success website and batch them to Google Cloud Vector Search. Back in the pipeline, the Case Study Researcher runs a true Hybrid Search on the indexed corpus to fetch ideal case studies. *(Note: Hybrid Search combines the semantic "meaning" of a query with the precision of exact keyword matching via Reciprocal Rank Fusion, ensuring the agent doesn't miss specific technical terms).*
 **The Lesson:** Hardcoding is fine for a prototype, but a production pipeline needs to refresh itself. True agentic value comes from giving agents the tools to autonomously fetch, scale, and query via Vector Search. Stop hardcoding your context limits.
 
 **Architecture: The RAG Pipeline Intake**
-```mermaid
-graph TD
-    A[Live Web: Customer Success Site] --> B[Playwright Crawler: Async background generation]
-    B --> C[Google Cloud Vector DB: Hybrid Semantic/Text Search]
-    C --> D[Case Study Researcher: RRF Querying against DB]
-```
+
+![The RAG Pipeline Intake](/Users/luissala/.gemini/antigravity/brain/b7df1c3f-02c1-4e55-b31d-1c3666878206/rag_pipeline_diagram_1776385472127.png)
 
 ### 4. Observability is Non-Negotiable
 **The Breakdown:** When an LLM gets confused in a standard script, it’s a "black box." You know something failed, but you have no idea which component caused the break.
-**The Fix:** We tapped into ADK’s first-class support for OpenTelemetry. Out of the box, ADK emits distributed traces for full execution flows, capturing model requests, tokens, and tool executions. We paired this OpenTelemetry backend with a tailored Server-Sent Events (SSE) streaming app, effectively designing a sleek live-telemetry dashboard for the user.
+**The Fix:** We tapped into ADK’s first-class support for OpenTelemetry. Out of the box, ADK emits distributed traces for full execution flows, capturing model requests, tokens, and tool executions. 
+
+```python
+# Bootstrapping OTel in ADK is a one-liner
+from adk.observability import configure_telemetry
+
+configure_telemetry(project_id="my-gcp-project", enable_sse_stream=True)
+```
+
+We paired this OpenTelemetry backend with a tailored Server-Sent Events (SSE) streaming app, effectively designing a sleek live-telemetry dashboard for the user.
 **The Lesson:** You cannot put an agent into production without live diagnostics. You need OpenTelemetry traces to resolve ground-truth disputes and debug individual component latencies.
 
 ### 5. Taming the Token Burn (Cost Optimization)
