@@ -1,8 +1,13 @@
 # Titanium - AI Agent Clinic
 
-Titanium is a highly optimized, production-ready sales research agent built using the **Google Agent Development Kit (ADK)**. 
+[![Can we fix this AI agent in 60 minutes?](https://img.youtube.com/vi/md2VFN6SojQ/maxresdefault.jpg)](https://www.youtube.com/live/md2VFN6SojQ)
+*📺 Watch the live teardown and rebuild on YouTube: [Can we fix this AI agent in 60 minutes?](https://www.youtube.com/live/md2VFN6SojQ)*
 
-Originally created as a monolithic script, Titanium was rebuilt during Episode 1 of the **AI Agent Clinic** series into a distributed, orchestrated, and resilient pipeline. Rather than relying on hardcoded case studies and brittle string parsing, it utilizes Pydantic for structured outputs, autonomous asynchronous crawlers (via Playwright) for RAG context building, and Vertex AI Vector Search to fetch accurate, hyper-relevant case studies.
+**Titanium** is a highly optimized, production-ready sales research agent built using the **Google Agent Development Kit (ADK)**. 
+
+Have you ever "vibe-coded" an AI prototype that works perfectly on the first try, but fails silently in production? That was Titanium. Originally created as a brittle, monolithic script, Titanium was brought to the **AI Agent Clinic** to be torn down and rebuilt live in under 60 minutes. 
+
+It was transformed into a distributed, orchestrated, and resilient pipeline. Rather than relying on hardcoded case studies and brittle string parsing, it utilizes Pydantic for rigid structured outputs, autonomous asynchronous crawlers (via Playwright) for RAG context building, and Vertex AI Vector Search to fetch accurate, hyper-relevant case studies.
 
 ## Architecture Highlights
 *   **Orchestrated Sub-Agents:** Splits the monolithic task into an orchestrated pipeline of tools including a Company Researcher, Case Study Researcher, and Email Drafter.
@@ -12,15 +17,22 @@ Originally created as a monolithic script, Titanium was rebuilt during Episode 1
 
 ## Running the Application
 
-Ensure you have your environment configured, specifically setting your `GEMINI_API_KEY`. The project leverages `uv` as the package manager and incorporates a web UI via Quart.
+Ensure you have your environment configured, specifically setting your `GEMINI_API_KEY` in a `.env` file at the root of the project. The project leverages `uv` as the package manager and incorporates a web UI via Quart.
 
+You can use the provided `Makefile` to easily run different versions of the agent.
+
+### 1. Running the Original Agent
+To run the original, monolithic version of the agent locally via the Google Cloud Functions Framework:
 ```bash
-# Set your Gemini API key
-export GEMINI_API_KEY="your-api-key-here"
-
-# Run the application
-uv run main.py
+make run-original
 ```
+
+### 2. Running Titanium Pro via the Web Dashboard
+To run the new, orchestrated pipeline (Titanium Pro) through the interactive web user interface:
+```bash
+make run-titanium-dashboard
+```
+This will start a local Quart web server. Open `http://0.0.0.0:8080` in your browser to access the dashboard.
 
 ## Setup & Dependencies
 
