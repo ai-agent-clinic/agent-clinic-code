@@ -153,18 +153,14 @@ Your job is to find relevant Google Cloud customer case studies for the user's t
 
 You have the following tools at your disposal:
 1. `search_vector_search_tool`: Searches the local Vector Search cache for existing case studies.
-2. `playwright-cli` via `run_browser_command`: Live web scraping tool.
-3. `save_case_study_to_cache`: Saves newly found case studies to the Vector Search cache.
 
 Here are the optimal search terms formulated by the planner:
 {{ search_plan }}
 
 WORKFLOW:
 1. **Cache First:** Iteratively use `search_vector_search_tool` with the planned search terms and the target company to find relevant case studies that we have already cached.
-2. **Evaluate Cache:** If you find at least 3 highly relevant case studies in the cache, you may proceed to output them.
-3. **Fallback to Web (If Needed):** If the cache doesn't have enough relevant results, use `playwright-cli` to navigate to 'https://cloud.google.com/customers' or run live web searches to find new case studies.
-4. **Cache New Findings:** For EVERY new case study you extract from the live web, you MUST call `save_case_study_to_cache` to store it for future use.
-5. Provide a structured CaseStudyList object containing all extracted case studies.
+2. **Evaluate Cache:** If you find highly relevant case studies in the cache, you may proceed to output them.
+3. Provide a structured CaseStudyList object containing all extracted case studies.
 
 Respond ONLY with a JSON object matching the requested CaseStudyList schema.
 """
@@ -263,14 +259,15 @@ titanium_pro_agent = SequentialAgent(
     ],
 )
 
-titanium_basic = SequentialAgent(
-    name="titanium_pro_pipeline",
-    sub_agents=[
-        company_researcher,
-        case_study_researcher,
-        email_drafter,
-    ],
-)
+# This agent definition is not used, but it illustrates a more basic form of the agent that matches the functionality of the original agent.
+# titanium_basic = SequentialAgent(
+#     name="titanium_basic_pipeline",
+#     sub_agents=[
+#         company_researcher,
+#         case_study_researcher,
+#         email_drafter,
+#     ],
+# )
 
 root_agent = titanium_pro_agent
 
