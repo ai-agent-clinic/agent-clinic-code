@@ -17,7 +17,11 @@ It was transformed into a distributed, orchestrated, and resilient pipeline. Rat
 
 ## Running the Application
 
-Ensure you have your environment configured, specifically setting your `GEMINI_API_KEY` in a `.env` file at the root of the project. The project leverages `uv` as the package manager and incorporates a web UI via Quart.
+Before running the agents, you must configure your environment variables. We have provided a sample template you can duplicate:
+```bash
+cp .env.sample .env
+```
+Update the new `.env` file with your specific `GEMINI_API_KEY`, your GCP `PROJECT_ID`, and adjust the Vector Search cache configuration if necessary. The project leverages `uv` as the package manager and incorporates a web UI via Quart.
 
 You can use the provided `Makefile` to easily run different versions of the agent.
 
