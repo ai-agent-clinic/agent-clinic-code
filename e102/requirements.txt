@@ -1,0 +1,13 @@
+fastapi
+uvicorn
+httpx
+google-genai
+python-dotenv
+truststore
+statsbombpy
+opentelemetry-sdk
+opentelemetry-api
+opentelemetry-instrumentation-fastapi
+opentelemetry-exporter-otlp-proto-http
+opentelemetry-exporter-gcp-trace
+opentelemetry-exporter-gcp-monitoring

@@ -1,0 +1,12 @@
+services:
+  jaeger:
+    image: jaegertracing/all-in-one:latest
+    container_name: jaeger
+    ports:
+      - "16686:16686" # Jaeger UI
+      - "4317:4317"   # OTLP/gRPC receiver
+      - "4318:4318"   # OTLP/HTTP receiver
+    volumes:
+      - ./jaeger-ui-config.json:/etc/jaeger/jaeger-ui-config.json
+    command: ["--query.ui-config=/etc/jaeger/jaeger-ui-config.json"]
+    restart: unless-stopped

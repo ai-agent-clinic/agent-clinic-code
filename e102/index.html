@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Playback IQ — Morocco × Portugal</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --amber:    #FF9900;
+      --amber-40: rgba(255,153,0,0.40);
+      --amber-10: rgba(255,153,0,0.10);
+      --bg:       #07070E;
+      --panel:    #0B0B13;
+      --fg:       #DFE0EC;
+      --muted:    rgba(210,210,230,0.28);
+      --marker-h: 40px;
+      --canvas-h: 108px;
+      --ruler-h:  20px;
+    }
+
+    html, body {
+      height: 100%;
+      background: var(--bg);
+      color: var(--fg);
+      font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+      overflow: hidden;
+    }
+
+    #app { height: 100%; display: flex; flex-direction: column; }
+
+    /* ── Main area ──────────────────────────────────────────────────── */
+    #main {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #scoreboard {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+
+    #match-teams {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .team-name {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.20em;
+      text-transform: uppercase;
+      color: var(--muted);
+      width: 110px;
+    }
+    .team-name.home { text-align: right; }
+    .team-name.away { text-align: left; }
+
+    #score-display {
+      font-size: 54px;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      font-variant-numeric: tabular-nums;
+      font-family: ui-monospace, 'SF Mono', 'Cascadia Mono', monospace;
+      color: var(--amber);
+      line-height: 1;
+    }
+
+    #match-meta {
+      font-size: 9.5px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* ── Timeline panel ─────────────────────────────────────────────── */
+    #bottom {
+      flex-shrink: 0;
+      background: var(--panel);
+      border-top: 1px solid var(--amber-10);
+      padding: 11px 22px 17px;
+    }
+
+    #tl-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+
+    #now-row {
+      display: flex;
+      align-items: baseline;
+      gap: 2px;
+      line-height: 1;
+    }
+
+    #now-min {
+      font-size: 30px;
+      font-weight: 800;
+      color: var(--amber);
+      font-variant-numeric: tabular-nums;
+      font-family: ui-monospace, 'SF Mono', monospace;
+      letter-spacing: -0.03em;
+      min-width: 2ch;
+    }
+
+    #now-apos {
+      font-size: 17px;
+      font-weight: 300;
+      color: var(--amber-40);
+    }
+
+    #tl-track-label {
+      font-size: 8px;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: rgba(210,210,230,0.16);
+    }
+
+    /* ── Track ──────────────────────────────────────────────────────── */
+    #tl-wrap {
+      position: relative;
+      width: 100%;
+      cursor: crosshair;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    /* ── Marker row ── */
+    #tl-markers {
+      position: relative;
+      height: var(--marker-h);
+      overflow: visible;
+    }
+
+    .mk {
+      position: absolute;
+      bottom: 0;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      cursor: pointer;
+      z-index: 10;
+    }
+
+    .mk-stem {
+      width: 1px;
+      height: 8px;
+      background: rgba(255,255,255,0.07);
+    }
+
+    /* ── Canvas ── */
+    #tl-canvas {
+      display: block;
+      width: 100%;
+      height: var(--canvas-h);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    /* ── Playhead ── */
+    #scrubber {
+      position: absolute;
+      top: 0;
+      width: 1px;
+      height: calc(var(--marker-h) + var(--canvas-h));
+      background: rgba(255,188,28,0.88);
+      transform: translateX(-50%);
+      pointer-events: none;
+      z-index: 20;
+      will-change: left;
+    }
+
+    /* Downward-pointing triangle handle — video-editor playhead style */
+    #scrubber::before {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0; height: 0;
+      border-left:  5px solid transparent;
+      border-right: 5px solid transparent;
+      border-top:   8px solid rgba(255,190,32,0.96);
+    }
+
+    /* ── Tooltip ── */
+    #tip {
+      position: fixed;
+      z-index: 200;
+      pointer-events: none;
+      display: none;
+      background: rgba(7,7,14,0.97);
+      border: 1px solid rgba(255,153,0,0.22);
+      color: var(--fg);
+      font-size: 11px;
+      line-height: 1.55;
+      letter-spacing: 0.01em;
+      padding: 6px 12px;
+      border-radius: 3px;
+      max-width: 290px;
+      white-space: normal;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.75);
+    }
+  </style>
+</head>
+<body>
+
+<div id="app">
+
+  <div id="main">
+    <div id="scoreboard">
+      <div id="match-teams">
+        <div class="team-name home">Morocco</div>
+        <div id="score-display">0 – 0</div>
+        <div class="team-name away">Portugal</div>
+      </div>
+      <div id="match-meta">2022 FIFA World Cup &nbsp;·&nbsp; Quarter-final &nbsp;·&nbsp; Dec 10, 2022</div>
+    </div>
+  </div>
+
+  <div id="bottom">
+    <div id="tl-header">
+      <div id="now-row">
+        <span id="now-min">0</span><span id="now-apos">'</span>
+      </div>
+      <div id="tl-track-label">Intensity Track</div>
+    </div>
+
+    <div id="tl-wrap">
+      <div id="tl-markers"></div>
+      <canvas id="tl-canvas"></canvas>
+      <div id="scrubber"></div>
+    </div>
+  </div>
+
+</div>
+
+<div id="tip"></div>
+
+<script>
+// ── Constants ──────────────────────────────────────────────────────────────
+const N_MIN   = 96;
+const RULER_H = 20; // px: ruler strip at top of canvas (must match --ruler-h)
+
+// ── State ──────────────────────────────────────────────────────────────────
+let currentMinute = 0;
+let dragging      = false;
+let tlData        = [];
+let keyEvents     = [];
+let goals         = []; // [{team, minute}] — filled after keyEvents loads
+
+// ── DOM ────────────────────────────────────────────────────────────────────
+const canvas    = document.getElementById('tl-canvas');
+const ctx       = canvas.getContext('2d');
+const scrubber  = document.getElementById('scrubber');
+const nowMin    = document.getElementById('now-min');
+const scoreEl   = document.getElementById('score-display');
+const markersEl = document.getElementById('tl-markers');
+const wrap      = document.getElementById('tl-wrap');
+const tip       = document.getElementById('tip');
+
+// ── Canvas ─────────────────────────────────────────────────────────────────
+function drawCanvas() {
+  const W = canvas.offsetWidth;
+  const H = canvas.offsetHeight;
+  // Retry if layout hasn't settled yet (can happen on first paint)
+  if (!W || !H) { requestAnimationFrame(drawCanvas); return; }
+
+  const dpr = window.devicePixelRatio || 1;
+  canvas.width  = W * dpr;
+  canvas.height = H * dpr;
+  ctx.scale(dpr, dpr);
+
+  // Background
+  ctx.fillStyle = '#09090F';
+  ctx.fillRect(0, 0, W, H);
+
+  // Ruler strip background
+  ctx.fillStyle = '#0C0C16';
+  ctx.fillRect(0, 0, W, RULER_H);
+
+  // Ruler bottom border
+  ctx.fillStyle = 'rgba(255,255,255,0.05)';
+  ctx.fillRect(0, RULER_H - 1, W, 1);
+
+  // Ruler ticks + labels
+  ctx.textBaseline = 'middle';
+  ctx.textAlign    = 'center';
+  for (let m = 0; m <= 95; m++) {
+    const x      = (m / 95) * W;
+    const isMaj  = m % 15 === 0;
+    const isMid  = m % 5 === 0;
+    const isHT   = m === 45;
+    const tkH    = isMaj ? 6 : isMid ? 3 : 0;
+    if (!tkH) continue;
+
+    ctx.fillStyle = isHT
+      ? 'rgba(255,153,0,0.55)'
+      : isMaj ? 'rgba(255,255,255,0.25)' : 'rgba(255,255,255,0.09)';
+    ctx.fillRect(x - 0.5, RULER_H - tkH, 1, tkH);
+
+    if (isMaj && m < 91) {
+      ctx.font      = `${isHT ? 600 : 400} 8px ui-monospace,'SF Mono',monospace`;
+      ctx.fillStyle = isHT ? 'rgba(255,153,0,0.65)' : 'rgba(255,255,255,0.27)';
+      ctx.fillText(isHT ? 'HT' : String(m), x, (RULER_H - tkH) / 2);
+    }
+  }
+
+  if (!tlData.length) return;
+
+  const BAR_AREA = H - RULER_H;
+  const sw       = W / N_MIN;
+
+  // Waveform bars — grow from bottom of canvas, height ∝ intensity
+  tlData.forEach((d, i) => {
+    const v    = d.intensity_score; // 0..1
+    const x    = i * sw;
+    const barH = Math.max(2, v * BAR_AREA * 0.95);
+    const y    = RULER_H + (BAR_AREA - barH);
+
+    // Vertical gradient: dark rust base → bright amber tip
+    const grad = ctx.createLinearGradient(x, y + barH, x, y);
+    const a    = 0.35 + v * 0.65;
+    grad.addColorStop(0, `rgba(${Math.round(45+v*60)},${Math.round(10+v*22)},0,${(a*0.45).toFixed(2)})`);
+    grad.addColorStop(0.5, `rgba(${Math.round(95+v*80)},${Math.round(28+v*55)},0,${(a*0.75).toFixed(2)})`);
+    grad.addColorStop(1, `rgba(${Math.round(145+v*110)},${Math.round(50+v*103)},0,${a.toFixed(2)})`);
+    ctx.fillStyle = grad;
+    ctx.fillRect(x + 0.5, y, Math.max(1, sw - 1), barH);
+  });
+
+  // Halftime divider — clearly visible dashed amber line
+  const htX = Math.round((45 / 95) * W) + 0.5;
+  ctx.save();
+  ctx.strokeStyle = 'rgba(255,153,0,0.52)';
+  ctx.lineWidth   = 1;
+  ctx.setLineDash([4, 5]);
+  ctx.beginPath();
+  ctx.moveTo(htX, RULER_H);
+  ctx.lineTo(htX, H);
+  ctx.stroke();
+  ctx.restore();
+}
+
+// ── Markers ────────────────────────────────────────────────────────────────
+function makeMarkerIcon(ev) {
+  const el = document.createElement('div');
+
+  if (ev.shot_outcome === 'Goal') {
+    // 5-point star in amber with glow
+    Object.assign(el.style, {
+      width: '13px', height: '13px',
+      background: '#FF9900',
+      clipPath: 'polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%)',
+      filter: 'drop-shadow(0 0 5px rgba(255,153,0,0.95))',
+    });
+  } else if (ev.type === 'Shot') {
+    const onTarget = ev.shot_outcome === 'Saved' || ev.shot_outcome === 'Saved To Post';
+    Object.assign(el.style, {
+      width: '7px', height: '7px', borderRadius: '50%',
+      background: onTarget ? 'rgba(255,175,55,0.85)' : 'rgba(255,255,255,0.17)',
+      boxShadow: onTarget ? '0 0 6px rgba(255,140,0,0.55)' : 'none',
+    });
+  } else if (ev.type === 'Foul Committed') {
+    const isRed = /red|second yellow/i.test(ev.description || '');
+    Object.assign(el.style, {
+      width: '6px', height: '8px', borderRadius: '1px',
+      background: isRed ? '#FF2828' : '#FFD000',
+    });
+  } else if (ev.type === 'Substitution') {
+    Object.assign(el.style, {
+      width: '7px', height: '7px',
+      background: 'rgba(60,190,85,0.65)',
+      transform: 'rotate(45deg)',
+    });
+  } else {
+    // Key pass or other
+    Object.assign(el.style, {
+      width: '5px', height: '5px', borderRadius: '50%',
+      background: 'rgba(100,175,255,0.38)',
+    });
+  }
+
+  return el;
+}
+
+function buildMarkers() {
+  markersEl.innerHTML = '';
+  keyEvents.forEach(ev => {
+    const pct = (Math.min(ev.minute ?? 0, 95) / 95) * 100;
+    const mk  = document.createElement('div');
+    mk.className = 'mk';
+    mk.style.left = `${pct}%`;
+
+    mk.appendChild(makeMarkerIcon(ev));
+
+    const stem = document.createElement('div');
+    stem.className = 'mk-stem';
+    mk.appendChild(stem);
+
+    mk.addEventListener('mouseenter', e => tipShow(e, ev.description));
+    mk.addEventListener('mousemove',  tipMove);
+    mk.addEventListener('mouseleave', tipHide);
+    markersEl.appendChild(mk);
+  });
+}
+
+// ── Playhead ───────────────────────────────────────────────────────────────
+function setMinute(m) {
+  currentMinute = Math.max(0, Math.min(95, Math.round(m)));
+  nowMin.textContent = currentMinute;
+  scrubber.style.left = `${(currentMinute / 95) * 100}%`;
+
+  if (goals.length) {
+    const mor = goals.filter(g => g.team === 'Morocco'  && g.minute <= currentMinute).length;
+    const por = goals.filter(g => g.team === 'Portugal' && g.minute <= currentMinute).length;
+    scoreEl.textContent = `${mor} – ${por}`;
+  }
+}
+
+function pxToMinute(clientX) {
+  const r = wrap.getBoundingClientRect();
+  const x = Math.max(0, Math.min(r.width, clientX - r.left));
+  return (x / r.width) * 95;
+}
+
+// ── Interaction ────────────────────────────────────────────────────────────
+wrap.addEventListener('mousedown', e => {
+  if (e.button !== 0) return;
+  dragging = true;
+  document.body.style.cursor = 'grabbing';
+  setMinute(pxToMinute(e.clientX));
+});
+
+document.addEventListener('mousemove', e => {
+  if (dragging) setMinute(pxToMinute(e.clientX));
+});
+
+document.addEventListener('mouseup', () => {
+  if (!dragging) return;
+  dragging = false;
+  document.body.style.cursor = '';
+});
+
+wrap.addEventListener('selectstart', e => e.preventDefault());
+
+// ── Tooltip ────────────────────────────────────────────────────────────────
+function tipShow(e, text) {
+  tip.textContent = text;
+  tip.style.display = 'block';
+  tipMove(e);
+}
+
+function tipMove(e) {
+  const pad = 14;
+  let x = e.clientX + pad;
+  let y = e.clientY - tip.offsetHeight - pad;
+  if (x + tip.offsetWidth > window.innerWidth - 6) x = e.clientX - tip.offsetWidth - pad;
+  if (y < 6) y = e.clientY + pad;
+  tip.style.left = `${x}px`;
+  tip.style.top  = `${y}px`;
+}
+
+function tipHide() { tip.style.display = 'none'; }
+
+// ── Resize ─────────────────────────────────────────────────────────────────
+new ResizeObserver(() => { drawCanvas(); setMinute(currentMinute); }).observe(canvas);
+
+// ── Init ───────────────────────────────────────────────────────────────────
+async function init() {
+  try {
+    const [r1, r2, r3] = await Promise.all([
+      fetch('/api/timeline'),
+      fetch('/api/key-events'),
+      fetch('/api/match-info'),
+    ]);
+    const [timeline, keys, info] = await Promise.all([r1.json(), r2.json(), r3.json()]);
+
+    tlData    = timeline;
+    keyEvents = keys;
+    goals     = keys
+      .filter(e => e.shot_outcome === 'Goal')
+      .map(e => ({ team: e.team, minute: e.minute ?? 0 }));
+
+    drawCanvas();
+    buildMarkers();
+    setMinute(0);
+  } catch (err) {
+    console.error('[Playback IQ] Init failed:', err);
+  }
+}
+
+init();
+</script>
+</body>
+</html>

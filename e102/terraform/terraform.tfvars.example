@@ -1,0 +1,12 @@
+# Google Cloud Billing Account ID (Required to bind to the project)
+billing_account = "000000-000000-000000"
+
+# Target Folder or Organization ID (provide one or both depending on your GCP setup)
+folder_id = ""
+org_id    = ""
+
+# Default region for resource provisioning
+region = "us-central1"
+
+# Unique ID for the active session. Changing this triggers a project recreation.
+session_id = "default-session"
