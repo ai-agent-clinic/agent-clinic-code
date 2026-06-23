@@ -801,7 +801,7 @@ async def generate_commentary_stream(
     pcm_results = [b""] * n
     for fut in asyncio.as_completed(tasks.keys()):
         idx, pcm = await fut
-        _, m = tasks[fut]
+        m = moments[idx]
         label = f"{m['kind']} @ {m['minute']}'"
         if not pcm:
             yield f"data: ⚠ {label} — synthesis failed or returned no audio\n\n"
