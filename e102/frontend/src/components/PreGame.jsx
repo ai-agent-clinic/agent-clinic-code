@@ -1,3 +1,19 @@
+/*
+ * Copyright 2026 Sami Maghnaoui
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 /**
  * Pre-game show — cinematic intro that plays before the match.
  *
@@ -124,13 +140,9 @@ function TitleScene({ progress, scenes }) {
 
       <div className="pg2-title-center" style={{ opacity: Math.min(1, Math.max(0, (lp - 0.25) * 3)) }}>
         <div className="pg2-title-vs">VS</div>
-        <div className="pg2-title-comp">2022 Football Championship · Quarter-Final</div>
+        <div className="pg2-title-comp">Football Championship · Quarter-Final</div>
         <div className="pg2-title-meta">
-          <span>Al Thumama Stadium</span>
-          <span className="pg2-title-sep">·</span>
-          <span>Doha, Qatar</span>
-          <span className="pg2-title-sep">·</span>
-          <span>December 10, 2022</span>
+          <span>Regional Arena</span>
         </div>
       </div>
 
@@ -368,7 +380,7 @@ function RoadScene({ progress, scenes, isActive }) {
           }}>
           <div className="pg2-jqf-ball">⚽</div>
           <div className="pg2-jqf-label">Quarter-Final</div>
-          <div className="pg2-jqf-date">Dec 10 · 2022</div>
+
         </div>
 
       </div>
@@ -450,8 +462,8 @@ function VenueScene({ progress, scenes, mapRef, mapInst, animStartedRef }) {
 
       <div className="pg2-venue-card" style={{ opacity: Math.min(1, Math.max(0, (lp - 0.55) * 4)) }}>
         <div className="pg2-venue-label">Match Venue</div>
-        <div className="pg2-venue-name">Al Thumama Stadium</div>
-        <div className="pg2-venue-detail">Doha, Qatar · December 10, 2022</div>
+         <div className="pg2-venue-name">Regional Arena</div>
+        <div className="pg2-venue-detail">Championship Ground</div>
         <div className="pg2-venue-stats">
           <span>Capacity: 40,000</span>
           <span className="pg2-venue-dot">·</span>
@@ -525,7 +537,7 @@ function WeatherScene({ progress, scenes, weather }) {
         </div>
 
         <div className="pg2-weather-when" style={{ opacity: Math.min(1, Math.max(0, (lp - 0.55) * 5)) }}>
-          Doha, Qatar · December 10, 2022 · 22:00 AST
+          Regional Arena · 22:00
           <br /><span className="pg2-weather-src">Open-Meteo historical archive</span>
         </div>
       </div>
@@ -718,8 +730,8 @@ function PromptScreen({ onWatch, onSkip, audioReady }) {
         </div>
 
         <div className="pg2-prompt-event">
-          2022 Football Championship · Quarter-Final<br />
-          Al Thumama Stadium, Doha · Dec 10, 2022
+          Football Championship · Quarter-Final<br />
+          Regional Arena
         </div>
 
         <div className="pg2-prompt-divider" />

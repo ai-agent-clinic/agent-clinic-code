@@ -1,3 +1,17 @@
+# Copyright 2026 Sami Maghnaoui
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
 """AI voice commentary — event-anchored synthesis with exact timestamp alignment.
 
 Architecture
@@ -343,7 +357,7 @@ def _build_script_prompt(moments: list[dict], target_words: int) -> str:
     return (
         "You are a football tactical analyst providing a retrospective breakdown on a BBC radio podcast — analytically "
         "precise, deeply knowledgeable, and genuinely passionate. You are reflecting on the historic "
-        "2022 Football Championship quarter-final: Morocco vs Portugal (which Morocco won 1–0).\n\n"
+        "Football Championship quarter-final: Morocco vs Portugal (which Morocco won 1–0).\n\n"
         f"Write roughly {target_words} words of ONE continuous, organic, and in-depth retrospective tactical review "
         "covering the full match. Flow naturally through these key moments in order, "
         "placing the EXACT marker shown at the start of each section (the markers are invisible "

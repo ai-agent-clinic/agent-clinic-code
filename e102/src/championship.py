@@ -1,3 +1,17 @@
+# Copyright 2026 Sami Maghnaoui
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
 """World Cup 2026 — data loading and AI match-preview generation.
 
 Architecture mirrors the pre-game podcast: ONE script with [SCENE:id] markers
@@ -16,7 +30,7 @@ from google.genai import types as gtypes
 from pydantic import BaseModel, Field
 
 _DATA_DIR = Path(__file__).parent.parent / "data" / "worldcup_2026"
-_PREVIEW_CACHE = Path(__file__).parent.parent / ".wc2026_cache"
+_PREVIEW_CACHE = Path(__file__).parent.parent / ".championship_cache"
 _PREVIEW_CACHE.mkdir(exist_ok=True)
 
 from opentelemetry import trace as _otel_trace
@@ -50,13 +64,86 @@ def _stadiums() -> dict[str, dict]:
         return {r["id"]: r for r in csv.DictReader(f)}
 
 
+_FICTIONAL_TEAMS = {
+    "1": ("Red Team", "RED"),
+    "2": ("Blue Team", "BLU"),
+    "3": ("Green Team", "GRN"),
+    "4": ("Yellow Team", "YLW"),
+    "5": ("Orange Team", "ORG"),
+    "6": ("Purple Team", "PRP"),
+    "7": ("White Team", "WHT"),
+    "8": ("Black Team", "BLK"),
+    "9": ("Gold Team", "GLD"),
+    "10": ("Silver Team", "SLV"),
+    "11": ("Bronze Team", "BRZ"),
+    "12": ("Crimson Team", "CRM"),
+    "13": ("Indigo Team", "IND"),
+    "14": ("Violet Team", "VLT"),
+    "15": ("Azure Team", "AZR"),
+    "16": ("Teal Team", "TEL"),
+    "17": ("Magenta Team", "MAG"),
+    "18": ("Cyan Team", "CYN"),
+    "19": ("Emerald Team", "EMR"),
+    "20": ("Ruby Team", "RBY"),
+    "21": ("Sapphire Team", "SPH"),
+    "22": ("Amber Team", "AMB"),
+    "23": ("Coral Team", "CRL"),
+    "24": ("Navy Team", "NVY"),
+    "25": ("Olive Team", "OLV"),
+    "26": ("Maroon Team", "MRN"),
+    "27": ("Turquoise Team", "TRQ"),
+    "28": ("Plum Team", "PLM"),
+    "29": ("Peach Team", "PCH"),
+    "30": ("Mint Team", "MNT"),
+    "31": ("Lavender Team", "LAV"),
+    "32": ("Rose Team", "ROS"),
+    "33": ("Sky Team", "SKY"),
+    "34": ("Forest Team", "FOR"),
+    "35": ("Shadow Team", "SHD"),
+    "36": ("Storm Team", "STR"),
+    "37": ("Flame Team", "FLM"),
+    "38": ("Frost Team", "FRS"),
+    "39": ("Thunder Team", "THN"),
+    "40": ("Lightning Team", "LTG"),
+    "41": ("Wind Team", "WND"),
+    "42": ("Solar Team", "SOL"),
+    "43": ("Lunar Team", "LUN"),
+    "44": ("Stellar Team", "STL"),
+    "45": ("Cosmic Team", "COS"),
+    "46": ("Ocean Team", "OCN"),
+    "47": ("River Team", "RIV"),
+    "48": ("Canyon Team", "CNY"),
+}
+
+_FICTIONAL_STADIUMS = {
+    "1": ("Regional Arena A", "Arena City", "Championship Ground"),
+    "2": ("Regional Arena B", "Arena City", "Championship Ground"),
+    "3": ("Regional Arena C", "Arena City", "Championship Ground"),
+    "4": ("Regional Arena D", "Arena City", "Championship Ground"),
+    "5": ("Regional Arena E", "Arena City", "Championship Ground"),
+    "6": ("Regional Arena F", "Arena City", "Championship Ground"),
+    "7": ("Regional Arena G", "Arena City", "Championship Ground"),
+    "8": ("Regional Arena H", "Arena City", "Championship Ground"),
+    "9": ("Regional Arena I", "Arena City", "Championship Ground"),
+    "10": ("Regional Arena J", "Arena City", "Championship Ground"),
+    "11": ("Regional Arena K", "Arena City", "Championship Ground"),
+    "12": ("Regional Arena L", "Arena City", "Championship Ground"),
+    "13": ("Regional Arena M", "Arena City", "Championship Ground"),
+    "14": ("Regional Arena N", "Arena City", "Championship Ground"),
+    "15": ("Regional Arena O", "Arena City", "Championship Ground"),
+    "16": ("Regional Arena P", "Arena City", "Championship Ground"),
+}
+
+
 def _team_obj(t: dict) -> dict:
+    tid = t.get("id", "")
+    f_name, f_code = _FICTIONAL_TEAMS.get(tid, (t.get("name_en", "TBD"), t.get("fifa_code", "TBD")))
     return {
-        "id": t.get("id", ""),
-        "name": t.get("name_en", "TBD"),
-        "flag": t.get("flag", ""),
-        "fifa_code": t.get("fifa_code", "TBD"),
-        "iso2": (t.get("iso2") or "").lower(),
+        "id": tid,
+        "name": f_name,
+        "flag": "",
+        "fifa_code": f_code,
+        "iso2": f_code[:2].lower(),
         "group": t.get("groups", ""),
     }
 
@@ -69,16 +156,18 @@ def _safe_float(val) -> float | None:
 
 
 def _stadium_obj(s: dict) -> dict:
+    sid = s.get("id", "")
+    f_name, f_city, f_country = _FICTIONAL_STADIUMS.get(sid, (s.get("name_en", ""), s.get("city_en", ""), s.get("country_en", "")))
     raw_cap = s.get("capacity", "")
     try:
         cap_fmt = f"{int(raw_cap):,}"
     except (ValueError, TypeError):
         cap_fmt = raw_cap
     return {
-        "id": s.get("id", ""),
-        "name": s.get("name_en", ""),
-        "city": s.get("city_en", ""),
-        "country": s.get("country_en", ""),
+        "id": sid,
+        "name": f_name,
+        "city": f_city,
+        "country": f_country,
         "capacity": cap_fmt,
         "lat": _safe_float(s.get("lat")),
         "lng": _safe_float(s.get("lng")),
@@ -150,7 +239,7 @@ def _fmt_date(iso: str) -> str:
 
 def _group_others(group: str, exclude_ids: set[str]) -> str:
     others = [
-        t["name_en"]
+        _FICTIONAL_TEAMS[t["id"]][0] if t["id"] in _FICTIONAL_TEAMS else t["name_en"]
         for t in _teams().values()
         if t.get("groups") == group and t["id"] not in exclude_ids
     ]
@@ -162,21 +251,17 @@ def build_preview_prompt(match: dict) -> str:
     away = match["away_team"]
     stadium = match["stadium"]
     group = match["group"]
-    date_s = _fmt_date(match["date"])
     others = _group_others(group, {home["id"], away["id"]})
     grp_ctx = f"The other teams in Group {group} are {others}." if others else ""
-    today_s = datetime.now().strftime("%B %d, %Y")
 
     return (
         "You are a seasoned, authoritative, and evocative English football commentator and "
         "master storyteller—blending the poetic gravitas of Peter Drury with the "
         "traditional cadence of classic British broadcasting. You are delivering a live "
-        "pre-match monologue for the 2026 Football Championship — hosted across Canada, Mexico, "
-        "and the United States, treating the beautiful game like a grand theater production.\n\n"
-        f"TODAY'S DATE: {today_s} (Use this to anchor your Google Search grounding for real-world qualification runs, warm-ups, squad selections, and player form leading up to the tournament).\n\n"
+        "pre-match monologue for the Football Championship, treating the beautiful game like a grand theater production.\n\n"
+        "Use your Google Search grounding for real-world qualification runs, warm-ups, squad selections, and player form leading up to the tournament.\n\n"
         f"MATCH: {home['name']} vs {away['name']}\n"
         f"GROUP: Group {group}  ·  Matchday {match['matchday']}\n"
-        f"DATE: {date_s}\n"
         f"VENUE: {stadium['name']}, {stadium['city']}, {stadium['country']} "
         f"({stadium['capacity']} capacity)\n"
         f"{grp_ctx}\n\n"
@@ -190,11 +275,11 @@ def build_preview_prompt(match: dict) -> str:
         f"[SCENE:venue] — The stadium: {stadium['name']} in {stadium['city']}. Set the scene overlooking the roaring pitch, the host-nation atmosphere, the scale of this arena under the floodlights.\n"
         f"[SCENE:group] — Group {group} stakes: outline the sweeping narrative stakes of what both teams need, weaving in the group context and the other sides.\n"
         f"[SCENE:home] — {home['name']}: Use search to ground their narrative. "
-        f"Weave their recent qualification or warmup game results leading up to today ({today_s}) into a story of momentum. "
+        f"Weave their recent qualification or warmup game results leading up to the tournament into a story of momentum. "
         f"Identify their key star player to watch for this upcoming game and explain "
         f"exactly why their specific strengths are the tactical key to unlocking the opponent.\n"
         f"[SCENE:away] — {away['name']}: Use search to ground their narrative. "
-        f"Weave their recent qualification or warmup game results leading up to today ({today_s}) into a story of momentum. "
+        f"Weave their recent qualification or warmup game results leading up to the tournament into a story of momentum. "
         f"Identify their key star player to watch for this upcoming game and explain "
         f"exactly why their specific strengths are the tactical key to unlocking the opponent.\n"
         f"[SCENE:kickoff] — Final electric buildup: build the tension to a high-pitched crescendo as kickoff approaches—the global audience, the anticipation, the beautiful game—land it with dramatic finality.\n\n"
@@ -228,7 +313,7 @@ async def generate_preview_stream(client: genai.Client, match: dict):
 
     yield f"data: Writing preview script for {home} vs {away}…\n\n"
 
-    with _tracer.start_as_current_span("wc2026.generate_preview_script") as span:
+    with _tracer.start_as_current_span("championship.generate_preview_script") as span:
         span.set_attribute("llm.model", "gemini-3.5-flash")
         resp = await client.aio.models.generate_content(
             model="gemini-3.5-flash",
@@ -245,8 +330,8 @@ async def generate_preview_stream(client: genai.Client, match: dict):
             span.set_attribute("llm.prompt_tokens", resp.usage_metadata.prompt_token_count or 0)
             span.set_attribute("llm.output_tokens", resp.usage_metadata.candidates_token_count or 0)
             span.set_attribute("llm.total_tokens",  resp.usage_metadata.total_token_count or 0)
-            record_tokens(resp.usage_metadata.prompt_token_count or 0, "input", "gemini-3.5-flash", "wc2026_preview_script_generation")
-            record_tokens(resp.usage_metadata.candidates_token_count or 0, "output", "gemini-3.5-flash", "wc2026_preview_script_generation")
+            record_tokens(resp.usage_metadata.prompt_token_count or 0, "input", "gemini-3.5-flash", "championship_preview_script_generation")
+            record_tokens(resp.usage_metadata.candidates_token_count or 0, "output", "gemini-3.5-flash", "championship_preview_script_generation")
 
     full_text = ""
     if resp.parsed:
@@ -363,21 +448,17 @@ def build_pregame_prompt(match: dict) -> str:
     away = match["away_team"]
     stadium = match["stadium"]
     group = match["group"]
-    date_s = _fmt_date(match["date"])
     others = _group_others(group, {home["id"], away["id"]})
     grp_ctx = f"The other teams in Group {group} are {others}." if others else ""
-    today_s = datetime.now().strftime("%B %d, %Y")
 
     return (
         "You are a seasoned, authoritative, and evocative English football commentator and "
         "master storyteller—blending the poetic gravitas of Peter Drury with the "
         "traditional cadence of classic British broadcasting. You are delivering a "
-        "cinematic pre-match show for the 2026 Football Championship — hosted across "
-        "Canada, Mexico, and the United States, treating the beautiful game like a grand theater production.\n\n"
-        f"TODAY'S DATE: {today_s} (Use this to anchor your Google Search grounding for real-world qualification runs, warm-ups, squad selections, and player form leading up to the tournament).\n\n"
+        "cinematic pre-match show for the Football Championship, treating the beautiful game like a grand theater production.\n\n"
+        "Use your Google Search grounding for real-world qualification runs, warm-ups, squad selections, and player form leading up to the tournament.\n\n"
         f"MATCH: {home['name']} vs {away['name']}\n"
         f"GROUP: Group {group}  ·  Matchday {match['matchday']}\n"
-        f"DATE: {date_s}  — this match has NOT happened yet. It is upcoming.\n"
         f"VENUE: {stadium['name']}, {stadium['city']}, {stadium['country']} "
         f"({stadium['capacity']} capacity)\n"
         f"{grp_ctx}\n\n"
@@ -391,16 +472,16 @@ def build_pregame_prompt(match: dict) -> str:
         f"[SCENE:venue] — The stadium: {stadium['name']} in {stadium['city']}. Set the scene overlooking the roaring pitch, the host-nation energy, the scale of this arena under the floodlights.\n"
         f"[SCENE:group] — Group {group} stakes: outline the sweeping narrative stakes of what both teams need, weaving in the group context and the other sides.\n"
         f"[SCENE:home] — {home['name']}: Use search to ground their narrative. "
-        f"Weave their recent qualification or warmup game results leading up to today ({today_s}) into a story of momentum. "
+        f"Weave their recent qualification or warmup game results leading up to the tournament into a story of momentum. "
         f"Identify their key star player to watch for this upcoming game and explain "
         f"exactly why their specific strengths are the tactical key to unlocking the opponent.\n"
         f"[SCENE:away] — {away['name']}: Use search to ground their narrative. "
-        f"Weave their recent qualification or warmup game results leading up to today ({today_s}) into a story of momentum. "
+        f"Weave their recent qualification or warmup game results leading up to the tournament into a story of momentum. "
         f"Identify their key star player to watch for this upcoming game and explain "
         f"exactly why their specific strengths are the tactical key to unlocking the opponent.\n"
         f"[SCENE:kickoff] — The anticipation: build excitement and tension to a grand crescendo for what's to come "
-        f"when these sides meet on {date_s}. Use future-tense — "
-        f'"when they step out", "mark your calendars", "the world will be watching". '
+        f"when these sides meet. Use future-tense — "
+        f'"when they step out", "the world will be watching". '
         f"Do NOT say the whistle is about to blow or is minutes away.\n\n"
         "Critical: ONE unbroken monologue — no stilted transitions, no 'moving on to...', no list-reading. "
         "Maintain absolute consistency and a strong narrative through-line across the entire script. "
@@ -462,19 +543,18 @@ async def generate_pregame_data(
     home = match["home_team"]
     away = match["away_team"]
     group = match["group"]
-    today_s = datetime.now().strftime("%B %d, %Y")
 
     prompt = (
-        f"Generate pre-match insight data for this upcoming 2026 Football Championship match: "
+        f"Generate pre-match insight data for this upcoming Football Championship match: "
         f"{home['name']} vs {away['name']}, Group {group}.\n\n"
-        f"Use Google Search grounded as of today ({today_s}) to fetch the most accurate "
+        f"Use Google Search to fetch the most accurate "
         f"real-world roster, actual star players, their correct current positions, jersey numbers, "
         f"and key tactical details for both teams leading into the tournament."
     )
 
     data: dict = {"team_facts": {}, "spotlights": []}
     try:
-        with _tracer.start_as_current_span("wc2026.generate_pregame_data") as span:
+        with _tracer.start_as_current_span("championship.generate_pregame_data") as span:
             span.set_attribute("llm.model", "gemini-3.5-flash")
             resp = await client.aio.models.generate_content(
                 model="gemini-3.5-flash",
@@ -491,8 +571,8 @@ async def generate_pregame_data(
                 span.set_attribute("llm.prompt_tokens", resp.usage_metadata.prompt_token_count or 0)
                 span.set_attribute("llm.output_tokens", resp.usage_metadata.candidates_token_count or 0)
                 span.set_attribute("llm.total_tokens",  resp.usage_metadata.total_token_count or 0)
-                record_tokens(resp.usage_metadata.prompt_token_count or 0, "input", "gemini-3.5-flash", "wc2026_pregame_data_generation")
-                record_tokens(resp.usage_metadata.candidates_token_count or 0, "output", "gemini-3.5-flash", "wc2026_pregame_data_generation")
+                record_tokens(resp.usage_metadata.prompt_token_count or 0, "input", "gemini-3.5-flash", "championship_pregame_data_generation")
+                record_tokens(resp.usage_metadata.candidates_token_count or 0, "output", "gemini-3.5-flash", "championship_pregame_data_generation")
 
         if resp.parsed:
             data = resp.parsed.model_dump()
@@ -519,7 +599,7 @@ async def generate_pregame_stream(client: genai.Client, match: dict):
 
     yield f"data: Writing pre-match script for {home} vs {away}…\n\n"
 
-    with _tracer.start_as_current_span("wc2026.generate_pregame_script") as span:
+    with _tracer.start_as_current_span("championship.generate_pregame_script") as span:
         span.set_attribute("llm.model", "gemini-3.5-flash")
         resp = await client.aio.models.generate_content(
             model="gemini-3.5-flash",
@@ -536,8 +616,8 @@ async def generate_pregame_stream(client: genai.Client, match: dict):
             span.set_attribute("llm.prompt_tokens", resp.usage_metadata.prompt_token_count or 0)
             span.set_attribute("llm.output_tokens", resp.usage_metadata.candidates_token_count or 0)
             span.set_attribute("llm.total_tokens",  resp.usage_metadata.total_token_count or 0)
-            record_tokens(resp.usage_metadata.prompt_token_count or 0, "input", "gemini-3.5-flash", "wc2026_pregame_script_generation")
-            record_tokens(resp.usage_metadata.candidates_token_count or 0, "output", "gemini-3.5-flash", "wc2026_pregame_script_generation")
+            record_tokens(resp.usage_metadata.prompt_token_count or 0, "input", "gemini-3.5-flash", "championship_pregame_script_generation")
+            record_tokens(resp.usage_metadata.candidates_token_count or 0, "output", "gemini-3.5-flash", "championship_pregame_script_generation")
 
     full_text = ""
     if resp.parsed:

@@ -1,3 +1,19 @@
+/*
+ * Copyright 2026 Sami Maghnaoui
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 import { useState, useRef, useEffect } from 'react';
 
 const SCENES = [
@@ -34,14 +50,13 @@ export default function UpcomingPreview({ match, onClose }) {
   const away    = match.away_team;
   const stadium = match.stadium;
 
-  // Format local date nicely: "06/11/2026 13:00" → "Jun 11, 2026 · 13:00"
   function fmtDate(local) {
     if (!local) return '';
     const [d, t] = local.split(' ');
     if (!d) return local;
     const [m, day, yr] = d.split('/');
     const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-    return `${months[parseInt(m) - 1]} ${parseInt(day)}, ${yr}${t ? ` · ${t}` : ''}`;
+    return `${months[parseInt(m) - 1]} ${parseInt(day)}${t ? ` · ${t}` : ''}`;
   }
 
   function sceneFromTime(ct) {
@@ -102,7 +117,7 @@ export default function UpcomingPreview({ match, onClose }) {
     abortRef.current = ctrl;
 
     try {
-      const resp = await fetch(`/api/wc2026/preview/generate?match_id=${match.id}`, {
+      const resp = await fetch(`/api/championship/preview/generate?match_id=${match.id}`, {
         method: 'POST',
         signal: ctrl.signal,
       });
@@ -120,7 +135,7 @@ export default function UpcomingPreview({ match, onClose }) {
           const msg = line.slice(6).trim();
           if (msg === 'DONE') {
             // Load audio + meta
-            const audio = new Audio(`/api/wc2026/preview/audio?match_id=${match.id}`);
+            const audio = new Audio(`/api/championship/preview/audio?match_id=${match.id}`);
             audio.preload = 'auto';
             audioRef.current = audio;
             audio.playbackRate = 1.2;
@@ -131,7 +146,7 @@ export default function UpcomingPreview({ match, onClose }) {
             });
             audio.addEventListener('ended', () => { setPlaying(false); setActiveScene(null); });
 
-            const metaResp = await fetch(`/api/wc2026/preview/audio-meta?match_id=${match.id}`);
+            const metaResp = await fetch(`/api/championship/preview/audio-meta?match_id=${match.id}`);
             if (metaResp.ok) {
               const data = await metaResp.json();
               setClipMeta(data.clips);

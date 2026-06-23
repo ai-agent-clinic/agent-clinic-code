@@ -1,3 +1,19 @@
+/*
+ * Copyright 2026 Sami Maghnaoui
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 import { useState, useEffect, useMemo } from 'react';
 import UpcomingPregame from './UpcomingPregame.jsx';
 
@@ -78,7 +94,7 @@ export default function Landing({ onEnterMatch }) {
   const [heroReady,    setHeroReady]    = useState(false);
 
   useEffect(() => {
-    fetch('/api/wc2026/matches').then(r => r.json()).then(setMatches).catch(console.error);
+    fetch('/api/championship/matches').then(r => r.json()).then(setMatches).catch(console.error);
     const t = setTimeout(() => setHeroReady(true), 80);
     return () => clearTimeout(t);
   }, []);
@@ -102,9 +118,7 @@ export default function Landing({ onEnterMatch }) {
           <span className="ld-title-word">FOOTBALL</span>
           <span className="ld-title-word">CHAMPIONSHIP</span>
         </h1>
-        <div className="ld-hero-year">2026</div>
-        <div className="ld-hero-hosts">Canada &nbsp;·&nbsp; Mexico &nbsp;·&nbsp; United States</div>
-        <div className="ld-hero-dates">June 11 – July 19, 2026</div>
+
 
         <div className="ld-hero-appname">
           <span className="ld-appname-play">PLAYBACK</span>
@@ -152,7 +166,7 @@ export default function Landing({ onEnterMatch }) {
 
         <div className="ld-past-card" onClick={onEnterMatch}>
           <div className="ld-past-glow" />
-          <div className="ld-past-badge">2022 Football Championship · Quarter-Final</div>
+          <div className="ld-past-badge">Football Championship · Quarter-Final</div>
 
           <div className="ld-past-teams">
             <div className="ld-past-team">
@@ -171,7 +185,7 @@ export default function Landing({ onEnterMatch }) {
           </div>
 
           <div className="ld-past-meta">
-            Dec 10, 2022 &nbsp;·&nbsp; Al Thumama Stadium, Doha
+            Regional Arena
           </div>
 
           <div className="ld-past-action">

@@ -1,3 +1,17 @@
+# Copyright 2026 Sami Maghnaoui
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
 """FastAPI backend — match data API and Gemini-powered tactical analyst."""
 
 import os
@@ -18,7 +32,7 @@ from opentelemetry import trace
 from pydantic import BaseModel, Field
 
 from src.commentary import generate_commentary_stream, cache_path, cache_meta_path
-from src.wc2026 import (
+from src.championship import (
     get_matches as wc_get_matches, get_match as wc_get_match,
     generate_preview_stream, preview_wav_path, preview_meta_path,
     generate_pregame_data, generate_pregame_stream,
@@ -534,7 +548,7 @@ async def explain(body: ExplainBody):
     morocco_shape = " · ".join(p["position"] for p in lineups.get("Morocco", []))
     portugal_shape = " · ".join(p["position"] for p in lineups.get("Portugal", []))
 
-    prompt = f"""You are a tactical football analyst providing a retrospective review of the 2022 Football Championship quarter-final: Morocco vs Portugal.
+    prompt = f"""You are a tactical football analyst providing a retrospective review of the Football Championship quarter-final: Morocco vs Portugal.
 
 MATCH STATE at {minute}' (period {event.get('period', '?')}):
 Score: {_score_at(all_events, minute)}
@@ -591,7 +605,7 @@ async def explain_agent(body: ExplainBody):
     span.set_attribute("event.minute", minute)
     span.set_attribute("event.type",   event.get("type", ""))
 
-    system_prompt = f"""You are a tactical football analyst providing a retrospective review of the 2022 Football Championship quarter-final: Morocco vs Portugal.
+    system_prompt = f"""You are a tactical football analyst providing a retrospective review of the Football Championship quarter-final: Morocco vs Portugal.
 
 MATCH STATE at {minute}' (period {event.get('period', '?')}):
 Score: {_score_at(all_events, minute)}
@@ -711,7 +725,7 @@ async def agent_chat(body: ChatBody):
     score = _score_at(all_events, minute)
 
     if is_overview:
-        system_context = f"""You are a tactical football analyst providing a retrospective review of the 2022 Football Championship quarter-final: Morocco vs Portugal.
+        system_context = f"""You are a tactical football analyst providing a retrospective review of the Football Championship quarter-final: Morocco vs Portugal.
 
 The user is watching the match at minute {minute} and wants to discuss the tactical situation — not a specific event.
 
@@ -744,7 +758,7 @@ Only call tools again if the question requires data not already fetched."""
         actor_team = event["team"]
         opponent_team = "Portugal" if actor_team == "Morocco" else "Morocco"
 
-        system_context = f"""You are a tactical football analyst providing a retrospective review of the 2022 Football Championship quarter-final: Morocco vs Portugal.
+        system_context = f"""You are a tactical football analyst providing a retrospective review of the Football Championship quarter-final: Morocco vs Portugal.
 
 MATCH STATE at {minute}' (period {event.get('period', '?')}):
 Score: {score}
@@ -907,7 +921,7 @@ async def suggest_questions(body: SuggestBody):
         context_details += f"\nSURROUNDING MATCH EVENT SEQUENCE:\n{events_str}"
 
     system_prompt = f"""You are a world-class football tactical analyst providing a retrospective breakdown of a classic match, generating three suggested questions for a user in an interactive match viewer.
-The current match is Morocco vs Portugal (2022 Football Championship Quarter-Final). Morocco won 1–0.
+The current match is Morocco vs Portugal (Football Championship Quarter-Final). Morocco won 1–0.
 
 CONTEXT DETAILED DATA:
 {context_details}
@@ -1052,10 +1066,10 @@ def pregame_data():
     return {
         "audio_cache_enabled": _AUDIO_CACHE,
         "match": {
-            "date": "December 10, 2022",
-            "competition": "2022 Football Championship Quarter-Final",
-            "venue": "Al Thumama Stadium, Doha, Qatar",
-            "kickoff": "22:00 AST (19:00 UTC)",
+            "date": "",
+            "competition": "Football Championship Quarter-Final",
+            "venue": "Regional Arena",
+            "kickoff": "22:00",
             "lat": 25.2350,
             "lng": 51.5187,
         },
@@ -1115,9 +1129,9 @@ async def pregame_generate():
     mor_xi  = ", ".join(p["player_name"] for p in lineups.get("Morocco",  [])[:11])
     por_xi  = ", ".join(p["player_name"] for p in lineups.get("Portugal", [])[:11])
 
-    script_prompt = f"""You are a passionate, spontaneous football podcast host delivering a retrospective pre-match monologue. Write ONE continuous, organic, breathless narration reflecting back on the legendary 2022 Football Championship Quarter-Final: MOROCCO vs PORTUGAL.
+    script_prompt = f"""You are a passionate, spontaneous football podcast host delivering a retrospective pre-match monologue. Write ONE continuous, organic, breathless narration reflecting back on the legendary Football Championship Quarter-Final: MOROCCO vs PORTUGAL.
 
-Venue: Al Thumama Stadium, Doha, Qatar · December 10, 2022 · Kickoff 22:00
+Venue: Regional Arena · Kickoff 22:00
 Morocco starting XI: {mor_xi}
 Portugal starting XI: {por_xi}
 
@@ -1125,8 +1139,8 @@ Write roughly 280 words of genuine, excited spoken word — the kind that makes 
 
 [SCENE:title] — Fire-up opening: announce the match, its historic magnitude, and why that night mattered.
 [SCENE:road] — Both journeys converging: Morocco's grind (Croatia, Belgium, Canada, Spain); Portugal's path (Ghana, Uruguay, South Korea, Switzerland). Recreate the drama.
-[SCENE:venue] — Paint the stadium: Al Thumama, the gahfiya dome, 40,000 electric fans, the Doha night as it was.
-[SCENE:weather] — The atmosphere and conditions: the warm clear night, 26 degrees, the weight of a continent that was watching.
+[SCENE:venue] — Paint the stadium: the Regional Arena, 40,000 electric fans, the matchday night as it was.
+[SCENE:weather] — The atmosphere and conditions: the warm clear night, the weight of a continent that was watching.
 [SCENE:spotlights] — The key men who were spotlighted: Amrabat the unstoppable engine; Ziyech the Moroccan maestro; Ronaldo controversially starting on the bench; Fernandes carrying Portugal's burden. Discuss their roles prior to kickoff. Do NOT predict or reveal any match outcomes, goals, or scorers yet.
 [SCENE:lineups] — Call both XIs with mounting excitement. Morocco: {mor_xi}. Portugal: {por_xi}. Land the final line like a knockout punch.
 
@@ -1274,17 +1288,17 @@ def pregame_audio_meta():
     )
 
 
-# ─── World Cup 2026 ───────────────────────────────────────────────────────────
+# ─── Championship ─────────────────────────────────────────────────────────────
 
-@app.get("/api/wc2026/matches")
-def wc2026_matches():
+@app.get("/api/championship/matches")
+def championship_matches():
     """Return all 72 group-stage matches with joined team and stadium data."""
     return list(wc_get_matches())
 
 
-@app.post("/api/wc2026/preview/generate")
-async def wc2026_preview_generate(match_id: int = Query(...)):
-    """SSE: generate and cache an AI narrated pre-match preview for a WC 2026 match."""
+@app.post("/api/championship/preview/generate")
+async def championship_preview_generate(match_id: int = Query(...)):
+    """SSE: generate and cache an AI narrated pre-match preview for a championship match."""
     client = _require_ai()
     match  = wc_get_match(match_id)
     if not match:
@@ -1318,16 +1332,16 @@ async def wc2026_preview_generate(match_id: int = Query(...)):
     return StreamingResponse(stream(), media_type="text/event-stream")
 
 
-@app.get("/api/wc2026/preview/audio")
-def wc2026_preview_audio(match_id: int = Query(...)):
+@app.get("/api/championship/preview/audio")
+def championship_preview_audio(match_id: int = Query(...)):
     path = preview_wav_path(match_id)
     if not path.exists():
         raise HTTPException(status_code=404, detail="No preview audio cached. Generate it first.")
     return FileResponse(path, media_type="audio/wav", headers={"Cache-Control": "no-store"})
 
 
-@app.get("/api/wc2026/preview/audio-meta")
-def wc2026_preview_audio_meta(match_id: int = Query(...)):
+@app.get("/api/championship/preview/audio-meta")
+def championship_preview_audio_meta(match_id: int = Query(...)):
     path = preview_meta_path(match_id)
     if not path.exists():
         raise HTTPException(status_code=404, detail="No metadata cached. Generate the preview first.")
@@ -1335,10 +1349,10 @@ def wc2026_preview_audio_meta(match_id: int = Query(...)):
                     headers={"Cache-Control": "no-store"})
 
 
-# ─── World Cup 2026 — Pregame show ───────────────────────────────────────────
+# ─── Championship — Pregame show ─────────────────────────────────────────────
 
-@app.get("/api/wc2026/pregame/data")
-async def wc2026_pregame_data(match_id: int = Query(...)):
+@app.get("/api/championship/pregame/data")
+async def championship_pregame_data(match_id: int = Query(...)):
     """Return match info + AI-generated team facts + group teams for the pregame show.
 
     The AI call is cached after the first request so subsequent loads are instant.
@@ -1351,9 +1365,9 @@ async def wc2026_pregame_data(match_id: int = Query(...)):
     return {"match": match, "audio_cache_enabled": _AUDIO_CACHE, **data}
 
 
-@app.post("/api/wc2026/pregame/generate")
-async def wc2026_pregame_generate(match_id: int = Query(...)):
-    """SSE: generate and cache a cinematic pregame audio show for a WC 2026 match."""
+@app.post("/api/championship/pregame/generate")
+async def championship_pregame_generate(match_id: int = Query(...)):
+    """SSE: generate and cache a cinematic pregame audio show for a championship match."""
     client = _require_ai()
     match  = wc_get_match(match_id)
     if not match:
@@ -1387,16 +1401,16 @@ async def wc2026_pregame_generate(match_id: int = Query(...)):
     return StreamingResponse(stream(), media_type="text/event-stream")
 
 
-@app.get("/api/wc2026/pregame/audio")
-def wc2026_pregame_audio(match_id: int = Query(...)):
+@app.get("/api/championship/pregame/audio")
+def championship_pregame_audio(match_id: int = Query(...)):
     path = pregame_wav_path(match_id)
     if not path.exists():
         raise HTTPException(status_code=404, detail="No pregame audio cached. Generate it first.")
     return FileResponse(path, media_type="audio/wav", headers={"Cache-Control": "no-store"})
 
 
-@app.get("/api/wc2026/pregame/audio-meta")
-def wc2026_pregame_audio_meta(match_id: int = Query(...)):
+@app.get("/api/championship/pregame/audio-meta")
+def championship_pregame_audio_meta(match_id: int = Query(...)):
     path = pregame_meta_path(match_id)
     if not path.exists():
         raise HTTPException(status_code=404, detail="No metadata cached. Generate the pregame first.")

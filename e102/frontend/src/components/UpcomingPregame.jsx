@@ -1,3 +1,19 @@
+/*
+ * Copyright 2026 Sami Maghnaoui
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 /**
  * UpcomingPregame — full-screen cinematic pre-game show for any WC 2026 match.
  *
@@ -54,7 +70,7 @@ function fmtLocalDate(local) {
   if (!d) return local;
   const [mo, day, yr] = d.split('/');
   const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-  return `${months[parseInt(mo) - 1] || ''} ${parseInt(day)}, ${yr}${t ? ` · ${t}` : ''}`;
+  return `${months[parseInt(mo) - 1] || ''} ${parseInt(day)}${t ? ` · ${t}` : ''}`;
 }
 
 // ── Flag ──────────────────────────────────────────────────────────────────────
@@ -151,7 +167,7 @@ function OpenerScene({ progress, scenes, match }) {
         transform: `scale(${0.65 + fadeC * 0.35})`,
       }}>
         <div className="upg-opener-vs">VS</div>
-        <div className="upg-opener-comp">2026 Football Championship</div>
+        <div className="upg-opener-comp">Football Championship</div>
         <div className="upg-opener-group">Group {match.group} · Matchday {match.matchday}</div>
       </div>
 
@@ -528,7 +544,7 @@ export default function UpcomingPregame({ match, onClose }) {
     const ctrl = new AbortController();
     abortRef.current = ctrl;
 
-    fetch(`/api/wc2026/pregame/data?match_id=${match.id}`, { signal: ctrl.signal })
+    fetch(`/api/championship/pregame/data?match_id=${match.id}`, { signal: ctrl.signal })
       .then(r => r.ok ? r.json() : null)
       .then(data => {
         if (!data) {
@@ -537,7 +553,7 @@ export default function UpcomingPregame({ match, onClose }) {
         }
         setPgData(data);
         if (data.audio_cache_enabled) {
-          fetch(`/api/wc2026/pregame/audio-meta?match_id=${match.id}`, { signal: ctrl.signal })
+          fetch(`/api/championship/pregame/audio-meta?match_id=${match.id}`, { signal: ctrl.signal })
             .then(r => r.ok ? r.json() : null)
             .then(meta => {
               if (meta) {
@@ -574,7 +590,7 @@ export default function UpcomingPregame({ match, onClose }) {
     actxRef.current = null;
 
     setPhase('playing');
-    const audio = new Audio(`/api/wc2026/pregame/audio?match_id=${match.id}`);
+    const audio = new Audio(`/api/championship/pregame/audio?match_id=${match.id}`);
     audioRef.current = audio;
     audio.playbackRate = 1.2;
     audio.defaultPlaybackRate = 1.2;
@@ -586,7 +602,7 @@ export default function UpcomingPregame({ match, onClose }) {
     });
     audio.addEventListener('ended', finish);
 
-    fetch(`/api/wc2026/pregame/audio-meta?match_id=${match.id}`)
+    fetch(`/api/championship/pregame/audio-meta?match_id=${match.id}`)
       .then(r => r.ok ? r.json() : null).then(applyClipMeta).catch(() => {});
 
     const actx    = new AudioContext();
@@ -659,7 +675,7 @@ export default function UpcomingPregame({ match, onClose }) {
     abortRef.current = ctrl;
 
     try {
-      const resp   = await fetch(`/api/wc2026/pregame/generate?match_id=${match.id}`, { 
+      const resp   = await fetch(`/api/championship/pregame/generate?match_id=${match.id}`, { 
         method: 'POST',
         signal: ctrl.signal
       });
@@ -737,7 +753,7 @@ export default function UpcomingPregame({ match, onClose }) {
             </div>
 
             <div className="upg-prompt-card">
-              <div className="upg-prompt-eyebrow">Upcoming · 2026 Football Championship</div>
+              <div className="upg-prompt-eyebrow">Upcoming · Football Championship</div>
 
               <div className="upg-prompt-matchup">
                 <div className="upg-prompt-team">
