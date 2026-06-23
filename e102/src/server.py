@@ -989,6 +989,7 @@ async def commentary_generate(body: CommentaryBody):
                     yield item  # SSE progress line
 
             if wav_bytes:
+                cache_path(mode).parent.mkdir(parents=True, exist_ok=True)
                 cache_path(mode).write_bytes(wav_bytes)
                 if meta_dict:
                     cache_meta_path(mode).write_text(_json.dumps(meta_dict), encoding="utf-8")
@@ -1129,7 +1130,7 @@ Write roughly 280 words of genuine, excited spoken word — the kind that makes 
 [SCENE:spotlights] — The key men who were spotlighted: Amrabat the unstoppable engine; Ziyech the Moroccan maestro; Ronaldo controversially starting on the bench; Fernandes carrying Portugal's burden. Discuss their roles prior to kickoff. Do NOT predict or reveal any match outcomes, goals, or scorers yet.
 [SCENE:lineups] — Call both XIs with mounting excitement. Morocco: {mor_xi}. Portugal: {por_xi}. Land the final line like a knockout punch.
 
-Critical: this must sound like ONE unbroken monologue delivered in the past tense — no stilted transitions, no "moving on to...", no list-reading. Just pure, authentic football passion that builds and builds. Maintain absolute consistency and a strong narrative through-line across the entire script. No stage directions, no brackets other than the [SCENE:x] markers themselves. The listener should feel the hairs stand up on the back of their neck."""
+Critical: this must sound like ONE unbroken monologue delivered in the past tense — no stilted transitions, no "moving on to...", no list-reading. Just pure, authentic football passion that builds and builds. Maintain absolute consistency and a strong narrative through-line across the entire script. No stage directions, no brackets other than the [SCENE:x] markers themselves. The listener should feel the hairs stand up on the back of their neck. Do NOT include the words 'FIFA' or 'World Cup' anywhere in the generated script under any circumstances."""
 
     if _AUDIO_CACHE and _PREGAME_CACHE_WAV.exists() and _PREGAME_CACHE_META.exists():
         async def _cached():
@@ -1186,12 +1187,35 @@ Critical: this must sound like ONE unbroken monologue delivered in the past tens
         boundaries: list[dict]  = []
         cursor_secs = 0.0
 
-        for i, sid in enumerate(_PREGAME_SCENE_IDS):
-            label = _PREGAME_SCENE_LABELS[sid]
-            text  = sections[sid]
+        import asyncio as _asyncio
 
-            yield f"data: Synthesising {label} ({i + 1}/{n})…\n\n"
-            pcm = await _tts(client, text, label=f"pregame-{sid}")
+        yield f"data: Synthesising {n} scenes in parallel…\n\n"
+
+        async def synth_one(idx, sid, text):
+            try:
+                pcm = await _tts(client, text, label=f"pregame-{sid}")
+                return idx, sid, pcm
+            except Exception:
+                return idx, sid, b""
+
+        tasks = {
+            _asyncio.create_task(synth_one(idx, sid, sections[sid])): (idx, sid)
+            for idx, sid in enumerate(_PREGAME_SCENE_IDS)
+        }
+
+        pcm_results = [b""] * n
+        for fut in _asyncio.as_completed(tasks.keys()):
+            idx, sid, pcm = await fut
+            label = _PREGAME_SCENE_LABELS[sid]
+            if not pcm:
+                yield f"data: ⚠ {label} — synthesis failed or returned no audio\n\n"
+            else:
+                yield f"data: Synthesised {label} ({len(pcm) // 1024} KB)\n\n"
+            pcm_results[idx] = pcm
+
+        for idx, sid in enumerate(_PREGAME_SCENE_IDS):
+            label = _PREGAME_SCENE_LABELS[sid]
+            pcm = pcm_results[idx]
 
             if not pcm:
                 # Record zero-duration section so the remaining scenes still have entries
@@ -1214,6 +1238,7 @@ Critical: this must sound like ONE unbroken monologue delivered in the past tens
             b["frac"] = b["start"] / total_secs if total_secs > 0 else 0.0
 
         wav = _to_wav(clips)
+        _PREGAME_CACHE_WAV.parent.mkdir(parents=True, exist_ok=True)
         _PREGAME_CACHE_WAV.write_bytes(wav)
         _PREGAME_CACHE_META.write_bytes(
             _json.dumps({"total_duration": total_secs, "scenes": boundaries}).encode()
@@ -1282,6 +1307,7 @@ async def wc2026_preview_generate(match_id: int = Query(...)):
                 yield item
 
         if wav_bytes:
+            preview_wav_path(match_id).parent.mkdir(parents=True, exist_ok=True)
             preview_wav_path(match_id).write_bytes(wav_bytes)
             if meta_dict:
                 preview_meta_path(match_id).write_text(_json.dumps(meta_dict), encoding="utf-8")
@@ -1350,6 +1376,7 @@ async def wc2026_pregame_generate(match_id: int = Query(...)):
                 yield item
 
         if wav_bytes:
+            pregame_wav_path(match_id).parent.mkdir(parents=True, exist_ok=True)
             pregame_wav_path(match_id).write_bytes(wav_bytes)
             if meta_dict:
                 pregame_meta_path(match_id).write_text(_json.dumps(meta_dict), encoding="utf-8")

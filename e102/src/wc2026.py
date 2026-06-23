@@ -202,7 +202,8 @@ def build_preview_prompt(match: dict) -> str:
         "Maintain absolute consistency and a strong narrative through-line across the entire script. "
         "Write with flawless articulation and rich, resonant phrasing. "
         "No stage directions, no parenthetical hints, no brackets other than the "
-        "[SCENE:x] markers themselves. Pure spoken English, present tense."
+        "[SCENE:x] markers themselves. Pure spoken English, present tense. "
+        "Do NOT include the words 'FIFA' or 'World Cup' anywhere in the generated script under any circumstances."
     )
 
 
@@ -275,17 +276,43 @@ async def generate_preview_stream(client: genai.Client, match: dict):
     clip_meta: list[dict] = []
     cursor = 0  # running samples
 
+    import asyncio as _asyncio
+
+    yield f"data: Synthesising {n} preview scenes in parallel…\n\n"
+
+    async def synth_one(idx, sid, text):
+        if not text:
+            return idx, sid, b""
+        try:
+            pcm = await _synth(client, text, label=f"preview-{sid}")
+            return idx, sid, pcm
+        except Exception:
+            return idx, sid, b""
+
+    tasks = {
+        _asyncio.create_task(synth_one(idx, sid, sections.get(sid, ""))): (idx, sid)
+        for idx, sid in enumerate(ids)
+    }
+
+    pcm_results = [b""] * len(ids)
+    for fut in _asyncio.as_completed(tasks.keys()):
+        idx, sid, pcm = await fut
+        label = SCENE_LABELS[sid]
+        if not pcm:
+            yield f"data: ⚠ {label} — synthesis failed or returned no audio\n\n"
+        else:
+            yield f"data: Synthesised {label} ({len(pcm) // 1024} KB)\n\n"
+        pcm_results[idx] = pcm
+
     for idx, sid in enumerate(ids):
+        pcm = pcm_results[idx]
         text = sections.get(sid, "")
         label = SCENE_LABELS[sid]
-        if not text:
-            yield f"data: Skipping {label} (no text)…\n\n"
+        if not text or not pcm:
+            if not text:
+                yield f"data: Skipping {label} (no text)…\n\n"
             continue
 
-        yield f"data: Synthesising {idx + 1}/{n}: {label}…\n\n"
-        pcm = await _synth(client, text, label=f"preview-{sid}")
-        if not pcm:
-            continue
         pcm = _clip_clean(pcm)
         pcm = pcm[: (len(pcm) // SAMPLE_WIDTH) * SAMPLE_WIDTH]
 
@@ -379,7 +406,8 @@ def build_pregame_prompt(match: dict) -> str:
         "Maintain absolute consistency and a strong narrative through-line across the entire script. "
         "Write with flawless articulation and rich, resonant phrasing. "
         "No stage directions, no parenthetical hints, no brackets other than the "
-        "[SCENE:x] markers themselves. Pure spoken English."
+        "[SCENE:x] markers themselves. Pure spoken English. "
+        "Do NOT include the words 'FIFA' or 'World Cup' anywhere in the generated script under any circumstances."
     )
 
 
@@ -538,17 +566,43 @@ async def generate_pregame_stream(client: genai.Client, match: dict):
     clip_meta: list[dict] = []
     cursor = 0
 
+    import asyncio as _asyncio
+
+    yield f"data: Synthesising {n} pre-match scenes in parallel…\n\n"
+
+    async def synth_one(idx, sid, text):
+        if not text:
+            return idx, sid, b""
+        try:
+            pcm = await _synth(client, text, label=f"pregame-{sid}")
+            return idx, sid, pcm
+        except Exception:
+            return idx, sid, b""
+
+    tasks = {
+        _asyncio.create_task(synth_one(idx, sid, sections.get(sid, ""))): (idx, sid)
+        for idx, sid in enumerate(ids)
+    }
+
+    pcm_results = [b""] * len(ids)
+    for fut in _asyncio.as_completed(tasks.keys()):
+        idx, sid, pcm = await fut
+        label = SCENE_LABELS[sid]
+        if not pcm:
+            yield f"data: ⚠ {label} — synthesis failed or returned no audio\n\n"
+        else:
+            yield f"data: Synthesised {label} ({len(pcm) // 1024} KB)\n\n"
+        pcm_results[idx] = pcm
+
     for idx, sid in enumerate(ids):
+        pcm = pcm_results[idx]
         text = sections.get(sid, "")
         label = SCENE_LABELS[sid]
-        if not text:
-            yield f"data: Skipping {label} (no text)…\n\n"
+        if not text or not pcm:
+            if not text:
+                yield f"data: Skipping {label} (no text)…\n\n"
             continue
 
-        yield f"data: Synthesising {idx + 1}/{n}: {label}…\n\n"
-        pcm = await _synth(client, text, label=f"pregame-{sid}")
-        if not pcm:
-            continue
         pcm = _clip_clean(pcm)
         pcm = pcm[: (len(pcm) // SAMPLE_WIDTH) * SAMPLE_WIDTH]
 

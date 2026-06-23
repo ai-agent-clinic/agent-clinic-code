@@ -359,7 +359,8 @@ def _build_script_prompt(moments: list[dict], target_words: int) -> str:
         "no ‘moving on to…’, no list-reading, and no play-by-play live action commentary. Maintain a narrative "
         "focused on structural analysis and tactical precision throughout. Maintain absolute consistency and a "
         "strong narrative through-line across the entire match timeline. No stage directions, no parenthetical "
-        "hints, no brackets other than the [MOMENT:x@y] markers themselves. Pure spoken English, past tense."
+        "hints, no brackets other than the [MOMENT:x@y] markers themselves. Pure spoken English, past tense. "
+        "Do NOT include the words 'FIFA' or 'World Cup' anywhere in the generated script under any circumstances."
     )
 
 
@@ -774,28 +775,44 @@ async def generate_commentary_stream(
         i += 2
     section_texts = [result_map.get(f"{m['kind']}@{m['minute']}", "") for m in moments]
 
-    # Synthesise each section and assemble — clip durations are the source of truth.
+    # Synthesise each section in parallel and assemble — clip durations are the source of truth.
     # All byte arithmetic uses integer sample counts to guarantee PCM alignment.
     assembled: list[bytes] = []
     clip_meta: list[dict] = []
     cursor_samps = 0  # running total in samples
 
-    for i, (m, text) in enumerate(zip(moments, section_texts)):
+    yield f"data: Synthesising {n} moments in parallel…\n\n"
+
+    async def synth_one(idx, m, text):
         label = f"{m['kind']} @ {m['minute']}'"
-        yield f"data: Synthesising {i + 1}/{n}: {label}…\n\n"
-
         if not text:
-            yield f"data: ⚠ {label} — no text generated, skipping\n\n"
-            continue
-
+            return idx, b""
         try:
             pcm = await _synth(client, text, label=label)
-        except Exception as exc:
-            yield f"data: ⚠ {label} failed ({exc.__class__.__name__}) — skipping\n\n"
-            continue
+            return idx, pcm
+        except Exception:
+            return idx, b""
 
+    tasks = {
+        asyncio.create_task(synth_one(idx, m, text)): (idx, m)
+        for idx, (m, text) in enumerate(zip(moments, section_texts))
+    }
+
+    pcm_results = [b""] * n
+    for fut in asyncio.as_completed(tasks.keys()):
+        idx, pcm = await fut
+        _, m = tasks[fut]
+        label = f"{m['kind']} @ {m['minute']}'"
         if not pcm:
-            yield f"data: ⚠ {label} returned no audio — skipping\n\n"
+            yield f"data: ⚠ {label} — synthesis failed or returned no audio\n\n"
+        else:
+            yield f"data: Synthesised {label} ({len(pcm) // 1024} KB)\n\n"
+        pcm_results[idx] = pcm
+
+    for i, (m, pcm) in enumerate(zip(moments, pcm_results)):
+        label = f"{m['kind']} @ {m['minute']}'"
+        if not pcm:
+            # Skip if synthesis failed or yielded no text
             continue
 
         # Byte-align (defensive — _synth should already guarantee this)
