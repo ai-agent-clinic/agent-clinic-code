@@ -5228,3 +5228,47 @@ html, body, #root {
   font-weight: 700;
   letter-spacing: 0.06em;
 }
+
+/* Rebranded large cap code elements replacing flags */
+.ld-flag-code-large {
+  font-weight: 800;
+  color: var(--amber);
+  letter-spacing: 0.06em;
+  text-shadow: 0 0 10px rgba(255, 153, 0, 0.22);
+  margin-bottom: 4px;
+}
+
+.upg-flag-code-large {
+  font-weight: 900;
+  color: var(--amber);
+  letter-spacing: 0.08em;
+  text-shadow: 0 0 12px rgba(255, 153, 0, 0.28);
+  display: inline-block;
+  line-height: 1;
+}
+
+.up-flag-code-large {
+  font-weight: 800;
+  color: var(--amber);
+  letter-spacing: 0.06em;
+  text-shadow: 0 0 10px rgba(255, 153, 0, 0.22);
+}
+
+.pg2-road-tlcode-large {
+  font-size: 18px;
+  font-weight: 800;
+  line-height: 1;
+  flex-shrink: 0;
+  color: var(--amber);
+  letter-spacing: 0.04em;
+  text-shadow: 0 0 8px rgba(255, 153, 0, 0.2);
+}
+
+.pg2-jnode-code-large {
+  font-size: 13px;
+  font-weight: 800;
+  line-height: 1;
+  margin-bottom: 5px;
+  color: var(--amber);
+  letter-spacing: 0.03em;
+}

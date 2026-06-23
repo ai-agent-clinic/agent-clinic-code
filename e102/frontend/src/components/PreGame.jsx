@@ -158,16 +158,16 @@ const QF_X    = 840;
 const QF_Y    = Math.round((MOR_Y + POR_Y) / 2); // 263
 
 const MOR_MATCHES = [
-  { flag: '🇭🇷', opp: 'Croatia',     us: 0, them: 0, result: 'D' },
-  { flag: '🇧🇪', opp: 'Belgium',     us: 2, them: 0, result: 'W' },
-  { flag: '🇨🇦', opp: 'Canada',      us: 2, them: 1, result: 'W' },
-  { flag: '🇪🇸', opp: 'Spain',       us: 0, them: 0, result: 'W', note: 'Pens 3–0' },
+  { code: 'CRO', opp: 'Croatia',     us: 0, them: 0, result: 'D' },
+  { code: 'BEL', opp: 'Belgium',     us: 2, them: 0, result: 'W' },
+  { code: 'CAN', opp: 'Canada',      us: 2, them: 1, result: 'W' },
+  { code: 'ESP', opp: 'Spain',       us: 0, them: 0, result: 'W', note: 'Pens 3–0' },
 ];
 const POR_MATCHES = [
-  { flag: '🇬🇭', opp: 'Ghana',       us: 3, them: 2, result: 'W' },
-  { flag: '🇺🇾', opp: 'Uruguay',     us: 2, them: 0, result: 'W' },
-  { flag: '🇰🇷', opp: 'S. Korea',    us: 1, them: 2, result: 'L' },
-  { flag: '🇨🇭', opp: 'Switzerland', us: 6, them: 1, result: 'W' },
+  { code: 'GHA', opp: 'Ghana',       us: 3, them: 2, result: 'W' },
+  { code: 'URU', opp: 'Uruguay',     us: 2, them: 0, result: 'W' },
+  { code: 'KOR', opp: 'S. Korea',    us: 1, them: 2, result: 'L' },
+  { code: 'SUI', opp: 'Switzerland', us: 6, them: 1, result: 'W' },
 ];
 
 // SVG path strings — built once at module load
@@ -205,7 +205,7 @@ function JourneyNode({ match, color, x, y, visible, isR16 }) {
         background:  isWin ? `${color}0e` : 'rgba(10,8,22,0.85)',
       }}
     >
-      <div className="pg2-jnode-flag">{match.flag}</div>
+      <div className="pg2-jnode-code-large">{match.code}</div>
       <div className="pg2-jnode-opp">{match.opp}</div>
       <div className="pg2-jnode-score" style={{ color: scoreColor }}>
         {match.us}–{match.them}
@@ -330,7 +330,7 @@ function RoadScene({ progress, scenes, isActive }) {
         {/* ══ Team labels ══ */}
         <div className="pg2-road-tlabel"
           style={{ ...vbpct(30, MOR_Y - 84), opacity: labVis ? 1 : 0, transition: 'opacity 0.7s' }}>
-          <span className="pg2-road-tlflag">🇲🇦</span>
+          <span className="pg2-road-tlcode-large">MAR</span>
           <div>
             <div className="pg2-road-tlname" style={{ color: '#ffb347' }}>Morocco</div>
             <div className="pg2-road-tlsub">Group B · 1st Place</div>
@@ -339,7 +339,7 @@ function RoadScene({ progress, scenes, isActive }) {
 
         <div className="pg2-road-tlabel"
           style={{ ...vbpct(30, POR_Y - 84), opacity: labVis ? 1 : 0, transition: 'opacity 0.8s 0.1s' }}>
-          <span className="pg2-road-tlflag">🇵🇹</span>
+          <span className="pg2-road-tlcode-large">POR</span>
           <div>
             <div className="pg2-road-tlname" style={{ color: '#cc1133' }}>Portugal</div>
             <div className="pg2-road-tlsub">Group H · 1st Place</div>

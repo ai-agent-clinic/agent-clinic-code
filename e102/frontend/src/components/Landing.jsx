@@ -8,23 +8,11 @@ function flagUrl(iso2) {
   return iso2 ? `https://flagsdb.com/img/flags/${iso2.toLowerCase()}.png` : null;
 }
 
-function Flag({ iso2, name, size = 32 }) {
-  const [err, setErr] = useState(false);
-  const src = flagUrl(iso2);
-  if (!src || err) {
-    return (
-      <span className="ld-flag-placeholder" style={{ width: size, height: size * 0.66, fontSize: size * 0.25 }}>
-        {(name || '?').slice(0, 3).toUpperCase()}
-      </span>
-    );
-  }
+function Flag({ code, size = 32 }) {
   return (
-    <img
-      src={src} alt={name}
-      className="ld-flag"
-      style={{ width: size, height: 'auto' }}
-      onError={() => setErr(true)}
-    />
+    <span className="ld-flag-code-large" style={{ fontSize: size * 0.55 }}>
+      {code}
+    </span>
   );
 }
 
@@ -60,15 +48,13 @@ function MatchCard({ match, onPreview }) {
 
       <div className="ld-teams">
         <div className="ld-team ld-team--home">
-          <Flag iso2={home.iso2} name={home.name} size={36} />
+          <Flag code={home.fifa_code} size={36} />
           <span className="ld-team-name">{home.name}</span>
-          <span className="ld-team-code">{home.fifa_code}</span>
         </div>
         <div className="ld-versus">vs</div>
         <div className="ld-team ld-team--away">
-          <Flag iso2={away.iso2} name={away.name} size={36} />
+          <Flag code={away.fifa_code} size={36} />
           <span className="ld-team-name">{away.name}</span>
-          <span className="ld-team-code">{away.fifa_code}</span>
         </div>
       </div>
 
@@ -170,7 +156,7 @@ export default function Landing({ onEnterMatch }) {
 
           <div className="ld-past-teams">
             <div className="ld-past-team">
-              <Flag iso2="ma" name="Morocco" size={52} />
+              <Flag code="MAR" size={52} />
               <span className="ld-past-name">Morocco</span>
             </div>
             <div className="ld-past-score">
@@ -179,7 +165,7 @@ export default function Landing({ onEnterMatch }) {
               <span className="ld-score-num">0</span>
             </div>
             <div className="ld-past-team">
-              <Flag iso2="pt" name="Portugal" size={52} />
+              <Flag code="POR" size={52} />
               <span className="ld-past-name">Portugal</span>
             </div>
           </div>

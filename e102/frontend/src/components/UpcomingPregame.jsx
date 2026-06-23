@@ -59,23 +59,11 @@ function fmtLocalDate(local) {
 
 // ── Flag ──────────────────────────────────────────────────────────────────────
 
-function Flag({ iso2, name, size = 48 }) {
-  const [err, setErr] = useState(false);
-  const src = iso2 ? `https://flagsdb.com/img/flags/${iso2.toLowerCase()}.png` : null;
-  if (!src || err) {
-    return (
-      <div className="upg-flag-ph"
-        style={{ width: size, height: Math.round(size * 0.66) }}>
-        {(name || '?').slice(0, 3).toUpperCase()}
-      </div>
-    );
-  }
+function Flag({ code, size = 48 }) {
   return (
-    <img src={src} alt={name}
-      className="upg-flag"
-      style={{ width: size, height: 'auto' }}
-      onError={() => setErr(true)}
-    />
+    <div className="upg-flag-code-large" style={{ fontSize: size * 0.45 }}>
+      {code}
+    </div>
   );
 }
 
@@ -135,15 +123,7 @@ function OpenerScene({ progress, scenes, match }) {
 
   return (
     <div className="upg-scene upg-scene--opener">
-      {/* Blurred flag backgrounds */}
-      {home.iso2 && (
-        <div className="upg-opener-bgflag upg-opener-bgflag--home"
-          style={{ backgroundImage: `url(https://flagsdb.com/img/flags/${home.iso2}.png)`, opacity: fadeL * 0.07 }} />
-      )}
-      {away.iso2 && (
-        <div className="upg-opener-bgflag upg-opener-bgflag--away"
-          style={{ backgroundImage: `url(https://flagsdb.com/img/flags/${away.iso2}.png)`, opacity: fadeR * 0.07 }} />
-      )}
+
 
       {/* Particles */}
       <div className="upg-particles" aria-hidden>
@@ -161,9 +141,8 @@ function OpenerScene({ progress, scenes, match }) {
         opacity:   fadeL,
         transform: `translateX(${(1 - fadeL) * -32}px)`,
       }}>
-        <Flag iso2={home.iso2} name={home.name} size={80} />
+        <Flag code={home.fifa_code} size={80} />
         <div className="upg-opener-teamname upg-opener-teamname--home">{home.name}</div>
-        <div className="upg-opener-code">{home.fifa_code}</div>
       </div>
 
       {/* Center */}
@@ -181,9 +160,8 @@ function OpenerScene({ progress, scenes, match }) {
         opacity:   fadeR,
         transform: `translateX(${(1 - fadeR) * 32}px)`,
       }}>
-        <Flag iso2={away.iso2} name={away.name} size={80} />
+        <Flag code={away.fifa_code} size={80} />
         <div className="upg-opener-teamname upg-opener-teamname--away">{away.name}</div>
-        <div className="upg-opener-code">{away.fifa_code}</div>
       </div>
     </div>
   );
@@ -314,9 +292,8 @@ function GroupScene({ progress, scenes, match, groupTeams }) {
                 transition: `opacity 0.50s ${i * 0.08}s, transform 0.50s ${i * 0.08}s`,
               }}
             >
-              <Flag iso2={t.iso2} name={t.name} size={42} />
+              <div className="upg-flag-code-large" style={{ fontSize: 18, marginBottom: 8 }}>{t.fifa_code}</div>
               <div className="upg-gteam-name">{t.name}</div>
-              <div className="upg-gteam-code">{t.fifa_code}</div>
               {(isHome || isAway) && (
                 <div className="upg-gteam-role">{isHome ? 'Home' : 'Away'}</div>
               )}
@@ -341,13 +318,12 @@ function TeamScene({ progress, scenes, sceneId, team, teamFact }) {
   return (
     <div className={`upg-scene upg-scene--team${isHome ? ' upg-scene--home' : ' upg-scene--away'}`}>
       <div className="upg-team-layout">
-        {/* Flag side */}
+        {/* Code side (replacing flag) */}
         <div className="upg-team-flag-wrap" style={{
           opacity:   flagOp,
           transform: `scale(${0.65 + flagOp * 0.35})`,
         }}>
-          <Flag iso2={team.iso2} name={team.name} size={128} />
-          <div className="upg-team-code-big">{team.fifa_code}</div>
+          <div className="upg-flag-code-large" style={{ fontSize: 56 }}>{team.fifa_code}</div>
         </div>
 
         {/* Info side */}
@@ -740,15 +716,7 @@ export default function UpcomingPregame({ match, onClose }) {
   // ── Render ────────────────────────────────────────────────────────────────
   return (
     <div className="upg-backdrop" onClick={onClose}>
-      {/* Blurred flag color tints */}
-      {home.iso2 && (
-        <div className="upg-bg upg-bg--home"
-          style={{ backgroundImage: `url(https://flagsdb.com/img/flags/${home.iso2}.png)` }} />
-      )}
-      {away.iso2 && (
-        <div className="upg-bg upg-bg--away"
-          style={{ backgroundImage: `url(https://flagsdb.com/img/flags/${away.iso2}.png)` }} />
-      )}
+
       <div className="upg-bg-vignette" />
 
       <div className="upg-root" onClick={e => e.stopPropagation()}>
@@ -773,12 +741,12 @@ export default function UpcomingPregame({ match, onClose }) {
 
               <div className="upg-prompt-matchup">
                 <div className="upg-prompt-team">
-                  <Flag iso2={home.iso2} name={home.name} size={52} />
+                  <Flag code={home.fifa_code} size={52} />
                   <span>{home.name}</span>
                 </div>
                 <div className="upg-prompt-vs">vs</div>
                 <div className="upg-prompt-team upg-prompt-team--r">
-                  <Flag iso2={away.iso2} name={away.name} size={52} />
+                  <Flag code={away.fifa_code} size={52} />
                   <span>{away.name}</span>
                 </div>
               </div>

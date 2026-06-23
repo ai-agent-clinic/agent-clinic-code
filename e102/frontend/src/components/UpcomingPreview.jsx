@@ -9,23 +9,11 @@ const SCENES = [
   { id: 'kickoff', label: 'Kickoff'      },
 ];
 
-function Flag({ iso2, name, size = 48 }) {
-  const [err, setErr] = useState(false);
-  const src = iso2 ? `https://flagsdb.com/img/flags/${iso2.toLowerCase()}.png` : null;
-  if (!src || err) {
-    return (
-      <div className="up-flag-placeholder" style={{ width: size, height: size * 0.66 }}>
-        {name?.slice(0, 3).toUpperCase()}
-      </div>
-    );
-  }
+function Flag({ code, size = 48 }) {
   return (
-    <img
-      src={src} alt={name}
-      className="up-flag"
-      style={{ width: size, height: 'auto' }}
-      onError={() => setErr(true)}
-    />
+    <div className="up-flag-code-large" style={{ fontSize: size * 0.45 }}>
+      {code}
+    </div>
   );
 }
 
@@ -204,9 +192,6 @@ export default function UpcomingPreview({ match, onClose }) {
 
   return (
     <div className="up-backdrop" onClick={onClose}>
-      {/* Team flag backgrounds */}
-      {home.iso2 && <div className="up-bg up-bg--home" style={{ backgroundImage: `url(https://flagsdb.com/img/flags/${home.iso2}.png)` }} />}
-      {away.iso2 && <div className="up-bg up-bg--away" style={{ backgroundImage: `url(https://flagsdb.com/img/flags/${away.iso2}.png)` }} />}
       <div className="up-bg-vignette" />
 
       <div className="up-modal" onClick={e => e.stopPropagation()}>
@@ -215,9 +200,8 @@ export default function UpcomingPreview({ match, onClose }) {
         {/* Match header */}
         <div className="up-header">
           <div className="up-team up-team--home">
-            <Flag iso2={home.iso2} name={home.name} size={56} />
+            <Flag code={home.fifa_code} size={56} />
             <div className="up-team-name">{home.name}</div>
-            <div className="up-team-code">{home.fifa_code}</div>
           </div>
 
           <div className="up-center">
@@ -230,9 +214,8 @@ export default function UpcomingPreview({ match, onClose }) {
           </div>
 
           <div className="up-team up-team--away">
-            <Flag iso2={away.iso2} name={away.name} size={56} />
+            <Flag code={away.fifa_code} size={56} />
             <div className="up-team-name">{away.name}</div>
-            <div className="up-team-code">{away.fifa_code}</div>
           </div>
         </div>
 
