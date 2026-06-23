@@ -124,7 +124,7 @@ function TitleScene({ progress, scenes }) {
 
       <div className="pg2-title-center" style={{ opacity: Math.min(1, Math.max(0, (lp - 0.25) * 3)) }}>
         <div className="pg2-title-vs">VS</div>
-        <div className="pg2-title-comp">2022 FIFA World Cup · Quarter-Final</div>
+        <div className="pg2-title-comp">2022 Football Championship · Quarter-Final</div>
         <div className="pg2-title-meta">
           <span>Al Thumama Stadium</span>
           <span className="pg2-title-sep">·</span>
@@ -718,7 +718,7 @@ function PromptScreen({ onWatch, onSkip, audioReady }) {
         </div>
 
         <div className="pg2-prompt-event">
-          2022 FIFA World Cup · Quarter-Final<br />
+          2022 Football Championship · Quarter-Final<br />
           Al Thumama Stadium, Doha · Dec 10, 2022
         </div>
 

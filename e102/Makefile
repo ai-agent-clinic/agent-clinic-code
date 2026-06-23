@@ -49,9 +49,7 @@ help:
 	@echo "  .env created — open it and set your GEMINI_API_KEY"
 
 setup: .env
-	$(PYTHON_SYS) -m venv $(VENV)
-	$(PIP) install --upgrade pip --quiet
-	$(PIP) install -r requirements.txt
+	uv sync
 	cd frontend && npm install
 	@echo ""
 	@echo "  Setup complete."

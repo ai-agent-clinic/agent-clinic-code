@@ -429,7 +429,7 @@ export default function App() {
             <div className="team-name away">Portugal</div>
           </div>
           <div id="match-meta">
-            2022 FIFA World Cup &nbsp;·&nbsp; Quarter-final &nbsp;·&nbsp; Dec 10, 2022
+            2022 Football Championship &nbsp;·&nbsp; Quarter-final &nbsp;·&nbsp; Dec 10, 2022
           </div>
         </div>
 

@@ -534,7 +534,7 @@ async def explain(body: ExplainBody):
     morocco_shape = " · ".join(p["position"] for p in lineups.get("Morocco", []))
     portugal_shape = " · ".join(p["position"] for p in lineups.get("Portugal", []))
 
-    prompt = f"""You are a tactical football analyst providing a retrospective review of the 2022 FIFA World Cup quarter-final: Morocco vs Portugal.
+    prompt = f"""You are a tactical football analyst providing a retrospective review of the 2022 Football Championship quarter-final: Morocco vs Portugal.
 
 MATCH STATE at {minute}' (period {event.get('period', '?')}):
 Score: {_score_at(all_events, minute)}
@@ -591,7 +591,7 @@ async def explain_agent(body: ExplainBody):
     span.set_attribute("event.minute", minute)
     span.set_attribute("event.type",   event.get("type", ""))
 
-    system_prompt = f"""You are a tactical football analyst providing a retrospective review of the 2022 FIFA World Cup quarter-final: Morocco vs Portugal.
+    system_prompt = f"""You are a tactical football analyst providing a retrospective review of the 2022 Football Championship quarter-final: Morocco vs Portugal.
 
 MATCH STATE at {minute}' (period {event.get('period', '?')}):
 Score: {_score_at(all_events, minute)}
@@ -711,7 +711,7 @@ async def agent_chat(body: ChatBody):
     score = _score_at(all_events, minute)
 
     if is_overview:
-        system_context = f"""You are a tactical football analyst providing a retrospective review of the 2022 FIFA World Cup quarter-final: Morocco vs Portugal.
+        system_context = f"""You are a tactical football analyst providing a retrospective review of the 2022 Football Championship quarter-final: Morocco vs Portugal.
 
 The user is watching the match at minute {minute} and wants to discuss the tactical situation — not a specific event.
 
@@ -744,7 +744,7 @@ Only call tools again if the question requires data not already fetched."""
         actor_team = event["team"]
         opponent_team = "Portugal" if actor_team == "Morocco" else "Morocco"
 
-        system_context = f"""You are a tactical football analyst providing a retrospective review of the 2022 FIFA World Cup quarter-final: Morocco vs Portugal.
+        system_context = f"""You are a tactical football analyst providing a retrospective review of the 2022 Football Championship quarter-final: Morocco vs Portugal.
 
 MATCH STATE at {minute}' (period {event.get('period', '?')}):
 Score: {score}
@@ -907,7 +907,7 @@ async def suggest_questions(body: SuggestBody):
         context_details += f"\nSURROUNDING MATCH EVENT SEQUENCE:\n{events_str}"
 
     system_prompt = f"""You are a world-class football tactical analyst providing a retrospective breakdown of a classic match, generating three suggested questions for a user in an interactive match viewer.
-The current match is Morocco vs Portugal (2022 FIFA World Cup Quarter-Final). Morocco won 1–0.
+The current match is Morocco vs Portugal (2022 Football Championship Quarter-Final). Morocco won 1–0.
 
 CONTEXT DETAILED DATA:
 {context_details}
@@ -1052,7 +1052,7 @@ def pregame_data():
         "audio_cache_enabled": _AUDIO_CACHE,
         "match": {
             "date": "December 10, 2022",
-            "competition": "2022 FIFA World Cup Quarter-Final",
+            "competition": "2022 Football Championship Quarter-Final",
             "venue": "Al Thumama Stadium, Doha, Qatar",
             "kickoff": "22:00 AST (19:00 UTC)",
             "lat": 25.2350,
@@ -1082,7 +1082,7 @@ def pregame_data():
                 "position": "Forward",
                 "jersey": 7,
                 "highlight": "Starting from the bench",
-                "fact": "Controversially dropped to the bench by Fernando Santos — the first time CR7 has started a World Cup knockout game on the bench in his legendary career.",
+                "fact": "Controversially dropped to the bench by Fernando Santos — the first time CR7 has started a tournament knockout game on the bench in his legendary career.",
             },
             {
                 "name": "Bruno Fernandes",
@@ -1114,7 +1114,7 @@ async def pregame_generate():
     mor_xi  = ", ".join(p["player_name"] for p in lineups.get("Morocco",  [])[:11])
     por_xi  = ", ".join(p["player_name"] for p in lineups.get("Portugal", [])[:11])
 
-    script_prompt = f"""You are a passionate, spontaneous football podcast host delivering a retrospective pre-match monologue. Write ONE continuous, organic, breathless narration reflecting back on the legendary 2022 FIFA World Cup Quarter-Final: MOROCCO vs PORTUGAL.
+    script_prompt = f"""You are a passionate, spontaneous football podcast host delivering a retrospective pre-match monologue. Write ONE continuous, organic, breathless narration reflecting back on the legendary 2022 Football Championship Quarter-Final: MOROCCO vs PORTUGAL.
 
 Venue: Al Thumama Stadium, Doha, Qatar · December 10, 2022 · Kickoff 22:00
 Morocco starting XI: {mor_xi}

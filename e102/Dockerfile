@@ -14,9 +14,10 @@ RUN npm run build
 FROM python:3.12-slim
 WORKDIR /app
 
-# Copy python dependencies and install via standard PyPI
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt --index-url https://pypi.org/simple
+# Copy python dependency files and install via standard PyPI using uv
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
+COPY pyproject.toml uv.lock ./
+RUN uv pip install --system --no-cache-dir -r pyproject.toml --index-url https://pypi.org/simple
 
 # Copy backend source and data directories
 COPY src/ ./src

@@ -111,10 +111,10 @@ export default function Landing({ onEnterMatch }) {
       <div id="ld-hero">
         <div className="ld-hero-glow" />
 
-        <div className="ld-hero-eyebrow">FIFA</div>
+        <div className="ld-hero-eyebrow">GLOBAL</div>
         <h1 className="ld-hero-title">
-          <span className="ld-title-word">WORLD</span>
-          <span className="ld-title-word">CUP</span>
+          <span className="ld-title-word">FOOTBALL</span>
+          <span className="ld-title-word">CHAMPIONSHIP</span>
         </h1>
         <div className="ld-hero-year">2026</div>
         <div className="ld-hero-hosts">Canada &nbsp;·&nbsp; Mexico &nbsp;·&nbsp; United States</div>
@@ -166,7 +166,7 @@ export default function Landing({ onEnterMatch }) {
 
         <div className="ld-past-card" onClick={onEnterMatch}>
           <div className="ld-past-glow" />
-          <div className="ld-past-badge">2022 FIFA World Cup · Quarter-Final</div>
+          <div className="ld-past-badge">2022 Football Championship · Quarter-Final</div>
 
           <div className="ld-past-teams">
             <div className="ld-past-team">

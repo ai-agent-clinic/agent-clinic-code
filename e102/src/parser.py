@@ -219,7 +219,7 @@ class MatchData:
         }
         return {
             "match_id": MATCH_ID,
-            "competition": "2022 FIFA World Cup",
+            "competition": "2022 Football Championship",
             "stage": "Quarter-final",
             "date": "2022-12-10",
             "home_team": "Morocco",

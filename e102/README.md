@@ -55,7 +55,8 @@ playback-iq/
 │   ├── download_data.py               # Script that pulled data via statsbombpy
 │   └── team_search.py                 # Helper for finding match IDs
 │
-├── requirements.txt
+├── pyproject.toml
+├── uv.lock
 ├── .env.example
 └── README.md
 ```
@@ -64,25 +65,15 @@ playback-iq/
 
 ## Setup
 
-### 1. Clone and create a virtual environment
+### 1. Clone and install dependencies
 
 ```bash
 git clone <repo-url>
 cd playback-iq
-python -m venv .venv
-# Windows
-.venv\Scripts\activate
-# macOS / Linux
-source .venv/bin/activate
+uv sync
 ```
 
-### 2. Install Python dependencies
-
-```bash
-pip install -r requirements.txt
-```
-
-### 3. Add your Gemini API key
+### 2. Add your Gemini API key
 
 ```bash
 cp .env.example .env

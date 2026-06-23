@@ -343,7 +343,7 @@ def _build_script_prompt(moments: list[dict], target_words: int) -> str:
     return (
         "You are a football tactical analyst providing a retrospective breakdown on a BBC radio podcast — analytically "
         "precise, deeply knowledgeable, and genuinely passionate. You are reflecting on the historic "
-        "2022 FIFA World Cup quarter-final: Morocco vs Portugal (which Morocco won 1–0).\n\n"
+        "2022 Football Championship quarter-final: Morocco vs Portugal (which Morocco won 1–0).\n\n"
         f"Write roughly {target_words} words of ONE continuous, organic, and in-depth retrospective tactical review "
         "covering the full match. Flow naturally through these key moments in order, "
         "placing the EXACT marker shown at the start of each section (the markers are invisible "

@@ -172,7 +172,7 @@ function OpenerScene({ progress, scenes, match }) {
         transform: `scale(${0.65 + fadeC * 0.35})`,
       }}>
         <div className="upg-opener-vs">VS</div>
-        <div className="upg-opener-comp">2026 FIFA World Cup</div>
+        <div className="upg-opener-comp">2026 Football Championship</div>
         <div className="upg-opener-group">Group {match.group} · Matchday {match.matchday}</div>
       </div>
 
@@ -769,7 +769,7 @@ export default function UpcomingPregame({ match, onClose }) {
             </div>
 
             <div className="upg-prompt-card">
-              <div className="upg-prompt-eyebrow">Upcoming · 2026 FIFA World Cup</div>
+              <div className="upg-prompt-eyebrow">Upcoming · 2026 Football Championship</div>
 
               <div className="upg-prompt-matchup">
                 <div className="upg-prompt-team">
