@@ -10,6 +10,17 @@ tmp/
 .*_cache/
 .vscode/settings.json
 
+# Data
+data/events/*.json
+data/lineups/*.json
+data/threesixty/*.json
+data/worldcup_2026/*.csv
+.championship_cache/
+.commentary_cache/
+.pregame_cache/
+.wc2026_cache/
+settings.json
+
 # Terraform
 .terraform/
 *.tfstate

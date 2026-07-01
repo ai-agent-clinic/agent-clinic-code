@@ -73,7 +73,17 @@ cd playback-iq
 uv sync
 ```
 
-### 2. Add your Gemini API key
+### 2. Data Setup (Compliance & Copyright)
+
+Match data is not included in the repository for copyright and compliance reasons. You must fetch it from StatsBomb Open Data using the provided setup script:
+
+```bash
+python Data-Gathering/download_data.py
+```
+
+This will download the specific match data (Events, 360 Frames, and Lineups) required for the demo.
+
+### 3. Add your Gemini API key
 
 ```bash
 cp .env.example .env
